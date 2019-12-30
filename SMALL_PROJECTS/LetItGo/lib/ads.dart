@@ -4,7 +4,6 @@ const String APP_ID = "ca-app-pub-6420987903580707~1040157305";
 
 const String BANNER_ID = "ca-app-pub-6420987903580707/4972481690";
 const String INTERSTITIAL_ID = "ca-app-pub-6420987903580707/3659400023";
-const String testDevice = 'YOUR_DEVICE_ID';
 
 class Ads {
   static BannerAd _bannerAd;
@@ -15,7 +14,6 @@ class Ads {
   }
 
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    testDevices: testDevice != null ? <String>[testDevice] : null,
     childDirected: true,
     gender: MobileAdGender.female
   );

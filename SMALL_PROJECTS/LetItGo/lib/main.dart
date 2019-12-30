@@ -73,10 +73,11 @@ class MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text(title, style: TextStyle(color: Colors.yellow),),
-        backgroundColor: Color.fromRGBO(60, 60, 60, 1),
+        title: Text(title, style: TextStyle(color: Colors.pinkAccent),),
+        backgroundColor: Color.fromRGBO(70, 70, 70, 1),
       ),
-      body: Column(children: <Widget>[
+      body: Column(
+            children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top: 60),
                 color: Colors.black,
@@ -85,11 +86,11 @@ class MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 ),
               ),
               Divider(),
-              Text('Lyric', style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold),),
+              Text('Lyric:', style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold),),
               Divider(),
               Expanded(
                 child: Container(
-                  color: Colors.black,
+                  color: Color.fromRGBO(70, 70, 70, 1),
                   child: ListView.builder(
                     key: UniqueKey(),
                     controller: _scrollController,
