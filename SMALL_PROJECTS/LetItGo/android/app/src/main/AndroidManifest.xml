@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.swletitgo">
+    package="com.seabird.letitgo">
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="Let it go - FROZEN"
+        android:label="Let It Go - Video Subtitle"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-6420987903580707~1040157305"/>
         <activity

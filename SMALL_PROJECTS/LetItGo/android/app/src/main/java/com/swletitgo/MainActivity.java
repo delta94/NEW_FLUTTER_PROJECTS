@@ -1,4 +1,4 @@
-package com.swletitgo;
+package com.seabird.letitgo;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -4,7 +4,6 @@ const String APP_ID = "ca-app-pub-6420987903580707~1040157305";
 
 const String BANNER_ID = "ca-app-pub-6420987903580707/4972481690";
 const String INTERSTITIAL_ID = "ca-app-pub-6420987903580707/3659400023";
-const String REWARDED_VIDEO_ID = "ca-app-pub-6420987903580707/9848585616";
 const String testDevice = 'YOUR_DEVICE_ID';
 
 class Ads {
@@ -44,8 +43,10 @@ class Ads {
   }
 
   static void hideBannerAd() async {
-    await _bannerAd.dispose();
-    _bannerAd = null;
+    if(_bannerAd != null){
+      await _bannerAd.dispose();
+      _bannerAd = null;
+    }
   }
 
   static void showInterstitialAd() {
@@ -57,15 +58,8 @@ class Ads {
 
   static void hideInterstitialAd() async {
     await _interstitialAd.dispose();
-    _interstitialAd = null;
-  }
-
-  static void showRewaredVideoAd(){
-    RewardedVideoAd.instance.load(adUnitId: REWARDED_VIDEO_ID, targetingInfo: targetingInfo);
-      RewardedVideoAd.instance.listener = (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
-        if (event == RewardedVideoAdEvent.loaded) {
-          RewardedVideoAd.instance.show();
-        }
-      };
+    if(_interstitialAd != null){
+      _interstitialAd = null;
+    }
   }
 }
