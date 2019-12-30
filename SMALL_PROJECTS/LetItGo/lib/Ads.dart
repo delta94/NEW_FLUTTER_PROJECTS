@@ -1,9 +1,9 @@
 import 'package:firebase_admob/firebase_admob.dart';
 
-const String APP_ID = "ca-app-pub-6420987903580707~1040157305";
+const String APP_ID = "";
 
-const String BANNER_ID = "ca-app-pub-6420987903580707/4972481690";
-const String INTERSTITIAL_ID = "ca-app-pub-6420987903580707/3659400023";
+const String BANNER_ID = "";
+const String INTERSTITIAL_ID = "";
 
 class Ads {
   static BannerAd _bannerAd;
