@@ -1,6 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:seabird.letitgo/ads.dart';
+import 'package:seabird.letitgo/Ads.dart';
 import 'package:video_player/video_player.dart';
 
 void main() => runApp(MaterialApp(
@@ -15,7 +15,6 @@ class App extends StatefulWidget {
 class AppState extends State<App> with SingleTickerProviderStateMixin {
   VideoPlayerController _videoPlayerController;
   ChewieController _chewieController;
-  String title = 'Let It Go - Video Subtitle';
   bool videoState;
 
   @override
@@ -73,8 +72,13 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text(title, style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.yellow[100],
+        title: Row(
+          children: <Widget>[
+            Image.asset('images/QuickLyric.png', height: 30, width: 30),
+            Text(' Let It Go - Video Subtitle', style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold),),
+          ],
+        ),
+        backgroundColor: Colors.black54,
       ),
       body: Column(
             children: <Widget>[
@@ -86,11 +90,15 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
                 ),
               ),
               Container(
-                color: Colors.yellow[300],
+                color: Colors.black87,
                 width: double.infinity,
                 padding: EdgeInsets.only(top: 5, bottom: 5),
-                child: Center(
-                  child: Text('Lyric:', style: TextStyle(color: Colors.pink, fontWeight: FontWeight.bold, fontSize: 20),),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset('images/QuickLyric.png', height: 30, width: 30),
+                    Text(' Lyric:', style: TextStyle(color: Colors.pink[300], fontWeight: FontWeight.bold, fontSize: 20),),
+                  ],
                 )
               ),
               Expanded(
