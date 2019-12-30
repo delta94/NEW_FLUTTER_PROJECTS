@@ -5,14 +5,14 @@ import 'package:video_player/video_player.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
-  home: MyApp(),
+  home: App(),
 ));
 
-class MyApp extends StatefulWidget {
-  MyAppState createState() => MyAppState();
+class App extends StatefulWidget {
+  AppState createState() => AppState();
 }
 
-class MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+class AppState extends State<App> with SingleTickerProviderStateMixin {
   VideoPlayerController _videoPlayerController;
   ChewieController _chewieController;
   String title = 'Let It Go - Video Subtitle';
@@ -73,30 +73,35 @@ class MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text(title, style: TextStyle(color: Colors.pinkAccent),),
-        backgroundColor: Color.fromRGBO(70, 70, 70, 1),
+        title: Text(title, style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold),),
+        backgroundColor: Colors.yellow[100],
       ),
       body: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: 60),
+                margin: EdgeInsets.only(top: 0),
                 color: Colors.black,
                 child: Chewie(
                   controller: _chewieController,
                 ),
               ),
-              Divider(),
-              Text('Lyric:', style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold),),
-              Divider(),
+              Container(
+                color: Colors.yellow[300],
+                width: double.infinity,
+                padding: EdgeInsets.only(top: 5, bottom: 5),
+                child: Center(
+                  child: Text('Lyric:', style: TextStyle(color: Colors.pink, fontWeight: FontWeight.bold, fontSize: 20),),
+                )
+              ),
               Expanded(
                 child: Container(
-                  color: Color.fromRGBO(70, 70, 70, 1),
+                  color: Colors.yellow[100],
                   child: ListView.builder(
                     key: UniqueKey(),
                     controller: _scrollController,
                     itemBuilder: (b, i) {
                       return Container(
-                        height: 1300,
+                        height: 1000,
                         margin: EdgeInsets.only(bottom: 3, left: 10),
                         alignment: Alignment.topCenter,
                         child: Text(
@@ -151,7 +156,7 @@ class MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                           "Let it go, let it go \n " +
                           "The cold never bothered me anyway \n " +
                           " \n ",
-                          style: TextStyle(color: Colors.yellowAccent),
+                          style: TextStyle(color: Colors.pink, fontWeight: FontWeight.bold),
                         ),
 
                       );
