@@ -36,5 +36,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-   - images/QuickLyric.png
-   - images/SongIcon.flr
+   - images/song_icon.flr
+   - images/lyric_icon.flr

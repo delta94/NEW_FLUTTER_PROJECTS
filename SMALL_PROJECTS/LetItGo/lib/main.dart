@@ -19,12 +19,13 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
   ChewieController _chewieController;
   bool videoState;
   final EndLoopController _loopController = EndLoopController('Untitled', 1.0);
+  final EndLoopController _loopController2 = EndLoopController('Untitled', 1.0);
   AnimationController animationController;
 
   @override
   void initState() {
     super.initState();
-
+    Ads.showBannerAd();
     animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
 
     _videoPlayerController = VideoPlayerController.network('https://phongngo1776.github.io/Videos/LetItGo/LetItGo.mp4')
@@ -80,7 +81,31 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         title: Row(
           children: <Widget>[
-            Text(' Let It Go - Video Subtitle', style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold),),
+            Container(
+              width: 40,
+              height: 40,
+              child: FlareActor("images/song_icon.flr",
+                alignment: Alignment.center,
+                controller: _loopController,
+              )
+            ),
+            Text(
+              'Let It Go - Video Subtitle', 
+              style: TextStyle(
+                color: Colors.yellowAccent, 
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.red,
+                decorationStyle: TextDecorationStyle.solid,
+                shadows: [
+                  Shadow(
+                    color: Colors.greenAccent,
+                    blurRadius: 10.0,
+                    offset: Offset(5.0, 5.0),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
         backgroundColor: Colors.black54,
@@ -97,12 +122,20 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
               ),
               Container(
                 color: Colors.black87,
-                width: double.infinity,
+                //width: double.infinity,
                 padding: EdgeInsets.only(top: 5, bottom: 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('images/QuickLyric.png', height: 20, width: 20),
+                    //Image.asset('images/QuickLyric.png', height: 20, width: 20),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      child: FlareActor("images/lyric_icon.flr",
+                        alignment: Alignment.center,
+                        controller: _loopController2,
+                      )
+                    ),
                     Text(' Lyric:', style: TextStyle(color: Colors.pink[300], fontWeight: FontWeight.bold, fontSize: 20),),
                   ],
                 )
