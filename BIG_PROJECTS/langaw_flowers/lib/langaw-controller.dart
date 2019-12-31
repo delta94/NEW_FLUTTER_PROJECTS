@@ -153,8 +153,8 @@ class LangawGame extends Game {
     helpButton?.resize();
     musicButton?.resize();
     soundButton?.resize();
-    trueButton?.resize();
-    falseButton?.resize();
+    // trueButton?.resize();
+    // falseButton?.resize();
 
   }
 

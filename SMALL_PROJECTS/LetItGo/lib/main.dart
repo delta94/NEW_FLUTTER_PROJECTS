@@ -1,6 +1,8 @@
 import 'package:chewie/chewie.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:seabird.letitgo/Ads.dart';
+import 'package:seabird.letitgo/EndLoopController.dart';
 import 'package:video_player/video_player.dart';
 
 void main() => runApp(MaterialApp(
@@ -16,10 +18,14 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
   VideoPlayerController _videoPlayerController;
   ChewieController _chewieController;
   bool videoState;
+  final EndLoopController _loopController = EndLoopController('Untitled', 1.0);
+  AnimationController animationController;
 
   @override
   void initState() {
     super.initState();
+
+    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
 
     _videoPlayerController = VideoPlayerController.network('https://phongngo1776.github.io/Videos/LetItGo/LetItGo.mp4')
     ..addListener(() {
@@ -74,13 +80,13 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         title: Row(
           children: <Widget>[
-            Image.asset('images/QuickLyric.png', height: 30, width: 30),
             Text(' Let It Go - Video Subtitle', style: TextStyle(color: Colors.pinkAccent, fontWeight: FontWeight.bold),),
           ],
         ),
         backgroundColor: Colors.black54,
       ),
-      body: Column(
+      body: Container(
+        child: Column(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top: 0),
@@ -96,7 +102,7 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('images/QuickLyric.png', height: 30, width: 30),
+                    Image.asset('images/QuickLyric.png', height: 20, width: 20),
                     Text(' Lyric:', style: TextStyle(color: Colors.pink[300], fontWeight: FontWeight.bold, fontSize: 20),),
                   ],
                 )
@@ -173,7 +179,8 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
                   )
                 )
               )
-      ])
+        ]),
+      )
     );
   }
 }
