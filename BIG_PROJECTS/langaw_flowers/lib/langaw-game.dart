@@ -1,14 +1,13 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/gestures.dart';
 import 'package:langaw/bgm.dart';
-import 'dart:async' as async;
 import 'package:langaw/components/agile-fly.dart';
 import 'package:langaw/components/backyard.dart';
 import 'package:langaw/components/drooler-fly.dart';
-import 'package:langaw/components/false-button.dart';
 import 'package:langaw/components/fly.dart';
 import 'package:langaw/components/help-button.dart';
 import 'package:langaw/components/highscore-display.dart';
@@ -19,7 +18,6 @@ import 'package:langaw/components/music-button.dart';
 import 'package:langaw/components/score-display.dart';
 import 'package:langaw/components/sound-button.dart';
 import 'package:langaw/components/start-button.dart';
-import 'package:langaw/components/true-button.dart';
 import 'package:langaw/controllers/spawner.dart';
 import 'package:langaw/view.dart';
 import 'package:langaw/views/help-view.dart';
@@ -49,11 +47,8 @@ class LangawGame extends Game {
   LostView lostView;
   HelpView helpView;
 
-  TrueButton trueButton;
-  FalseButton falseButton;
-
   int score;
-  async.Timer timer;
+  Timer timer;
 
   LangawGame(this.storage) {
     initialize();
@@ -77,9 +72,6 @@ class LangawGame extends Game {
     homeView = HomeView(this);
     lostView = LostView(this);
     helpView = HelpView(this);
-
-    trueButton = TrueButton(this);
-    falseButton = FalseButton(this);
 
     BGM.play(BGMType.home);
   }
@@ -109,8 +101,6 @@ class LangawGame extends Game {
 
   void render(Canvas canvas) {
     background.render(canvas);
-    trueButton.render(canvas);
-    falseButton.render(canvas);
 
     highscoreDisplay.render(canvas);
     if (activeView == View.playing || activeView == View.lost) scoreDisplay.render(canvas);
@@ -153,16 +143,14 @@ class LangawGame extends Game {
     helpButton?.resize();
     musicButton?.resize();
     soundButton?.resize();
-    // trueButton?.resize();
-    // falseButton?.resize();
 
   }
 
   void onTapDown(TapDownDetails d) {
     bool isHandled = false;
-
+    
     if (timer != null) timer.cancel();
-    timer = async.Timer( Duration(milliseconds: 20), (){
+    timer = Timer( Duration(milliseconds: 50), (){
       // dialog boxes
       if (!isHandled) {
         if (activeView == View.help || activeView == View.credits) {
@@ -197,18 +185,6 @@ class LangawGame extends Game {
           startButton.onTapDown();
           isHandled = true;
         }
-      }
-
-      // true button
-      if (!isHandled && trueButton.rect.contains(d.globalPosition)) {
-        trueButton.onTapDown();
-        isHandled = true;
-      }
-
-      // false button
-      if (!isHandled && falseButton.rect.contains(d.globalPosition)) {
-        falseButton.onTapDown();
-        isHandled = true;
       }
 
       // flies

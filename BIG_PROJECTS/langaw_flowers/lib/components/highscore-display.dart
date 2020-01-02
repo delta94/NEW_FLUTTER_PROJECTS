@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/painting.dart';
-import 'package:langaw/langaw-controller.dart';
+import 'package:langaw/langaw-game.dart';
 
 class HighscoreDisplay {
   final LangawGame game;

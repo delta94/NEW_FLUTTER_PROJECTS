@@ -1,5 +1,5 @@
 import 'package:langaw/components/fly.dart';
-import 'package:langaw/langaw-controller.dart';
+import 'package:langaw/langaw-game.dart';
 
 class FlySpawner {
   final LangawGame game;

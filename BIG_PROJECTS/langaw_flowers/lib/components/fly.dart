@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:langaw/components/callout.dart';
-import 'package:langaw/langaw-controller.dart';
+import 'package:langaw/langaw-game.dart';
 import 'package:langaw/view.dart';
 
 class Fly {

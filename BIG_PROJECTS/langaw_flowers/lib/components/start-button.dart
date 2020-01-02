@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:langaw/bgm.dart';
-import 'package:langaw/langaw-controller.dart';
+import 'package:langaw/langaw-game.dart';
 import 'package:langaw/view.dart';
 
 class StartButton {

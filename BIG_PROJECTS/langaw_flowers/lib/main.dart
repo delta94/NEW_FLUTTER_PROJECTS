@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:langaw/bgm.dart';
-import 'package:langaw/langaw-controller.dart';
+import 'package:langaw/langaw-game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
