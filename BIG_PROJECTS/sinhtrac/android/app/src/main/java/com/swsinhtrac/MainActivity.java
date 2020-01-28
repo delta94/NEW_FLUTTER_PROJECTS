@@ -1,4 +1,4 @@
-package com.swsinhtrac;
+package com.sbsinhtrac;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

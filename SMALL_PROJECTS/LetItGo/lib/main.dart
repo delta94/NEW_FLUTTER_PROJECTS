@@ -1,8 +1,9 @@
+import 'package:app_review/app_review.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:seabird.letitgo/Ads.dart';
-import 'package:seabird.letitgo/EndLoopController.dart';
+import 'package:seab1ird.letitgo/Ads.dart';
+import 'package:seab1ird.letitgo/EndLoopController.dart';
 import 'package:video_player/video_player.dart';
 
 void main() => runApp(MaterialApp(
@@ -25,14 +26,14 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Ads.showBannerAd();
+    // Ads.showBannerAd();
     animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
 
-    _videoPlayerController = VideoPlayerController.network('https://phongngo1776.github.io/Videos/LetItGo/LetItGo.mp4')
+    _videoPlayerController = VideoPlayerController.network('https://haiyentruong1776.github.io/Public_Video/LetItGo.mp4')
     ..addListener(() {
         final bool videoState = _videoPlayerController.value.isPlaying;
         if(this.videoState != videoState){
-          Ads.showInterstitialAd();
+          // Ads.showInterstitialAd();
           this.videoState = videoState;
         }
         // Toast.show(isPlaying.toString(), context);
@@ -59,9 +60,9 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
     )
     ..addListener(() {
       if (_chewieController.isFullScreen == true) {
-        Ads.hideBannerAd();
+        // Ads.hideBannerAd();
       } else {
-        Ads.showBannerAd();
+        // Ads.showBannerAd();
       }
     });
   }
@@ -80,6 +81,7 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
               width: 40,
@@ -106,6 +108,12 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
+            GestureDetector(
+              child: Image.asset('images/star.png', height: 30, width: 30),
+              onTap: () {
+                AppReview.storeListing.then((onValue) {});
+              },
+            )
           ],
         ),
         backgroundColor: Colors.black54,
@@ -114,7 +122,7 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
         child: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: 0),
+                margin: EdgeInsets.only(top: 60),
                 color: Colors.black,
                 child: Chewie(
                   controller: _chewieController,

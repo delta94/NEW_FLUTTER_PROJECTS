@@ -1,11 +1,12 @@
 import 'dart:async';
 
+import 'package:app_review/app_review.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:swsinhtrac/models/Ads.dart';
-import 'package:swsinhtrac/models/CommonUI.dart';
-import 'package:vector_math/vector_math.dart' show radians, Vector3;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sbsinhtrac/models/Ads.dart';
+import 'package:sbsinhtrac/models/CommonFunctions.dart';
+import 'package:sbsinhtrac/models/EndLoopController.dart';
 
 void main() => runApp(Home());
 
@@ -15,125 +16,172 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   
-  AnimationController controller;
-
   @override
   void initState() {
     super.initState();
     Ads.showBannerAd();
-    controller = AnimationController(duration: Duration(milliseconds: 900), vsync: this);
                   // ..addListener(() => setState(() {}));
   }
 
   Future<bool> _onWillPop() {
-    return CommonUI.onWillPop(context) ?? false;
+    return CommonFunctions.onWillPop(context) ?? false;
   }
 
   @override
   Widget build(BuildContext context) {
+    final EndLoopController _loopController = EndLoopController('Untitled', 1);
     return new WillPopScope(
       onWillPop: _onWillPop,
       child:  Scaffold(
-      appBar: AppBar(
-        title: Text('Sinh Trắc Vân Tay', style: TextStyle(color: Colors.yellow),),
-        iconTheme: new IconThemeData(color: Colors.yellow),
-        backgroundColor: Color.fromRGBO(50, 50, 50, 1),
-      ),
-      body:RadialAnimation(controller: controller)
+        appBar: AppBar(
+          title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(),
+            Text("Cẩm Nang Sinh Trắc", style: TextStyle(
+                fontSize: 30, 
+                fontWeight: FontWeight.bold, 
+                color: Colors.yellowAccent,
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.greenAccent,
+                decorationStyle: TextDecorationStyle.solid,
+                shadows: [
+                  Shadow(
+                    color: Colors.black,
+                    blurRadius: 10.0,
+                    offset: Offset(5.0, 5.0),
+                  ),
+                ],),),
+            GestureDetector(
+              child: Container(
+                width: 50,
+                height: 50,
+                child: FlareActor("images/Star.flr",
+                  alignment: Alignment.center,
+                  controller: _loopController,
+                )
+              ),
+              onTap: () {
+                AppReview.storeListing.then((onValue) {});
+              },
+            )
+          ]),
+          iconTheme: new IconThemeData(color: Colors.yellowAccent),
+          backgroundColor: Colors.black87,
+        ),
+        body:BodyWidget()
       )
     );
   }
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 }
 
 
-class RadialAnimation extends StatelessWidget {
-  RadialAnimation({ Key key, this.controller }) :
-
-  translation = CommonUI.translation(controller),
-  scale = CommonUI.scale(controller),
-  rotation = CommonUI.rotation(controller),
-    
-  super(key: key);
-
-  final AnimationController controller;
-  final Animation<double> rotation;
-  final Animation<double> translation;
-  final Animation<double> scale;
+class BodyWidget extends StatelessWidget {
+  final EndLoopController _loopController = EndLoopController('Untitled', 2);
 
   @override
   Widget build(BuildContext context) {
-    CommonUI.open(controller);
     return new Stack(
         children: <Widget>[
           new Container(
             decoration: new BoxDecoration(
-              image: new DecorationImage(image: new AssetImage('images/bg.png'), fit: BoxFit.cover,),
+              image: new DecorationImage(image: new AssetImage('images/bg.jpg'), fit: BoxFit.cover,),
             ),
           ),
-          new Center(
-            child: AnimatedBuilder(
-              animation: controller,
-              builder: (context, widget) { 
-                return Transform.rotate(
-                  angle: radians(rotation.value),
-                  child: Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    Container(),
-                    CommonUI.buildAnimatedButton('Lịch Sử', 'btn1', translation, controller, context, '/history', 0, color: Colors.orange, image: 'images/history.png'),
-                    CommonUI.buildAnimatedButton('Đáng giá','btn2', translation, controller, context, 'review', 90, color: Colors.yellow, image: 'images/star.png'),
-                    CommonUI.buildAnimatedButton('Giới Thiệu','btn3', translation, controller, context, '/intro', 180, color: Color.fromRGBO(102, 255, 102, 1), image: 'images/info.png'),
-                    CommonUI.buildAnimatedButton('Sinh Trắc','btn4', translation, controller, context, '/dermatoglyphics', 270, color: Color.fromRGBO(255, 0, 102, 1), image: 'images/sinhtrac.png'),
-                    
-                    Transform.scale(
-                      scale: scale.value - 1,
-                      child: Container(
-                        height: 90.0,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          new Container(
+            padding: EdgeInsets.all(10),
+            child: Column(children: <Widget>[
+              Divider(height: 50,),
+              Container(
+                decoration: new BoxDecoration(
+                border: Border.all(width: 5),
+                borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+                  shape: BoxShape.rectangle,
+                  color: Colors.amberAccent
+                ),
+                child: new ClipRRect(
+                  borderRadius: new BorderRadius.circular(30.0),
+                  child: Image.asset('images/logo.png', height: 120, width: 120),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  child: ListView(
+                    children: <Widget>[
+                      CommonFunctions.getMenuBox(
+                        Row(
                           children: <Widget>[
-                            Text("ʇɐ̗oɥ⊥", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 20, decoration: TextDecoration.none)),
-                            FloatingActionButton(
-                              heroTag: 'btnClose',
-                              child: Icon(FontAwesomeIcons.timesCircle), 
-                              onPressed: (){
-                                CommonUI.close(controller);
-                                new Timer(const Duration(milliseconds: 1300), () {
-                                  CommonUI.onWillPop(context);
-                                });
-                              },
-                              backgroundColor: Colors.red),
-                          ])
-                        )
-                    ),
-
-                    Transform.scale(
-                      scale: scale.value,
-                      child: Container(
-                              height: 70.0,
-                              child: Column(
-                                children: <Widget>[
-                                  FloatingActionButton(
-                                    heroTag: 'btnOpen',
-                                    child: new ClipRRect(
-                                      borderRadius: new BorderRadius.circular(25.0),
-                                      child: Image.asset('images/main_icon1.png'), 
-                                    ),
-                                    onPressed: CommonUI.open(controller), 
-                                    backgroundColor: Colors.transparent,),
-                                    Text("Mở Ứng Dụng", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 12, decoration: TextDecoration.none))
-                                ])
+                            Image.asset('images/info.png', height: 30, width: 30),
+                            Text(" Giới Thiệu", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.yellowAccent),),
+                          ],
+                        ),
+                        context,
+                        '/intro'
+                      ),
+                      CommonFunctions.getMenuBox(
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              width: 50,
+                              height: 50,
+                              child: FlareActor("images/SinhTrac.flr",
+                                alignment: Alignment.center,
+                                controller: _loopController,
                               )
-                    ),
-                ])
-              );
-            })
+                            ),
+                            Text(" Xem Sinh Trắc", style: 
+                                TextStyle(
+                                  fontSize: 25, 
+                                  fontWeight: FontWeight.bold, 
+                                  color: Color.fromRGBO(0, 255, 255, 1),
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.limeAccent,
+                                  decorationStyle: TextDecorationStyle.solid,),
+                            ),
+                          ],
+                        ),
+                        context,
+                        ''
+                      ),
+                      CommonFunctions.getMenuBox(
+                        Row(
+                          children: <Widget>[
+                            Image.asset('images/history.png', height: 30, width: 30),
+                            Text(" Lịch Sử", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.orangeAccent),),
+                          ],
+                        ),
+                        context,
+                        ''
+                      ),
+                      CommonFunctions.getMenuBox(
+                        Row(
+                          children: <Widget>[
+                            Image.asset('images/star.png', height: 30, width: 30),
+                            Text(" Rate 5 Sao", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.lightGreenAccent),),
+                          ],
+                        ),
+                        context,
+                        ''
+                      ),
+                      CommonFunctions.getMenuBox(
+                        Row(
+                          children: <Widget>[
+                            Image.asset('images/exit.png', height: 30, width: 30),
+                            Text(" Thoát", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.red),),
+                          ],
+                        ),context,
+                        ''
+                      )
+                    ])
+                )
+              )
+            ],)
           )
         ]);
   }

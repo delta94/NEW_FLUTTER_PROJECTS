@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.swsinhtrac"
+    package="com.sbsinhtrac"
     android:versionCode="1"
     android:versionName="1.0"
     xmlns:tools="http://schemas.android.com/tools">
@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="Sinh Trắc Vân Tay"
+        android:label="Cẩm Nang Sinh Trắc"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-6420987903580707~5901331277"/>
         <activity
