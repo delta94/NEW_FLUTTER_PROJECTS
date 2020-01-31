@@ -4,9 +4,8 @@ import 'package:app_review/app_review.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:sbsinhtrac/models/Ads.dart';
-import 'package:sbsinhtrac/models/CommonFunctions.dart';
-import 'package:sbsinhtrac/models/EndLoopController.dart';
+import 'package:sbsinhtrac/helpers/CommonFunctions.dart';
+import 'package:sbsinhtrac/helpers/EndLoopController.dart';
 
 void main() => runApp(Home());
 
@@ -19,8 +18,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Ads.showBannerAd();
-                  // ..addListener(() => setState(() {}));
+    //Ads.showBannerAd();
   }
 
   Future<bool> _onWillPop() {
@@ -37,9 +35,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
           title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(),
+            Image.asset('images/icon_title.png', height: 30,),
             Text("Cẩm Nang Sinh Trắc", style: TextStyle(
-                fontSize: 30, 
+                fontSize: 25, 
                 fontWeight: FontWeight.bold, 
                 color: Colors.yellowAccent,
                 decoration: TextDecoration.underline,
@@ -54,8 +52,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ],),),
             GestureDetector(
               child: Container(
-                width: 50,
-                height: 50,
+                width: 40,
+                height: 40,
                 child: FlareActor("images/Star.flr",
                   alignment: Alignment.center,
                   controller: _loopController,
@@ -90,7 +88,7 @@ class BodyWidget extends StatelessWidget {
         children: <Widget>[
           new Container(
             decoration: new BoxDecoration(
-              image: new DecorationImage(image: new AssetImage('images/bg.jpg'), fit: BoxFit.cover,),
+              image: new DecorationImage(image: new AssetImage('images/background.jpg'), fit: BoxFit.cover,),
             ),
           ),
           new Container(
@@ -116,16 +114,17 @@ class BodyWidget extends StatelessWidget {
                     children: <Widget>[
                       CommonFunctions.getMenuBox(
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.asset('images/info.png', height: 30, width: 30),
-                            Text(" Giới Thiệu", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.yellowAccent),),
+                            Text(" Giới Thiệu ", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 255, 255, 1),),),
                           ],
                         ),
-                        context,
-                        '/intro'
+                        context, '/intro'
                       ),
                       CommonFunctions.getMenuBox(
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(
                               width: 50,
@@ -135,11 +134,11 @@ class BodyWidget extends StatelessWidget {
                                 controller: _loopController,
                               )
                             ),
-                            Text(" Xem Sinh Trắc", style: 
+                            Text(" Tra Cứu Sinh Trắc ", style: 
                                 TextStyle(
                                   fontSize: 25, 
                                   fontWeight: FontWeight.bold, 
-                                  color: Color.fromRGBO(0, 255, 255, 1),
+                                  color: Colors.yellowAccent,
                                   decoration: TextDecoration.underline,
                                   decorationColor: Colors.limeAccent,
                                   decorationStyle: TextDecorationStyle.solid,),
@@ -147,37 +146,55 @@ class BodyWidget extends StatelessWidget {
                           ],
                         ),
                         context,
-                        ''
+                        '/mainTypes'
                       ),
                       CommonFunctions.getMenuBox(
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.asset('images/history.png', height: 30, width: 30),
-                            Text(" Lịch Sử", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.orangeAccent),),
+                            Text(" Lịch Sử ", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.orangeAccent),),
                           ],
                         ),
                         context,
-                        ''
+                        '/history'
                       ),
-                      CommonFunctions.getMenuBox(
-                        Row(
-                          children: <Widget>[
-                            Image.asset('images/star.png', height: 30, width: 30),
-                            Text(" Rate 5 Sao", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.lightGreenAccent),),
-                          ],
-                        ),
-                        context,
-                        ''
+                      Container(
+                        padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                        margin: EdgeInsets.only(bottom: 5),
+                        alignment: Alignment.center,
+                        decoration: CommonFunctions.boxDecoration(),
+                        child: GestureDetector(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image.asset('images/star.png', height: 30, width: 30),
+                              Text(" Rate 5 Sao ", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.lightGreenAccent),),
+                            ],
+                          ),
+                          onTap: (){
+                            AppReview.storeListing.then((onValue) {});
+                          },
+                        )
                       ),
-                      CommonFunctions.getMenuBox(
-                        Row(
-                          children: <Widget>[
-                            Image.asset('images/exit.png', height: 30, width: 30),
-                            Text(" Thoát", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.red),),
-                          ],
-                        ),context,
-                        ''
-                      )
+                      Container(
+                        padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                        margin: EdgeInsets.only(bottom: 5),
+                        alignment: Alignment.center,
+                        decoration: CommonFunctions.boxDecoration(),
+                        child: GestureDetector(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image.asset('images/exit.png', height: 30, width: 30),
+                              Text(" Thoát ", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.red),),
+                            ],
+                          ),
+                          onTap: (){
+                            return CommonFunctions.onWillPop(context);
+                          },
+                        )
+                      ),
                     ])
                 )
               )

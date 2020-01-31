@@ -55,14 +55,14 @@ class CommonFunctions {
     );
   }
 
-  static BoxDecoration boxDecoration(){
+  static BoxDecoration boxDecoration([Color color]){
     return BoxDecoration(
-      color: Color.fromRGBO(80, 80, 80, 1),
+      color: color != null ? color : Color.fromRGBO(80, 80, 80, 1),
       border: Border.all(
         width: 3.0
       ),
       borderRadius: BorderRadius.all(
-          Radius.circular(20.0) // 
+        Radius.circular(20.0) // 
       ),
     );
   }

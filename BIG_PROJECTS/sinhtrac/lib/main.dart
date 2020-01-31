@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:sbsinhtrac/screens/A.dart';
+import 'package:sbsinhtrac/screens/Ae.dart';
+import 'package:sbsinhtrac/screens/Ar.dart';
+import 'package:sbsinhtrac/screens/As.dart';
+import 'package:sbsinhtrac/screens/At.dart';
+import 'package:sbsinhtrac/screens/Au.dart';
+import 'package:sbsinhtrac/screens/Hist.dart';
 import 'package:sbsinhtrac/screens/Home.dart';
 import 'package:sbsinhtrac/screens/Intro.dart';
+import 'package:sbsinhtrac/screens/L.dart';
+import 'package:sbsinhtrac/screens/Lf.dart';
+import 'package:sbsinhtrac/screens/Lr.dart';
+import 'package:sbsinhtrac/screens/Lu.dart';
+import 'package:sbsinhtrac/screens/MainTypes.dart';
+import 'package:sbsinhtrac/screens/W.dart';
+import 'package:sbsinhtrac/screens/Wc.dart';
+import 'package:sbsinhtrac/screens/Wd.dart';
+import 'package:sbsinhtrac/screens/We.dart';
+import 'package:sbsinhtrac/screens/Wi.dart';
+import 'package:sbsinhtrac/screens/Wp.dart';
+import 'package:sbsinhtrac/screens/Ws.dart';
+import 'package:sbsinhtrac/screens/Wt.dart';
+import 'package:sbsinhtrac/screens/Wx.dart';
 
 
 void main() {
@@ -15,69 +36,69 @@ void main() {
           case '/intro':
             return SlideRightRoute(widget: Intro());
             break;
-          // case '/history':
-          //   return SlideRightRoute(widget: History());
-          //   break;
-          // case '/dermatoglyphics':
-          //   return SlideRightRoute(widget: Dermatoglyphics());
-          //   break;
-          // case '/whorls':
-          //   return SlideRightRoute(widget: Whorls());
-          //   break;
-          // case '/loops':
-          //   return SlideRightRoute(widget: Loops());
-          //   break;
-          // case '/archs':
-          //   return SlideRightRoute(widget: Archs());
-          //   break;
-          // case '/whorl_t':
-          //   return SlideRightRoute(widget: Whorl_T());
-          //   break;
-          // case '/whorl_s':
-          //   return SlideRightRoute(widget: Whorl_S());
-          //   break;
-          // case '/whorl_e':
-          //   return SlideRightRoute(widget: Whorl_E());
-          //   break;
-          // case '/whorl_c':
-          //   return SlideRightRoute(widget: Whorl_C());
-          //   break;
-          // case '/whorl_d':
-          //   return SlideRightRoute(widget: Whorl_D());
-          //   break;
-          // case '/whorl_i':
-          //   return SlideRightRoute(widget: Whorl_I());
-          //   break;
-          // case '/whorl_p':
-          //   return SlideRightRoute(widget: Whorl_P());
-          //   break;
-          // case '/whorl_x':
-          //   return SlideRightRoute(widget: Whorl_X());
-          //   break;
-          // case '/loop_u':
-          //   return SlideRightRoute(widget: Loop_U());
-          //   break;
-          // case '/loop_r':
-          //   return SlideRightRoute(widget: Loop_R());
-          //   break;
-          // case '/loop_f':
-          //   return SlideRightRoute(widget: Loop_F());
-          //   break;
-          // case '/arch_s':
-          //   return SlideRightRoute(widget: Arch_S());
-          //   break;
-          // case '/arch_t':
-          //   return SlideRightRoute(widget: Arch_T());
-          //   break;
-          // case '/arch_u':
-          //   return SlideRightRoute(widget: Arch_U());
-          //   break;
-          // case '/arch_r':
-          //   return SlideRightRoute(widget: Arch_R());
-          //   break;
-          // case '/arch_e':
-          //   return SlideRightRoute(widget: Arch_E());
-          //   break;
+          case '/history':
+            return SlideRightRoute(widget: Hist());
+            break;
+          case '/mainTypes':
+            return SlideRightRoute(widget: MainTypes());
+            break;
+          case '/w':
+            return SlideRightRoute(widget: W());
+            break;
+          case '/ws':
+            return SlideRightRoute(widget: Ws());
+            break;
+          case '/wc':
+            return SlideRightRoute(widget: Wc());
+            break;
+          case '/wd':
+            return SlideRightRoute(widget: Wd());
+            break;
+          case '/we':
+            return SlideRightRoute(widget: We());
+            break;
+          case '/wi':
+            return SlideRightRoute(widget: Wi());
+            break;
+          case '/wp':
+            return SlideRightRoute(widget: Wp());
+            break;
+          case '/wt':
+            return SlideRightRoute(widget: Wt());
+            break;
+          case '/wx':
+            return SlideRightRoute(widget: Wx());
+            break;
+          case '/a':
+            return SlideRightRoute(widget: A());
+            break;
+          case '/ae':
+            return SlideRightRoute(widget: Ae());
+            break;
+          case '/ar':
+            return SlideRightRoute(widget: Ar());
+            break;
+          case '/as':
+            return SlideRightRoute(widget: As());
+            break;
+          case '/at':
+            return SlideRightRoute(widget: At());
+            break;
+          case '/au':
+            return SlideRightRoute(widget: Au());
+            break;
+          case '/l':
+            return SlideRightRoute(widget: L());
+            break;
+          case '/lf':
+            return SlideRightRoute(widget: Lf());
+            break;
+          case '/lr':
+            return SlideRightRoute(widget: Lr());
+            break;
+          case '/lu':
+            return SlideRightRoute(widget: Lu());
+            break;
           default: return SlideRightRoute(widget:Home());
             break;
         }
