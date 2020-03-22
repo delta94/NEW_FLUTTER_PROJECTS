@@ -11,7 +11,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Let It Go - Video Subtitle"
         android:icon="@mipmap/ic_launcher">
-        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-6420987903580707~4752947979"/>
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-1120987903580111~4752941111"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
