@@ -1,9 +1,13 @@
 import 'package:app_review/app_review.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:seab1ird.letitgo/EndLoopController.dart';
 import 'package:video_player/video_player.dart';
+
+import 'Ads.dart';
+import 'EndLoopController.dart';
+import 'Input.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
@@ -21,18 +25,24 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
   final EndLoopController _loopController = EndLoopController('Untitled', 1.0);
   final EndLoopController _loopController2 = EndLoopController('Untitled', 1.0);
   AnimationController animationController;
+  double marginTop = 0;
 
   @override
   void initState() {
     super.initState();
-    // Ads.showBannerAd();
+    
+    if(kReleaseMode){ // is Release Mode ??
+      Ads.showBannerAd();
+      marginTop = 60;
+    }
+
     animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
 
-    _videoPlayerController = VideoPlayerController.network('https://phongngo1776.github.io/Videos/GirlLikeYou/GirlLikeYou.mp4')
+    _videoPlayerController = VideoPlayerController.network(VIDEO_URL)
     ..addListener(() {
         final bool videoState = _videoPlayerController.value.isPlaying;
         if(this.videoState != videoState){
-          // Ads.showInterstitialAd();
+          Ads.showInterstitialAd();
           this.videoState = videoState;
         }
         // Toast.show(isPlaying.toString(), context);
@@ -59,9 +69,9 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
     )
     ..addListener(() {
       if (_chewieController.isFullScreen == true) {
-        // Ads.hideBannerAd();
+        Ads.hideBannerAd();
       } else {
-        // Ads.showBannerAd();
+        Ads.showBannerAd();
       }
     });
   }
@@ -91,7 +101,7 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
               )
             ),
             Text(
-              'Girls Like You', 
+              TITLE, 
               style: TextStyle(
                 color: Colors.yellowAccent, 
                 fontWeight: FontWeight.bold,
@@ -117,123 +127,70 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
         ),
         backgroundColor: Colors.black54,
       ),
-      body: Container(
-        child: Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                color: Colors.black,
-                child: Chewie(
-                  controller: _chewieController,
+      body: new Stack(
+        children: <Widget>[
+          Opacity(
+            opacity: 1,
+            child: Container(
+              decoration: new BoxDecoration(
+                image: new DecorationImage(image: new AssetImage('images/bg.png'), fit: BoxFit.cover,),
+              ),
+            ),
+          ),
+          Container(
+          child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: marginTop),
+                  color: Colors.black,
+                  child: Chewie(
+                    controller: _chewieController,
+                  ),
                 ),
-              ),
-              Container(
-                color: Colors.black87,
-                //width: double.infinity,
-                padding: EdgeInsets.only(top: 5, bottom: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    //Image.asset('images/QuickLyric.png', height: 20, width: 20),
-                    Container(
-                      width: 20,
-                      height: 20,
-                      child: FlareActor("images/lyric_icon.flr",
-                        alignment: Alignment.center,
-                        controller: _loopController2,
-                      )
-                    ),
-                    Text(' Lyric:', style: TextStyle(color: Colors.pink[300], fontWeight: FontWeight.bold, fontSize: 20),),
-                  ],
-                )
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.yellow[100],
-                  child: ListView.builder(
-                    key: UniqueKey(),
-                    controller: _scrollController,
-                    itemBuilder: (b, i) {
-                      return Container(
-                        height: 1000,
-                        margin: EdgeInsets.only(bottom: 3, left: 10),
-                        alignment: Alignment.topCenter,
-                        child: Text(
-                          "\n Spent 24 hours, I need more hours with you \n " +
-                          "You spent the weekend getting even, ooh \n " +
-                          "We spent the late nights making things right between us \n " +
-                          " \n " +
-                          "But now it's all good, babe \n " +
-                          "Roll that back wood, babe \n " +
-                          "And play me close \n " +
-                          " \n " +
-                          "'Cause girls like you run 'round with guys like me \n " +
-                          "'Til sun down when I come through \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          "Girls like you love fun and, yeah, me too \n " +
-                          "What I want when I come through \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          " \n " +
-                          "Yeah yeah yeah, yeah yeah yeah \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          "Yeah yeah yeah, yeah yeah yeah \n " +
-                          "I need a girl like you \n " +
-                          " \n " +
-                          "I spent last night on the last flight to you (ey ya) \n " +
-                          "Took a whole day up trying to get way up, ooh \n " +
-                          "We spent the daylight trying to make things right between us \n " +
-                          " \n " +
-                          "But now it's all good, babe \n " +
-                          "Roll that back wood, babe \n " +
-                          "And play me close, yeah \n " +
-                          " \n " +
-                          "'Cause girls like you run 'round with guys like me \n " +
-                          "'Til sun down when I come through \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          "Girls like you love fun and, yeah, me too \n " +
-                          "What I want when I come through \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          " \n " +
-                          "Yeah yeah yeah, yeah yeah yeah \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          "Yeah yeah yeah, yeah yeah yeah \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          "I need a girl like you \n " +
-                          " \n " +
-                          "Maybe it's 6:45 \n " +
-                          "Maybe I'm barely alive \n " +
-                          "Maybe you've taken my shit for the last time, yeah \n " +
-                          "Maybe I know that I'm drunk \n " +
-                          "Maybe I know you're the one \n " +
-                          "Maybe you thinking it's better if you drive \n " +
-                          " \n " +
-                          "Oh, 'cause girls like you run 'round with guys like me \n " +
-                          "'Til sun down when I come through \n " +
-                          "I need a girl like you, yeah \n " +
-                          " \n " +
-                          "'Cause girls like you run 'round with guys like me \n " +
-                          "'Til sun down when I come through \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          "Girls like you love fun and, yeah, me too \n " +
-                          "What I want when I come through \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          " \n " +
-                          "Yeah yeah yeah, yeah yeah yeah \n " +
-                          "I need a girl like you, yeah yeah \n " +
-                          "Yeah yeah yeah, yeah yeah yeah \n " +
-                          "I need a girl like you \n ",
-                          style: TextStyle(color: Colors.pink, fontWeight: FontWeight.bold),
-                        ),
+                Container(
+                  color: Colors.black87,
+                  //width: double.infinity,
+                  padding: EdgeInsets.only(top: 5, bottom: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      //Image.asset('images/QuickLyric.png', height: 20, width: 20),
+                      Container(
+                        width: 20,
+                        height: 20,
+                        child: FlareActor("images/lyric_icon.flr",
+                          alignment: Alignment.center,
+                          controller: _loopController2,
+                        )
+                      ),
+                      Text(' Lyric:', style: TextStyle(color: Colors.pink[300], fontWeight: FontWeight.bold, fontSize: 20),),
+                    ],
+                  )
+                ),
+                Expanded(
+                  child: Container(
+                    child: ListView.builder(
+                      key: UniqueKey(),
+                      controller: _scrollController,
+                      itemBuilder: (b, i) {
+                        return Container(
+                          height: 1500,
+                          margin: EdgeInsets.only(bottom: 3, left: 10),
+                          alignment: Alignment.topCenter,
+                          child: Text(
+                            LYRIC,
+                            style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold),
+                          ),
 
-                      );
-                    },
-                    itemCount: 1,
+                        );
+                      },
+                      itemCount: 1,
+                    )
                   )
                 )
-              )
-        ]),
-      )
+          ]),
+        )
+      ])
     );
   }
 }
