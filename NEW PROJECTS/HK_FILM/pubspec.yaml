@@ -1,0 +1,29 @@
+name: firebase_admob_example
+description: Demonstrates how to use the firebase_admob plugin.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  firebase_admob: ^0.9.0+7
+  toast: ^0.1.3
+  app_review: ^1.0.0
+  ytview: ">=1.0.0 <1.1.0"
+  dio: 2.1.6
+  flare_flutter: 1.7.3
+  flare_dart: 2.2.5
+
+flutter:
+  uses-material-design: true
+
+  assets:
+   - images/banner.png
+   - images/logo.png
+   - images/bg.png
+   - images/index.jpg
+   - images/phim_le.png
+
+   - images/Star.flr
+   - images/movie_icon.flr
+   - images/play_movie.flr
+

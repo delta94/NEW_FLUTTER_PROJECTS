@@ -1,0 +1,21 @@
+dependencies: \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/Runner/main.m \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Modules/module.modulemap \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/Pods/Firebase/CoreOnly/Sources/module.modulemap \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/Pods/Headers/Public/ytview/ytview.modulemap \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterTexture.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterPlugin.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterMacros.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterEngine.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterDartProject.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterBinaryMessenger.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterViewController.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterPluginAppLifeCycleDelegate.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterPlatformViews.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterHeadlessDartRunner.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterCodecs.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterChannels.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterCallbackCache.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/FlutterAppDelegate.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/.symlinks/flutter/ios/Flutter.framework/Headers/Flutter.h \
+  /Users/apple/Downloads/PHONG/flutter_admob_example/ios/Runner/AppDelegate.h
