@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 
 class SlideCenterRoute extends PageRouteBuilder {
   final Widget widget;
-  SlideCenterRoute({this.widget}) :  super(
+  final RouteSettings settings;
+  SlideCenterRoute({this.widget, this.settings}) :  super(
+    settings: settings,
     pageBuilder: (
       BuildContext context,
       Animation<double> animation,

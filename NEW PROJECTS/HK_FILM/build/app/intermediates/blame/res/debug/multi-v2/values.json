@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/apple/Downloads/PHONG/MY_PROJECTS/IOS/HK_FILM/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/apple/Downloads/PHONG/NEW_FLUTTER_PROJECTS/NEW PROJECTS/HK_FILM/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/Users/apple/.gradle/caches/transforms-2/files-2.1/5f9a08ba24afaceb5f0c5404c32d00ae/res/values/values.xml",
@@ -20,6 +20,23 @@
                         "endLines": "7,8,9,10,11,12,13,14,63,64,65,66,67,68,69,70,72,73,74,75,76,77,78,79,80,370,389",
                         "endColumns": "89,79,89,89,79,80,79,79,104,180,124,106,179,122,115,102,187,104,180,124,174,147,62,61,78,20,20",
                         "endOffsets": "500,580,670,760,840,921,1001,1081,4192,4373,4498,4605,4785,4908,5024,5127,5482,5587,5768,5893,6068,6216,6279,6341,6420,23230,23647"
+                    }
+                },
+                {
+                    "source": "/Users/apple/Downloads/PHONG/NEW_FLUTTER_PROJECTS/NEW PROJECTS/HK_FILM/build/app/generated/res/google-services/debug/values/values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,310,392,496,599,719,819",
+                        "endColumns": "143,110,81,103,102,119,99,76",
+                        "endOffsets": "194,305,387,491,594,714,814,891"
+                    },
+                    "to": {
+                        "startLines": "81,82,83,84,85,86,87,88",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "6425,6569,6680,6762,6866,6969,7089,7189",
+                        "endColumns": "143,110,81,103,102,119,99,76",
+                        "endOffsets": "6564,6675,6757,6861,6964,7084,7184,7261"
                     }
                 },
                 {
@@ -145,23 +162,6 @@
                         "endLines": "2,125,149,238",
                         "endColumns": "60,12,24,24",
                         "endOffsets": "161,9510,10596,15807"
-                    }
-                },
-                {
-                    "source": "/Users/apple/Downloads/PHONG/MY_PROJECTS/IOS/HK_FILM/build/app/generated/res/google-services/debug/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,310,392,496,599,719,819",
-                        "endColumns": "143,110,81,103,102,119,99,76",
-                        "endOffsets": "194,305,387,491,594,714,814,891"
-                    },
-                    "to": {
-                        "startLines": "81,82,83,84,85,86,87,88",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "6425,6569,6680,6762,6866,6969,7089,7189",
-                        "endColumns": "143,110,81,103,102,119,99,76",
-                        "endOffsets": "6564,6675,6757,6861,6964,7084,7184,7261"
                     }
                 }
             ]

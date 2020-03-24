@@ -41,7 +41,8 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
     _videoPlayerController = VideoPlayerController.network(VIDEO_URL)
     ..addListener(() {
         final bool videoState = _videoPlayerController.value.isPlaying;
-        if(this.videoState != videoState){
+        print('----------------------' + videoState.toString());
+        if(this.videoState != null && this.videoState != videoState){
           Ads.showInterstitialAd();
           this.videoState = videoState;
         }

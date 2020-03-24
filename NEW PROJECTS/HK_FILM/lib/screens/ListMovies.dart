@@ -15,6 +15,7 @@ class ListMoviesState extends State<ListMovies> {
 
   Future<bool> _onWillPop() {
     Navigator.pop(context, true);
+    return null;
   }
 
   @override

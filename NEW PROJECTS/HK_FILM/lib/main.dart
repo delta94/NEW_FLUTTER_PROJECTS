@@ -15,13 +15,13 @@ void main() {
             return SlideCenterRoute(widget:Home());
             break;
           case '/typeMovies':
-            return SlideCenterRoute(widget: TypeMovies());
+            return SlideCenterRoute(widget: TypeMovies(), settings: settings);
             break;
           case '/listMovies':
-            return SlideCenterRoute(widget: ListMovies());
+            return SlideCenterRoute(widget: ListMovies(), settings: settings);
             break;
           case '/movie':
-            return SlideCenterRoute(widget: Movie());
+            return SlideCenterRoute(widget: Movie(), settings: settings);
             break;
           default: return SlideCenterRoute(widget:Home());
             break;

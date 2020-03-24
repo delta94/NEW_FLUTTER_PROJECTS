@@ -125,35 +125,40 @@ class HomeState extends State<Home> with TickerProviderStateMixin{
                     style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white, fontWeight: FontWeight.normal)
                   ),
                   SizedBox(height: 20),
-                  Material(
-                    child: RaisedButton(
-                      padding: EdgeInsets.all(10),
-                      child: Wrap(
-                        children: <Widget>[
-                          Container(
-                            width: 40,
-                            height: 40,
-                            margin: EdgeInsets.only(right: 5),
-                            child: FlareActor("images/play_movie.flr",
-                              alignment: Alignment.center,
-                              controller: _loopController3,
-                            )
-                          ),
-                          Text(
+                  RaisedButton(
+                    padding: EdgeInsets.all(10),
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0),
+                      side: BorderSide(color: Colors.blueAccent, width: 2)
+                    ),
+                    child: Wrap(
+                      children: <Widget>[
+                        Container(
+                          width: 40,
+                          height: 40,
+                          margin: EdgeInsets.only(right: 5),
+                          child: FlareActor("images/play_movie.flr",
+                            alignment: Alignment.center,
+                            controller: _loopController3,
+                          )
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 4),
+                          child: Text(
                             'Xem Phim', 
                             style: TextStyle(
-                              color: Colors.lightGreen, 
+                              color: Colors.redAccent, 
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline,
                               decorationColor: Colors.redAccent,
-                              fontSize: 30
+                              fontSize: 25
                             )
                           ),
-                        ],
-                      ),
-                      color: Colors.yellow[300],
-                      onPressed: () => Navigator.pushNamed(context, '/typeMovies'),
+                        ),
+                      ],
                     ),
+                    color: Colors.yellow[300],
+                    onPressed: () => Navigator.pushNamed(context, '/typeMovies'),
                   ),
                   SizedBox(height: 30),
                   Text(
@@ -174,7 +179,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin{
                           'Chúng tôi tạo ứng dụng này nhằm giúp khán giả tìm và xem lại được những phim lẻ hồng kông lồng tiếng xưa hay và đặc sắc một thời làm say mê mỗi chúng ta trong tuổi thơ, kí ức.\n\n'
                           + 'Chúng tôi hệ thống hoá các phim dưới dạng các menu theo danh sách các diễn viên nổi tiếng.\n\n'
                           + 'Chúng tôi đã tuyển chọn các phim với chất lượng và âm thanh tốt để phục vụ các bạn. \n\n\n' 
-                          , style: TextStyle(color: Colors.yellowAccent, fontSize: 20)),
+                          , style: TextStyle(color: Colors.yellowAccent, fontSize: 18)),
                         ),
                         
                         Divider(),
