@@ -1,0 +1,101 @@
+name: seabird.biometry
+description: seabird
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.1.11
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+module:
+  androidX: true
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.2
+  firebase_admob: ^0.9.0+1
+  app_review: ^1.0.0
+  ytview: ">=1.0.0 <1.1.0"
+  font_awesome_flutter: 8.5.0
+  flare_flutter: 1.7.3
+  flare_dart: 2.2.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+   - images/icon_title.png
+   - images/background.jpg
+   - images/star.png
+   - images/history.png
+   - images/info.png
+   - images/logo.png
+   - images/exit.png
+   - images/intro_icon.png
+   - images/eagle.png
+   - images/mountain.png
+   - images/water.png
+   - images/main_whorl.png
+   - images/main_loop.png
+   - images/main_arch.png
+   - images/home_icon.png
+
+   - images/wt_detail.png
+   - images/ws_detail.png
+   - images/we_detail.png
+   - images/wc_detail.png
+   - images/wd_detail.png
+   - images/wi_detail.png
+   - images/wp_detail.png
+   - images/wx_detail.png
+
+   - images/lr_detail.png
+   - images/lu_detail.png
+   - images/lf_detail.png
+   
+   - images/ar_detail.png
+   - images/as_detail.png
+   - images/at_detail.png
+   - images/au_detail.png
+   - images/ae_detail.png
+
+   - images/WT.png
+   - images/WS.png
+   - images/WE.png
+   - images/WI.png
+   - images/WD.png
+   - images/WC.png
+   - images/UWP.png
+   - images/WX1.png
+   - images/WX2.png
+   
+   - images/UL_left.png
+   - images/UL_right.png
+   - images/RL_left.png
+   - images/RL_right.png
+
+   - images/AR.png
+   - images/AS.png
+   - images/AT.png
+   - images/AU.png
+   - images/SinhTrac.flr
+   - images/Star.flr
+
+   - images/next_icon.png
+   - images/prev_icon.png

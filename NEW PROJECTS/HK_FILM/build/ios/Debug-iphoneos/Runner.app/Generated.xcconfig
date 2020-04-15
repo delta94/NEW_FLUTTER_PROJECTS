@@ -1,8 +1,0 @@
-// This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Users/apple/Downloads/PHONG/flutter
-FLUTTER_APPLICATION_PATH=/Users/apple/Downloads/PHONG/flutter_admob_example
-FLUTTER_TARGET=/Users/apple/Downloads/PHONG/flutter_admob_example/lib/main.dart
-FLUTTER_BUILD_DIR=build
-SYMROOT=${SOURCE_ROOT}/../build/ios
-FLUTTER_FRAMEWORK_DIR=/Users/apple/Downloads/PHONG/flutter/bin/cache/artifacts/engine/ios
-TRACK_WIDGET_CREATION=true
