@@ -28,6 +28,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   image_color_picker: ^1.0.1
+  wallpaper: ^1.0.0
 
 
 dev_dependencies:

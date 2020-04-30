@@ -1,78 +1,65 @@
-  const String TITLE = 'Show Yourself';
-  const String VIDEO_URL = 'https://haiyentruong1776.github.io/Public_Video/ShowYourself.mp4';
-  const String LYRIC = "\nEvery inch of me is trembling\n" + 
-                          "But not from the cold\n" + 
-                          "Something is familiar\n" + 
-                          "Like a dream I can reach but not quite hold\n" + 
-                          "I can sense you there\n" + 
-                          "Like a friend I've always known\n" + 
-                          "I'm arriving\n" + 
-                          "And it feels like I am home\n" + 
-                          "\n" + 
-                          "I have always been a fortress\n" + 
-                          "Hold secrets deep inside\n" + 
-                          "You have secrets, too\n" + 
-                          "But you don't have to hide\n" + 
-                          "\n" + 
-                          "Show yourself\n" + 
-                          "I'm dying to meet you\n" + 
-                          "Show yourself\n" + 
-                          "It's your turn\n" + 
-                          "Are you the one I've been looking for\n" + 
-                          "\n" + 
-                          "All of my life?\n" + 
-                          "Show yourself\n" + 
-                          "I'm ready to learn\n" + 
-                          "Ah-ah, ah-ah\n" + 
-                          "Ah-ah, ah-ah-ah\n" + 
-                          "\n" + 
-                          "I've never felt so certain\n" + 
-                          "All my life I've been torn\n" + 
-                          "But I'm here for a reason\n" + 
-                          "Could it be the reason I was born?\n" + 
-                          "I have always been so different\n" + 
-                          "Normal rules did not apply\n" + 
-                          "Is this the day?\n" + 
-                          "Are you the way\n" + 
-                          "I finally find out why?\n" + 
-                          "\n" + 
-                          "Show yourself\n" + 
-                          "I'm no longer trembling\n" + 
-                          "Here I am\n" + 
-                          "I've come so far\n" + 
-                          "You are the answer I've waited for\n" + 
-                          "All of my life\n" + 
-                          "Oh, show yourself\n" + 
-                          "Let me see who you are\n" + 
-                          "\n" + 
-                          "Come to me now\n" + 
-                          "Open your door\n" + 
-                          "Don't make me wait\n" + 
-                          "One moment more\n" + 
-                          "Oh, come to me now\n" + 
-                          "Open your door\n" + 
-                          "Don't make me wait\n" + 
-                          "One moment more\n" + 
-                          "\n" + 
-                          "Where the north wind meets the sea\n" + 
-                          "Ah-ah, ah-ah\n" + 
-                          "There's a river\n" + 
-                          "Ah-ah, ah-ah\n" + 
-                          "Full of memory (memories, memories)\n" + 
-                          "Come, my darling, homeward bound\n" + 
-                          "I am found\n" + 
-                          "\n" + 
-                          "Show yourself\n" + 
-                          "Step into the power\n" + 
-                          "Grow yourself\n" + 
-                          "Into something new\n" + 
-                          "\n" + 
-                          "You are the one you've been waiting for\n" + 
-                          "All of my life\n" + 
-                          "All of your life\n" + 
-                          "Oh, show yourself\n" + 
-                          "\n" + 
-                          "Ah-ah, ah-ah\n" + 
-                          "Ah-ah, ah-ah\n" + 
-                          "Ah-ah, ah-ah\n";
-
+const String TITLE = 'Katy Perry - Firework';
+const String VIDEO_URL =
+    'https://haiyentruong1776.github.io/Public_Video/Firework.mp4';
+const String LYRIC = "\nDo you ever feel like a plastic bag\n" +
+    "Drifting thought the wind\n" +
+    "Wanting to start again\n" +
+    "Do you ever feel, feel so paper thin\n" +
+    "Like a house of cards\n" +
+    "One blow from caving in\n" +
+    "Do you ever feel already buried deep\n" +
+    "Six feet under scream\n" +
+    "But no one seems to hear a thing\n" +
+    "Do you know that there's still a chance for you\n" +
+    "'Cause there's a spark in you\n" +
+    "You just gotta ignite the light\n" +
+    "And let it shine\n" +
+    "\n" +
+    "Just own the night\n" +
+    "Like the Fourth of July\n" +
+    "'Cause baby you're a firework\n" +
+    "Come on show 'em what your worth\n" +
+    "Make 'em go \"Oh, oh, oh!\"\n" +
+    "As you shoot across the sky-y-y\n" +
+    "Baby you're a firework\n" +
+    "Come on let your colors burst\n" +
+    "Make 'em go \"Oh, oh, oh!\"\n" +
+    "You're gonna leave 'em fallin' down down down\n" +
+    "You don't have to feel like a waste of space\n" +
+    "You're original, cannot be replaced\n" +
+    "If you only knew what the future holds\n" +
+    "After a hurricane comes a rainbow\n" +
+    "Maybe a reason why all the doors are closed\n" +
+    "So you can open one that leads you to the perfect road\n" +
+    "Like a lightning bolt, your heart will glow\n" +
+    "And when it's time, you'll know\n" +
+    "You just gotta ignite the light\n" +
+    "And let it shine\n" +
+    "\n" +
+    "Just own the night\n" +
+    "Like the Fourth of July\n" +
+    "'Cause baby you're a firework\n" +
+    "Come on show 'em what your worth\n" +
+    "Make 'em go \"Oh, oh, oh!\"\n" +
+    "As you shoot across the sky-y-y\n" +
+    "Baby you\'re a firework\n" +
+    "Come on let your colors burst\n" +
+    "Make \'em go \"Oh, oh, oh!\"\n" +
+    "You're gonna leave \'em fallin' down down down\n" +
+    "Boom, boom, boom\n" +
+    "Even brighter than the moon, moon, moon\n" +
+    "It\'s always been inside of you, you, you\n" +
+    "And now it's time to let it through\n" +
+    "'Cause baby you're a firework\n" +
+    "Come on show 'em what your worth\n" +
+    "Make \'em go \"Oh, oh, oh!\"\n" +
+    "As you shoot across the sky-y-y\n" +
+    "Baby you\'re a firework\n" +
+    "Come on let your colors burst\n" +
+    "Make \'em go \"Oh, oh, oh!\"\n" +
+    "You\'re gonna leave \'em fallin' down down down\n" +
+    "Boom, boom, boom\n" +
+    "Even brighter than the moon, moon, moon\n" +
+    "Boom, boom, boom\n" +
+    "Even brighter than the moon, moon, moon\n" +
+    "\n";
