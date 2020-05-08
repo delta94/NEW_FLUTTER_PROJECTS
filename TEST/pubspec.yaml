@@ -21,6 +21,7 @@ module:
 
 dependencies:
   image: ^2.1.12
+  shadow: ^0.1.5
   flutter:
     sdk: flutter
 
@@ -35,3 +36,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - images/CreatedObject7_28.png

@@ -33,6 +33,7 @@ dependencies:
   flare_dart: 2.2.5
   app_review: ^1.0.0
   provider: ^4.0.4
+  assets_audio_player: ^1.4.0
 
 dev_dependencies:
   flutter_test:
@@ -312,7 +313,6 @@ flutter:
     - images/GlitzSparks_3.png
     - images/LevelChoice_1.png
     - images/LevelChoice_2.png
-    - images/lyric_icon.flr
     - images/lockMc_1.png
     - images/musicOn.png
     - images/musicOff.png
@@ -322,10 +322,8 @@ flutter:
     - images/PlayButton.png
     - images/replayButton.png
     - images/lockMc_2.png
-    - images/song_icon.flr
     - images/soundOn.png
     - images/soundOff.png
-    - images/Transition.flr
     - images/UiButtonTTS_17.png
     - images/UiButtonTTS_18.png
     - images/star.png
@@ -333,3 +331,14 @@ flutter:
     - images/UiButtonTTS_24.png
     - images/UiButtonTTS_22.png
     - images/UiButtonTTS_20.png
+    - images/CreatedObjectsStarting10.png
+
+    - images/changing_screen.flr
+    - images/changing_item.flr
+    - images/animated_screen2.flr
+    - images/play_button.flr
+
+    - sounds/giggle.ogg
+    - sounds/music1.ogg
+    - sounds/poof.ogg
+    - sounds/test.ogg

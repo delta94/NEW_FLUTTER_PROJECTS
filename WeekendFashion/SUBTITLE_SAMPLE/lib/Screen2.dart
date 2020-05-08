@@ -1,26 +1,40 @@
 import 'dart:async';
 
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:flare_flutter/flare_cache_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:provider/provider.dart';
 import 'package:seab1ird.showyourself/helpers/Helper.dart';
 
 import 'helpers/EndlessController.dart';
 import 'helpers/GameProvider.dart';
-
+import 'widgets/ChangingScreenAnimation.dart';
 
 class Screen2 extends StatefulWidget {
   Screen2({Key key}) : super(key: key);
   Screen2State createState() => Screen2State();
 }
 
-class Screen2State extends State<Screen2> with TickerProviderStateMixin{
-  final EndlessController _transitionAnimatedController = EndlessController('Untitled', 5.0);
+class Screen2State extends State<Screen2> with TickerProviderStateMixin {
+  final EndlessController _changingScreenController =
+      EndlessController('Untitled', 5.0);
 
-  Animation<double> animationMoveFromTopToCenter;
-  AnimationController animationController;
+  final EndlessController _playButtonController =
+      EndlessController('Untitled', 2.25);
+
+  final EndlessController _screenController =
+      EndlessController('Untitled', 2.0);
+
+  Animation<double> changingScreenAnimation;
+  AnimationController changingScreenController;
+  final backgroundAudio = AssetsAudioPlayer();
+  final playButtonAudio = AssetsAudioPlayer();
+
+  double height = 0;
+  double playButtonWidth;
 
   Future<bool> _onWillPop() {
     Navigator.pop(context);
@@ -29,6 +43,11 @@ class Screen2State extends State<Screen2> with TickerProviderStateMixin{
 
   @override
   void initState() {
+    GameProvider gameProvider =
+        Provider.of<GameProvider>(context, listen: false);
+    playButtonWidth = gameProvider.deviceSize.width * 0.2;
+    changingScreenController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     super.initState();
   }
 
@@ -39,82 +58,81 @@ class Screen2State extends State<Screen2> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-    GameProvider gameProvider = Provider.of<GameProvider>(context, listen: false);
-    gameProvider.deviceSize = Helper.getDeviceSize(context);
-
-    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationMoveFromTopToCenter = Tween<double>(begin: 0-gameProvider.deviceSize.height, end: 0).animate(animationController)
-      ..addListener(() {
-        setState(() {});
-      });
+    GameProvider gameProvider =
+        Provider.of<GameProvider>(context, listen: false);
+    backgroundAudio.open( Audio('sounds/music1.ogg'));
+    backgroundAudio.play();
+    changingScreenAnimation = changingScreenAnimation =
+        Tween<double>(begin: 0 - gameProvider.deviceSize.height, end: 0)
+            .animate(changingScreenController)
+              ..addListener(() {
+                setState(() {});
+              });
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: Colors.black12, //or set color with: Color(0xFF0000FF)
     ));
 
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
-
-    return new WillPopScope(
+    return WillPopScope(
       onWillPop: _onWillPop,
-      child:  Scaffold(
-      body: new Stack(
-        children: <Widget>[
-          new Container(
-            decoration: new BoxDecoration(
-              image: new DecorationImage(image: new AssetImage('images/bg2.png'), fit: BoxFit.cover,),
-            ),
-          ),
-          new Container(
-            height: 1000,
-            width: 600,
-            child: new Stack(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    animationController.forward();
-
-                    animationMoveFromTopToCenter.addStatusListener((status) {
-                      if (status == AnimationStatus.completed) {
-                        new Timer(Duration(seconds: 1), (){
-                          animationController.reverse();
-                        });
-                      }
-                    });
-
-                    new Timer(Duration(milliseconds: 1800), (){
-                      Navigator.pushNamed(context, '/screen2');
-                    });
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(left: (MediaQuery.of(context).size.width-170)/2),
-                    padding: EdgeInsets.only(top: 60),
-                    width: 170,
-                    alignment: Alignment.bottomCenter,
-                    child: Image.asset('images/play.png')
-                  ),
-                ),
-              ]
-            )
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Transform.translate(
-              offset: Offset(10, animationMoveFromTopToCenter.value),
-              child: Container(
-                alignment: Alignment.center,
-                child: FlareActor("images/Transition.flr",
-                  alignment: Alignment.center,
-                  controller: _transitionAnimatedController,
-                  fit: BoxFit.cover,
-                ),
+      child: Scaffold(
+        body: Stack(children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/bg2.png'),
+                fit: BoxFit.cover,
               ),
             ),
           ),
-        ])
-    ));
+          Positioned(
+            height: gameProvider.deviceSize.height,
+            width: gameProvider.deviceSize.width,
+            child: FlareCacheBuilder(["images/animated_screen2.flr"],
+                builder: (BuildContext context, bool isWarm) {
+              return !isWarm
+                  ? Container(child: Text("Loading..."))
+                  : FlareActor(
+                      "images/animated_screen2.flr",
+                      alignment: Alignment.center,
+                      controller: _screenController,
+                      fit: BoxFit.fill,
+                    );
+            }),
+          ),
+          Positioned(
+            left: gameProvider.deviceSize.width * 0.1,
+            bottom: gameProvider.deviceSize.height * 0.1,
+            height: gameProvider.deviceSize.height * 0.4,
+            width: gameProvider.deviceSize.height * 0.4,
+            child: FlareCacheBuilder(["images/play_button.flr"],
+                builder: (BuildContext context, bool isWarm) {
+              return !isWarm
+                  ? Container(child: Text("Loading..."))
+                  : Container(
+                      child: FlatButton(
+                        color: Colors.transparent,
+                        onPressed: () {
+                          backgroundAudio.stop();
+                          playButtonAudio.open( Audio('sounds/test.ogg'));
+                          playButtonAudio.play();
+                          Helper.changScreenAnimation(changingScreenController,
+                              changingScreenAnimation, '/screen3', context);
+                        },
+                        child: FlareActor(
+                          "images/play_button.flr",
+                          alignment: Alignment.center,
+                          controller: _playButtonController,
+                        ),
+                      ),
+                    );
+            }),
+          ),
+          ChangingScreenAnimation(
+              changingScreenAnimation: changingScreenAnimation,
+              changingScreenController: _changingScreenController),
+        ]),
+      ),
+    );
   }
 }
-
