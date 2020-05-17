@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:seab1ird.showyourself/screens/GirlOptionsScreen.dart';
+import 'package:seab1ird.showyourself/screens/InitScreen.dart';
+import 'package:seab1ird.showyourself/screens/PresentScreen.dart';
 
-import 'Screen1.dart';
-import 'Screen2.dart';
-import 'Screen3.dart';
-import 'Screen4.dart';
 import 'helpers/GameProvider.dart';
 import 'helpers/Helper.dart';
+import 'routers.dart';
+import 'screens/makeup_screen/MakeupScreen.dart';
 
 void main() {
   runApp(
@@ -22,11 +23,11 @@ void main() {
         routes: <String, WidgetBuilder>{
           '/': (context) {
             init(context);
-            return Screen1();
+            return InitScreen();
           },
-          '/screen2': (context) => Screen2(),
-          '/screen3': (context) => Screen3(),
-          '/screen4': (context) => Screen4(),
+          Routers.PRESENT: (context) => PresentScreen(),
+          Routers.GIRL_OPTIONS: (context) => GirlOptionsScreen(),
+          Routers.MAKEUP: (context) => MakeupScreen(),
         },
       ),
     ),

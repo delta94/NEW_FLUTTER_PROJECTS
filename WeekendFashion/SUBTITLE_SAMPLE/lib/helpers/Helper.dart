@@ -1,6 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:seab1ird.showyourself/models/DeviceSize.dart';
 
@@ -14,19 +13,14 @@ class Helper {
     gameProvider.deviceSize = new DeviceSize(tempSize.height, tempSize.width);
   }
 
-  static changScreenAnimation(AnimationController changingScreenController,
-      Animation<double> changingScreenAnimation, String path, BuildContext context) {
-    changingScreenController.forward();
-    changingScreenAnimation.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        Timer(Duration(seconds: 1), () {
-          changingScreenController.reverse();
-        });
-      }
-    });
-
-    Timer(Duration(milliseconds: 1800), () {
-      Navigator.pushNamed(context, path);
-    });
+  static getSubItem(List<Positioned> positioneds) {
+    if (positioneds.length == 1) return Container();
+    return positioneds[0];
   }
+
+  static getItem(List<Positioned> positioneds) {
+    if (positioneds.length == 1) return positioneds[0];
+    return positioneds[1];
+  }
+
 }

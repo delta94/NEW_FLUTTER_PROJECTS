@@ -302,8 +302,6 @@ flutter:
     - images/CreatedObjectsStarting16.png
     - images/CreatedObjectsStarting19.png
     - images/bg2.png
-    - images/CreatedObjectsStarting_1.png
-    - images/CreatedObjectsStarting_2.png
     - images/GameObject_234.png
     - images/CreatedObjectsStarting13.png
     - images/GlitzSparks_4.png
@@ -337,6 +335,8 @@ flutter:
     - images/changing_item.flr
     - images/animated_screen2.flr
     - images/play_button.flr
+    - images/previous_item_list.flr
+    - images/next_item_list.flr
 
     - sounds/giggle.ogg
     - sounds/music1.ogg

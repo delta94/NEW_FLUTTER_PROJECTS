@@ -1,65 +1,54 @@
-const String TITLE = 'Katy Perry - Firework';
+const String APP_ID = "ca-app-pub-6420987903580707~4807185223";
+const String BANNER_ID = "ca-app-pub-6420987903580707/9867940219";
+const String INTERSTITIAL_ID = "ca-app-pub-6420987903580707/5928695200";
+
+const String TITLE = 'You Raise Me Up';
 const String VIDEO_URL =
-    'https://haiyentruong1776.github.io/Public_Video/Firework.mp4';
-const String LYRIC = "\nDo you ever feel like a plastic bag\n" +
-    "Drifting thought the wind\n" +
-    "Wanting to start again\n" +
-    "Do you ever feel, feel so paper thin\n" +
-    "Like a house of cards\n" +
-    "One blow from caving in\n" +
-    "Do you ever feel already buried deep\n" +
-    "Six feet under scream\n" +
-    "But no one seems to hear a thing\n" +
-    "Do you know that there's still a chance for you\n" +
-    "'Cause there's a spark in you\n" +
-    "You just gotta ignite the light\n" +
-    "And let it shine\n" +
+    'https://haiyentruong1776.github.io/Public_Video/YouRaiseMeUp.mp4';
+const String LYRIC = "\nWhen I am down\n" +
+    "and oh my soul so weary\n" +
+    "When troubles come\n" +
+    "and my heart burdened be\n" +
+    "Then I am still \n" +
+    "and wait here in the silence\n" +
+    "Until you come \n" +
+    "and sit a while with me\n" +
     "\n" +
-    "Just own the night\n" +
-    "Like the Fourth of July\n" +
-    "'Cause baby you're a firework\n" +
-    "Come on show 'em what your worth\n" +
-    "Make 'em go \"Oh, oh, oh!\"\n" +
-    "As you shoot across the sky-y-y\n" +
-    "Baby you're a firework\n" +
-    "Come on let your colors burst\n" +
-    "Make 'em go \"Oh, oh, oh!\"\n" +
-    "You're gonna leave 'em fallin' down down down\n" +
-    "You don't have to feel like a waste of space\n" +
-    "You're original, cannot be replaced\n" +
-    "If you only knew what the future holds\n" +
-    "After a hurricane comes a rainbow\n" +
-    "Maybe a reason why all the doors are closed\n" +
-    "So you can open one that leads you to the perfect road\n" +
-    "Like a lightning bolt, your heart will glow\n" +
-    "And when it's time, you'll know\n" +
-    "You just gotta ignite the light\n" +
-    "And let it shine\n" +
+    "You raise me up,\n" +
+    "so I can stand on mountains\n" +
+    "You raise me up,\n" +
+    "to walk on stormy seas\n" +
+    "I am strong,\n" +
+    "when I am on your shoulders\n" +
+    "You raise me up,\n" +
+    "to more than I can be\n" +
     "\n" +
-    "Just own the night\n" +
-    "Like the Fourth of July\n" +
-    "'Cause baby you're a firework\n" +
-    "Come on show 'em what your worth\n" +
-    "Make 'em go \"Oh, oh, oh!\"\n" +
-    "As you shoot across the sky-y-y\n" +
-    "Baby you\'re a firework\n" +
-    "Come on let your colors burst\n" +
-    "Make \'em go \"Oh, oh, oh!\"\n" +
-    "You're gonna leave \'em fallin' down down down\n" +
-    "Boom, boom, boom\n" +
-    "Even brighter than the moon, moon, moon\n" +
-    "It\'s always been inside of you, you, you\n" +
-    "And now it's time to let it through\n" +
-    "'Cause baby you're a firework\n" +
-    "Come on show 'em what your worth\n" +
-    "Make \'em go \"Oh, oh, oh!\"\n" +
-    "As you shoot across the sky-y-y\n" +
-    "Baby you\'re a firework\n" +
-    "Come on let your colors burst\n" +
-    "Make \'em go \"Oh, oh, oh!\"\n" +
-    "You\'re gonna leave \'em fallin' down down down\n" +
-    "Boom, boom, boom\n" +
-    "Even brighter than the moon, moon, moon\n" +
-    "Boom, boom, boom\n" +
-    "Even brighter than the moon, moon, moon\n" +
-    "\n";
+    "You raise me up,\n" +
+    "so I can stand on mountains\n" +
+    "You raise me up,\n" +
+    "to walk on stormy seas\n" +
+    "I am strong, \n" +
+    "when I am on your shoulders\n" +
+    "You raise me up,\n" +
+    "to more than I can be\n" +
+    "\n" +
+    "You raise me up,\n" +
+    "so I can stand on mountains\n" +
+    "You raise me up,\n" +
+    "to walk on stormy seas\n" +
+    "I am strong,\n" +
+    "when I am on your shoulders\n" +
+    "You raise me up,\n" +
+    "to more than I can be\n" +
+    "\n" +
+    "You raise me up,\n" +
+    "so I can stand on mountains\n" +
+    "You raise me up,\n" +
+    "to walk on stormy seas\n" +
+    "I am strong,\n" +
+    "when I am on your shoulders\n" +
+    "You raise me up,\n" +
+    "to more than I can be\n" +
+    "\n" +
+    "You raise me up,\n" +
+    "to more than I can be\n";

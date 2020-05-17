@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:app_review/app_review.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -45,11 +43,10 @@ class AppState extends State<App> with SingleTickerProviderStateMixin {
     _videoPlayerController = VideoPlayerController.network(VIDEO_URL)
       ..addListener(() {
         final bool videoState = _videoPlayerController.value.isPlaying;
-        if (this.videoState != null && this.videoState != videoState) {
+        if (videoState && this.videoState != videoState) {
           Ads.showInterstitialAd();
           this.videoState = videoState;
         }
-        // Toast.show(isPlaying.toString(), context);
       });
 
     // Wrapper on top of the videoPlayerController

@@ -6,14 +6,14 @@ class ChangingScreenAnimation extends StatelessWidget {
   const ChangingScreenAnimation({
     Key key,
     @required this.changingScreenAnimation,
-    @required EndlessController changingScreenController,
-  }) : _transitionAnimatedController = changingScreenController, super(key: key);
+  }) : super(key: key);
 
   final Animation<double> changingScreenAnimation;
-  final EndlessController _transitionAnimatedController;
 
   @override
   Widget build(BuildContext context) {
+    final EndlessController _transitionAnimatedController =
+      EndlessController('Untitled', 5.0);
     return Align(
       alignment: Alignment.center,
       child: Transform.translate(

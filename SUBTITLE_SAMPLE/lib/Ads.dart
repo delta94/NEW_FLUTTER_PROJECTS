@@ -1,10 +1,5 @@
 import 'package:firebase_admob/firebase_admob.dart';
-
-const String APP_ID = "ca-app-pub-6420987903580707~5496875972";
-
-const String BANNER_ID = "ca-app-pub-6420987903580707/1012983287";
-const String INTERSTITIAL_ID = "ca-app-pub-6420987903580707/7386819940";
-
+import 'Input.dart';
 
 class Ads {
   static BannerAd _bannerAd;
@@ -26,7 +21,7 @@ class Ads {
     );
   }
 
-  static InterstitialAd _createInterstitial() {
+  static InterstitialAd createInterstitial() {
     return InterstitialAd(
       adUnitId: INTERSTITIAL_ID,
       targetingInfo: targetingInfo,
@@ -48,7 +43,7 @@ class Ads {
   }
 
   static void showInterstitialAd() {
-    if (_interstitialAd == null) _interstitialAd = _createInterstitial();
+    if (_interstitialAd == null) _interstitialAd = createInterstitial();
     _interstitialAd
       ..load()
       ..show();
