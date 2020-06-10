@@ -19,8 +19,8 @@ class AnimationHelper{
     });
   }
 
-  static AnimationController getInitScreenController(TickerProvider tickerProvider, [int time]){
-    return AnimationController(vsync: tickerProvider, duration: Duration(milliseconds: time != null ? time : 500));
+  static AnimationController getAnimationController(TickerProvider tickerProvider, [int time]){
+    return AnimationController(vsync: tickerProvider, duration: Duration(milliseconds: time != null ? time : 1500));
   }
 
   // static Animation<double> getInitScreenAnimation(AnimationController initScreenController){

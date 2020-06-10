@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
+import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
 import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
 
 import '../routers.dart';
@@ -32,9 +33,11 @@ class InitScreenState extends State<InitScreen> with TickerProviderStateMixin {
     super.initState();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
+    gameProvider.init();
+
     playButtonWidth = gameProvider.deviceSize.width * 0.2;
     changingScreenController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+        AnimationHelper.getAnimationController(this, 500);
   }
 
   @override
@@ -46,6 +49,8 @@ class InitScreenState extends State<InitScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
+        
+    gameProvider.currentGirlIndex = 1;
 
     changingScreenAnimation =
         Tween<double>(begin: 0 - gameProvider.deviceSize.height, end: 0)
@@ -79,29 +84,18 @@ class InitScreenState extends State<InitScreen> with TickerProviderStateMixin {
                       padding: EdgeInsets.only(
                           top: gameProvider.deviceSize.height * 0.3),
                       alignment: Alignment.center,
-                      child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              playButtonWidth =
-                                  gameProvider.deviceSize.width * 0.25;
-                            });
-
-                            Timer(Duration(milliseconds: 100), () {
-                              setState(() {
-                                playButtonWidth =
-                                    gameProvider.deviceSize.width * 0.2;
-                              });
-                            });
-
-                            AnimationHelper.changeScreenAnimation(
-                                changingScreenController,
-                                Routers.PRESENT,
-                                context);
-                          },
-                          child: Image.asset(
-                            'images/play.png',
+                      child: Material(
+                        color: Colors.transparent,
+                        child: AnimatedButton(
+                            image: 'images/play.png',
                             width: playButtonWidth,
-                          )),
+                            callback: () => {
+                                  AnimationHelper.changeScreenAnimation(
+                                      changingScreenController,
+                                      Routers.PRESENT,
+                                      context),
+                                }),
+                      ),
                     ),
                   ),
                 ],

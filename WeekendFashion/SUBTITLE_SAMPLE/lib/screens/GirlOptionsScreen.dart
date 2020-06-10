@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/routers.dart';
+import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
 import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
 
 
@@ -36,12 +37,10 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
   void initState() {
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
-    gameProvider.girlsMap[0] = true;
-    gameProvider.girlsMap[1] = false;
     girlHeight = gameProvider.deviceSize.height * 0.84;
     activeGirlHeight = girlHeight;
 
-    initScreenController = AnimationHelper.getInitScreenController(this);
+    initScreenController = AnimationHelper.getAnimationController(this, 500);
     initScreenAnimation =
         Tween<double>(begin: 0, end: 0 - gameProvider.deviceSize.height)
             .animate(initScreenController)
@@ -49,7 +48,7 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
                 setState(() {});
               });
 
-    changingScreenController = AnimationHelper.getInitScreenController(this);
+    changingScreenController = AnimationHelper.getAnimationController(this, 500);
     
     super.initState();
   }
@@ -59,23 +58,11 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
     super.dispose();
   }
 
-  onPress() {
-    GameProvider gameProvider =
-        Provider.of<GameProvider>(context, listen: false);
+  onPress(GameProvider gameProvider) {
     initScreenController.forward();
 
-    setState(() {
-      this.activeGirlHeight = gameProvider.deviceSize.height * 0.9;
-    });
-
-    Timer(Duration(milliseconds: 100), () {
-      setState(() {
-        this.activeGirlHeight = girlHeight;
-      });
-    });
-
     AnimationHelper.changeScreenAnimation(
-        changingScreenController, Routers.MAKEUP, context);
+        changingScreenController, gameProvider.currentGirlIndex == 0 ? Routers.GIRL0_MAKEUP : Routers.GIRL1_MAKEUP, context);
   }
 
   @override
@@ -111,20 +98,19 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
           Positioned(
             left: gameProvider.deviceSize.width * 0.12,
             top: gameProvider.deviceSize.height * 0.07,
-            height: gameProvider.girlsMap[0] ? activeGirlHeight : girlHeight,
-            child: Image.asset(
-              gameProvider.girlsMap[0]
+            height: gameProvider.currentGirlIndex == 0 ? activeGirlHeight : girlHeight,
+            child: AnimatedButton(image: gameProvider.currentGirlIndex == 0
                   ? "images/LevelChoice_1.png"
                   : "images/lockMc_1.png",
-            ),
+                  callback: (){},),
           ),
           // girl 2
           Positioned(
             right: gameProvider.deviceSize.width * 0.12,
             top: gameProvider.deviceSize.height * 0.07,
-            height: gameProvider.girlsMap[1] ? activeGirlHeight : girlHeight,
+            height: gameProvider.currentGirlIndex == 1 ? activeGirlHeight : girlHeight,
             child: Image.asset(
-              gameProvider.girlsMap[1]
+              gameProvider.currentGirlIndex == 1
                   ? "images/LevelChoice_2.png"
                   : "images/lockMc_2.png",
             ),
@@ -143,8 +129,8 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
           ),
           // changing item animation
           Positioned(
-            left: gameProvider.girlsMap[0] ? 0 : null,
-            right: gameProvider.girlsMap[1] ? 0 : null,
+            left: gameProvider.currentGirlIndex == 0 ? 0 : null,
+            right: gameProvider.currentGirlIndex == 1 ? 0 : null,
             top: gameProvider.deviceSize.height * 0.1,
             height: gameProvider.deviceSize.height * 0.9,
             width: gameProvider.deviceSize.width * 0.5,
@@ -152,11 +138,11 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
                 fit: BoxFit.contain, animation: "Untitled"),
           ),
           Positioned(
-            left: gameProvider.girlsMap[0] ? 0 : null,
-            right: gameProvider.girlsMap[1] ? 0 : null,
+            left: gameProvider.currentGirlIndex == 0 ? 0 : null,
+            right: gameProvider.currentGirlIndex == 1 ? 0 : null,
             height: gameProvider.deviceSize.height,
             width: gameProvider.deviceSize.width * 0.5,
-            child: GestureDetector(onTap: ()=>this.onPress(),),
+            child: GestureDetector(onTap: ()=>this.onPress(gameProvider),),
           ),
           ChangingScreenAnimation(
               changingScreenAnimation: initScreenAnimation),

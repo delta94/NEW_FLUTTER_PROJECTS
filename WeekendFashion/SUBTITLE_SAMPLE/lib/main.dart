@@ -8,7 +8,8 @@ import 'package:seab1ird.showyourself/screens/PresentScreen.dart';
 import 'helpers/GameProvider.dart';
 import 'helpers/Helper.dart';
 import 'routers.dart';
-import 'screens/makeup_screen/MakeupScreen.dart';
+import 'screens/makeup_screen/Girl0MakeupScreen.dart';
+import 'screens/makeup_screen/Girl1MakeupScreen.dart';
 
 void main() {
   runApp(
@@ -27,7 +28,8 @@ void main() {
           },
           Routers.PRESENT: (context) => PresentScreen(),
           Routers.GIRL_OPTIONS: (context) => GirlOptionsScreen(),
-          Routers.MAKEUP: (context) => MakeupScreen(),
+          Routers.GIRL0_MAKEUP: (context) => Girl0MakeupScreen(),
+          Routers.GIRL1_MAKEUP: (context) => Girl1MakeupScreen(),
         },
       ),
     ),

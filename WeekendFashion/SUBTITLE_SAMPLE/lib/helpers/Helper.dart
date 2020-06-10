@@ -23,4 +23,13 @@ class Helper {
     return positioneds[1];
   }
 
+  static getItemTypeIndex(int rawIndex, int len){
+    if(rawIndex < 0){
+      return len - 1;
+    } else if(rawIndex == len){
+      return 0;
+    } else {
+      return rawIndex;
+    }
+  }
 }

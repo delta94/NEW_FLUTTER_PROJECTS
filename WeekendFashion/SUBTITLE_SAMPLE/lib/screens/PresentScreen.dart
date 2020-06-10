@@ -47,7 +47,7 @@ class PresentScreenState extends State<PresentScreen> with TickerProviderStateMi
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
 
-    initScreenController = AnimationHelper.getInitScreenController(this, 2000);
+    initScreenController = AnimationHelper.getAnimationController(this, 2000);
     initScreenAnimation =
         Tween<double>(begin: 0, end: 0 - gameProvider.deviceSize.height)
             .animate(initScreenController)
@@ -55,7 +55,7 @@ class PresentScreenState extends State<PresentScreen> with TickerProviderStateMi
                 setState(() {});
               });
 
-    changingScreenController = AnimationHelper.getInitScreenController(this);
+    changingScreenController = AnimationHelper.getAnimationController(this, 500);
 
     super.initState();
   }

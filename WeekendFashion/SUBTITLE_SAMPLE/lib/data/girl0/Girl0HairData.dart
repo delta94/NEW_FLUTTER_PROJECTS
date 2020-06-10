@@ -1,51 +1,56 @@
 import 'package:flutter/cupertino.dart';
+import 'package:seab1ird.showyourself/data/Data.dart';
+import 'package:seab1ird.showyourself/enums/SubItemType.dart';
 
-class HairData {
-  static Map<String, List<Positioned>> hairItemMap =
-      new Map<String, List<Positioned>>();
-  static init() {
+class Girl0HairData implements Data {
+  @override
+  Map<SubItemType, Map<String, List<Positioned>>> itemSubMap;
+
+  Girl0HairData() {
+    itemSubMap = new Map<SubItemType, Map<String, List<Positioned>>>();
+    itemSubMap[null] = new Map<String, List<Positioned>>();
     //0
-    hairItemMap['CreatedObject7_14.png'] = [
+    itemSubMap[null]['CreatedObject7_14'] = [
       Positioned(
-        right: 144,
+        right: 140,
         bottom: 195,
         child: Image.asset(
           "images/CreatedObject7_84.png",
-          width: 92,
+          width: 95,
         ),
       ),
       Positioned(
-        right: 150,
-        bottom: 230,
+        right: 140,
+        bottom: 218,
         child: Image.asset(
           "images/CreatedObject7_76.png",
-          width: 82,
+          width: 95,
         ),
       )
     ];
 
     //1
-    hairItemMap['CreatedObject7_15.png'] = [
+    itemSubMap[null]['CreatedObject7_15'] = [
       Positioned(
-        right: 165,
-        bottom: 260,
+        right: 160,
+        bottom: 257,
         child: Image.asset(
           "images/CreatedObject7_85.png",
-          width: 60,
+          width: 68,
         ),
       ),
       Positioned(
-        right: 165,
-        bottom: 255,
+        right: 162,
+        bottom: 250,
         child: Image.asset(
           "images/CreatedObject7_77.png",
-          width: 60,
+          width: 65,
         ),
       ),
     ];
 
     //2
-    hairItemMap['CreatedObject7_16.png'] = [
+    itemSubMap[null]['CreatedObject7_16'] = [
       Positioned(
         right: 165,
         bottom: 230,
@@ -55,61 +60,61 @@ class HairData {
         ),
       ),
       Positioned(
-        right: 144,
-        bottom: 230,
+        right: 140,
+        bottom: 228,
         child: Image.asset(
           "images/CreatedObject7_78.png",
-          width: 92,
+          width: 95,
         ),
       )
     ];
 
     //3
-    hairItemMap['CreatedObject7_17.png'] = [
+    itemSubMap[null]['CreatedObject7_17'] = [
       Positioned(
-        right: 155,
-        bottom: 238,
+        right: 150,
+        bottom: 233,
         child: Image.asset(
           "images/CreatedObject7_79.png",
-          width: 71,
+          width: 75,
         ),
       )
     ];
 
     //4
-    hairItemMap['CreatedObject7_18.png'] = [
+    itemSubMap[null]['CreatedObject7_18'] = [
       Positioned(
         right: 175,
-        bottom: 255,
+        bottom: 252,
         child: Image.asset(
           "images/CreatedObject7_87.png",
-          width: 50,
+          width: 55,
         ),
       ),
       Positioned(
-        right: 102,
-        bottom: 255,
+        right: 95,
+        bottom: 252,
         child: Image.asset(
           "images/CreatedObject7_80.png",
-          width: 125,
+          width: 135,
         ),
       )
     ];
 
     //5
-    hairItemMap['CreatedObject7_19.png'] = [
+    itemSubMap[null]['CreatedObject7_19'] = [
       Positioned(
-        right: 166,
-        bottom: 209,
+        right: 164,
+        bottom: 205,
         child: Image.asset(
           "images/CreatedObject7_81.png",
-          width: 58,
+          width: 60,
         ),
       )
     ];
 
     //6
-    hairItemMap['CreatedObject7_20.png'] = [
+    itemSubMap[null]['CreatedObject7_20'] = [
       Positioned(
         right: 158,
         bottom: 180,
@@ -129,7 +134,7 @@ class HairData {
     ];
 
     //7
-    hairItemMap['CreatedObject7_21.png'] = [
+    itemSubMap[null]['CreatedObject7_21'] = [
       Positioned(
         right: 114,
         bottom: 158,
@@ -139,11 +144,11 @@ class HairData {
         ),
       ),
       Positioned(
-        right: 168,
-        bottom: 277,
+        right: 163,
+        bottom: 275,
         child: Image.asset(
           "images/CreatedObject7_83.png",
-          width: 60,
+          width: 65,
         ),
       )
     ];
