@@ -27,7 +27,6 @@ void main() {
             return InitScreen();
           },
           Routers.PRESENT: (context) => PresentScreen(),
-          Routers.GIRL_OPTIONS: (context) => GirlOptionsScreen(),
           Routers.GIRL0_MAKEUP: (context) => Girl0MakeupScreen(),
           Routers.GIRL1_MAKEUP: (context) => Girl1MakeupScreen(),
         },

@@ -2,55 +2,52 @@ import 'package:flutter/cupertino.dart';
 import 'package:seab1ird.showyourself/data/Data.dart';
 import 'package:seab1ird.showyourself/enums/SubItemType.dart';
 
-class Girl1TreasureData implements Data {
-  @override
-  Map<SubItemType, Map<String, List<Positioned>>> itemSubMap;
+class GirlTreasureData extends Data {
+  GirlTreasureData() {
+    Data();
+    itemSubMapList[0][null] = new Map<String, List<Positioned>>();
+    itemSubMapList[0][SubItemType.BAG] = new Map<String, List<Positioned>>();
+    itemSubMapList[0][SubItemType.NECKLET] = new Map<String, List<Positioned>>();
+    itemSubMapList[0][SubItemType.EARING] = new Map<String, List<Positioned>>();
+    itemSubMapList[0][SubItemType.PHONE] = new Map<String, List<Positioned>>();
+    itemSubMapList[0][SubItemType.GLASS] = new Map<String, List<Positioned>>();
 
-  Girl1TreasureData() {
-    itemSubMap = new Map<SubItemType, Map<String, List<Positioned>>>();
-    itemSubMap[null] = new Map<String, List<Positioned>>();
-    itemSubMap[SubItemType.BAG] = new Map<String, List<Positioned>>();
-    itemSubMap[SubItemType.NECKLET] = new Map<String, List<Positioned>>();
-    itemSubMap[SubItemType.EARING] = new Map<String, List<Positioned>>();
-    itemSubMap[SubItemType.PHONE] = new Map<String, List<Positioned>>();
-    itemSubMap[SubItemType.GLASS] = new Map<String, List<Positioned>>();
-
-    itemSubMap[null][null] = [
+    itemSubMapList[0][null][null] = [
       Positioned(
         right: 130,
         bottom: 165,
         child: Container(),
       ),
     ];
-    itemSubMap[SubItemType.BAG][null] = [
+    itemSubMapList[0][SubItemType.BAG][null] = [
       Positioned(
         right: 130,
         bottom: 165,
         child: Container(),
       ),
     ];
-    itemSubMap[SubItemType.EARING][null] = [
+    itemSubMapList[0][SubItemType.EARING][null] = [
       Positioned(
         right: 130,
         bottom: 165,
         child: Container(),
       ),
     ];
-    itemSubMap[SubItemType.NECKLET][null] = [
+    itemSubMapList[0][SubItemType.NECKLET][null] = [
       Positioned(
         right: 130,
         bottom: 165,
         child: Container(),
       ),
     ];
-    itemSubMap[SubItemType.PHONE][null] = [
+    itemSubMapList[0][SubItemType.PHONE][null] = [
       Positioned(
         right: 130,
         bottom: 165,
         child: Container(),
       ),
     ];
-    itemSubMap[SubItemType.GLASS][null] = [
+    itemSubMapList[0][SubItemType.GLASS][null] = [
       Positioned(
         right: 130,
         bottom: 165,
@@ -58,7 +55,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //1
-    itemSubMap[SubItemType.BAG]['CreatedObject7_59'] = [
+    itemSubMapList[0][SubItemType.BAG]['CreatedObject7_59'] = [
       Positioned(
         right: 215,
         bottom: 120,
@@ -77,7 +74,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //2
-    itemSubMap[SubItemType.BAG]['CreatedObject7_60'] = [
+    itemSubMapList[0][SubItemType.BAG]['CreatedObject7_60'] = [
       Positioned(
         right: 190,
         bottom: 105,
@@ -88,7 +85,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //3
-    itemSubMap[SubItemType.NECKLET]['CreatedObject7_61'] = [
+    itemSubMapList[0][SubItemType.NECKLET]['CreatedObject7_61'] = [
       Positioned(
         right: 180,
         bottom: 210,
@@ -99,7 +96,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //4
-    itemSubMap[SubItemType.NECKLET]['CreatedObject7_62'] = [
+    itemSubMapList[0][SubItemType.NECKLET]['CreatedObject7_62'] = [
       Positioned(
         right: 174,
         bottom: 227,
@@ -111,7 +108,7 @@ class Girl1TreasureData implements Data {
     ];
     // ROW 2
     //5
-    itemSubMap[SubItemType.BAG]['CreatedObject7_63'] = [
+    itemSubMapList[0][SubItemType.BAG]['CreatedObject7_63'] = [
       Positioned(
         right: 110,
         bottom: 105,
@@ -122,7 +119,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //6
-    itemSubMap[SubItemType.BAG]['CreatedObject7_64'] = [
+    itemSubMapList[0][SubItemType.BAG]['CreatedObject7_64'] = [
       Positioned(
         right: 213,
         bottom: 140,
@@ -141,7 +138,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //7
-    itemSubMap[SubItemType.BAG]['CreatedObject7_65'] = [
+    itemSubMapList[0][SubItemType.BAG]['CreatedObject7_65'] = [
       Positioned(
         right: 185,
         bottom: 100,
@@ -152,7 +149,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //8
-    itemSubMap[SubItemType.EARING]['CreatedObject7_66'] = [
+    itemSubMapList[0][SubItemType.EARING]['CreatedObject7_66'] = [
       Positioned(
         right: 178,
         bottom: 245,
@@ -164,7 +161,7 @@ class Girl1TreasureData implements Data {
     ];
     // ROW 3
     //9
-    itemSubMap[SubItemType.EARING]['CreatedObject7_67'] = [
+    itemSubMapList[0][SubItemType.EARING]['CreatedObject7_67'] = [
       Positioned(
         right: 178,
         bottom: 252,
@@ -175,7 +172,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //10
-    itemSubMap[SubItemType.PHONE]['CreatedObject7_68'] = [
+    itemSubMapList[0][SubItemType.PHONE]['CreatedObject7_68'] = [
       Positioned(
         right: 117,
         bottom: 190,
@@ -186,7 +183,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //11
-    itemSubMap[SubItemType.BAG]['CreatedObject7_69'] = [
+    itemSubMapList[0][SubItemType.BAG]['CreatedObject7_69'] = [
       Positioned(
         right: 210,
         bottom: 155,
@@ -205,7 +202,7 @@ class Girl1TreasureData implements Data {
       ),
     ];
     //12
-    itemSubMap[SubItemType.GLASS]['CreatedObject7_70'] = [
+    itemSubMapList[0][SubItemType.GLASS]['CreatedObject7_70'] = [
       Positioned(
         right: 177,
         bottom: 271,
@@ -213,6 +210,22 @@ class Girl1TreasureData implements Data {
           "images/CreatedObject7_137.png",
           width: 45,
         ),
+      ),
+    ];
+
+    //-------------------------------------2----------------------------
+    itemSubMapList[0][null][null] = [
+      Positioned(
+        right: 130,
+        bottom: 165,
+        child: Container(),
+      ),
+    ];
+    itemSubMapList[0][SubItemType.BAG][null] = [
+      Positioned(
+        right: 130,
+        bottom: 165,
+        child: Container(),
       ),
     ];
   }

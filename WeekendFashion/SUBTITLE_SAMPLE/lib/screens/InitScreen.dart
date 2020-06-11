@@ -50,7 +50,7 @@ class InitScreenState extends State<InitScreen> with TickerProviderStateMixin {
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
         
-    gameProvider.currentGirlIndex = 1;
+    gameProvider.currentGirlIndex = 0;
 
     changingScreenAnimation =
         Tween<double>(begin: 0 - gameProvider.deviceSize.height, end: 0)

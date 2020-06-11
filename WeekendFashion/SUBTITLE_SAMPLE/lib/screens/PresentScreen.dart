@@ -128,7 +128,7 @@ class PresentScreenState extends State<PresentScreen> with TickerProviderStateMi
                           backgroundAudio.stop();
                           playButtonAudio.open( Audio('sounds/test.ogg'));
                           playButtonAudio.play();
-                          AnimationHelper.changeScreenAnimation(changingScreenController, Routers.GIRL_OPTIONS, context);
+                          AnimationHelper.changeScreenAnimation(changingScreenController, Routers.GIRL0_MAKEUP, context);
                         },
                         child: FlareActor(
                           "images/play_button.flr",

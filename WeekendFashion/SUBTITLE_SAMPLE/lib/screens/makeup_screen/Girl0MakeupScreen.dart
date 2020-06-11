@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:seab1ird.showyourself/data/cabin/GirlCabinHairItems.dart';
+import 'package:seab1ird.showyourself/data/cabin/GirlCabinJacketItems.dart';
+import 'package:seab1ird.showyourself/data/cabin/GirlCabinShirtItems.dart';
+import 'package:seab1ird.showyourself/data/cabin/GirlCabinShortItems.dart';
+import 'package:seab1ird.showyourself/data/cabin/GirlCabinTreasureItems.dart';
 import 'package:seab1ird.showyourself/enums/ItemType.dart';
 import 'package:seab1ird.showyourself/enums/SubItemType.dart';
 import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
@@ -16,12 +21,6 @@ import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/routers.dart';
 import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
 import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
-
-import 'Cabin/Girl0/Girl0CabinHairItems.dart';
-import 'Cabin/Girl0/Girl0CabinJacketItems.dart';
-import 'Cabin/Girl0/Girl0CabinShirtItems.dart';
-import 'Cabin/Girl0/Girl0CabinShortItems.dart';
-import 'Cabin/Girl0/Girl0CabinTreasureItems.dart';
 
 class Girl0MakeupScreen extends StatefulWidget {
   Girl0MakeupScreen({Key key}) : super(key: key);
@@ -53,8 +52,6 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
       new Map<ItemType, AnimationController>();
   ItemType currItemListType = ItemType.values[0];
   ItemType oldItemListType;
-
-  bool show = true;
 
   Future<bool> _onWillPop() {
     Navigator.pop(context);
@@ -123,31 +120,31 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
     itemTypeListMap[ItemType.JACKET] = jacketController;
     itemTypeListMap[ItemType.TREASURE] = treasureController;
 
-    gameProvider.selectedItemGirl0Map[ItemType.HAIR] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.HAIR] = <SubItemType, String>{
       null: 'CreatedObject7_14'
     };
-    gameProvider.selectedItemGirl0Map[ItemType.SHIRT] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.SHIRT] = <SubItemType, String>{
       null: null
     };
-    gameProvider.selectedItemGirl0Map[ItemType.SHORT] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.SHORT] = <SubItemType, String>{
       null: null
     };
-    gameProvider.selectedItemGirl0Map[ItemType.JACKET] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.JACKET] = <SubItemType, String>{
       null: null
     };
-    gameProvider.selectedItemGirl0Map[ItemType.TREASURE] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
       SubItemType.BAG: null
     };
-    gameProvider.selectedItemGirl0Map[ItemType.TREASURE] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
       SubItemType.EARING: null
     };
-    gameProvider.selectedItemGirl0Map[ItemType.TREASURE] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
       SubItemType.NECKLET: null
     };
-    gameProvider.selectedItemGirl0Map[ItemType.TREASURE] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
       SubItemType.PHONE: null
     };
-    gameProvider.selectedItemGirl0Map[ItemType.TREASURE] = <SubItemType, String>{
+    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
       SubItemType.GLASS: null
     };
 
@@ -214,21 +211,21 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
           ),
 
           // HAIR PRESENT
-          Girl0CabinHairItems(animation: hairAnimation),
+          GirlCabinHairItems(animation: hairAnimation, girlIndex: 0, itemType: ItemType.HAIR,),
           // SHIRT PRESENT
-          Girl0CabinShirtItems(animation: shirtAnimation),
+          GirlCabinShirtItems(animation: shirtAnimation, girlIndex: 0, itemType: ItemType.SHIRT,),
           // SHORT PRESENT
-          Girl0CabinShortItems(animation: shortAnimation),
+          GirlCabinShortItems(animation: shortAnimation, girlIndex: 0, itemType: ItemType.SHORT,),
           // JACKET PRESENT
-          Girl0CabinJacketItems(animation: jacketAnimation),
+          GirlCabinJacketItems(animation: jacketAnimation, girlIndex: 0, itemType: ItemType.JACKET,),
           // TREASURE PRESENT
-          Girl0CabinTreasureItems(animation: treasureAnimation),
+          GirlCabinTreasureItems(animation: treasureAnimation, girlIndex: 0, itemType: ItemType.TREASURE,),
           //----------------------------------------------------------
           // sub hair
-          Helper.getSubItem(gameProvider.getGirl0SelectedItem(ItemType.HAIR)),
+          Helper.getSubItem(gameProvider.getGirlSelectedItem(0, ItemType.HAIR)),
           // sub treasure
           Helper.getSubItem(
-              gameProvider.getGirl0SelectedItem(ItemType.TREASURE, SubItemType.BAG)),
+              gameProvider.getGirlSelectedItem(0, ItemType.TREASURE, SubItemType.BAG)),
           // body
           Positioned(
             right: 120,
@@ -245,28 +242,28 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
             ),
           ),
           // short
-          Helper.getItem(gameProvider.getGirl0SelectedItem(ItemType.SHORT)),
+          Helper.getItem(gameProvider.getGirlSelectedItem(0, ItemType.SHORT)),
           // shirt
-          Helper.getItem(gameProvider.getGirl0SelectedItem(ItemType.SHIRT)),
+          Helper.getItem(gameProvider.getGirlSelectedItem(0, ItemType.SHIRT)),
           // Jacket
-          Helper.getItem(gameProvider.getGirl0SelectedItem(ItemType.JACKET)),
+          Helper.getItem(gameProvider.getGirlSelectedItem(0, ItemType.JACKET)),
           // Treasure 1
           Helper.getItem(
-              gameProvider.getGirl0SelectedItem(ItemType.TREASURE, SubItemType.BAG)),
+              gameProvider.getGirlSelectedItem(0, ItemType.TREASURE, SubItemType.BAG)),
           // Treasure 2
-          Helper.getItem(gameProvider.getGirl0SelectedItem(
+          Helper.getItem(gameProvider.getGirlSelectedItem(0, 
               ItemType.TREASURE, SubItemType.EARING)),
           // Treasure 3
-          Helper.getItem(gameProvider.getGirl0SelectedItem(
+          Helper.getItem(gameProvider.getGirlSelectedItem(0, 
               ItemType.TREASURE, SubItemType.NECKLET)),
           // Treasure 4
-          Helper.getItem(gameProvider.getGirl0SelectedItem(
+          Helper.getItem(gameProvider.getGirlSelectedItem(0, 
               ItemType.TREASURE, SubItemType.PHONE)),
           // Treasure 5
-          Helper.getItem(gameProvider.getGirl0SelectedItem(
+          Helper.getItem(gameProvider.getGirlSelectedItem(0, 
               ItemType.TREASURE, SubItemType.GLASS)),
           // hair
-          Helper.getItem(gameProvider.getGirl0SelectedItem(ItemType.HAIR)),
+          Helper.getItem(gameProvider.getGirlSelectedItem(0, ItemType.HAIR)),
 
           // hand
           Positioned(
@@ -364,8 +361,8 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
 
   isValid(GameProvider gameProvider){
     bool isValid = true;
-    isValid &= gameProvider.selectedItemGirl0Map[ItemType.SHIRT][null] != null;
-    isValid &= gameProvider.selectedItemGirl0Map[ItemType.SHORT][null] != null;
+    isValid &= gameProvider.selectedItemGirlList[0][ItemType.SHIRT][null] != null;
+    isValid &= gameProvider.selectedItemGirlList[0][ItemType.SHORT][null] != null;
     return isValid;
   }
 }

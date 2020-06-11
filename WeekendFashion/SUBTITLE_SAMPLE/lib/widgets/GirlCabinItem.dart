@@ -6,15 +6,17 @@ import 'package:seab1ird.showyourself/enums/SubItemType.dart';
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
 
-class Girl1CabinItem extends StatefulWidget {
+class GirlCabinItem extends StatefulWidget {
+  final int girlIndex;
   final double left;
   final double top;
   final double width;
   final String image;
   final ItemType itemType;
   final SubItemType subItemType;
-  Girl1CabinItem(
-      {this.left,
+  GirlCabinItem(
+      {@required this.girlIndex,
+      this.left,
       this.top,
       this.width,
       this.image,
@@ -22,10 +24,10 @@ class Girl1CabinItem extends StatefulWidget {
       this.subItemType});
 
   @override
-  _Girl1CabinItemState createState() => _Girl1CabinItemState();
+  _GirlCabinItemState createState() => _GirlCabinItemState();
 }
 
-class _Girl1CabinItemState extends State<Girl1CabinItem> {
+class _GirlCabinItemState extends State<GirlCabinItem> {
   bool toggle = false;
 
   @override
@@ -40,8 +42,8 @@ class _Girl1CabinItemState extends State<Girl1CabinItem> {
           Image.asset(
             img,
             width: widget.width * 1.12,
-            color: gameProvider.selectedItemGirl1Map[widget.itemType]
-                        [widget.subItemType] ==
+            color: gameProvider.selectedItemGirlList[widget.girlIndex]
+                        [widget.itemType][widget.subItemType] ==
                     widget.image
                 ? Colors.yellow
                 : Colors.transparent,
@@ -52,7 +54,8 @@ class _Girl1CabinItemState extends State<Girl1CabinItem> {
             child: AnimatedButton(
               image: img,
               width: widget.width,
-              callback: () => gameProvider.setGirl1ItemType(
+              callback: () => gameProvider.setGirlItemType(
+                widget.girlIndex,
                 widget.itemType,
                 widget.image,
                 widget.subItemType,
