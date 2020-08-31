@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:seab1ird.showyourself/helpers/Ads.dart';
 import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
@@ -24,13 +25,13 @@ class InitScreenState extends State<InitScreen> with TickerProviderStateMixin {
   double playButtonWidth;
 
   Future<bool> _onWillPop() {
-    Navigator.pop(context);
     return Future<bool>.value(false);
   }
 
   @override
   void initState() {
-    super.initState();
+    Ads.showBannerAd();
+    Ads.loadInterstitialAd();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
     gameProvider.init();
@@ -38,6 +39,7 @@ class InitScreenState extends State<InitScreen> with TickerProviderStateMixin {
     playButtonWidth = gameProvider.deviceSize.width * 0.2;
     changingScreenController =
         AnimationHelper.getAnimationController(this, 500);
+    super.initState();
   }
 
   @override
@@ -49,7 +51,7 @@ class InitScreenState extends State<InitScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
-        
+
     gameProvider.currentGirlIndex = 0;
 
     changingScreenAnimation =

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seab1ird.showyourself/enums/ItemType.dart';
 import 'package:seab1ird.showyourself/models/DeviceSize.dart';
 
 import 'GameProvider.dart';
@@ -18,15 +19,32 @@ class Helper {
     return positioneds[0];
   }
 
-  static getItem(List<Positioned> positioneds) {
+  static Positioned getItem(List<Positioned> positioneds) {
     if (positioneds.length == 1) return positioneds[0];
     return positioneds[1];
   }
 
-  static getItemTypeIndex(int rawIndex, int len){
-    if(rawIndex < 0){
+  static Positioned getInsideItem(
+      List<Positioned> positioneds, GameProvider gameProvider) {
+    if (gameProvider.selectedItemGirlList[gameProvider.currentGirlIndex]
+            [ItemType.JACKET][null] ==
+        null) {
+      return positioneds[0];
+    } else {
+      return positioneds[1];
+    }
+  }
+
+  static getItemTypeIndex(int rawIndex, int len, bool isNext) {
+    if (isNext) {
+      rawIndex += 1;
+    } else {
+      rawIndex -= 1;
+    }
+
+    if (rawIndex < 0) {
       return len - 1;
-    } else if(rawIndex == len){
+    } else if (rawIndex == len) {
       return 0;
     } else {
       return rawIndex;

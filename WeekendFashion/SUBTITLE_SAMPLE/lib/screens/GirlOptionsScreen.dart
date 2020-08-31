@@ -1,24 +1,26 @@
 import 'dart:async';
 
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:assets_audio_player/playable.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:seab1ird.showyourself/helpers/Ads.dart';
 import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/routers.dart';
 import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
 import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
 
-
 class GirlOptionsScreen extends StatefulWidget {
   GirlOptionsScreen({Key key}) : super(key: key);
   GirlOptionsScreenState createState() => GirlOptionsScreenState();
 }
 
-class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProviderStateMixin {
-
+class GirlOptionsScreenState extends State<GirlOptionsScreen>
+    with TickerProviderStateMixin {
   Animation<double> initScreenAnimation;
   Animation<double> changingScreenAnimation;
 
@@ -29,12 +31,12 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
   double activeGirlHeight;
 
   Future<bool> _onWillPop() {
-    Navigator.pop(context);
     return Future<bool>.value(false);
   }
 
   @override
   void initState() {
+    Ads.showInterstitialAd();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
     girlHeight = gameProvider.deviceSize.height * 0.84;
@@ -48,8 +50,13 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
                 setState(() {});
               });
 
-    changingScreenController = AnimationHelper.getAnimationController(this, 500);
-    
+    changingScreenController =
+        AnimationHelper.getAnimationController(this, 500);
+    final girlSoundAudio = AssetsAudioPlayer();
+    new Timer(Duration(milliseconds: 500), () {
+      girlSoundAudio.open(Audio('sounds/giggle.ogg'));
+    });
+
     super.initState();
   }
 
@@ -62,7 +69,11 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
     initScreenController.forward();
 
     AnimationHelper.changeScreenAnimation(
-        changingScreenController, gameProvider.currentGirlIndex == 0 ? Routers.GIRL0_MAKEUP : Routers.GIRL1_MAKEUP, context);
+        changingScreenController,
+        gameProvider.currentGirlIndex == 0
+            ? Routers.GIRL0_MAKEUP
+            : Routers.GIRL1_MAKEUP,
+        context);
   }
 
   @override
@@ -97,20 +108,26 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
           // girl 1
           Positioned(
             left: gameProvider.deviceSize.width * 0.12,
-            top: gameProvider.deviceSize.height * 0.07,
-            height: gameProvider.currentGirlIndex == 0 ? activeGirlHeight : girlHeight,
-            child: AnimatedButton(image: gameProvider.currentGirlIndex == 0
+            top: gameProvider.deviceSize.height * 0.14,
+            height: gameProvider.currentGirlIndex == 0
+                ? activeGirlHeight
+                : girlHeight,
+            child: AnimatedButton(
+              image: gameProvider.currentGirlIndex == 0
                   ? "images/LevelChoice_1.png"
                   : "images/lockMc_1.png",
-                  callback: (){},),
+              callback: () {},
+            ),
           ),
           // girl 2
           Positioned(
             right: gameProvider.deviceSize.width * 0.12,
-            top: gameProvider.deviceSize.height * 0.07,
-            height: gameProvider.currentGirlIndex == 1 ? activeGirlHeight : girlHeight,
-            child: Image.asset(
-              gameProvider.currentGirlIndex == 1
+            top: gameProvider.deviceSize.height * 0.14,
+            height: gameProvider.currentGirlIndex == 1
+                ? activeGirlHeight
+                : girlHeight,
+            child: AnimatedButton(
+              image: gameProvider.currentGirlIndex == 1
                   ? "images/LevelChoice_2.png"
                   : "images/lockMc_2.png",
             ),
@@ -142,10 +159,11 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen> with TickerProvide
             right: gameProvider.currentGirlIndex == 1 ? 0 : null,
             height: gameProvider.deviceSize.height,
             width: gameProvider.deviceSize.width * 0.5,
-            child: GestureDetector(onTap: ()=>this.onPress(gameProvider),),
+            child: GestureDetector(
+              onTap: () => this.onPress(gameProvider),
+            ),
           ),
-          ChangingScreenAnimation(
-              changingScreenAnimation: initScreenAnimation),
+          ChangingScreenAnimation(changingScreenAnimation: initScreenAnimation),
           ChangingScreenAnimation(
               changingScreenAnimation: changingScreenAnimation),
         ]),

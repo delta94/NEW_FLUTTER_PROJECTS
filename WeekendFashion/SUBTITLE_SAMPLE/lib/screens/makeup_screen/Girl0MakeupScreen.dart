@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,14 +12,18 @@ import 'package:seab1ird.showyourself/data/cabin/GirlCabinShortItems.dart';
 import 'package:seab1ird.showyourself/data/cabin/GirlCabinTreasureItems.dart';
 import 'package:seab1ird.showyourself/enums/ItemType.dart';
 import 'package:seab1ird.showyourself/enums/SubItemType.dart';
+import 'package:seab1ird.showyourself/helpers/Ads.dart';
 import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
 import 'package:seab1ird.showyourself/helpers/EndlessController.dart';
-import 'package:seab1ird.showyourself/helpers/Helper.dart';
 
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/routers.dart';
-import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
+import 'package:seab1ird.showyourself/widgets/Background.dart';
+import 'package:seab1ird.showyourself/widgets/ChangingItemWidget.dart';
 import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
+import 'package:seab1ird.showyourself/widgets/FashionGirl0.dart';
+import 'package:seab1ird.showyourself/widgets/FinishButton.dart';
+import 'package:seab1ird.showyourself/widgets/NextPreviousButton.dart';
 
 class Girl0MakeupScreen extends StatefulWidget {
   Girl0MakeupScreen({Key key}) : super(key: key);
@@ -46,7 +49,7 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
   AnimationController jacketController;
   AnimationController treasureController;
 
-  final FlareControls changingItemFlareControl = FlareControls();
+  final FlareControls changingItemFlareController = FlareControls();
 
   Map<ItemType, AnimationController> itemTypeListMap =
       new Map<ItemType, AnimationController>();
@@ -54,19 +57,21 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
   ItemType oldItemListType;
 
   Future<bool> _onWillPop() {
-    Navigator.pop(context);
     return Future<bool>.value(false);
   }
 
-  final EndlessController previousButton = EndlessController('Untitled', 2);
-  final EndlessController nextButton = EndlessController('Untitled', 2);
+  final EndlessController previousButtonController =
+      EndlessController('Untitled', 2);
+  final EndlessController nextButtonController =
+      EndlessController('Untitled', 2);
 
   @override
   void initState() {
+    Ads.loadInterstitialAd();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
 
-    initScreenController = AnimationHelper.getAnimationController(this);
+    initScreenController = AnimationHelper.getAnimationController(this, 2000);
     initScreenAnimation =
         Tween<double>(begin: 0, end: 0 - gameProvider.deviceSize.height)
             .animate(initScreenController)
@@ -74,7 +79,7 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
                 setState(() {});
               });
 
-    hairController = AnimationHelper.getAnimationController(this);
+    hairController = AnimationHelper.getAnimationController(this, 800);
     hairAnimation =
         Tween<double>(begin: 0 - gameProvider.deviceSize.width, end: 0)
             .animate(hairController)
@@ -82,7 +87,7 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
                 setState(() {});
               });
 
-    shirtController = AnimationHelper.getAnimationController(this);
+    shirtController = AnimationHelper.getAnimationController(this, 800);
     shirtAnimation =
         Tween<double>(begin: 0 - gameProvider.deviceSize.width, end: 0)
             .animate(shirtController)
@@ -90,7 +95,7 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
                 setState(() {});
               });
 
-    shortController = AnimationHelper.getAnimationController(this);
+    shortController = AnimationHelper.getAnimationController(this, 800);
     shortAnimation =
         Tween<double>(begin: 0 - gameProvider.deviceSize.width, end: 0)
             .animate(shortController)
@@ -98,7 +103,7 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
                 setState(() {});
               });
 
-    jacketController = AnimationHelper.getAnimationController(this);
+    jacketController = AnimationHelper.getAnimationController(this, 800);
     jacketAnimation =
         Tween<double>(begin: 0 - gameProvider.deviceSize.width, end: 0)
             .animate(jacketController)
@@ -106,7 +111,7 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
                 setState(() {});
               });
 
-    treasureController = AnimationHelper.getAnimationController(this);
+    treasureController = AnimationHelper.getAnimationController(this, 800);
     treasureAnimation =
         Tween<double>(begin: 0 - gameProvider.deviceSize.width, end: 0)
             .animate(treasureController)
@@ -120,39 +125,29 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
     itemTypeListMap[ItemType.JACKET] = jacketController;
     itemTypeListMap[ItemType.TREASURE] = treasureController;
 
-    gameProvider.selectedItemGirlList[0][ItemType.HAIR] = <SubItemType, String>{
-      null: 'CreatedObject7_14'
-    };
-    gameProvider.selectedItemGirlList[0][ItemType.SHIRT] = <SubItemType, String>{
-      null: null
-    };
-    gameProvider.selectedItemGirlList[0][ItemType.SHORT] = <SubItemType, String>{
-      null: null
-    };
-    gameProvider.selectedItemGirlList[0][ItemType.JACKET] = <SubItemType, String>{
-      null: null
-    };
-    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
-      SubItemType.BAG: null
-    };
-    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
-      SubItemType.EARING: null
-    };
-    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
-      SubItemType.NECKLET: null
-    };
-    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
-      SubItemType.PHONE: null
-    };
-    gameProvider.selectedItemGirlList[0][ItemType.TREASURE] = <SubItemType, String>{
-      SubItemType.GLASS: null
-    };
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.HAIR] = <SubItemType, String>{null: 'CreatedObject7_14'};
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.SHIRT] = <SubItemType, String>{null: null};
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.SHORT] = <SubItemType, String>{null: null};
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.JACKET] = <SubItemType, String>{null: null};
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.TREASURE] = <SubItemType, String>{SubItemType.BAG: null};
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.TREASURE] = <SubItemType, String>{SubItemType.EARING: null};
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.TREASURE] = <SubItemType, String>{SubItemType.NECKLET: null};
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.TREASURE] = <SubItemType, String>{SubItemType.PHONE: null};
+    gameProvider.selectedItemGirlList[0]
+        [ItemType.TREASURE] = <SubItemType, String>{SubItemType.GLASS: null};
+
+    changingScreenController =
+        AnimationHelper.getAnimationController(this, 500);
 
     super.initState();
-  }
-
-  void _playChangeItemAnimation() {
-    changingItemFlareControl.play('Untitled');
   }
 
   @override
@@ -163,13 +158,15 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
   @override
   Widget build(BuildContext context) {
     GameProvider gameProvider = Provider.of<GameProvider>(context);
-    // gameProvider.init();
+    void _playChangeItemAnimation() {
+      if (gameProvider.changingItemTypeIndex == 0)
+        changingItemFlareController.play('Untitled');
+    }
+
     _playChangeItemAnimation();
 
     initScreenController.forward();
 
-    changingScreenController =
-        AnimationHelper.getAnimationController(this, 500);
     changingScreenAnimation =
         Tween<double>(begin: 0 - gameProvider.deviceSize.height, end: 0)
             .animate(changingScreenController)
@@ -177,6 +174,7 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
                 setState(() {});
               });
 
+    gameProvider.changingItemTypeIndex--;
     if (oldItemListType != null) {
       itemTypeListMap[oldItemListType].reverse();
       oldItemListType = null;
@@ -192,14 +190,7 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
       onWillPop: _onWillPop,
       child: Scaffold(
         body: Stack(children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/CreatedObjectsStarting11.png'),
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-          ),
+          Bacground(image: 'images/CreatedObjectsStarting11.png'),
           // Cabin
           Positioned(
             left: 4,
@@ -211,144 +202,66 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
           ),
 
           // HAIR PRESENT
-          GirlCabinHairItems(animation: hairAnimation, girlIndex: 0, itemType: ItemType.HAIR,),
+          GirlCabinHairItems(
+            animation: hairAnimation,
+            girlIndex: 0,
+            itemType: ItemType.HAIR,
+          ),
           // SHIRT PRESENT
-          GirlCabinShirtItems(animation: shirtAnimation, girlIndex: 0, itemType: ItemType.SHIRT,),
+          GirlCabinShirtItems(
+            animation: shirtAnimation,
+            girlIndex: 0,
+            itemType: ItemType.SHIRT,
+          ),
           // SHORT PRESENT
-          GirlCabinShortItems(animation: shortAnimation, girlIndex: 0, itemType: ItemType.SHORT,),
+          GirlCabinShortItems(
+            animation: shortAnimation,
+            girlIndex: 0,
+            itemType: ItemType.SHORT,
+          ),
           // JACKET PRESENT
-          GirlCabinJacketItems(animation: jacketAnimation, girlIndex: 0, itemType: ItemType.JACKET,),
+          GirlCabinJacketItems(
+            animation: jacketAnimation,
+            girlIndex: 0,
+            itemType: ItemType.JACKET,
+          ),
           // TREASURE PRESENT
-          GirlCabinTreasureItems(animation: treasureAnimation, girlIndex: 0, itemType: ItemType.TREASURE,),
+          GirlCabinTreasureItems(
+            animation: treasureAnimation,
+            girlIndex: 0,
+            itemType: ItemType.TREASURE,
+          ),
           //----------------------------------------------------------
-          // sub hair
-          Helper.getSubItem(gameProvider.getGirlSelectedItem(0, ItemType.HAIR)),
-          // sub treasure
-          Helper.getSubItem(
-              gameProvider.getGirlSelectedItem(0, ItemType.TREASURE, SubItemType.BAG)),
-          // body
-          Positioned(
-            right: 120,
-            bottom: 0,
-            child: Image.asset("images/CreatedObject7_71.png", width: 140),
-          ),
-          // head
-          Positioned(
-            right: 165,
-            bottom: 250,
-            child: Image.asset(
-              "images/CreatedObject7_72.png",
-              width: 55,
-            ),
-          ),
-          // short
-          Helper.getItem(gameProvider.getGirlSelectedItem(0, ItemType.SHORT)),
-          // shirt
-          Helper.getItem(gameProvider.getGirlSelectedItem(0, ItemType.SHIRT)),
-          // Jacket
-          Helper.getItem(gameProvider.getGirlSelectedItem(0, ItemType.JACKET)),
-          // Treasure 1
-          Helper.getItem(
-              gameProvider.getGirlSelectedItem(0, ItemType.TREASURE, SubItemType.BAG)),
-          // Treasure 2
-          Helper.getItem(gameProvider.getGirlSelectedItem(0, 
-              ItemType.TREASURE, SubItemType.EARING)),
-          // Treasure 3
-          Helper.getItem(gameProvider.getGirlSelectedItem(0, 
-              ItemType.TREASURE, SubItemType.NECKLET)),
-          // Treasure 4
-          Helper.getItem(gameProvider.getGirlSelectedItem(0, 
-              ItemType.TREASURE, SubItemType.PHONE)),
-          // Treasure 5
-          Helper.getItem(gameProvider.getGirlSelectedItem(0, 
-              ItemType.TREASURE, SubItemType.GLASS)),
-          // hair
-          Helper.getItem(gameProvider.getGirlSelectedItem(0, ItemType.HAIR)),
+          FashionGirl0(gameProvider: gameProvider),
+          ChangingItemWidget(
+              changingItemFlareController: changingItemFlareController),
 
-          // hand
-          Positioned(
-            right: 190,
-            bottom: 163,
-            child: Image.asset(
-              "images/CreatedObject7_73.png",
-              width: 30,
-            ),
-          ),
-          Positioned(
-            right: 40,
-            top: gameProvider.deviceSize.height * 0.1,
-            height: gameProvider.deviceSize.height * 0.9,
-            width: gameProvider.deviceSize.width * 0.5,
-            child: FlareActor(
-              "images/changing_item.flr",
-              fit: BoxFit.contain,
-              animation: "Untitled",
-              controller: changingItemFlareControl,
-            ),
+          NextPreviousButton(
+            isNext: false,
+            controller: previousButtonController,
+            voidCallback: () => setState(() {
+              oldItemListType = currItemListType;
+              currItemListType = gameProvider.changeCabinForNextAndGirlIndex(
+                  false, oldItemListType);
+            }),
           ),
 
-          Positioned(
-            left: gameProvider.deviceSize.width * 0.3,
-            bottom: 10,
-            height: gameProvider.deviceSize.height * 0.2,
-            width: gameProvider.deviceSize.height * 0.4,
-            child: Container(
-              child: FlatButton(
-                color: Colors.transparent,
-                onPressed: () {
-                  setState(() {
-                    oldItemListType = currItemListType;
-                    currItemListType = ItemType.values[Helper.getItemTypeIndex(
-                        ItemType.values.indexOf(oldItemListType) - 1,
-                        ItemType.values.length)];
-                  });
-                },
-                child: FlareActor(
-                  "images/previous_item_list.flr",
-                  controller: previousButton,
-                ),
-              ),
-            ),
+          NextPreviousButton(
+            isNext: true,
+            controller: nextButtonController,
+            voidCallback: () => setState(() {
+              oldItemListType = currItemListType;
+              currItemListType = gameProvider.changeCabinForNextAndGirlIndex(
+                  true, oldItemListType);
+            }),
           ),
 
-          Positioned(
-            left: gameProvider.deviceSize.width * 0.45,
-            bottom: 10,
-            height: gameProvider.deviceSize.height * 0.2,
-            width: gameProvider.deviceSize.height * 0.4,
-            child: Container(
-              child: FlatButton(
-                color: Colors.transparent,
-                onPressed: () {
-                  setState(() {
-                    oldItemListType = currItemListType;
-                    currItemListType = ItemType.values[Helper.getItemTypeIndex(
-                        ItemType.values.indexOf(oldItemListType) + 1,
-                        ItemType.values.length)];
-                  });
-                },
-                child: FlareActor(
-                  "images/next_item_list.flr",
-                  controller: nextButton,
-                ),
-              ),
-            ),
-          ),
-
-          Visibility(
-            visible:  isValid(gameProvider),
-            child: Positioned(
-              left: gameProvider.deviceSize.width * 0.02,
-              bottom: 10,
-              child: AnimatedButton(
-                image: "images/finishButton.png",
-                width: gameProvider.deviceSize.width * 0.1,
-                callback: () {
-                  gameProvider.currentGirlIndex = 1;
-                  Navigator.pushNamed(context, Routers.GIRL_OPTIONS);
-                },
-              ),
-            ),
+          FinishButton(
+            isValid: isValid(gameProvider),
+            callback: () {
+              gameProvider.currentGirlIndex = 1;
+              Navigator.popAndPushNamed(context, Routers.GIRL_OPTIONS);
+            },
           ),
 
           ChangingScreenAnimation(changingScreenAnimation: initScreenAnimation),
@@ -359,10 +272,12 @@ class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
     );
   }
 
-  isValid(GameProvider gameProvider){
+  isValid(GameProvider gameProvider) {
     bool isValid = true;
-    isValid &= gameProvider.selectedItemGirlList[0][ItemType.SHIRT][null] != null;
-    isValid &= gameProvider.selectedItemGirlList[0][ItemType.SHORT][null] != null;
+    isValid &=
+        gameProvider.selectedItemGirlList[0][ItemType.SHIRT][null] != null;
+    isValid &=
+        gameProvider.selectedItemGirlList[0][ItemType.SHORT][null] != null;
     return isValid;
   }
 }

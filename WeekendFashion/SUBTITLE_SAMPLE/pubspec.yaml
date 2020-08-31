@@ -45,7 +45,6 @@ flutter:
     - images/Animation_1.png
     - images/Animation_0.png
     - images/bg.png
-    - images/CreatedObject7_10.png
     - images/CreatedObject7_100.png
     - images/CreatedObject7_101.png
     - images/CreatedObject7_102.png
@@ -54,21 +53,12 @@ flutter:
     - images/CreatedObject7_105.png
     - images/CreatedObject7_107.png
     - images/CreatedObject7_104.png
-    - images/CreatedObject7_11.png
     - images/CreatedObject7_109.png
-    - images/CreatedObject7_108.png
     - images/CreatedObject7_111.png
     - images/CreatedObject7_112.png
     - images/CreatedObject7_110.png
     - images/CreatedObject7_113.png
-    - images/CreatedObject7_118.png
-    - images/CreatedObject7_12.png
-    - images/CreatedObject7_119.png
     - images/CreatedObject7_114.png
-    - images/CreatedObject7_120.png
-    - images/CreatedObject7_121.png
-    - images/CreatedObject7_122.png
-    - images/CreatedObject7_123.png
     - images/CreatedObject7_126.png
     - images/CreatedObject7_127.png
     - images/CreatedObject7_129.png
@@ -78,22 +68,16 @@ flutter:
     - images/CreatedObject7_131.png
     - images/CreatedObject7_133.png
     - images/CreatedObject7_134.png
-    - images/CreatedObject7_13.png
     - images/CreatedObject7_135.png
     - images/CreatedObject7_137.png
     - images/CreatedObject7_138.png
     - images/CreatedObject7_136.png
     - images/CreatedObject7_139.png
     - images/CreatedObject7_140.png
-    - images/CreatedObject7_141.png
     - images/CreatedObject7_14.png
     - images/CreatedObject7_142.png
     - images/CreatedObject7_143.png
-    - images/CreatedObject7_146.png
-    - images/CreatedObject7_145.png
-    - images/CreatedObject7_147.png
     - images/CreatedObject7_149.png
-    - images/CreatedObject7_144.png
     - images/CreatedObject7_148.png
     - images/CreatedObject7_150.png
     - images/CreatedObject7_151.png
@@ -102,8 +86,6 @@ flutter:
     - images/CreatedObject7_155.png
     - images/CreatedObject7_156.png
     - images/CreatedObject7_15.png
-    - images/CreatedObject7_157.png
-    - images/CreatedObject7_158.png
     - images/CreatedObject7_159.png
     - images/CreatedObject7_16.png
     - images/CreatedObject7_160.png
@@ -127,25 +109,20 @@ flutter:
     - images/CreatedObject7_176.png
     - images/CreatedObject7_174.png
     - images/CreatedObject7_18.png
-    - images/CreatedObject7_178.png
     - images/CreatedObject7_180.png
     - images/CreatedObject7_181.png
     - images/CreatedObject7_182.png
     - images/CreatedObject7_184.png
     - images/CreatedObject7_183.png
-    - images/CreatedObject7_179.png
     - images/CreatedObject7_19.png
     - images/CreatedObject7_186.png
     - images/CreatedObject7_185.png
-    - images/CreatedObject7_190.png
     - images/CreatedObject7_191.png
     - images/CreatedObject7_187.png
     - images/CreatedObject7_192.png
     - images/CreatedObject7_193.png
-    - images/CreatedObject7_196.png
     - images/CreatedObject7_195.png
     - images/CreatedObject7_198.png
-    - images/CreatedObject7_197.png
     - images/CreatedObject7_194.png
     - images/CreatedObject7_20.png
     - images/CreatedObject7_199.png
@@ -168,7 +145,6 @@ flutter:
     - images/CreatedObject7_217.png
     - images/CreatedObject7_216.png
     - images/CreatedObject7_215.png
-    - images/CreatedObject7_22.png
     - images/CreatedObject7_218.png
     - images/CreatedObject7_220.png
     - images/CreatedObject7_221.png
@@ -180,7 +156,6 @@ flutter:
     - images/CreatedObject7_226.png
     - images/CreatedObject7_227.png
     - images/CreatedObject7_229.png
-    - images/CreatedObject7_23.png
     - images/CreatedObject7_228.png
     - images/CreatedObject7_232.png
     - images/CreatedObject7_230.png
@@ -196,19 +171,13 @@ flutter:
     - images/CreatedObject7_241.png
     - images/CreatedObject7_242.png
     - images/CreatedObject7_244.png
-    - images/CreatedObject7_24.png
     - images/CreatedObject7_243.png
     - images/CreatedObject7_245.png
     - images/CreatedObject7_247.png
     - images/CreatedObject7_246.png
     - images/CreatedObject7_25.png
-    - images/CreatedObject7_249.png
-    - images/CreatedObject7_251.png
-    - images/CreatedObject7_252.png
     - images/CreatedObject7_253.png
     - images/CreatedObject7_254.png
-    - images/CreatedObject7_248.png
-    - images/CreatedObject7_250.png
     - images/CreatedObject7_256.png
     - images/CreatedObject7_255.png
     - images/CreatedObject7_258.png
@@ -226,11 +195,8 @@ flutter:
     - images/CreatedObject7_260.png
     - images/CreatedObject7_34.png
     - images/CreatedObject7_31.png
-    - images/CreatedObject7_36.png
     - images/CreatedObject7_33.png
     - images/CreatedObject7_32.png
-    - images/CreatedObject7_35.png
-    - images/CreatedObject7_37.png
     - images/CreatedObject7_39.png
     - images/CreatedObject7_38.png
     - images/CreatedObject7_40.png
@@ -239,22 +205,15 @@ flutter:
     - images/CreatedObject7_45.png
     - images/CreatedObject7_42.png
     - images/CreatedObject7_44.png
-    - images/CreatedObject7_48.png
     - images/CreatedObject7_50.png
     - images/CreatedObject7_49.png
-    - images/CreatedObject7_5.png
     - images/CreatedObject7_51.png
     - images/CreatedObject7_46.png
     - images/CreatedObject7_52.png
     - images/CreatedObject7_53.png
     - images/CreatedObject7_54.png
-    - images/CreatedObject7_55.png
     - images/CreatedObject7_56.png
-    - images/CreatedObject7_58.png
     - images/CreatedObject7_59.png
-    - images/CreatedObject7_6.png
-    - images/CreatedObject7_47.png
-    - images/CreatedObject7_57.png
     - images/CreatedObject7_61.png
     - images/CreatedObject7_60.png
     - images/CreatedObject7_63.png
@@ -298,38 +257,50 @@ flutter:
     - images/CreatedObject7_99.png
     - images/CreatedObject7_93.png
     - images/CreatedObjectsStarting11.png
-    - images/CreatedObjectsStarting15.png
-    - images/CreatedObjectsStarting16.png
-    - images/CreatedObjectsStarting19.png
     - images/bg2.png
-    - images/GameObject_234.png
-    - images/CreatedObjectsStarting13.png
-    - images/GlitzSparks_4.png
     - images/CreatedObject7_96.png
-    - images/CreatedObjectsStarting14.png
-    - images/heart.png
-    - images/GlitzSparks_3.png
     - images/LevelChoice_1.png
     - images/LevelChoice_2.png
     - images/lockMc_1.png
-    - images/musicOn.png
-    - images/musicOff.png
     - images/finishButton.png
     - images/nextButton_1.png
     - images/play.png
     - images/PlayButton.png
     - images/replayButton.png
     - images/lockMc_2.png
-    - images/soundOn.png
-    - images/soundOff.png
-    - images/UiButtonTTS_17.png
-    - images/UiButtonTTS_18.png
     - images/star.png
-    - images/UiButtonTTS_19.png
-    - images/UiButtonTTS_24.png
-    - images/UiButtonTTS_22.png
-    - images/UiButtonTTS_20.png
     - images/CreatedObjectsStarting10.png
+    - images/ExitButton.png
+
+    - images/CreatedObject7_90_shrink.png
+    - images/CreatedObject7_91_shrink.png
+    - images/CreatedObject7_92_shrink.png
+    - images/CreatedObject7_93_shrink.png
+    - images/CreatedObject7_94_shrink.png
+    - images/CreatedObject7_95_shrink.png
+    - images/CreatedObject7_96_shrink.png
+    - images/CreatedObject7_97_shrink.png
+    - images/CreatedObject7_98_shrink.png
+    - images/CreatedObject7_99_shrink.png
+    
+    - images/CreatedObject7_220_shrink.png
+    - images/CreatedObject7_221_shrink.png
+    - images/CreatedObject7_222_shrink.png
+    - images/CreatedObject7_223_shrink.png
+    - images/CreatedObject7_224_shrink.png
+    - images/CreatedObject7_233_shrink.png
+    - images/CreatedObject7_234_shrink.png
+    - images/CreatedObject7_235_shrink.png
+
+    - images/CreatedObject7_236_shrink.png
+    - images/CreatedObject7_237_shrink.png
+    - images/CreatedObject7_238_shrink.png
+    - images/CreatedObject7_239_shrink.png
+    - images/CreatedObject7_240_shrink.png
+    - images/CreatedObject7_241_shrink.png
+    - images/CreatedObject7_242_shrink.png
+    - images/CreatedObject7_243_shrink.png
+    - images/CreatedObject7_253_shrink.png
 
     - images/changing_screen.flr
     - images/changing_item.flr
@@ -337,8 +308,10 @@ flutter:
     - images/play_button.flr
     - images/previous_item_list.flr
     - images/next_item_list.flr
+    - images/twinkle.flr
+    - images/replay.flr
 
     - sounds/giggle.ogg
-    - sounds/music1.ogg
+    - sounds/background_music.ogg
     - sounds/poof.ogg
-    - sounds/test.ogg
+    - sounds/change_item_type.ogg

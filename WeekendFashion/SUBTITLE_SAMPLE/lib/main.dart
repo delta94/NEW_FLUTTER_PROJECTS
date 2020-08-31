@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:seab1ird.showyourself/screens/GirlOptionsScreen.dart';
 import 'package:seab1ird.showyourself/screens/InitScreen.dart';
 import 'package:seab1ird.showyourself/screens/PresentScreen.dart';
+import 'package:seab1ird.showyourself/screens/SplashScreen.dart';
 
 import 'helpers/GameProvider.dart';
 import 'helpers/Helper.dart';
@@ -20,16 +21,17 @@ void main() {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
         routes: <String, WidgetBuilder>{
-          '/': (context) {
+          Routers.INIT: (context) {
             init(context);
             return InitScreen();
           },
           Routers.PRESENT: (context) => PresentScreen(),
+          Routers.GIRL_OPTIONS: (context) => GirlOptionsScreen(),
           Routers.GIRL0_MAKEUP: (context) => Girl0MakeupScreen(),
           Routers.GIRL1_MAKEUP: (context) => Girl1MakeupScreen(),
         },
+        home: new SplashScreen(),
       ),
     ),
   );

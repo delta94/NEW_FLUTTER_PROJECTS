@@ -3,14 +3,14 @@ import 'package:seab1ird.showyourself/enums/ItemType.dart';
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/widgets/GirlCabinItem.dart';
 
-import 'GirlCabintems.dart';
+import '../../widgets/GirlCabintems.dart';
 
 class GirlCabinShirtItems extends GirlCabinItems {
-  const GirlCabinShirtItems({
-    @required this.animation,
-    @required this.girlIndex,
-    @required this.itemType
-  }) : super(animation: animation, girlIndex: girlIndex, itemType: itemType);
+  const GirlCabinShirtItems(
+      {@required this.animation,
+      @required this.girlIndex,
+      @required this.itemType})
+      : super(animation: animation, girlIndex: girlIndex, itemType: itemType);
 
   final Animation<double> animation;
   final int girlIndex;
@@ -21,7 +21,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
     return <Widget>[
       Positioned(
         left: 3,
-        top: gameProvider.deviceSize.height * 0.16,
+        top: gameProvider.deviceSize.height * 0.2,
         child: Image.asset(
           'images/CreatedObject7_46.png',
           width: gameProvider.deviceSize.width * 0.38,
@@ -30,7 +30,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: -20,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.19,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_31",
         itemType: itemType,
@@ -38,7 +38,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.05,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.19,
         width: gameProvider.deviceSize.width * 0.1,
         image: "CreatedObject7_26",
         itemType: itemType,
@@ -46,7 +46,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.12,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.19,
         width: gameProvider.deviceSize.width * 0.1,
         image: "CreatedObject7_27",
         itemType: itemType,
@@ -54,7 +54,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.18,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.19,
         width: gameProvider.deviceSize.width * 0.1,
         image: "CreatedObject7_28",
         itemType: itemType,
@@ -62,7 +62,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.24,
-        top: gameProvider.deviceSize.height * 0.145,
+        top: gameProvider.deviceSize.height * 0.185,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_29",
         itemType: itemType,
@@ -70,7 +70,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       // SHIRT row 2
       Positioned(
         left: 3,
-        top: gameProvider.deviceSize.height * 0.412,
+        top: gameProvider.deviceSize.height * 0.47,
         child: Image.asset(
           'images/CreatedObject7_46.png',
           width: gameProvider.deviceSize.width * 0.38,
@@ -79,7 +79,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: -5,
-        top: gameProvider.deviceSize.height * 0.4,
+        top: gameProvider.deviceSize.height * 0.455,
         width: gameProvider.deviceSize.width * 0.1,
         image: "CreatedObject7_30",
         itemType: itemType,
@@ -87,7 +87,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.05,
-        top: gameProvider.deviceSize.height * 0.4,
+        top: gameProvider.deviceSize.height * 0.455,
         width: gameProvider.deviceSize.width * 0.1,
         image: "CreatedObject7_25",
         itemType: itemType,
@@ -95,7 +95,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.1,
-        top: gameProvider.deviceSize.height * 0.4,
+        top: gameProvider.deviceSize.height * 0.455,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_32",
         itemType: itemType,
@@ -103,7 +103,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.18,
-        top: gameProvider.deviceSize.height * 0.4,
+        top: gameProvider.deviceSize.height * 0.455,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_33",
         itemType: itemType,
@@ -111,7 +111,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.25,
-        top: gameProvider.deviceSize.height * 0.4,
+        top: gameProvider.deviceSize.height * 0.455,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_34",
         itemType: itemType,
@@ -124,7 +124,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
     return <Widget>[
       Positioned(
         left: 30,
-        top: gameProvider.deviceSize.height * 0.16,
+        top: gameProvider.deviceSize.height * 0.2,
         child: Image.asset(
           'images/CreatedObject7_156.png',
           width: gameProvider.deviceSize.width * 0.32,
@@ -133,7 +133,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: 0,
-        top: gameProvider.deviceSize.height * 0.14,
+        top: gameProvider.deviceSize.height * 0.185,
         width: gameProvider.deviceSize.width * 0.16,
         image: "CreatedObject7_159",
         itemType: itemType,
@@ -141,7 +141,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.08,
-        top: gameProvider.deviceSize.height * 0.14,
+        top: gameProvider.deviceSize.height * 0.185,
         width: gameProvider.deviceSize.width * 0.13,
         image: "CreatedObject7_160",
         itemType: itemType,
@@ -149,7 +149,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.15,
-        top: gameProvider.deviceSize.height * 0.14,
+        top: gameProvider.deviceSize.height * 0.185,
         width: gameProvider.deviceSize.width * 0.13,
         image: "CreatedObject7_161",
         itemType: itemType,
@@ -157,7 +157,7 @@ class GirlCabinShirtItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.23,
-        top: gameProvider.deviceSize.height * 0.14,
+        top: gameProvider.deviceSize.height * 0.185,
         width: gameProvider.deviceSize.width * 0.13,
         image: "CreatedObject7_162",
         itemType: itemType,

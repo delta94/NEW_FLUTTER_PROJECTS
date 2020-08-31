@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Functions</h2>
+
+<p>Accessing a function without () will return the function definition instead of the function result:</p>
+<p id="demo"></p>
+
+<script>
+function first(callback){
+    setTimeout( function(){
+        console.log("Một");
+        callback();
+    }, 2000 );
+}
+function second(){
+    console.log("Hai");
+}
+
+first(second);
+</script>
+
+</body>
+</html>

@@ -32,7 +32,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin{
   @override
   void initState() {
     super.initState();
-    if(kReleaseMode){ // is Release Mode ??
+    if(Ads.kReleaseMode){ // is Release Mode ??
       Ads.showBannerAd();
       marginTop = 60;
     }

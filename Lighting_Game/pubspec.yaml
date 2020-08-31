@@ -1,0 +1,135 @@
+name: com.seab1ird.showyourself
+description: s
+version: 1.1.4
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+module:
+  androidX: true
+
+dependencies:
+  flutter:
+    sdk: flutter 
+  provider: ^4.3.2
+  enum_to_string: ^1.0.9
+  assets_audio_player: ^1.4.0
+  firebase_admob: ^0.9.0+1
+  flare_flutter: 1.7.3
+  flare_dart: 2.2.5
+  app_review: ^1.0.0
+  google_fonts: ^1.1.0
+  shared_preferences: ^0.5.8
+  shimmer: ^1.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - asset/images/arc_off.png
+    - asset/images/arc_on.png
+    
+    - asset/images/battery_off.png
+    - asset/images/battery_on.png
+
+    - asset/images/button_blue.png
+    - asset/images/button_orange.png
+    - asset/images/button_pink.png
+    - asset/images/button_green.png
+    - asset/images/button_red.png
+    - asset/images/button_yellow.png
+
+    - asset/images/cake_off.png
+    - asset/images/cake_0_on.png
+    - asset/images/cake_1_on.png
+    - asset/images/cake_2_on.png
+    - asset/images/cake_3_on.png
+    - asset/images/cake_4_on.png
+
+    - asset/images/clocl_block.png
+    - asset/images/clocl_unblock.png
+
+    - asset/images/half_line_off.png
+    - asset/images/half_line_on.png
+    - asset/images/kitty_normal_off.png
+    - asset/images/kitty_smile_off.png
+    - asset/images/kitty_tongue_off.png
+
+    - asset/images/cake_0_on.png
+    - asset/images/cake_1_on.png
+    - asset/images/cake_2_on.png
+    - asset/images/cake_3_on.png
+    - asset/images/cake_4_on.png
+
+    - asset/images/kitty_normal_0_on.png
+    - asset/images/kitty_normal_1_on.png
+    - asset/images/kitty_normal_2_on.png
+    - asset/images/kitty_normal_3_on.png
+    - asset/images/kitty_normal_4_on.png
+    
+    - asset/images/kitty_smile_0_on.png
+    - asset/images/kitty_smile_1_on.png
+    - asset/images/kitty_smile_2_on.png
+    - asset/images/kitty_smile_3_on.png
+    - asset/images/kitty_smile_4_on.png
+    
+    - asset/images/kitty_tongue_0_on.png
+    - asset/images/kitty_tongue_1_on.png
+    - asset/images/kitty_tongue_2_on.png
+    - asset/images/kitty_tongue_3_on.png
+    - asset/images/kitty_tongue_4_on.png
+
+    - asset/images/light_off.png
+    - asset/images/light_on.png
+    - asset/images/line_on.png
+    - asset/images/line_off.png
+
+    - asset/images/tap_up.png
+    - asset/images/tap_down.png
+
+    - asset/images/theme.png
+    - asset/images/star.png
+    - asset/images/ranking0.png
+    - asset/images/ranking1.png
+    - asset/images/flag.png
+    - asset/images/logo.png
+    - asset/images/exit.png
+    - asset/images/timer.png
+    - asset/images/bg_blue.png
+    - asset/images/bg_yellow.png
+    - asset/images/bg_green.png
+    - asset/images/bg_pink.png
+    - asset/images/bg_purple.png
+    - asset/images/bg_red.png
+    - asset/images/home_icon.png
+
+
+    - asset/images/hand_touch.flr
+    - asset/images/light_on.flr
+    - asset/images/cake_0_on.flr
+    - asset/images/cake_1_on.flr
+    - asset/images/cake_2_on.flr
+    - asset/images/cake_3_on.flr
+    - asset/images/cake_4_on.flr
+    - asset/images/kitty_normal_0_on.flr
+    - asset/images/kitty_normal_1_on.flr
+    - asset/images/kitty_normal_2_on.flr
+    - asset/images/kitty_normal_3_on.flr
+    - asset/images/kitty_normal_4_on.flr
+    - asset/images/kitty_smile_0_on.flr
+    - asset/images/kitty_smile_1_on.flr
+    - asset/images/kitty_smile_2_on.flr
+    - asset/images/kitty_smile_3_on.flr
+    - asset/images/kitty_smile_4_on.flr
+    - asset/images/kitty_tongue_0_on.flr
+    - asset/images/kitty_tongue_1_on.flr
+    - asset/images/kitty_tongue_2_on.flr
+    - asset/images/kitty_tongue_3_on.flr
+    - asset/images/kitty_tongue_4_on.flr
+
+    - asset/sounds/music.ogg
+    - asset/sounds/btnclick.ogg
+    - asset/sounds/win.ogg
+

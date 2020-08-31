@@ -41,7 +41,7 @@ class _GirlCabinItemState extends State<GirlCabinItem> {
         children: <Widget>[
           Image.asset(
             img,
-            width: widget.width * 1.12,
+            width: widget.width * 1.08,
             color: gameProvider.selectedItemGirlList[widget.girlIndex]
                         [widget.itemType][widget.subItemType] ==
                     widget.image

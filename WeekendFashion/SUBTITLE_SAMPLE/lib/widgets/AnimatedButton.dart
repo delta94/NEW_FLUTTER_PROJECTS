@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:assets_audio_player/playable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -16,6 +18,7 @@ class AnimatedButton extends StatefulWidget {
 
 class _AnimatedButtonState extends State<AnimatedButton> {
   bool toggle = false;
+
   onPress() {
     setState(() {
       toggle = true;
@@ -31,10 +34,15 @@ class _AnimatedButtonState extends State<AnimatedButton> {
 
   @override
   Widget build(BuildContext context) {
+    final showingItemAudio = AssetsAudioPlayer();
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () => onPress(),
+        onTap: () {
+          showingItemAudio.open(Audio('sounds/poof.ogg'));
+          onPress();
+        },
         child: Image.asset(
           widget.image,
           width: toggle ? widget.width * 1.2 : widget.width,

@@ -214,18 +214,127 @@ class GirlTreasureData extends Data {
     ];
 
     //-------------------------------------2----------------------------
-    itemSubMapList[0][null][null] = [
+    itemSubMapList[1][null] = new Map<String, List<Positioned>>();
+    itemSubMapList[1][SubItemType.BAG] = new Map<String, List<Positioned>>();
+    itemSubMapList[1][SubItemType.NECKLET] = new Map<String, List<Positioned>>();
+    itemSubMapList[1][SubItemType.NECKLACE] = new Map<String, List<Positioned>>();
+
+    itemSubMapList[1][null][null] = [
       Positioned(
         right: 130,
         bottom: 165,
         child: Container(),
       ),
     ];
-    itemSubMapList[0][SubItemType.BAG][null] = [
+    itemSubMapList[1][SubItemType.BAG][null] = [
       Positioned(
         right: 130,
         bottom: 165,
         child: Container(),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.NECKLACE][null] = [
+      Positioned(
+        right: 130,
+        bottom: 165,
+        child: Container(),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.NECKLET][null] = [
+      Positioned(
+        right: 130,
+        bottom: 165,
+        child: Container(),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.BAG]['CreatedObject7_198'] = [
+      Positioned(
+        left: 148,
+        bottom: 105,
+        child: Image.asset(
+          "images/CreatedObject7_255.png",
+          width: 62,
+        ),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.BAG]['CreatedObject7_199'] = [
+      Positioned(
+        left: 200,
+        bottom: 125,
+        child: Image.asset(
+          "images/CreatedObject7_256.png",
+          width: 60,
+        ),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.NECKLET]['CreatedObject7_200'] = [
+      Positioned(
+        left: 175,
+        bottom: 195,
+        child: Image.asset(
+          "images/CreatedObject7_257.png",
+          width: 40,
+        ),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.BAG]['CreatedObject7_201'] = [
+      Positioned(
+        left: 167,
+        bottom: 125,
+        child: Image.asset(
+          "images/CreatedObject7_263.png",
+          width: 20,
+        ),
+      ),
+      Positioned(
+        left: 165,
+        bottom: 115,
+        child: Image.asset(
+          "images/CreatedObject7_258.png",
+          width: 45,
+        ),
+      ),
+    ];
+
+    // ROW 2
+    itemSubMapList[1][SubItemType.NECKLACE]['CreatedObject7_202'] = [
+      Positioned(
+        left: 177,
+        bottom: 225,
+        child: Image.asset(
+          "images/CreatedObject7_259.png",
+          width: 35,
+        ),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.NECKLACE]['CreatedObject7_203'] = [
+      Positioned(
+        left: 173,
+        bottom: 218,
+        child: Image.asset(
+          "images/CreatedObject7_260.png",
+          width: 40,
+        ),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.NECKLACE]['CreatedObject7_204'] = [
+      Positioned(
+        left: 168,
+        bottom: 210,
+        child: Image.asset(
+          "images/CreatedObject7_261.png",
+          width: 45,
+        ),
+      ),
+    ];
+    itemSubMapList[1][SubItemType.NECKLACE]['CreatedObject7_205'] = [
+      Positioned(
+        left: 171,
+        bottom: 196,
+        child: Image.asset(
+          "images/CreatedObject7_262.png",
+          width: 55,
+        ),
       ),
     ];
   }

@@ -8,11 +8,19 @@ class GirlShortData extends Data {
     //0
     itemSubMapList[0][null][null] = [
       Positioned(
-        right: 153.5,
-        bottom: 70,
+        right: 154,
+        bottom: 72,
         child: Image.asset(
           "images/CreatedObject7_75.png",
-          width: 77,
+          width: 76,
+        ),
+      ),
+      Positioned(
+        right: 154,
+        bottom: 72,
+        child: Image.asset(
+          "images/CreatedObject7_75.png",
+          width: 76,
         ),
       ),
     ];
@@ -52,11 +60,11 @@ class GirlShortData extends Data {
     //4
     itemSubMapList[0][null]['CreatedObject7_41'] = [
       Positioned(
-        right: 135,
-        bottom: 10,
+        right: 140.5,
+        bottom: 15,
         child: Image.asset(
           "images/CreatedObject7_103.png",
-          width: 110,
+          width: 105,
         ),
       ),
     ];
@@ -117,6 +125,14 @@ class GirlShortData extends Data {
           "images/CreatedObject7_254.png",
           width: 67,
         ),
+      ),
+    ];
+    // Empty
+    itemSubMapList[1][null][''] = [
+      Positioned(
+        right: 130,
+        bottom: 164,
+        child: Container(),
       ),
     ];
     //1

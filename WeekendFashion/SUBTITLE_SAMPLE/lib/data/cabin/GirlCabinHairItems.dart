@@ -3,14 +3,14 @@ import 'package:seab1ird.showyourself/enums/ItemType.dart';
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/widgets/GirlCabinItem.dart';
 
-import 'GirlCabintems.dart';
+import '../../widgets/GirlCabintems.dart';
 
 class GirlCabinHairItems extends GirlCabinItems {
-  const GirlCabinHairItems({
-    @required this.animation,
-    @required this.girlIndex,
-    @required this.itemType
-  }) : super(animation: animation, girlIndex: girlIndex, itemType: itemType);
+  const GirlCabinHairItems(
+      {@required this.animation,
+      @required this.girlIndex,
+      @required this.itemType})
+      : super(animation: animation, girlIndex: girlIndex, itemType: itemType);
 
   final Animation<double> animation;
   final int girlIndex;
@@ -22,21 +22,21 @@ class GirlCabinHairItems extends GirlCabinItems {
       GirlCabinItem(
           girlIndex: girlIndex,
           left: 10,
-          top: gameProvider.deviceSize.height * 0.15,
+          top: gameProvider.deviceSize.height * 0.20,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_14",
           itemType: itemType),
       GirlCabinItem(
           girlIndex: girlIndex,
           left: gameProvider.deviceSize.width * 0.1 + 15,
-          top: gameProvider.deviceSize.height * 0.15,
+          top: gameProvider.deviceSize.height * 0.20,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_15",
           itemType: itemType),
       GirlCabinItem(
           girlIndex: girlIndex,
           left: gameProvider.deviceSize.width * 0.2 + 20,
-          top: gameProvider.deviceSize.height * 0.15,
+          top: gameProvider.deviceSize.height * 0.20,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_16",
           itemType: itemType),
@@ -44,21 +44,21 @@ class GirlCabinHairItems extends GirlCabinItems {
       GirlCabinItem(
           girlIndex: girlIndex,
           left: 10,
-          top: gameProvider.deviceSize.height * 0.43,
+          top: gameProvider.deviceSize.height * 0.45,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_17",
           itemType: itemType),
       GirlCabinItem(
           girlIndex: girlIndex,
           left: gameProvider.deviceSize.width * 0.1 + 15,
-          top: gameProvider.deviceSize.height * 0.43,
+          top: gameProvider.deviceSize.height * 0.45,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_18",
           itemType: itemType),
       GirlCabinItem(
           girlIndex: girlIndex,
           left: gameProvider.deviceSize.width * 0.2 + 20,
-          top: gameProvider.deviceSize.height * 0.43,
+          top: gameProvider.deviceSize.height * 0.45,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_19",
           itemType: itemType),
@@ -86,21 +86,21 @@ class GirlCabinHairItems extends GirlCabinItems {
       GirlCabinItem(
           girlIndex: girlIndex,
           left: 10,
-          top: gameProvider.deviceSize.height * 0.15,
+          top: gameProvider.deviceSize.height * 0.2,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_148",
           itemType: itemType),
       GirlCabinItem(
           girlIndex: girlIndex,
           left: gameProvider.deviceSize.width * 0.1 + 15,
-          top: gameProvider.deviceSize.height * 0.15,
+          top: gameProvider.deviceSize.height * 0.2,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_149",
           itemType: itemType),
       GirlCabinItem(
           girlIndex: girlIndex,
           left: gameProvider.deviceSize.width * 0.2 + 20,
-          top: gameProvider.deviceSize.height * 0.15,
+          top: gameProvider.deviceSize.height * 0.2,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_150",
           itemType: itemType),
@@ -130,14 +130,14 @@ class GirlCabinHairItems extends GirlCabinItems {
       GirlCabinItem(
           girlIndex: girlIndex,
           left: gameProvider.deviceSize.width * 0.08,
-          top: gameProvider.deviceSize.height * 0.7,
+          top: gameProvider.deviceSize.height * 0.65,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_154",
           itemType: itemType),
       GirlCabinItem(
           girlIndex: girlIndex,
           left: gameProvider.deviceSize.width * 0.19,
-          top: gameProvider.deviceSize.height * 0.7,
+          top: gameProvider.deviceSize.height * 0.65,
           width: gameProvider.deviceSize.width * 0.1,
           image: "CreatedObject7_155",
           itemType: itemType),

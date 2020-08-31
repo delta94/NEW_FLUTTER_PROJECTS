@@ -1,13 +1,14 @@
 import 'package:firebase_admob/firebase_admob.dart';
 
-const String APP_ID = "ca-app-pub-6420987903580707~8662621057";
+const String APP_ID = "ca-app-pub-6420987903580707~4647663856";
 
 
-const String BANNER_ID = "ca-app-pub-6420987903580707/2097212701";
-const String INTERSTITIAL_ID = "ca-app-pub-6420987903580707/3027150992";
+const String BANNER_ID = "ca-app-pub-6420987903580707/4456092168";
+const String INTERSTITIAL_ID = "ca-app-pub-6420987903580707/8203765480";
 const String testDevice = 'YOUR_DEVICE_ID';
 
 class Ads {
+  static bool kReleaseMode = true;
   static BannerAd _bannerAd;
   static InterstitialAd _interstitialAd;
 

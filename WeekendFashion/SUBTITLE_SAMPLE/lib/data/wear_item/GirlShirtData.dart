@@ -5,6 +5,7 @@ class GirlShirtData extends Data {
   GirlShirtData() {
     Data();
     itemSubMapList[0][null] = new Map<String, List<Positioned>>();
+
     //0
     itemSubMapList[0][null][null] = [
       Positioned(
@@ -15,6 +16,27 @@ class GirlShirtData extends Data {
           width: 110,
         ),
       ),
+      Positioned(
+        right: 130,
+        bottom: 164,
+        child: Image.asset(
+          "images/CreatedObject7_74.png",
+          width: 110,
+        ),
+      ),
+    ];
+
+    itemSubMapList[0][null][''] = [
+      Positioned(
+        right: 130,
+        bottom: 164,
+        child: Container(),
+      ),
+      Positioned(
+        right: 130,
+        bottom: 164,
+        child: Container(),
+      ),
     ];
 
     //1
@@ -24,6 +46,14 @@ class GirlShirtData extends Data {
         bottom: 172,
         child: Image.asset(
           "images/CreatedObject7_96.png",
+          width: 117,
+        ),
+      ),
+      Positioned(
+        right: 134,
+        bottom: 172,
+        child: Image.asset(
+          "images/CreatedObject7_96_shrink.png",
           width: 117,
         ),
       ),
@@ -39,15 +69,31 @@ class GirlShirtData extends Data {
           width: 129,
         ),
       ),
+      Positioned(
+        right: 130,
+        bottom: 167,
+        child: Image.asset(
+          "images/CreatedObject7_91_shrink.png",
+          width: 129,
+        ),
+      ),
     ];
 
     //3
     itemSubMapList[0][null]['CreatedObject7_27'] = [
       Positioned(
-        right: 128,
+        right: 129,
         bottom: 140,
         child: Image.asset(
           "images/CreatedObject7_92.png",
+          width: 132,
+        ),
+      ),
+      Positioned(
+        right: 129,
+        bottom: 140,
+        child: Image.asset(
+          "images/CreatedObject7_92_shrink.png",
           width: 132,
         ),
       ),
@@ -63,6 +109,14 @@ class GirlShirtData extends Data {
           width: 132,
         ),
       ),
+      Positioned(
+        right: 130,
+        bottom: 165,
+        child: Image.asset(
+          "images/CreatedObject7_93_shrink.png",
+          width: 132,
+        ),
+      ),
     ];
 
     //5
@@ -72,6 +126,14 @@ class GirlShirtData extends Data {
         bottom: 180,
         child: Image.asset(
           "images/CreatedObject7_94.png",
+          width: 90,
+        ),
+      ),
+      Positioned(
+        right: 150,
+        bottom: 180,
+        child: Image.asset(
+          "images/CreatedObject7_94_shrink.png",
           width: 90,
         ),
       ),
@@ -87,6 +149,14 @@ class GirlShirtData extends Data {
           width: 133,
         ),
       ),
+      Positioned(
+        right: 125,
+        bottom: 155,
+        child: Image.asset(
+          "images/CreatedObject7_95_shrink.png",
+          width: 133,
+        ),
+      ),
     ];
 
     //7
@@ -96,6 +166,14 @@ class GirlShirtData extends Data {
         bottom: 173,
         child: Image.asset(
           "images/CreatedObject7_90.png",
+          width: 55,
+        ),
+      ),
+      Positioned(
+        right: 158,
+        bottom: 173,
+        child: Image.asset(
+          "images/CreatedObject7_90_shrink.png",
           width: 55,
         ),
       ),
@@ -111,6 +189,14 @@ class GirlShirtData extends Data {
           width: 90,
         ),
       ),
+      Positioned(
+        right: 148,
+        bottom: 172,
+        child: Image.asset(
+          "images/CreatedObject7_97_shrink.png",
+          width: 90,
+        ),
+      ),
     ];
 
     //9
@@ -123,6 +209,14 @@ class GirlShirtData extends Data {
           width: 70,
         ),
       ),
+      Positioned(
+        right: 150,
+        bottom: 157,
+        child: Image.asset(
+          "images/CreatedObject7_98_shrink.png",
+          width: 70,
+        ),
+      ),
     ];
 
     //10
@@ -132,6 +226,14 @@ class GirlShirtData extends Data {
         bottom: 180,
         child: Image.asset(
           "images/CreatedObject7_99.png",
+          width: 85,
+        ),
+      ),
+      Positioned(
+        right: 150,
+        bottom: 180,
+        child: Image.asset(
+          "images/CreatedObject7_99_shrink.png",
           width: 85,
         ),
       ),
@@ -149,8 +251,28 @@ class GirlShirtData extends Data {
           width: 70,
         ),
       ),
+      Positioned(
+        left: 157,
+        bottom: 183,
+        child: Image.asset(
+          "images/CreatedObject7_253_shrink.png",
+          width: 70,
+        ),
+      ),
     ];
-
+    // Empty
+    itemSubMapList[1][null][''] = [
+      Positioned(
+        right: 130,
+        bottom: 164,
+        child: Container(),
+      ),
+      Positioned(
+        right: 130,
+        bottom: 164,
+        child: Container(),
+      ),
+    ];
     //1
     itemSubMapList[1][null]['CreatedObject7_159'] = [
       Positioned(
@@ -158,6 +280,14 @@ class GirlShirtData extends Data {
         bottom: 128,
         child: Image.asset(
           "images/CreatedObject7_220.png",
+          width: 104,
+        ),
+      ),
+      Positioned(
+        left: 142,
+        bottom: 128,
+        child: Image.asset(
+          "images/CreatedObject7_220_shrink.png",
           width: 104,
         ),
       ),
@@ -173,6 +303,14 @@ class GirlShirtData extends Data {
           width: 97,
         ),
       ),
+      Positioned(
+        left: 150,
+        bottom: 157,
+        child: Image.asset(
+          "images/CreatedObject7_221_shrink.png",
+          width: 97,
+        ),
+      ),
     ];
 
     //3
@@ -182,6 +320,14 @@ class GirlShirtData extends Data {
         bottom: 160,
         child: Image.asset(
           "images/CreatedObject7_222.png",
+          width: 90,
+        ),
+      ),
+      Positioned(
+        left: 155,
+        bottom: 160,
+        child: Image.asset(
+          "images/CreatedObject7_222_shrink.png",
           width: 90,
         ),
       ),
@@ -197,15 +343,31 @@ class GirlShirtData extends Data {
           width: 104,
         ),
       ),
+      Positioned(
+        left: 142,
+        bottom: 128,
+        child: Image.asset(
+          "images/CreatedObject7_223_shrink.png",
+          width: 104,
+        ),
+      ),
     ];
     // ROW 2
     //5
     itemSubMapList[1][null]['CreatedObject7_163'] = [
       Positioned(
         left: 156,
-        bottom: 178,
+        bottom: 176,
         child: Image.asset(
           "images/CreatedObject7_224.png",
+          width: 72,
+        ),
+      ),
+      Positioned(
+        left: 156,
+        bottom: 178,
+        child: Image.asset(
+          "images/CreatedObject7_224_shrink.png",
           width: 72,
         ),
       ),
@@ -221,6 +383,14 @@ class GirlShirtData extends Data {
           width: 90,
         ),
       ),
+      Positioned(
+        left: 155,
+        bottom: 121,
+        child: Image.asset(
+          "images/CreatedObject7_233_shrink.png",
+          width: 90,
+        ),
+      ),
     ];
 
     //7
@@ -233,6 +403,14 @@ class GirlShirtData extends Data {
           width: 104,
         ),
       ),
+      Positioned(
+        left: 142,
+        bottom: 128,
+        child: Image.asset(
+          "images/CreatedObject7_234_shrink.png",
+          width: 104,
+        ),
+      ),
     ];
 
     //8
@@ -242,6 +420,14 @@ class GirlShirtData extends Data {
         bottom: 122,
         child: Image.asset(
           "images/CreatedObject7_235.png",
+          width: 104,
+        ),
+      ),
+      Positioned(
+        left: 143,
+        bottom: 122,
+        child: Image.asset(
+          "images/CreatedObject7_235_shrink.png",
           width: 104,
         ),
       ),

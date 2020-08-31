@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:seab1ird.hkmovies/helpers/EndLoopController.dart';
 import 'package:seab1ird.hkmovies/widgets/views/RateApp.dart';
 import 'package:seab1ird.hkmovies/widgets/views/TypeListItem.dart';
+import 'package:seab1ird.hkmovies/helpers/Ads.dart';
 
 class MovieTypes extends StatefulWidget {
   MovieTypes({Key key}) : super(key: key);
@@ -25,13 +26,13 @@ class MovieTypesState extends State<MovieTypes> {
   @override
   void initState() {
     super.initState();
-    if(kReleaseMode){ // is Release Mode ??
+    if(Ads.kReleaseMode){ // is Release Mode ??
       marginTop = 60;
     }
     
     this._getData();
 
-    Timer(Duration(seconds: 4), () {
+    Timer(Duration(seconds: 6), () {
       setState(() {
        message = "Vui lòng kết nối Wifi. Thanks 😘😘😘";
       });

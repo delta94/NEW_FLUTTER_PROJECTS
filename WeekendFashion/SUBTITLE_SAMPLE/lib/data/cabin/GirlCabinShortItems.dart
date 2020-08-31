@@ -3,14 +3,14 @@ import 'package:seab1ird.showyourself/enums/ItemType.dart';
 import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
 import 'package:seab1ird.showyourself/widgets/GirlCabinItem.dart';
 
-import 'GirlCabintems.dart';
+import '../../widgets/GirlCabintems.dart';
 
 class GirlCabinShortItems extends GirlCabinItems {
-  const GirlCabinShortItems({
-    @required this.animation,
-    @required this.girlIndex,
-    @required this.itemType
-  }) : super(animation: animation, girlIndex: girlIndex, itemType: itemType);
+  const GirlCabinShortItems(
+      {@required this.animation,
+      @required this.girlIndex,
+      @required this.itemType})
+      : super(animation: animation, girlIndex: girlIndex, itemType: itemType);
 
   final Animation<double> animation;
   final int girlIndex;
@@ -21,7 +21,7 @@ class GirlCabinShortItems extends GirlCabinItems {
     return <Widget>[
       Positioned(
         left: 3,
-        top: gameProvider.deviceSize.height * 0.155,
+        top: gameProvider.deviceSize.height * 0.19,
         child: Image.asset(
           'images/CreatedObject7_46.png',
           width: gameProvider.deviceSize.width * 0.38,
@@ -31,7 +31,7 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: 0,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.175,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_38",
         itemType: itemType,
@@ -40,7 +40,7 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.08,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.175,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_39",
         itemType: itemType,
@@ -49,8 +49,8 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.18,
-        top: gameProvider.deviceSize.height * 0.15,
-        width: gameProvider.deviceSize.width * 0.12,
+        top: gameProvider.deviceSize.height * 0.175,
+        width: gameProvider.deviceSize.width * 0.11,
         image: "CreatedObject7_40",
         itemType: itemType,
       ),
@@ -58,7 +58,7 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.27,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.175,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_41",
         itemType: itemType,
@@ -76,8 +76,8 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: 0,
-        top: gameProvider.deviceSize.height * 0.5,
-        width: gameProvider.deviceSize.width * 0.12,
+        top: gameProvider.deviceSize.height * 0.49,
+        width: gameProvider.deviceSize.width * 0.11,
         image: "CreatedObject7_42",
         itemType: itemType,
       ),
@@ -85,8 +85,8 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.1,
-        top: gameProvider.deviceSize.height * 0.5,
-        width: gameProvider.deviceSize.width * 0.12,
+        top: gameProvider.deviceSize.height * 0.49,
+        width: gameProvider.deviceSize.width * 0.11,
         image: "CreatedObject7_43",
         itemType: itemType,
       ),
@@ -103,7 +103,7 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.27,
-        top: gameProvider.deviceSize.height * 0.5,
+        top: gameProvider.deviceSize.height * 0.495,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_45",
         itemType: itemType,
@@ -116,7 +116,7 @@ class GirlCabinShortItems extends GirlCabinItems {
     return <Widget>[
       Positioned(
         left: 3,
-        top: gameProvider.deviceSize.height * 0.165,
+        top: gameProvider.deviceSize.height * 0.19,
         child: Image.asset(
           'images/CreatedObject7_46.png',
           width: gameProvider.deviceSize.width * 0.38,
@@ -126,7 +126,7 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: 0,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.18,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_170",
         itemType: itemType,
@@ -135,8 +135,8 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.08,
-        top: gameProvider.deviceSize.height * 0.15,
-        width: gameProvider.deviceSize.width * 0.12,
+        top: gameProvider.deviceSize.height * 0.175,
+        width: gameProvider.deviceSize.width * 0.09,
         image: "CreatedObject7_171",
         itemType: itemType,
       ),
@@ -144,7 +144,7 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.16,
-        top: gameProvider.deviceSize.height * 0.15,
+        top: gameProvider.deviceSize.height * 0.18,
         width: gameProvider.deviceSize.width * 0.12,
         image: "CreatedObject7_172",
         itemType: itemType,
@@ -153,8 +153,8 @@ class GirlCabinShortItems extends GirlCabinItems {
       GirlCabinItem(
         girlIndex: girlIndex,
         left: gameProvider.deviceSize.width * 0.25,
-        top: gameProvider.deviceSize.height * 0.15,
-        width: gameProvider.deviceSize.width * 0.12,
+        top: gameProvider.deviceSize.height * 0.175,
+        width: gameProvider.deviceSize.width * 0.09,
         image: "CreatedObject7_173",
         itemType: itemType,
       ),
