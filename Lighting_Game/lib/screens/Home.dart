@@ -1,5 +1,4 @@
 import 'package:app_review/app_review.dart';
-import 'package:com.seab1ird.showyourself/helpers/Ads.dart';
 import 'package:com.seab1ird.showyourself/helpers/FlareEndlessController.dart';
 import 'package:com.seab1ird.showyourself/model_view/GameProvider.dart';
 import 'package:com.seab1ird.showyourself/utils/Utils.dart';
@@ -22,7 +21,6 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    Ads.loadInterstitialAd();
     Utils.setHandTouchWidget();
     super.initState();
   }
@@ -63,15 +61,16 @@ class _HomeState extends State<Home> {
                             textAlign: TextAlign.center,
                             style: GoogleFonts.tomorrow(
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize:
+                                  Utils.isIpad() ? Utils.ipadFontSize() : 30,
                             ),
                           ),
                         ),
                       ),
                       SizedBox(height: 20),
                       Container(
-                        height: 150,
-                        width: 150,
+                        height: Utils.isIpad() ? Utils.ipadIconSize() * 4 : 150,
+                        width: Utils.isIpad() ? Utils.ipadIconSize() * 4 : 150,
                         decoration: BoxDecoration(
                           color: Colors.black38,
                           borderRadius: BorderRadius.circular(10),

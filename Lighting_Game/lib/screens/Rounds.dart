@@ -27,21 +27,21 @@ class _CellWidgetState extends State<Rounds> {
     }
 
     return Material(
-      child: SafeArea(
-        child: Stack(
-          children: [
-            Opacity(
-              opacity: 1,
-              child: Container(
-                decoration: new BoxDecoration(
-                  image: new DecorationImage(
-                    image: Utils.getBackground(gameProvider.themeColorName),
-                    fit: BoxFit.fill,
-                  ),
+      child: Stack(
+        children: [
+          Opacity(
+            opacity: 1,
+            child: Container(
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: Utils.getBackground(gameProvider.themeColorName),
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
-            Column(
+          ),
+          SingleChildScrollView(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
@@ -50,7 +50,8 @@ class _CellWidgetState extends State<Rounds> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Utils.getImage('flag', width: 30),
+                      Utils.getImage('flag',
+                          width: Utils.isIpad() ? Utils.ipadIconSize() : 30),
                       SizedBox(width: 20),
                       Center(
                         child: Shimmer.fromColors(
@@ -61,7 +62,8 @@ class _CellWidgetState extends State<Rounds> {
                             textAlign: TextAlign.center,
                             style: GoogleFonts.tomorrow(
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize:
+                                  Utils.isIpad() ? Utils.ipadFontSize() : 30,
                             ),
                           ),
                         ),
@@ -71,8 +73,12 @@ class _CellWidgetState extends State<Rounds> {
                 ),
                 Center(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            Utils.isIpad() ? (Utils.deviceSize.width / 6) : 10,
+                        vertical: 5),
                     child: GridView.builder(
+                      physics: ScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 24,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -125,7 +131,9 @@ class _CellWidgetState extends State<Rounds> {
                                     Center(
                                       child: Container(
                                         margin: EdgeInsets.only(
-                                            top: _isPlayable(index) ? 0 : 25),
+                                            top: _isPlayable(index)
+                                                ? 0
+                                                : Utils.isIpad() ? 50 : 25),
                                         color: _isPlayable(index)
                                             ? Colors.transparent
                                             : Colors.grey,
@@ -136,7 +144,9 @@ class _CellWidgetState extends State<Rounds> {
                                             color: _isPlayable(index)
                                                 ? Colors.black
                                                 : Colors.black,
-                                            fontSize: 20,
+                                            fontSize: Utils.isIpad()
+                                                ? Utils.ipadIconSize()
+                                                : 20,
                                           ),
                                         ),
                                       ),
@@ -153,8 +163,8 @@ class _CellWidgetState extends State<Rounds> {
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -90,6 +90,7 @@ class _CellWidgetState extends State<CellWidget> with TickerProviderStateMixin {
     if (!hasTurnOnLight && currentCell != null) {
       _hasTurnOnLight(gameProvider);
 
+      int numberWidgets = Utils.isIpad() ? 8 : 5;
       if (hasTurnOnLight) {
         Future.delayed(Duration(milliseconds: currentCell.lineIndex * 50), () {
           setState(() {
@@ -105,7 +106,7 @@ class _CellWidgetState extends State<CellWidget> with TickerProviderStateMixin {
 
             setState(() {
               connectLight = true;
-              width = deviceWidth / 5;
+              width = deviceWidth / numberWidgets;
             });
           });
         });
@@ -189,9 +190,10 @@ class _CellWidgetState extends State<CellWidget> with TickerProviderStateMixin {
       );
     }
 
+    int numberWidgets = Utils.isIpad() ? 8 : 5;
     return Expanded(
       child: Container(
-        height: deviceWidth / 5,
+        height: deviceWidth / numberWidgets,
         decoration: currentCell == null
             ? BoxDecoration(
                 color: Colors.grey[700],

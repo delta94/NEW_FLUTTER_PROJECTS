@@ -27,7 +27,6 @@ class _GameState extends State<Game> {
   @override
   Widget build(BuildContext context) {
     gameProvider = Provider.of<GameProvider>(context);
-    gameProvider.deviceSize = MediaQuery.of(context).size;
     String rowNum = (gameProvider.currRoundNum + 1).toString();
 
     return WillPopScope(
@@ -65,7 +64,10 @@ class _GameState extends State<Game> {
                               InkWell(
                                 onTap: () =>
                                     Navigator.popAndPushNamed(context, '/home'),
-                                child: Utils.getImage('home_icon', width: 30),
+                                child: Utils.getImage('home_icon',
+                                    width: Utils.isIpad()
+                                        ? Utils.ipadIconSize()
+                                        : 30),
                               ),
                               SizedBox(width: 10),
                               InkWell(
@@ -78,7 +80,9 @@ class _GameState extends State<Game> {
                                   ),
                                 ),
                                 child: Utils.getImage(gameProvider.chosenAvatar,
-                                    width: 35),
+                                    width: Utils.isIpad()
+                                        ? Utils.ipadIconSize()
+                                        : 35),
                               ),
                             ],
                           ),
@@ -89,7 +93,8 @@ class _GameState extends State<Game> {
                               'Round $rowNum',
                               style: GoogleFonts.tomorrow(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 22,
+                                fontSize:
+                                    Utils.isIpad() ? Utils.ipadFontSize() : 22,
                                 color: Colors.white,
                               ),
                             ),
@@ -106,13 +111,19 @@ class _GameState extends State<Game> {
                                     },
                                   ),
                                 ),
-                                child: Utils.getImage('theme', width: 30),
+                                child: Utils.getImage('theme',
+                                    width: Utils.isIpad()
+                                        ? Utils.ipadIconSize()
+                                        : 30),
                               ),
                               SizedBox(width: 10),
                               InkWell(
                                 onTap: () =>
                                     AppReview.storeListing.then((onValue) {}),
-                                child: Utils.getImage('star', width: 30),
+                                child: Utils.getImage('star',
+                                    width: Utils.isIpad()
+                                        ? Utils.ipadIconSize()
+                                        : 30),
                               ),
                             ],
                           ),
@@ -121,8 +132,12 @@ class _GameState extends State<Game> {
                     ),
                   ),
                   Expanded(
-                    flex: 5,
+                    flex: 6,
                     child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: Utils.isIpad()
+                              ? (Utils.deviceSize.width / 6)
+                              : 0),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -220,6 +235,7 @@ class BottomMenu extends StatelessWidget {
             visible: finishedGame,
             child: ImageButton(
               text: 'Ranking',
+              iconName: 'flag',
               buttonColor: 'yellow',
               onPress: () => Navigator.popAndPushNamed(context, '/ranking'),
             ),
@@ -269,7 +285,8 @@ class _PlayingTimeState extends State<PlayingTime> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Utils.getImage('timer', width: 35),
+          Utils.getImage('timer',
+              width: Utils.isIpad() ? Utils.ipadIconSize() : 35),
           SizedBox(width: 5),
           Padding(
             padding: const EdgeInsets.only(top: 5),
@@ -278,7 +295,7 @@ class _PlayingTimeState extends State<PlayingTime> {
               style: TextStyle(
                 color: Colors.yellow,
                 backgroundColor: Colors.black45,
-                fontSize: 20,
+                fontSize: Utils.isIpad() ? Utils.ipadFontSize() : 20,
                 fontWeight: FontWeight.bold,
               ),
             ),

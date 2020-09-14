@@ -11,6 +11,7 @@ import 'package:flutter/widgets.dart';
 
 class Utils {
   static Widget handTouch;
+  static Size deviceSize;
   static AssetsAudioPlayer backgroundAudio = AssetsAudioPlayer();
   static AssetsAudioPlayer animatedAudio = AssetsAudioPlayer();
   static AssetsAudioPlayer winAudio = AssetsAudioPlayer();
@@ -179,5 +180,17 @@ class Utils {
 
   static getBackground(String themeColorName) {
     return AssetImage('asset/images/bg_$themeColorName.png');
+  }
+
+  static bool isIpad() {
+    return deviceSize.width / deviceSize.height > 0.65;
+  }
+
+  static double ipadIconSize() {
+    return deviceSize.width / 16;
+  }
+
+  static double ipadFontSize() {
+    return deviceSize.width / 25;
   }
 }

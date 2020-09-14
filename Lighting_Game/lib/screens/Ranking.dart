@@ -109,7 +109,6 @@ class Ranking extends StatelessWidget {
   Widget build(BuildContext context) {
     GameProvider gameProvider = Provider.of<GameProvider>(context);
     setSelectedScoreNames(gameProvider);
-    if (gameProvider.currRoundNum == 1) Ads.showInterstitialAd();
 
     getRandomRankingImage() {
       String themeColorName = gameProvider.themeColorName;
@@ -126,126 +125,131 @@ class Ranking extends StatelessWidget {
         return Future<bool>.value(false);
       },
       child: Material(
-        child: SafeArea(
-          child: Stack(
-            children: [
-              Opacity(
-                opacity: 1,
-                child: Container(
-                  decoration: new BoxDecoration(
-                    image: new DecorationImage(
-                      image: Utils.getBackground(gameProvider.themeColorName),
-                      fit: BoxFit.fill,
-                    ),
+        child: Stack(
+          children: [
+            Opacity(
+              opacity: 1,
+              child: Container(
+                decoration: new BoxDecoration(
+                  image: new DecorationImage(
+                    image: Utils.getBackground(gameProvider.themeColorName),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-              Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Column(
-                  children: [
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () =>
-                                Navigator.popAndPushNamed(context, '/home'),
-                            child: Utils.getImage('home_icon', width: 40),
-                          ),
-                          Row(
-                            children: [
-                              Utils.getImage(getRandomRankingImage(),
-                                  width: 50),
-                              SizedBox(width: 10),
-                              Shimmer.fromColors(
-                                baseColor: Colors.green,
-                                highlightColor: Colors.yellow,
-                                child: Text(
-                                  'Ranking',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 25,
-                                    color: Colors.yellow,
-                                  ),
+            ),
+            Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 30, horizontal: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () =>
+                              Navigator.popAndPushNamed(context, '/home'),
+                          child: Utils.getImage('home_icon',
+                              width:
+                                  Utils.isIpad() ? Utils.ipadIconSize() : 40),
+                        ),
+                        Row(
+                          children: [
+                            Utils.getImage(getRandomRankingImage(),
+                                width:
+                                    Utils.isIpad() ? Utils.ipadIconSize() : 50),
+                            SizedBox(width: 10),
+                            Shimmer.fromColors(
+                              baseColor: Colors.green,
+                              highlightColor: Colors.yellow,
+                              child: Text(
+                                'Ranking',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: Utils.isIpad()
+                                      ? Utils.ipadFontSize()
+                                      : 25,
+                                  color: Colors.yellow,
                                 ),
                               ),
-                              SizedBox(width: 10),
-                            ],
-                          ),
-                          InkWell(
-                            onTap: () =>
-                                AppReview.storeListing.then((onValue) {}),
-                            child: Utils.getImage('star', width: 40),
-                          ),
-                        ],
-                      ),
+                            ),
+                            SizedBox(width: 10),
+                          ],
+                        ),
+                        InkWell(
+                          onTap: () =>
+                              AppReview.storeListing.then((onValue) {}),
+                          child: Utils.getImage('star',
+                              width:
+                                  Utils.isIpad() ? Utils.ipadIconSize() : 40),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.only(
-                            left: gameProvider.deviceSize.width / 4),
-                        alignment: Alignment.center,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: selectedNameScores.length,
-                          itemBuilder: (BuildContext context, int index) =>
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding:
+                          EdgeInsets.only(left: Utils.deviceSize.width / 4),
+                      alignment: Alignment.center,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: selectedNameScores.length,
+                        itemBuilder: (BuildContext context, int index) =>
+                            Container(
+                          child: Wrap(
+                            children: [
                               Container(
-                            child: Wrap(
-                              children: [
-                                Container(
-                                  color: Colors.black,
-                                  margin: EdgeInsets.only(right: 5, bottom: 5),
-                                  width: 30,
-                                  child: gameProvider.getUserAvatars(
-                                      selectedNameScores.keys.toList()[index]),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
-                                  color: Colors.black,
-                                  child: Wrap(
-                                    children: [
-                                      selectedNameScores.keys.toList()[index] ==
-                                              'You'
-                                          ? Shimmer.fromColors(
-                                              baseColor: Colors.orange,
-                                              highlightColor: Colors.yellow,
-                                              child: NameScore(
-                                                index: index,
-                                                selectedNameScores:
-                                                    selectedNameScores,
-                                              ),
-                                            )
-                                          : NameScore(
+                                color: Colors.black,
+                                margin: EdgeInsets.only(
+                                    right: 5, bottom: Utils.isIpad() ? 20 : 5),
+                                width:
+                                    Utils.isIpad() ? Utils.ipadIconSize() : 30,
+                                child: gameProvider.getUserAvatars(
+                                    selectedNameScores.keys.toList()[index]),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                color: Colors.black,
+                                child: Wrap(
+                                  children: [
+                                    selectedNameScores.keys.toList()[index] ==
+                                            'You'
+                                        ? Shimmer.fromColors(
+                                            baseColor: Colors.orange,
+                                            highlightColor: Colors.yellow,
+                                            child: NameScore(
                                               index: index,
                                               selectedNameScores:
-                                                  selectedNameScores),
-                                    ],
-                                  ),
+                                                  selectedNameScores,
+                                            ),
+                                          )
+                                        : NameScore(
+                                            index: index,
+                                            selectedNameScores:
+                                                selectedNameScores),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
-                bottomNavigationBar: Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  height: 90,
-                  child: ImageButton(
-                    text: 'Next Round',
-                    buttonColor: 'green',
-                    onPress: () =>
-                        Navigator.popAndPushNamed(context, '/rounds'),
                   ),
+                ],
+              ),
+              bottomNavigationBar: Container(
+                margin: EdgeInsets.only(bottom: 20),
+                height: 120,
+                child: ImageButton(
+                  text: 'Next Round',
+                  buttonColor: 'green',
+                  onPress: () => Navigator.popAndPushNamed(context, '/rounds'),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -268,7 +272,8 @@ class NameScore extends StatelessWidget {
       bool isUser = selectedNameScores.keys.toList()[index] == 'You';
       Color color = isUser ? Colors.yellow : Colors.white;
       FontWeight fontWeight = isUser ? FontWeight.bold : FontWeight.normal;
-      double fontSize = isUser ? 25 : 20;
+      double fontSize =
+          Utils.isIpad() ? Utils.ipadIconSize() : isUser ? 25 : 20;
 
       return TextStyle(
         color: color,

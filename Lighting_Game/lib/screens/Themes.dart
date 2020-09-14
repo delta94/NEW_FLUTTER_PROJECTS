@@ -1,10 +1,8 @@
 import 'package:com.seab1ird.showyourself/model/ColorModel.dart';
-import 'package:com.seab1ird.showyourself/model_view/GameProvider.dart';
 import 'package:com.seab1ird.showyourself/utils/Utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 // ignore: must_be_immutable
@@ -19,7 +17,6 @@ class Themes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<ColorModel> colors = Utils.getGameColors();
-    GameProvider gameProvider = Provider.of<GameProvider>(context);
 
     return Material(
       color: Colors.transparent,
@@ -33,24 +30,31 @@ class Themes extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Shimmer.fromColors(
-                        baseColor: Colors.orange,
-                        highlightColor: Colors.yellow,
-                        child: Text(
-                          'Themes',
-                          style: GoogleFonts.tomorrow(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Utils.getImage('theme', width: Utils.isIpad() ? Utils.ipadIconSize() : 30),
+                          SizedBox(width: 10),
+                          Shimmer.fromColors(
+                            baseColor: Colors.orange,
+                            highlightColor: Colors.yellow,
+                            child: Text(
+                              'Themes',
+                              style: GoogleFonts.tomorrow(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontSize: Utils.isIpad() ? Utils.ipadFontSize() : 30,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                       SizedBox(height: 20),
                       Center(
                         child: Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
-                              horizontal: gameProvider.deviceSize.width / 4),
+                              horizontal: Utils.deviceSize.width / 4),
                           child: GridView.builder(
                               shrinkWrap: true,
                               itemCount: colors.length,
@@ -64,6 +68,7 @@ class Themes extends StatelessWidget {
                                 return RaisedButton(
                                   padding: EdgeInsets.all(10),
                                   onPressed: () {
+                                    Utils.winGameSound();
                                     onChangeTheme(colors[index]);
                                     Navigator.pop(context);
                                   },

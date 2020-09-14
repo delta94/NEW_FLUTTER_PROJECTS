@@ -30,7 +30,7 @@ class ImageButton extends StatelessWidget {
             Center(
               child: Utils.getImage(
                 buttonName,
-                width: MediaQuery.of(context).size.width / 2,
+                width: MediaQuery.of(context).size.width / 3,
               ),
             ),
             Center(
@@ -39,7 +39,9 @@ class ImageButton extends StatelessWidget {
                 children: [
                   iconName == null
                       ? Container()
-                      : Utils.getImage(iconName, width: 27),
+                      : Utils.getImage(iconName,
+                          width:
+                              Utils.isIpad() ? Utils.ipadIconSize() * 0.7 : 27),
                   SizedBox(width: 10),
                   Shimmer.fromColors(
                     baseColor: Colors.black,
@@ -48,7 +50,8 @@ class ImageButton extends StatelessWidget {
                       text,
                       style: GoogleFonts.tomorrow(
                         color: Colors.black,
-                        fontSize: 23,
+                        fontSize:
+                            Utils.isIpad() ? Utils.ipadFontSize() * 0.7 : 23,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

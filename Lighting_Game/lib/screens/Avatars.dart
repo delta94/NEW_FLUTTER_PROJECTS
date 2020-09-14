@@ -52,6 +52,7 @@ class Avatars extends StatelessWidget {
     ];
 
     GameProvider gameProvider = Provider.of<GameProvider>(context);
+
     return Material(
       color: Colors.transparent,
       child: Stack(
@@ -64,7 +65,7 @@ class Avatars extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Utils.getImage(gameProvider.chosenAvatar, width: 30),
+                    Utils.getImage(gameProvider.chosenAvatar, width: Utils.isIpad() ? Utils.ipadIconSize() : 30),
                     SizedBox(width: 10),
                     Shimmer.fromColors(
                       baseColor: Colors.orange,
@@ -74,34 +75,38 @@ class Avatars extends StatelessWidget {
                         style: GoogleFonts.tomorrow(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: Utils.isIpad() ? Utils.ipadFontSize() : 20,
                         ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 10),
-                GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: avatars.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
-                      crossAxisSpacing: 5,
-                      mainAxisSpacing: 5,
-                    ),
-                    itemBuilder: (BuildContext context, index) {
-                      return RaisedButton(
-                        color: Colors.black,
-                        padding: EdgeInsets.all(2),
-                        onPressed: () {
-                          onChangeAvatar(avatars[index]);
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          child: Utils.getImage(avatars[index]),
-                        ),
-                      );
-                    }),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: (Utils.isIpad() ? (Utils.deviceSize.width/12) : 0)),
+                  child: GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: avatars.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 5,
+                      ),
+                      itemBuilder: (BuildContext context, index) {
+                        return RaisedButton(
+                          color: Colors.black,
+                          padding: EdgeInsets.all(2),
+                          onPressed: () {
+                            Utils.winGameSound();
+                            onChangeAvatar(avatars[index]);
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            child: Utils.getImage(avatars[index]),
+                          ),
+                        );
+                      }),
+                ),
               ],
             ),
           ),

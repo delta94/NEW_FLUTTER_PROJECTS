@@ -14,10 +14,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  GameProvider gameProvider;
   @override
   void initState() {
     Utils.openBackgroundSound();
-    GameProvider gameProvider =
+    gameProvider =
         Provider.of<GameProvider>(context, listen: false);
     gameProvider.init();
     startTime();
@@ -35,6 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Utils.deviceSize = MediaQuery.of(context).size;
     return new Scaffold(
       body: new Container(
         alignment: Alignment.center,

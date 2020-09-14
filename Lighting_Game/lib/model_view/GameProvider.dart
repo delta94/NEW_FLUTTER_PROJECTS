@@ -16,7 +16,6 @@ class GameProvider with ChangeNotifier {
   String themeColorName;
   String lightOffType = 'light';
   String lightOnType = 'light';
-  Size deviceSize;
   String chosenAvatar;
 
   init() {
