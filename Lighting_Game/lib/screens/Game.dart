@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:app_review/app_review.dart';
+import 'package:com.seab1ird.showyourself/model/ColorModel.dart';
 import 'package:com.seab1ird.showyourself/utils/Utils.dart';
 import 'package:com.seab1ird.showyourself/widgets/CellWidget.dart';
-import 'package:com.seab1ird.showyourself/widgets/ImageButton.dart';
+import 'package:com.seab1ird.showyourself/widgets/FabCircularMenu.dart';
 import 'package:com.seab1ird.showyourself/widgets/Modal.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import '../model_view/GameProvider.dart';
 import 'Avatars.dart';
-import 'Themes.dart';
 
 class Game extends StatefulWidget {
   @override
@@ -62,8 +61,10 @@ class _GameState extends State<Game> {
                           Wrap(
                             children: [
                               InkWell(
-                                onTap: () =>
-                                    Navigator.popAndPushNamed(context, '/home'),
+                                onTap: () {
+                                  Utils.tapButtonSound();
+                                  Navigator.popAndPushNamed(context, '/home');
+                                },
                                 child: Utils.getImage('home_icon',
                                     width: Utils.isIpad()
                                         ? Utils.ipadIconSize()
@@ -71,18 +72,28 @@ class _GameState extends State<Game> {
                               ),
                               SizedBox(width: 10),
                               InkWell(
-                                onTap: () => showGameDialog(
-                                  context: context,
-                                  widget: Avatars(
-                                    onChangeAvatar: (avatar) async {
-                                      gameProvider.setAvatar(avatar);
-                                    },
-                                  ),
-                                ),
-                                child: Utils.getImage(gameProvider.chosenAvatar,
-                                    width: Utils.isIpad()
-                                        ? Utils.ipadIconSize()
-                                        : 35),
+                                onTap: () {
+                                  Utils.tapButtonSound();
+                                  showGameDialog(
+                                    context: context,
+                                    widget: Avatars(
+                                      onChangeAvatar: (avatar) async {
+                                        gameProvider.setAvatar(avatar);
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.amberAccent,
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    padding: EdgeInsets.all(2),
+                                    child: Utils.getImage(
+                                        gameProvider.chosenAvatar,
+                                        width: Utils.isIpad()
+                                            ? Utils.ipadIconSize()
+                                            : 35)),
                               ),
                             ],
                           ),
@@ -99,34 +110,8 @@ class _GameState extends State<Game> {
                               ),
                             ),
                           ),
-                          Wrap(
-                            children: [
-                              InkWell(
-                                onTap: () => showGameDialog(
-                                  context: context,
-                                  widget: Themes(
-                                    onChangeTheme: (colorModel) async {
-                                      gameProvider.setThemeColorName(
-                                          colorModel.colorName);
-                                    },
-                                  ),
-                                ),
-                                child: Utils.getImage('theme',
-                                    width: Utils.isIpad()
-                                        ? Utils.ipadIconSize()
-                                        : 30),
-                              ),
-                              SizedBox(width: 10),
-                              InkWell(
-                                onTap: () =>
-                                    AppReview.storeListing.then((onValue) {}),
-                                child: Utils.getImage('star',
-                                    width: Utils.isIpad()
-                                        ? Utils.ipadIconSize()
-                                        : 30),
-                              ),
-                            ],
-                          ),
+                          Container(),
+                          Container(),
                         ],
                       ),
                     ),
@@ -196,7 +181,7 @@ class _GameState extends State<Game> {
                   Expanded(
                     flex: 2,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         BottomMenu(),
                       ],
@@ -206,6 +191,60 @@ class _GameState extends State<Game> {
               ),
             ),
           ],
+        ),
+        floatingActionButton: FabCircularMenu(
+          alignment: Alignment.topRight,
+          ringColor: Colors.white,
+          animationDuration: Duration(milliseconds: 500),
+          fabColor: Colors.amber,
+          ringDiameter: Utils.deviceSize.width,
+          ringWidth: Utils.deviceSize.width / 5,
+          fabMargin: EdgeInsets.only(top: 40, right: 10),
+          fabSize: Utils.deviceSize.width / 10,
+          fabOpenIcon: Utils.getImage('theme',
+              width: Utils.isIpad() ? Utils.ipadIconSize() : 30),
+          children: <Widget>[
+            ThemeItem(gameProvider: gameProvider, index: 0),
+            ThemeItem(gameProvider: gameProvider, index: 1),
+            ThemeItem(gameProvider: gameProvider, index: 2),
+            ThemeItem(gameProvider: gameProvider, index: 3),
+            ThemeItem(gameProvider: gameProvider, index: 4),
+            ThemeItem(gameProvider: gameProvider, index: 5),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ThemeItem extends StatelessWidget {
+  const ThemeItem({
+    Key key,
+    @required this.gameProvider,
+    @required this.index,
+  }) : super(key: key);
+
+  final GameProvider gameProvider;
+  final int index;
+
+  getColor(ColorModel colorModel, {double opacity = 1}) {
+    return Color.fromRGBO(colorModel.r, colorModel.g, colorModel.b, opacity);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<ColorModel> colors = Utils.getGameColors();
+    return GestureDetector(
+      onTap: () {
+        Utils.winGameSound();
+        gameProvider.setThemeColorName(colors[index].colorName);
+      },
+      child: Container(
+        width: Utils.deviceSize.width / 8,
+        height: Utils.deviceSize.width / 8,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: getColor(colors[index]),
         ),
       ),
     );
@@ -221,27 +260,13 @@ class BottomMenu extends StatelessWidget {
     bool finishedGame = gameProvider.hasTurnOnLight &&
         gameProvider.hasTurnOnLight1 &&
         gameProvider.hasTurnOnLight2;
-
+    if (finishedGame) {
+      gameProvider.updateRoundNum();
+      Future.delayed(Duration(seconds: 3),
+          () => Navigator.popAndPushNamed(context, '/ranking'));
+    }
     return Container(
-      child: Column(
-        children: [
-          PlayingTime(),
-          SizedBox(height: 5),
-          Visibility(
-            maintainSize: true,
-            maintainState: true,
-            maintainSemantics: true,
-            maintainAnimation: true,
-            visible: finishedGame,
-            child: ImageButton(
-              text: 'Ranking',
-              iconName: 'flag',
-              buttonColor: 'yellow',
-              onPress: () => Navigator.popAndPushNamed(context, '/ranking'),
-            ),
-          ),
-        ],
-      ),
+      child: PlayingTime(),
     );
   }
 }

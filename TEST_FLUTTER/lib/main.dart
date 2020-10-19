@@ -1,60 +1,91 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/screens/ResultScreen.dart';
-import 'QuestionProvider.dart';
-import 'helpers/ScaleRoute.dart';
-import 'helpers/SlideRoute.dart';
-import 'screens/DiscTypesScreen.dart';
-import 'screens/HomeScreen.dart';
-import 'screens/IntroScreen.dart';
-import 'screens/TestScreen/TestScreen.dart';
+import 'package:unity_ads_flutter/unity_ads_flutter.dart';
 
-void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider<QuestionProvider>(
-            create: (context) => QuestionProvider()),
-      ],
-      child: MaterialApp(
-        title: 'DISC TEST',
-        home: Material(
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: 4,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Text(
-                                'hi hi',
-                                style: TextStyle(color: Colors.blue),
-                              );
-                            }),
-                      ),
-                      Container(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: 4,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Text(
-                                'hwww',
-                                style: TextStyle(color: Colors.blue),
-                              );
-                            }),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+//TODO use your own ids from the Unity Ads Dashboard
+const String videoPlacementId = 'video';
+const String gameIdAndroid = '3744629';
+const String gameIdIOS = '3744628';
+
+void main() async {
+  runApp(new MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => new _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with UnityAdsListener {
+  UnityAdsError _error;
+  String _errorMessage;
+  bool _ready;
+
+  @override
+  initState() {
+    UnityAdsFlutter.initialize(gameIdAndroid, gameIdIOS, this, true);
+    _ready = false;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget body;
+    if (_error != null) {
+      body = new Center(child: new Text('$_error: $_errorMessage'));
+    } else if (_ready) {
+      body = new Center(
+          child: new RaisedButton(
+              onPressed: () {
+                setState(() {
+                  _ready = false;
+                });
+                UnityAdsFlutter.show('video');
+              },
+              child: const Text('Ready')));
+    } else {
+      body = new Center(child: const Text('Waiting for an ad...'));
+    }
+    return new MaterialApp(
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text('Unity Ads Flutter Example'),
         ),
+        body: body,
       ),
-    ),
-  );
+    );
+  }
+
+  @override
+  void onUnityAdsError(UnityAdsError error, String message) {
+    print('$error occurred: $message');
+    setState(() {
+      _error = error;
+      _errorMessage = message;
+    });
+  }
+
+  @override
+  void onUnityAdsFinish(String placementId, FinishState result) {
+    print('Finished $placementId with $result');
+  }
+
+  @override
+  void onUnityAdsReady(String placementId) {
+    print('Ready: $placementId');
+    if (placementId == videoPlacementId) {
+      setState(() {
+        _ready = true;
+      });
+    }
+  }
+
+  @override
+  void onUnityAdsStart(String placementId) {
+    print('Start: $placementId');
+    if (placementId == videoPlacementId) {
+      setState(() {
+        _ready = false;
+      });
+    }
+  }
 }

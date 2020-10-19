@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.seab1ird.showyourself">
+    package="com.seab1ird.disctest">
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -8,10 +8,10 @@
          FlutterApplication and put your custom class here. -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:name="io.flutter.app.FlutterApplication"
         android:label="Show Youreself - Video Subtitle"
         android:icon="@mipmap/ic_launcher">
-        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-1111111111111111~1111111111"/>
+        <meta-data android:name="flutterEmbedding" android:value="2" />
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-8790092287859946~7642266938"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

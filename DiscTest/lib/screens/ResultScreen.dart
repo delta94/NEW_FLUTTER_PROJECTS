@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.showyourself/QuestionProvider.dart';
-import 'package:seab1ird.showyourself/data/Results.dart';
-import 'package:seab1ird.showyourself/helpers/Ads.dart';
-import 'package:seab1ird.showyourself/helpers/EndLoopController.dart';
-import 'package:seab1ird.showyourself/helpers/Helpers.dart';
-import 'package:seab1ird.showyourself/models/PercentTypes.dart';
-import 'package:seab1ird.showyourself/models/ResultInfo.dart';
-import 'package:seab1ird.showyourself/models/Types.dart';
+import 'package:seab1ird.disctest/QuestionProvider.dart';
+import 'package:seab1ird.disctest/data/Results.dart';
+import 'package:seab1ird.disctest/helpers/Ads.dart';
+import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
+import 'package:seab1ird.disctest/helpers/EndLoopController.dart';
+import 'package:seab1ird.disctest/helpers/Helpers.dart';
+import 'package:seab1ird.disctest/models/PercentTypes.dart';
+import 'package:seab1ird.disctest/models/ResultInfo.dart';
+import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ResultScreen extends StatelessWidget {
   final Map<String, double> dataMap = Map();
@@ -24,20 +26,16 @@ class ResultScreen extends StatelessWidget {
     Results.resultInfoC.color,
   ];
 
-  backToHomeScreen(BuildContext context) {
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/', ModalRoute.withName('/result'));
-  }
-
   Widget build(BuildContext context) {
     double marginTop = 0;
-    if (kReleaseMode) {
-      Ads.showInterstitialAd();
+    QuestionProvider questionProvider =
+        Provider.of<QuestionProvider>(context, listen: false);
+
+    if (Ads.isReleaseMode()) {
+      // Ads.showInterstitialAd();
       marginTop = 60;
     }
 
-    QuestionProvider questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
     PercentTypes percentTypes = questionProvider.getTypePercents();
     Types userType = questionProvider.maxPercentType.type;
     ResultInfo userResultInfo = Results.getResultInfoByType(userType);
@@ -51,6 +49,7 @@ class ResultScreen extends StatelessWidget {
     dataMap.putIfAbsent("I", () => percentTypes.percentTypeI.percent);
     dataMap.putIfAbsent("S", () => percentTypes.percentTypeS.percent);
     dataMap.putIfAbsent("C", () => percentTypes.percentTypeC.percent);
+    Helpers.winGameSound();
 
     return new WillPopScope(
       onWillPop: () {
@@ -81,21 +80,26 @@ class ResultScreen extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  'Result',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.lightGreenAccent,
-                    decoration: TextDecoration.underline,
-                    decorationColor: Colors.red,
-                    decorationStyle: TextDecorationStyle.solid,
-                    shadows: [
-                      Shadow(
-                        color: Colors.red,
-                        blurRadius: 10.0,
-                        offset: Offset(2.0, 2.0),
-                      ),
-                    ],
+                Shimmer.fromColors(
+                  baseColor: Colors.yellowAccent,
+                  highlightColor: Colors.white,
+                  child: Text(
+                    'Result',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.red,
+                      decorationStyle: TextDecorationStyle.solid,
+                      fontSize:
+                          Helpers.isIpad() ? Helpers.ipadFontSize() * 1.2 : 20,
+                      shadows: [
+                        Shadow(
+                          color: Colors.red,
+                          blurRadius: 10.0,
+                          offset: Offset(2.0, 2.0),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -116,20 +120,14 @@ class ResultScreen extends StatelessWidget {
                   )),
               onTap: () {
                 AppReview.storeListing.then((onValue) {});
+                // LaunchReview.launch(iOSAppId: "1508870026");
               },
             )
           ],
         ),
         body: Stack(
           children: <Widget>[
-            Container(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new AssetImage('images/bg.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            BackgroundWidget(),
             Container(
               margin: EdgeInsets.only(top: marginTop),
               padding: EdgeInsets.only(left: 10, right: 10),
@@ -148,7 +146,9 @@ class ResultScreen extends StatelessWidget {
                                     questionProvider.maxPercentType.type),
                             style: TextStyle(
                                 color: userResultInfo.color,
-                                fontSize: 17,
+                                fontSize: Helpers.isIpad()
+                                    ? Helpers.ipadFontSize() * 1.2
+                                    : 20,
                                 decoration: TextDecoration.underline,
                                 decorationColor: Colors.red,
                                 fontWeight: FontWeight.bold),
@@ -185,22 +185,24 @@ class ResultScreen extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    EnumToString.parse(questionProvider.maxPercentType.type) +
-                        ' (' +
-                        userResultInfo.name +
-                        ') :',
-                    style: TextStyle(
-                        color: userResultInfo.color,
-                        fontSize: 17,
+                  Shimmer.fromColors(
+                    baseColor: userResultInfo.color,
+                    highlightColor: Colors.white,
+                    child: Text(
+                      EnumToString.parse(questionProvider.maxPercentType.type) +
+                          ' (${userResultInfo.name}) :',
+                      style: TextStyle(
+                        fontSize: Helpers.isIpad()
+                            ? Helpers.ipadFontSize() * 1.2
+                            : 20,
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.red,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  new Expanded(
+                  SizedBox(height: 10),
+                  Expanded(
                     child: Scrollbar(
                       child: ListView.builder(
                           scrollDirection: Axis.vertical,
@@ -211,15 +213,19 @@ class ResultScreen extends StatelessWidget {
                               child: Text(
                                 userResultInfo.texts[index],
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.white.withOpacity(0.85),
                                   fontWeight: FontWeight.w500,
                                   backgroundColor: Colors.black54,
+                                  fontSize: Helpers.isIpad()
+                                      ? Helpers.ipadFontSize()
+                                      : 15,
                                 ),
                               ),
                             );
                           }),
                     ),
                   ),
+                  SizedBox(height: 10),
                 ],
               ),
             ),

@@ -131,19 +131,15 @@ class _CellWidgetState extends State<Rounds> {
                                     Center(
                                       child: Container(
                                         margin: EdgeInsets.only(
-                                            top: _isPlayable(index)
-                                                ? 0
-                                                : Utils.isIpad() ? 50 : 25),
-                                        color: _isPlayable(index)
-                                            ? Colors.transparent
-                                            : Colors.grey,
+                                            top: _isPlayable(index) ? 0 : 25),
+                                        color: Colors.transparent,
                                         child: Text(
                                           (index + 1).toString(),
                                           style: GoogleFonts.tomorrow(
                                             fontWeight: FontWeight.bold,
                                             color: _isPlayable(index)
-                                                ? Colors.black
-                                                : Colors.black,
+                                                ? Colors.white
+                                                : Colors.black54,
                                             fontSize: Utils.isIpad()
                                                 ? Utils.ipadIconSize()
                                                 : 20,

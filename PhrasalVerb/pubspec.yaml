@@ -1,0 +1,59 @@
+name: com.seab1ird.showyourself
+description: s
+version: 1.1.4
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+module:
+  androidX: true
+
+dependencies:
+  flutter:
+    sdk: flutter 
+  provider: ^4.3.2
+  enum_to_string: ^1.0.9
+  assets_audio_player: ^1.4.0
+  firebase_admob: ^0.9.0+1
+  flare_flutter: 1.7.3
+  flare_dart: 2.2.5
+  app_review: ^1.0.0
+  google_fonts: ^1.1.0
+  shared_preferences: ^0.5.8
+  shimmer: ^1.1.1
+  bottom_navy_bar: ^5.5.0
+  get: ^3.11.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+
+    - asset/images/button_blue.png
+    - asset/images/button_orange.png
+    - asset/images/button_pink.png
+    - asset/images/button_green.png
+    - asset/images/button_red.png
+    - asset/images/button_yellow.png
+
+
+    - asset/images/theme.png
+    - asset/images/star.png
+    - asset/images/logo.png
+    - asset/images/exit.png
+    - asset/images/bg_blue.png
+    - asset/images/bg_yellow.png
+    - asset/images/bg_green.png
+    - asset/images/bg_pink.png
+    - asset/images/bg_purple.png
+    - asset/images/bg_red.png
+    - asset/images/home_icon.png
+
+    - asset/sounds/music.ogg
+    - asset/sounds/btnclick.ogg
+    - asset/sounds/click_cell.ogg
+    - asset/sounds/win.ogg
+    - asset/sounds/connected.ogg
+

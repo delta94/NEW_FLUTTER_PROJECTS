@@ -90,20 +90,19 @@ class GameProvider with ChangeNotifier {
   }
 
   updateRoundNum() async {
-    hasTurnOnLight = false;
-    hasTurnOnLight1 = false;
-    hasTurnOnLight2 = false;
     if (playableRoundNum < Data.maxRowNum && playableRoundNum == currRoundNum)
       playableRoundNum++;
 
-    if (currRoundNum == playableRoundNum) {
+    if (currRoundNum == playableRoundNum - 1) {
       var _prefs = await SharedPreferences.getInstance();
       _prefs.setInt('playable_round', playableRoundNum);
     }
   }
 
   newGame() {
-    updateRoundNum();
+    hasTurnOnLight = false;
+    hasTurnOnLight1 = false;
+    hasTurnOnLight2 = false;
     cellsMap = Data.getCellsMap(currRoundNum);
   }
 

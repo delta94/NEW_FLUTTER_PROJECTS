@@ -1,16 +1,12 @@
 import 'package:app_review/app_review.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.showyourself/data/Results.dart';
-import 'package:seab1ird.showyourself/helpers/Ads.dart';
-import 'package:seab1ird.showyourself/helpers/BackgroundWidget.dart';
-import 'package:seab1ird.showyourself/helpers/EndLoopController.dart';
-import 'package:seab1ird.showyourself/helpers/Helpers.dart';
-import 'package:seab1ird.showyourself/helpers/ShadowText.dart';
-import 'package:seab1ird.showyourself/models/ResultInfo.dart';
+import 'package:seab1ird.disctest/helpers/Ads.dart';
+import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
+import 'package:seab1ird.disctest/helpers/EndLoopController.dart';
+import 'package:seab1ird.disctest/helpers/Helpers.dart';
+import 'package:seab1ird.disctest/widgets/ShadowText.dart';
 
 class IntroScreen extends StatefulWidget {
   @override
@@ -18,15 +14,10 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  backToHomeScreen(BuildContext context) {
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/', ModalRoute.withName('/intro'));
-  }
-
   Widget build(BuildContext context) {
     double marginTop = 0;
-    if (kReleaseMode) {
-      Ads.showInterstitialAd();
+    if (Ads.isReleaseMode()) {
+      // Ads.showInterstitialAd();
       marginTop = 60;
     }
 
@@ -34,8 +25,6 @@ class _IntroScreenState extends State<IntroScreen> {
         EndLoopController('Untitled', 10);
     final EndLoopController _starLoopController =
         EndLoopController('Untitled', 1);
-
-    final List<ResultInfo> resultInfos = Results.getResultInfos();
 
     return new WillPopScope(
       onWillPop: () {
@@ -55,8 +44,8 @@ class _IntroScreenState extends State<IntroScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 50,
-                  height: 50,
+                  width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 40,
+                  height: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 40,
                   child: FlareActor(
                     "images/disc.flr",
                     alignment: Alignment.center,
@@ -74,6 +63,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     decoration: TextDecoration.underline,
                     decorationColor: Colors.red,
                     decorationStyle: TextDecorationStyle.solid,
+                    fontSize: Helpers.isIpad() ? Helpers.ipadFontSize() : 20,
                     shadows: [
                       Shadow(
                         color: Colors.red,
@@ -101,6 +91,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   )),
               onTap: () {
                 AppReview.storeListing.then((onValue) {});
+                // LaunchReview.launch(iOSAppId: "1508870026");
               },
             )
           ],
@@ -144,7 +135,8 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: ShadowText(
                           'What is DiSC?',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize:
+                                Helpers.isIpad() ? Helpers.ipadFontSize() : 20,
                             color: Colors.limeAccent,
                             fontWeight: FontWeight.bold,
                             backgroundColor: Colors.black54,
@@ -154,10 +146,11 @@ class _IntroScreenState extends State<IntroScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'The DiSC assessment, published by Wiley, is a non-judgmental tool used for discussion of people\'s behavioral differences. If you participate in a DiSC program, you\'ll be asked to complete a series of questions that produce a detailed report about your personality and behavior. You\'ll also receive tips related to working with people of other styles.',
+                          'The DiSC assessment is a non-judgmental tool used for discussion of people\'s behavioral differences. If you participate in a DiSC program, you\'ll be asked to complete a series of questions that produce a detailed report about your personality and behavior. You\'ll also receive tips related to working with people of other styles.',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize:
+                                Helpers.isIpad() ? Helpers.ipadFontSize() : 15,
                             fontWeight: FontWeight.w500,
                             backgroundColor: Colors.black54,
                           ),
@@ -166,10 +159,11 @@ class _IntroScreenState extends State<IntroScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'This free DISC personality test lets you determine your DISC type and personality profile quickly. Find out how the DISC factors, Dominance, Influence, Steadiness and Caution predict your behavior towards others and the everyday things you do.',
+                          'This DISC personality test lets you determine your DISC type and personality profile quickly. Find out how the DISC factors, Dominance, Influence, Steadiness and Caution predict your behavior towards others and the everyday things you do.',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize:
+                                Helpers.isIpad() ? Helpers.ipadFontSize() : 15,
                             fontWeight: FontWeight.w500,
                             backgroundColor: Colors.black54,
                           ),
@@ -183,7 +177,9 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: ShadowText(
                           'DiSC profiles help you and your team: ',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: Helpers.isIpad()
+                                ? Helpers.ipadFontSize() * 1.2
+                                : 20,
                             color: Colors.limeAccent,
                             fontWeight: FontWeight.bold,
                             backgroundColor: Colors.black54,
@@ -195,8 +191,9 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: Text(
                           '1. Increase your self-knowledge: how you respond to conflict, what motivates you, what causes you stress, and how you solve problems',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize:
+                                Helpers.isIpad() ? Helpers.ipadFontSize() : 15,
                             fontWeight: FontWeight.w500,
                             backgroundColor: Colors.black54,
                           ),
@@ -207,8 +204,9 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: Text(
                           '2. Improve working relationships by recognizing the communication needs of team members.',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize:
+                                Helpers.isIpad() ? Helpers.ipadFontSize() : 15,
                             fontWeight: FontWeight.w500,
                             backgroundColor: Colors.black54,
                           ),
@@ -219,8 +217,9 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: Text(
                           '3. Facilitate better teamwork and teach productive conflict.',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize:
+                                Helpers.isIpad() ? Helpers.ipadFontSize() : 15,
                             fontWeight: FontWeight.w500,
                             backgroundColor: Colors.black54,
                           ),
@@ -231,8 +230,9 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: Text(
                           '4. Develop stronger sales skills by identifying and responding to customer styles.',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize:
+                                Helpers.isIpad() ? Helpers.ipadFontSize() : 15,
                             fontWeight: FontWeight.w500,
                             backgroundColor: Colors.black54,
                           ),
@@ -243,13 +243,15 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: Text(
                           '5. Manage more effectively by understanding the dispositions and priorities of employees and team members.',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize:
+                                Helpers.isIpad() ? Helpers.ipadFontSize() : 15,
                             fontWeight: FontWeight.w500,
                             backgroundColor: Colors.black54,
                           ),
                         ),
-                      )
+                      ),
+                      SizedBox(height: 20),
                     ],
                   )),
                 ],

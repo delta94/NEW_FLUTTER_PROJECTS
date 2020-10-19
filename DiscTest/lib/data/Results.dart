@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:seab1ird.showyourself/models/ResultInfo.dart';
-import 'package:seab1ird.showyourself/models/Types.dart';
+import 'package:seab1ird.disctest/models/ResultInfo.dart';
+import 'package:seab1ird.disctest/models/Types.dart';
 
 class Results {
-  static ResultInfo resultInfoD =
-      new ResultInfo(Types.D, 'Dominance', Colors.redAccent, 'images/dominance.png', [
+  static ResultInfo resultInfoD = new ResultInfo(
+      Types.D, 'Dominance', Colors.redAccent, 'images/dominance.png', [
     'According to Integrity Works Coaching, 10-15% of the population identifies with this personality type.',
     'Although “D” type people are direct and straightforward, they are not necessarily hasty. They think things through and do not dive head-in so that later, they can have regrets. A “D” personality will take responsibility for their action, as they have taken the best possible course of action. Other traits include: assertive, dynamic and efficient. Such an individual will not lose time to get to the bottom line. Highly motivated, ambitious and bright, this person will play detective as long as it takes in order to solve the problem!',
     'If competing with a “D” person, be prepared for a hell of a race! Dominant people enjoy challenges and will most certainly rise to the occasion! That means they are goal-oriented and aim high; at the same time, they are very resourceful and adaptive, so they have a reputation of being formidable opponents.',
@@ -39,8 +39,8 @@ class Results {
     'What kind of behaviour should you foresee? Well…',
     '1. Keeping calm and carrying on… \n 2. A real team player \n 3. Friendly with colleagues and supervisors \n 4. Difficulty in prioritizing \n 5. Highly resistant to change'
   ]);
-  static ResultInfo resultInfoC =
-      new ResultInfo(Types.C, 'Caution', Colors.lightGreenAccent, 'images/caution.png', [
+  static ResultInfo resultInfoC = new ResultInfo(
+      Types.C, 'Caution', Colors.lightGreenAccent, 'images/caution.png', [
     'According to Integrity Works Coaching, 15-20% of the population identifies with this personality type.',
     'The only people who can make sense out of the image below are the Cautious personality type also known as The Analyzers. And then they’ll tell you the result isn’t accurate.',
     'In general, “C” people can offer precise details about almost anything. They like to follow rules, both in their professional and personal life. And that’s a good thing because it brings them stability, an aspect they treasure. Because of the fact that they are analytical and systematical, they are really good problem solvers! When focused on solving a task, they get very creative because they see details other people miss.',
@@ -80,7 +80,7 @@ class Results {
       Results.resultInfoS,
       Results.resultInfoC
     ];
-    
+
     return resultInfos;
   }
 }

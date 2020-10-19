@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.showyourself/screens/ResultScreen.dart';
+import 'package:seab1ird.disctest/screens/ResultScreen.dart';
 import 'QuestionProvider.dart';
 import 'helpers/ScaleRoute.dart';
 import 'helpers/SlideRoute.dart';
 import 'screens/DiscTypesScreen.dart';
 import 'screens/HomeScreen.dart';
 import 'screens/IntroScreen.dart';
-import 'screens/TestScreen/TestScreen.dart';
+import 'screens/SplashScreen.dart';
+import 'screens/TestScreen.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<QuestionProvider>(create: (context) => QuestionProvider()),
+        ChangeNotifierProvider<QuestionProvider>(
+            create: (context) => QuestionProvider()),
       ],
       child: MaterialApp(
         title: 'DISC TEST',
         debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
-            case '/':
+            case '/home':
               return ScaleRoute(widget: HomeScreen(), settings: settings);
               break;
             case '/intro':

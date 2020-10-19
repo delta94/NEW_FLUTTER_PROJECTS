@@ -1,16 +1,15 @@
 import 'package:app_review/app_review.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.showyourself/data/Results.dart';
-import 'package:seab1ird.showyourself/helpers/Ads.dart';
-import 'package:seab1ird.showyourself/helpers/BackgroundWidget.dart';
-import 'package:seab1ird.showyourself/helpers/EndLoopController.dart';
-import 'package:seab1ird.showyourself/helpers/Helpers.dart';
-import 'package:seab1ird.showyourself/helpers/ShadowText.dart';
-import 'package:seab1ird.showyourself/models/ResultInfo.dart';
+import 'package:seab1ird.disctest/data/Results.dart';
+import 'package:seab1ird.disctest/helpers/Ads.dart';
+import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
+import 'package:seab1ird.disctest/helpers/EndLoopController.dart';
+import 'package:seab1ird.disctest/helpers/Helpers.dart';
+import 'package:seab1ird.disctest/widgets/ShadowText.dart';
+import 'package:seab1ird.disctest/models/ResultInfo.dart';
 
 class DiscTypesScreen extends StatefulWidget {
   @override
@@ -24,15 +23,10 @@ class _DiscTypesScreenState extends State<DiscTypesScreen> {
     return currentResultInfo.type == resultInfo.type;
   }
 
-  backToHomeScreen(BuildContext context) {
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/', ModalRoute.withName('/discTypes'));
-  }
-
   Widget build(BuildContext context) {
     double marginTop = 0;
-    if (kReleaseMode) {
-      Ads.showInterstitialAd();
+    if (Ads.isReleaseMode()) {
+      // Ads.showInterstitialAd();
       marginTop = 60;
     }
 
@@ -61,8 +55,8 @@ class _DiscTypesScreenState extends State<DiscTypesScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 50,
-                  height: 50,
+                  width: Helpers.isIpad() ? Helpers.ipadIconSize() : 40,
+                  height: Helpers.isIpad() ? Helpers.ipadIconSize() : 40,
                   child: FlareActor(
                     "images/disc.flr",
                     alignment: Alignment.center,
@@ -80,6 +74,7 @@ class _DiscTypesScreenState extends State<DiscTypesScreen> {
                     decoration: TextDecoration.underline,
                     decorationColor: Colors.red,
                     decorationStyle: TextDecorationStyle.solid,
+                    fontSize: Helpers.isIpad() ? Helpers.ipadFontSize() : 20,
                     shadows: [
                       Shadow(
                         color: Colors.red,
@@ -107,6 +102,7 @@ class _DiscTypesScreenState extends State<DiscTypesScreen> {
                   )),
               onTap: () {
                 AppReview.storeListing.then((onValue) {});
+                // LaunchReview.launch(iOSAppId: "1508870026");
               },
             )
           ],
@@ -132,40 +128,48 @@ class _DiscTypesScreenState extends State<DiscTypesScreen> {
                         itemCount: resultInfos.length,
                         itemBuilder: (content, index) {
                           return ButtonTheme(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            buttonColor: isCurrentResultInfo(resultInfos[index])
-                                ? Colors.lightGreenAccent
-                                : Colors.grey,
+                            minWidth: Helpers.deviceSize.width / 5,
                             child: RaisedButton(
                               onPressed: () {
+                                Helpers.tapButtonSound();
                                 setState(() {
                                   currentResultInfo = resultInfos[index];
                                 });
                               },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  isCurrentResultInfo(resultInfos[index])
-                                      ? ShadowText(
-                                          EnumToString.parse(
-                                              resultInfos[index].type),
-                                          style: TextStyle(
-                                            color: Colors.redAccent,
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        )
-                                      : Text(
-                                          EnumToString.parse(
-                                              resultInfos[index].type),
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold,
-                                          ))
-                                ],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              color: isCurrentResultInfo(resultInfos[index])
+                                  ? Colors.lightGreenAccent
+                                  : Colors.grey,
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    isCurrentResultInfo(resultInfos[index])
+                                        ? ShadowText(
+                                            EnumToString.parse(
+                                                resultInfos[index].type),
+                                            style: TextStyle(
+                                              color: Colors.redAccent,
+                                              fontSize: Helpers.isIpad()
+                                                  ? Helpers.ipadFontSize()
+                                                  : 25,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )
+                                        : Text(
+                                            EnumToString.parse(
+                                                resultInfos[index].type),
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: Helpers.isIpad()
+                                                  ? Helpers.ipadFontSize()
+                                                  : 25,
+                                              fontWeight: FontWeight.bold,
+                                            ))
+                                  ],
+                                ),
                               ),
                             ),
                           );
@@ -176,7 +180,9 @@ class _DiscTypesScreenState extends State<DiscTypesScreen> {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10, bottom: 10),
-                    width: Helpers.getDeviceSize(context).width * 2 / 3,
+                    width: Helpers.isIpad()
+                        ? Helpers.getDeviceSize(context).width / 2
+                        : Helpers.getDeviceSize(context).width * 2 / 3,
                     decoration: new BoxDecoration(
                         border: Border.all(width: 5),
                         borderRadius:
@@ -192,15 +198,15 @@ class _DiscTypesScreenState extends State<DiscTypesScreen> {
                   ),
                   ShadowText(
                     EnumToString.parse(currentResultInfo.type) +
-                        ' (' +
-                        currentResultInfo.name +
-                        ') :',
+                        ' (${currentResultInfo.name}) :',
                     style: TextStyle(
                         color: currentResultInfo.color,
                         backgroundColor: Colors.black45,
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.white70,
-                        fontSize: 25,
+                        fontSize: Helpers.isIpad()
+                            ? Helpers.ipadFontSize() * 1.2
+                            : 25,
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -221,6 +227,9 @@ class _DiscTypesScreenState extends State<DiscTypesScreen> {
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
                                   backgroundColor: Colors.black54,
+                                  fontSize: Helpers.isIpad()
+                                      ? Helpers.ipadFontSize()
+                                      : 15,
                                 ),
                               ),
                             );

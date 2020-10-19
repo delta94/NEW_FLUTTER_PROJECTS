@@ -1,16 +1,28 @@
 import 'dart:io';
-import 'dart:math';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-import 'package:seab1ird.showyourself/data/Questions.dart';
-import 'package:seab1ird.showyourself/models/Answer.dart';
-import 'package:seab1ird.showyourself/models/RadioModel.dart';
-import 'package:seab1ird.showyourself/models/UserChoice.dart';
+import 'package:seab1ird.disctest/data/Questions.dart';
+import 'package:seab1ird.disctest/models/Answer.dart';
+import 'package:seab1ird.disctest/models/ColorModel.dart';
+import 'package:seab1ird.disctest/models/RadioModel.dart';
+import 'package:seab1ird.disctest/models/UserChoice.dart';
 import '../QuestionProvider.dart';
-import 'Ads.dart';
 
 class Helpers {
+  static Size deviceSize;
+  static AssetsAudioPlayer animatedAudio = AssetsAudioPlayer();
+  static AssetsAudioPlayer winAudio = AssetsAudioPlayer();
+
+  static tapButtonSound() {
+    animatedAudio.open(Audio('sounds/btnclick.mp3'));
+  }
+
+  static winGameSound() {
+    winAudio.open(Audio('sounds/win.mp3'));
+  }
+
   static Future<bool> onWillPop(BuildContext context) {
-    Ads.showInterstitialAd();
+    // Ads.showInterstitialAd();
     return showDialog(
       context: context,
       builder: (context) => new AlertDialog(
@@ -75,7 +87,7 @@ class Helpers {
 
   static BoxDecoration boxDecoration([Color color]) {
     return BoxDecoration(
-      color: color != null ? color : Color.fromRGBO(80, 80, 80, 1),
+      color: color != null ? color : Colors.black54,
       border: Border.all(width: 3.0),
       borderRadius: BorderRadius.all(Radius.circular(20.0) //
           ),
@@ -92,6 +104,7 @@ class Helpers {
         child: GestureDetector(
           child: row,
           onTap: () {
+            Helpers.tapButtonSound();
             Navigator.pushNamed(context, path, arguments: argument);
           },
         ));
@@ -170,4 +183,32 @@ class Helpers {
     return MediaQuery.of(context).size;
   }
 
+  static bool isIpad() {
+    return deviceSize.width > 700 &&
+        deviceSize.width / deviceSize.height > 0.65;
+  }
+
+  static double ipadIconSize() {
+    return deviceSize.width / 15;
+  }
+
+  static double ipadFontSize() {
+    return deviceSize.width / 30;
+  }
+
+  static List<ColorModel> getGameColors() {
+    return [
+      ColorModel.getColor(35, 52, 200, 'blue'),
+      ColorModel.getColor(220, 180, 2, 'yellow'),
+      ColorModel.getColor(200, 50, 100, 'pink'),
+      ColorModel.getColor(30, 150, 23, 'green'),
+      ColorModel.getColor(150, 23, 180, 'purple'),
+      ColorModel.getColor(200, 30, 10, 'red'),
+    ];
+  }
+}
+
+backToHomeScreen(BuildContext context) {
+  Helpers.tapButtonSound();
+  Navigator.of(context).popUntil(ModalRoute.withName('/home'));
 }

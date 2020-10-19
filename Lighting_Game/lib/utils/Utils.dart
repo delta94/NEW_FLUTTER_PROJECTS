@@ -144,12 +144,12 @@ class Utils {
 
   static List<ColorModel> getGameColors() {
     return [
-      ColorModel.getColor(35, 52, 126, 'blue'),
-      ColorModel.getColor(97, 74, 2, 'yellow'),
-      ColorModel.getColor(95, 23, 62, 'pink'),
-      ColorModel.getColor(30, 99, 23, 'green'),
-      ColorModel.getColor(91, 23, 95, 'purple'),
-      ColorModel.getColor(93, 23, 23, 'red'),
+      ColorModel.getColor(35, 52, 200, 'blue'),
+      ColorModel.getColor(220, 180, 2, 'yellow'),
+      ColorModel.getColor(200, 50, 100, 'pink'),
+      ColorModel.getColor(30, 150, 23, 'green'),
+      ColorModel.getColor(150, 23, 180, 'purple'),
+      ColorModel.getColor(200, 30, 10, 'red'),
     ];
   }
 
@@ -183,7 +183,8 @@ class Utils {
   }
 
   static bool isIpad() {
-    return deviceSize.width / deviceSize.height > 0.65;
+    return deviceSize.width > 700 &&
+        deviceSize.width / deviceSize.height > 0.65;
   }
 
   static double ipadIconSize() {

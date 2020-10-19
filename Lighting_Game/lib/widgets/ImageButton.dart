@@ -41,7 +41,7 @@ class ImageButton extends StatelessWidget {
                       ? Container()
                       : Utils.getImage(iconName,
                           width:
-                              Utils.isIpad() ? Utils.ipadIconSize() * 0.7 : 27),
+                              Utils.isIpad() ? Utils.ipadIconSize() * 0.7 : 20),
                   SizedBox(width: 10),
                   Shimmer.fromColors(
                     baseColor: Colors.black,
@@ -51,7 +51,7 @@ class ImageButton extends StatelessWidget {
                       style: GoogleFonts.tomorrow(
                         color: Colors.black,
                         fontSize:
-                            Utils.isIpad() ? Utils.ipadFontSize() * 0.7 : 23,
+                            Utils.isIpad() ? Utils.ipadFontSize() * 0.7 : 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

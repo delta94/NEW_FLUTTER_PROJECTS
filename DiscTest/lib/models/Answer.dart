@@ -1,6 +1,6 @@
-import 'package:seab1ird.showyourself/models/Types.dart';
+import 'package:seab1ird.disctest/models/Types.dart';
 
-class Answer{
+class Answer {
   final String text;
   final Types type;
 

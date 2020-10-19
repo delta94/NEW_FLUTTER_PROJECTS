@@ -1,6 +1,6 @@
-import 'package:seab1ird.showyourself/models/Types.dart';
+import 'package:seab1ird.disctest/models/Types.dart';
 
-class ViewAnswer{
+class ViewAnswer {
   final String text;
   final Types likeMostType;
   final Types likeLeastType;
