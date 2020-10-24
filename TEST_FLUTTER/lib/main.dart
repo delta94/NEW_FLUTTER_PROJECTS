@@ -1,91 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:unity_ads_flutter/unity_ads_flutter.dart';
+import 'package:adcolony/adcolony.dart';
+import 'package:adcolony/banner.dart';
 
-//TODO use your own ids from the Unity Ads Dashboard
-const String videoPlacementId = 'video';
-const String gameIdAndroid = '3744629';
-const String gameIdIOS = '3744628';
-
-void main() async {
-  runApp(new MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => new _MyAppState();
+  _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with UnityAdsListener {
-  UnityAdsError _error;
-  String _errorMessage;
-  bool _ready;
-
+class _MyAppState extends State<MyApp> {
+  final zones = [
+    'vz4cc427f259db484398',
+    'vz133c5d8e94244a6bb9',
+    'vzd2e91b2bcb614ee79d'
+  ];
   @override
-  initState() {
-    UnityAdsFlutter.initialize(gameIdAndroid, gameIdIOS, this, true);
-    _ready = false;
+  void initState() {
     super.initState();
+    AdColony.init(AdColonyOptions('app061c26d5425b4db8b3', '0', this.zones));
+  }
+
+  listener(AdColonyAdListener event) {
+    print(event);
+    if (event == AdColonyAdListener.onRequestFilled) AdColony.show();
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget body;
-    if (_error != null) {
-      body = new Center(child: new Text('$_error: $_errorMessage'));
-    } else if (_ready) {
-      body = new Center(
-          child: new RaisedButton(
-              onPressed: () {
-                setState(() {
-                  _ready = false;
-                });
-                UnityAdsFlutter.show('video');
-              },
-              child: const Text('Ready')));
-    } else {
-      body = new Center(child: const Text('Waiting for an ad...'));
-    }
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Unity Ads Flutter Example'),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
         ),
-        body: body,
+        body: Center(
+          child: ListView(
+            children: <Widget>[
+              RaisedButton(
+                onPressed: () => AdColony.request(this.zones[1], listener),
+                child: Text('Show Interstitial'),
+              ),
+              RaisedButton(
+                onPressed: () => AdColony.request(this.zones[0], listener),
+                child: Text('Show Interstitial Rewarded'),
+              ),
+              BannerView((AdColonyAdListener event) => print(event),
+                  BannerSizes.banner, this.zones[2]),
+              BannerView((AdColonyAdListener event) => print(event),
+                  BannerSizes.medium, this.zones[2]),
+              BannerView((AdColonyAdListener event) => print(event),
+                  BannerSizes.skyscraper, this.zones[2]),
+              BannerView((AdColonyAdListener event) => print(event),
+                  BannerSizes.leaderboard, this.zones[2]),
+            ],
+          ),
+        ),
       ),
     );
-  }
-
-  @override
-  void onUnityAdsError(UnityAdsError error, String message) {
-    print('$error occurred: $message');
-    setState(() {
-      _error = error;
-      _errorMessage = message;
-    });
-  }
-
-  @override
-  void onUnityAdsFinish(String placementId, FinishState result) {
-    print('Finished $placementId with $result');
-  }
-
-  @override
-  void onUnityAdsReady(String placementId) {
-    print('Ready: $placementId');
-    if (placementId == videoPlacementId) {
-      setState(() {
-        _ready = true;
-      });
-    }
-  }
-
-  @override
-  void onUnityAdsStart(String placementId) {
-    print('Start: $placementId');
-    if (placementId == videoPlacementId) {
-      setState(() {
-        _ready = false;
-      });
-    }
   }
 }

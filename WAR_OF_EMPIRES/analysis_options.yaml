@@ -1,0 +1,10 @@
+include: package:pedantic/analysis_options.yaml
+analyzer:
+  exclude: [lib/generated/intl/**]
+  errors:
+    todo: ignore
+
+linter:
+  rules:
+    - avoid_empty_else
+    - control_flow_in_finally

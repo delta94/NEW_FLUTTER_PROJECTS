@@ -1,0 +1,10 @@
+enum TERRAIN {
+  VALLEY,
+  MARSH,
+  DELTA,
+  WATER,
+  GLACIER,
+  FOREST,
+  HILL,
+  MOUNTAIN,
+}

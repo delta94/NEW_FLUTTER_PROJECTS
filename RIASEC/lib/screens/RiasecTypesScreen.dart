@@ -216,7 +216,7 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                           decoration: TextDecoration.underline,
                           decorationColor: Colors.white70,
                           fontSize: Helpers.isIpad()
-                              ? Helpers.ipadFontSize() * 1.2
+                              ? Helpers.ipadFontSize() * 0.7
                               : 20,
                           fontWeight: FontWeight.bold),
                     ),
