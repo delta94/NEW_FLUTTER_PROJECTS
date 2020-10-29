@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.disctest/data/maps/Map0.dart';
 import 'package:seab1ird.disctest/data/maps/MapList.dart';
 import 'package:seab1ird.disctest/models/Character.dart';
-import 'package:seab1ird.disctest/models/MapWidthHeight.dart';
+import 'package:seab1ird.disctest/models/MaxMapWidthHeight.dart';
 import 'package:seab1ird.disctest/view_models/GameProviderHelper.dart';
 
 import '../models/Cell.dart';
@@ -13,7 +12,8 @@ class GameProvider extends ChangeNotifier {
   Map<Cell, Character> cellCharacters = {};
   Character currentCharacter;
   Cell currentMovingCell;
-  MapWidthHeight mapWidthHeight;
+  MaxMapWidthHeight mapWidthHeight;
+  List<Character> currentEnemies = <Character>[];
 
   void init() {
     mapCells = MapList.getMap(currentMapIndex);
@@ -21,15 +21,26 @@ class GameProvider extends ChangeNotifier {
     GameProviderHelper.renderCharacters(cellCharacters);
   }
 
-  void showCellsCouldMoveTo() {
+  void showAllCellsCouldMoveTo() {
     cellCharacters.forEach((cell, character) =>
         cell.couldBeMovedTo = couldBeMovedTo(character, cell));
+
+    cellCharacters.forEach((cell, character){
+      
+    });
+  }
+
+  bool couldBeMovedTo(Character character, Cell cell) {
+    if (currentCharacter == null) return false;
+    return isCurrentCharacterPosition(character: character, cell: cell) ||
+        GameProviderHelper.isPossiblePositionMovingTo(
+            cellCharacters, currentCharacter, cell);
   }
 
   void onMoveFrom(Cell currentCell, Character character) {
     currentCharacter = character;
     currentMovingCell = currentCell;
-    showCellsCouldMoveTo();
+    showAllCellsCouldMoveTo();
     notifyListeners();
   }
 
@@ -107,11 +118,5 @@ class GameProvider extends ChangeNotifier {
   bool isCurrentCharacterPosition({Character character, Cell cell}) {
     return GameProviderHelper.isCurrentCharacterPosition(
         character, currentCharacter, cell);
-  }
-
-  bool couldBeMovedTo(Character character, Cell cell) {
-    if (currentCharacter == null) return false;
-    return isCurrentCharacterPosition(character: character, cell: cell) ||
-        GameProviderHelper.isPossibleMovingPosition(currentCharacter, cell);
   }
 }

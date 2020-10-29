@@ -6,13 +6,13 @@ Map<CharacterTypeEnum, CharacterType> CharaterTypeMap = {
     attackRange: 1,
     attackStrength: 35,
     characterTypeEnum: CharacterTypeEnum.WARRIOR,
-    movingRange: 2,
+    movingRange: 4,
   ),
   CharacterTypeEnum.ARCHER: CharacterType(
     attackRange: 2,
     attackStrength: 35,
     characterTypeEnum: CharacterTypeEnum.ARCHER,
-    movingRange: 2,
+    movingRange: 4,
   )
 };
 

@@ -3,7 +3,7 @@ import 'package:seab1ird.disctest/data/maps/Map0.dart';
 import 'package:seab1ird.disctest/enums/CharacterTypeEnum.dart';
 import 'package:seab1ird.disctest/models/Cell.dart';
 import 'package:seab1ird.disctest/models/Character.dart';
-import 'package:seab1ird.disctest/models/MapWidthHeight.dart';
+import 'package:seab1ird.disctest/models/MaxMapWidthHeight.dart';
 
 class GameProviderHelper {
   static void renderCharacters(Map<Cell, Character> cellCharacters) {
@@ -34,39 +34,22 @@ class GameProviderHelper {
         cell.y == currentMovingCharacter.y;
   }
 
-  static bool isPossibleMovingPosition(
-      Character currentMovingCharacter, Cell cell) {
+  static bool isPossiblePositionMovingTo(
+    Map<Cell, Character> cellCharacters,
+    Character currentMovingCharacter,
+    Cell cell,
+  ) {
+    // If cell have any character
+    if (cellCharacters[cell] != null) return false;
+
     var _movingRange = currentMovingCharacter.characterType.movingRange;
-    var isSameRow = cell.y == currentMovingCharacter.y;
-    var isSameColumn = cell.x == currentMovingCharacter.x;
+    var xDiff = (cell.x - currentMovingCharacter.x).abs();
+    var yDiff = (cell.y - currentMovingCharacter.y).abs();
 
-    var maxLeftIndex = currentMovingCharacter.x - _movingRange;
-    var maxRightIndex = currentMovingCharacter.x + _movingRange;
-    var maxBottomIndex = currentMovingCharacter.y - _movingRange;
-    var maxTopIndex = currentMovingCharacter.y + _movingRange;
-
-    // Check in the same row
-    var isInMinLeft = isSameRow && (cell.x >= maxLeftIndex);
-    var isInMaxRight = isSameRow && (cell.x <= maxRightIndex);
-
-    // Check in the same column
-    var isInMinBottom = isSameColumn && (cell.y >= maxBottomIndex);
-    var isInMaxTop = isSameColumn && (cell.y <= maxTopIndex);
-
-    // Check Left Right
-    var isInLeftRight = isInMinLeft && isInMaxRight;
-    var isInTopBottom = isInMinBottom && isInMaxTop;
-
-    // Check other postions
-    var isInTopLeftBottomRight = (cell.y < maxTopIndex) &&
-        (cell.x > maxLeftIndex) &&
-        (cell.y > maxBottomIndex) &&
-        (cell.x < maxRightIndex);
-
-    return isInTopLeftBottomRight || isInLeftRight || isInTopBottom;
+    return (xDiff + yDiff) <= _movingRange;
   }
 
-  static MapWidthHeight getMapWidthHeight(List<Cell> mapCells) {
+  static MaxMapWidthHeight getMapWidthHeight(List<Cell> mapCells) {
     int maxWidthIndex = 0;
     int maxHeightIndex = 0;
 
@@ -75,7 +58,7 @@ class GameProviderHelper {
       if (cell.y > maxHeightIndex) maxHeightIndex = cell.y;
     });
 
-    return MapWidthHeight(
+    return MaxMapWidthHeight(
         maxWidth: maxWidthIndex + 1, maxHeight: maxHeightIndex + 1);
   }
 }

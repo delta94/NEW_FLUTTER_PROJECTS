@@ -112,8 +112,14 @@ class _BodyWidgetState extends State<BodyWidget> {
                   gameProvider.mapWidthHeight.maxHeight,
               child: Stack(children: <Widget>[
                 Visibility(
-                  visible: gameProvider.couldBeMovedTo(character, cell),
-                  child: Container(color: Colors.yellow.withOpacity(0.5)),
+                  visible: cell.couldBeMovedTo ?? false,
+                  child: Container(
+                    alignment: Alignment.center,
+                    color: Colors.yellow.withOpacity(0.5),
+                    child: Text(
+                      cell.terrain.resistanceNum.toString(),
+                    ),
+                  ),
                 ),
                 getCharacterImage(cell, character) ?? Container(),
               ]),
@@ -133,13 +139,14 @@ class _BodyWidgetState extends State<BodyWidget> {
           .toLowerCase();
       return Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(3),
-            child: Image.asset('images/$imageName.png'),
-          ),
+          Center(child: Image.asset('images/$imageName.png')),
           Text(
             character.health.toString(),
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 8,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       );

@@ -1,8 +1,8 @@
-enum TERRAIN {
+enum TerrainEnum {
   VALLEY,
   MARSH,
-  DELTA,
   WATER,
+  DELTA,
   GLACIER,
   FOREST,
   HILL,

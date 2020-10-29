@@ -1,4 +1,3 @@
-import 'package:seab1ird.disctest/data/maps/GameMap.dart';
 import 'package:seab1ird.disctest/data/maps/Map0.dart';
 import 'package:seab1ird.disctest/models/Cell.dart';
 

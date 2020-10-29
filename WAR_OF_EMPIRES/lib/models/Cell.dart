@@ -1,12 +1,19 @@
-import 'package:seab1ird.disctest/enums/Terrain.dart';
+import 'package:flutter/cupertino.dart';
+
+import 'Terrain.dart';
 
 class Cell {
   final int x;
   final int y;
-  final TERRAIN terrain;
+  final Terrain terrain;
   bool couldBeMovedTo;
 
-  Cell({this.x, this.y, this.terrain, this.couldBeMovedTo});
+  Cell({
+    @required this.x,
+    @required this.y,
+    this.terrain,
+    this.couldBeMovedTo,
+  });
 
   @override
   bool operator ==(Object other) =>
