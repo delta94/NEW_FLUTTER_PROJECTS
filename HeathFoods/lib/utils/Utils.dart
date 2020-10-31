@@ -1,40 +1,11 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:com.seab1ird.showyourself/helpers/FlareEndlessController.dart';
-import 'package:com.seab1ird.showyourself/model/ColorModel.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/widgets.dart';
+import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
+import 'package:seab1ird.disctest/models/ColorModel.dart';
 
 class Utils {
   static Widget handTouch;
-  static double bottomMenuHeight = 56;
   static Size deviceSize;
-  static Duration animationDuration = Duration(milliseconds: 500);
-  static AssetsAudioPlayer backgroundAudio = AssetsAudioPlayer();
-  static AssetsAudioPlayer animatedAudio = AssetsAudioPlayer();
-  static AssetsAudioPlayer winAudio = AssetsAudioPlayer();
-  static AssetsAudioPlayer connectedAudio = AssetsAudioPlayer();
-
-  static openBackgroundSound() {
-    backgroundAudio.loop = true;
-    backgroundAudio.setVolume(1);
-    backgroundAudio.open(Audio('asset/sounds/music.ogg'));
-  }
-
-  static tapButtonSound() {
-    animatedAudio.open(Audio('asset/sounds/btnclick.ogg'));
-  }
-
-  static tapCellSound() {
-    animatedAudio.open(Audio('asset/sounds/click_cell.ogg'));
-  }
-
-  static connectedSound() {
-    connectedAudio.open(Audio('asset/sounds/connected.ogg'));
-  }
-
-  static winGameSound() {
-    winAudio.open(Audio('asset/sounds/win.ogg'));
-  }
 
   static getImage(String name,
       {double width, bool isFlr: false, bool isShow: true}) {
@@ -45,7 +16,7 @@ class Utils {
     }
     return Opacity(
         opacity: isShow ? 1 : 0,
-        child: Image.asset('asset/images/$name.$extend', width: width));
+        child: Image.asset('images/$name.$extend', width: width));
   }
 
   static Color getOppositeColor(Color color) {
@@ -61,13 +32,26 @@ class Utils {
     return Center(
       child: Container(
         child: FlareActor(
-          "asset/images/$imageName.flr",
+          "images/$imageName.flr",
           alignment: Alignment.center,
           controller: _screenController,
           fit: BoxFit.fill,
         ),
       ),
     );
+  }
+
+  static List<String> getLightTypes() {
+    return [
+      'light',
+      'cake',
+      'kitty_normal',
+      'kitty_smile',
+      'kitty_tongue',
+      'rabbit_smile',
+      'rabbit_normal',
+      'pig'
+    ];
   }
 
   static List<ColorModel> getGameColors() {
@@ -82,7 +66,7 @@ class Utils {
   }
 
   static getBackground(String themeColorName) {
-    return AssetImage('asset/images/bg_$themeColorName.png');
+    return AssetImage('images/bg_$themeColorName.png');
   }
 
   static bool isIpad() {
@@ -90,11 +74,11 @@ class Utils {
         deviceSize.width / deviceSize.height > 0.65;
   }
 
-  static double iconSize() {
-    return isIpad() ? deviceSize.width / 16 : 30;
+  static double ipadIconSize() {
+    return deviceSize.width / 16;
   }
 
-  static double fontSize() {
-    return isIpad() ? deviceSize.width / 25 : 20;
+  static double ipadFontSize() {
+    return deviceSize.width / 25;
   }
 }

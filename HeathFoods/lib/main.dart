@@ -1,32 +1,33 @@
-import 'package:com.seab1ird.showyourself/screens/food_list/FoodScreen.dart';
-import 'package:com.seab1ird.showyourself/screens/SplashScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'model_view/GameProvider.dart';
-
+import 'QuestionProvider.dart';
 import 'widgets/ScaleRoute.dart';
+import 'widgets/SlideRoute.dart';
+import 'screens/FoodsScreen.dart';
+import 'screens/SplashScreen.dart';
 
-main() => runApp(
-      GetMaterialApp(
-        home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider<GameProvider>(
-                create: (context) => GameProvider()),
-          ],
-          child: MaterialApp(
-            title: 'LIGHTING GAME',
-            home: new SplashScreen(),
-            debugShowCheckedModeBanner: false,
-            onGenerateRoute: (RouteSettings settings) {
-              switch (settings.name) {
-                case '/home':
-                  return ScaleRoute(widget: FoodScreen(), settings: settings);
-                default:
-                  return ScaleRoute(widget: FoodScreen(), settings: settings);
-              }
-            },
-          ),
-        ),
+void main() {
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<QuestionProvider>(
+            create: (context) => QuestionProvider()),
+      ],
+      child: MaterialApp(
+        title: 'RIASEC TEST',
+        debugShowCheckedModeBanner: false,
+        home: new SplashScreen(),
+        onGenerateRoute: (RouteSettings settings) {
+          switch (settings.name) {
+            case '/home':
+              return ScaleRoute(widget: FoodsScreen(), settings: settings);
+              break;
+            default:
+              return ScaleRoute(widget: FoodsScreen());
+              break;
+          }
+        },
       ),
-    );
+    ),
+  );
+}

@@ -1,10 +1,42 @@
 import 'dart:math';
-import 'package:com.seab1ird.showyourself/utils/Utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:seab1ird.disctest/helpers/Helpers.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 
+import 'ThemeItem.dart';
+
 typedef DisplayChange = void Function(bool isOpen);
+
+class FabCircularMenuCommon extends StatelessWidget {
+  const FabCircularMenuCommon({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FabCircularMenu(
+      alignment: Alignment.topRight,
+      ringColor: Colors.white,
+      animationDuration: Duration(milliseconds: 500),
+      fabColor: Colors.amber,
+      ringDiameter: Helpers.deviceSize.width,
+      ringWidth: Helpers.deviceSize.width / 5,
+      fabMargin: EdgeInsets.only(top: 35, right: 10),
+      fabSize: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.9 : 35,
+      fabOpenIcon: Image.asset('images/theme.png',
+          width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.9 : 35),
+      children: <Widget>[
+        ThemeItem(index: 0),
+        ThemeItem(index: 1),
+        ThemeItem(index: 2),
+        ThemeItem(index: 3),
+        ThemeItem(index: 4),
+        ThemeItem(index: 5),
+      ],
+    );
+  }
+}
 
 class FabCircularMenu extends StatefulWidget {
   final List<Widget> children;
@@ -178,7 +210,7 @@ class FabCircularMenuState extends State<FabCircularMenu>
               shape: CircleBorder(),
               elevation: widget.fabElevation,
               onPressed: () {
-                Utils.tapButtonSound();
+                Helpers.tapButtonSound();
                 if (_isAnimating) return;
 
                 if (_isOpen) {

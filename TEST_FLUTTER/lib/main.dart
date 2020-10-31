@@ -1,57 +1,69 @@
+// Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:adcolony/adcolony.dart';
-import 'package:adcolony/banner.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  final zones = [
-    'vz4cc427f259db484398',
-    'vz133c5d8e94244a6bb9',
-    'vzd2e91b2bcb614ee79d'
-  ];
-  @override
-  void initState() {
-    super.initState();
-    AdColony.init(AdColonyOptions('app061c26d5425b4db8b3', '0', this.zones));
-  }
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
 
-  listener(AdColonyAdListener event) {
-    print(event);
-    if (event == AdColonyAdListener.onRequestFilled) AdColony.show();
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: ListView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Listener(
+        onPointerUp: (e) => print(' GestureDetector '),
+        behavior: HitTestBehavior.deferToChild,
+        child: Container(
+          color: Colors.blue,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
-                onPressed: () => AdColony.request(this.zones[1], listener),
-                child: Text('Show Interstitial'),
+              Text(
+                'You have pushed the button this many times:',
               ),
-              RaisedButton(
-                onPressed: () => AdColony.request(this.zones[0], listener),
-                child: Text('Show Interstitial Rewarded'),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.headline4,
               ),
-              BannerView((AdColonyAdListener event) => print(event),
-                  BannerSizes.banner, this.zones[2]),
-              BannerView((AdColonyAdListener event) => print(event),
-                  BannerSizes.medium, this.zones[2]),
-              BannerView((AdColonyAdListener event) => print(event),
-                  BannerSizes.skyscraper, this.zones[2]),
-              BannerView((AdColonyAdListener event) => print(event),
-                  BannerSizes.leaderboard, this.zones[2]),
+              InkWell(
+                onTap: () => print(' InkWell '),
+                child: Container(color: Colors.red, child: Text('InkWell')),
+              )
             ],
           ),
         ),

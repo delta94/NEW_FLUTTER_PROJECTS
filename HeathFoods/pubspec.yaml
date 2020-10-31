@@ -1,27 +1,44 @@
-name: com.seab1ird.showyourself
-description: s
+name: seab1ird.disctest
+description: seab1ird
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.1.4
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
+
 module:
   androidX: true
 
 dependencies:
   flutter:
-    sdk: flutter 
-  provider: ^4.3.2
-  enum_to_string: ^1.0.9
-  assets_audio_player: ^1.4.0
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.2
   firebase_admob: ^0.9.0+1
   flare_flutter: 1.7.3
   flare_dart: 2.2.5
   app_review: ^1.0.0
-  google_fonts: ^1.1.0
+  percent_indicator: ^2.1.1+1
+  provider: ^4.0.4
+  pie_chart: ^3.1.1
+  enum_to_string: ^1.0.9
   shared_preferences: ^0.5.8
   shimmer: ^1.1.1
+  google_fonts: ^1.1.0
+  assets_audio_player: ^1.4.0
   bottom_navy_bar: ^5.5.0
-  get: ^3.11.1
 
 dev_dependencies:
   flutter_test:
@@ -30,30 +47,32 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - images/bg_blue.png
+    - images/bg_green.png
+    - images/bg_pink.png
+    - images/bg_purple.png
+    - images/bg_red.png
+    - images/bg_yellow.png
 
-    - asset/images/button_blue.png
-    - asset/images/button_orange.png
-    - asset/images/button_pink.png
-    - asset/images/button_green.png
-    - asset/images/button_red.png
-    - asset/images/button_yellow.png
+    - images/theme.png
+    - images/info.png
+    - images/logo.png
+    - images/exit.png
+    - images/home_icon.png
+    - images/logo_head.png
+    - images/banner.png
 
+    - images/R.png
+    - images/I.png
+    - images/A.png
+    - images/S.png
+    - images/E.png
+    - images/C.png
 
-    - asset/images/theme.png
-    - asset/images/star.png
-    - asset/images/logo.png
-    - asset/images/exit.png
-    - asset/images/bg_blue.png
-    - asset/images/bg_yellow.png
-    - asset/images/bg_green.png
-    - asset/images/bg_pink.png
-    - asset/images/bg_purple.png
-    - asset/images/bg_red.png
-    - asset/images/home_icon.png
+    - images/star.flr
+    - images/riasec.flr
+    - images/logo_head.flr
+    - images/result.flr
 
-    - asset/sounds/music.ogg
-    - asset/sounds/btnclick.ogg
-    - asset/sounds/click_cell.ogg
-    - asset/sounds/win.ogg
-    - asset/sounds/connected.ogg
-
+    - sounds/btnclick.mp3
+    - sounds/win.mp3

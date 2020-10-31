@@ -1,9 +1,11 @@
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:flutter/foundation.dart';
 
-const String APP_ID = "ca-app-pub-1283213356638694~9515662326";
+const String APP_ID = "ca-app-pub-8790092287859946~7642266938";
 
-// const String BANNER_ID = "ca-app-pub-6420987903580707/6622599239";
-const String INTERSTITIAL_ID = "ca-app-pub-1283213356638694/9870885547";
+const String BANNER_ID = "ca-app-pub-8790092287859946/9071108107";
+const String INTERSTITIAL_ID = "";
+const String testDevice = 'YOUR_DEVICE_ID';
 
 class Ads {
   static BannerAd _bannerAd;
@@ -13,18 +15,21 @@ class Ads {
     FirebaseAdMob.instance.initialize(appId: APP_ID);
   }
 
+  static bool isReleaseMode() {
+    return kReleaseMode;
+  }
+
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-      //childDirected: true,
+    testDevices: testDevice != null ? <String>[testDevice] : null,
+  );
 
-      );
-
-  // static BannerAd _createBannerAd() {
-  //   return BannerAd(
-  //     adUnitId: BANNER_ID,
-  //     size: AdSize.banner,
-  //     targetingInfo: targetingInfo,
-  //   );
-  // }
+  static BannerAd _createBannerAd() {
+    return BannerAd(
+      adUnitId: BANNER_ID,
+      size: AdSize.banner,
+      targetingInfo: targetingInfo,
+    );
+  }
 
   static InterstitialAd _createInterstitial() {
     return InterstitialAd(
@@ -33,15 +38,15 @@ class Ads {
     );
   }
 
-  // static void showBannerAd() {
-  //   if (_bannerAd == null) _bannerAd = _createBannerAd();
-  //   _bannerAd
-  //     ..load()
-  //     ..show(
-  //       anchorOffset: 15,
-  //       anchorType: AnchorType.top,
-  //     );
-  // }
+  static void showBannerAd() {
+    if (_bannerAd == null) _bannerAd = _createBannerAd();
+    _bannerAd
+      ..load()
+      ..show(
+        anchorOffset: 110.0,
+        anchorType: AnchorType.top,
+      );
+  }
 
   static void hideBannerAd() async {
     if (_bannerAd != null) {
@@ -50,12 +55,19 @@ class Ads {
     }
   }
 
-  static void loadInterstitialAd() {
-    _interstitialAd = _createInterstitial()..load();
+  static InterstitialAd createInterstitial() {
+    return InterstitialAd(
+      adUnitId: INTERSTITIAL_ID,
+      targetingInfo: targetingInfo,
+    );
   }
 
+  // SHOW/HIDE INTERSTITIAL
   static void showInterstitialAd() {
-    _interstitialAd..show();
+    _interstitialAd = createInterstitial();
+    _interstitialAd
+      ..load()
+      ..show();
   }
 
   static void hideInterstitialAd() async {
