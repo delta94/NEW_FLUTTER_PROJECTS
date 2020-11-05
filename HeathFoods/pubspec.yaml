@@ -62,12 +62,14 @@ flutter:
     - images/logo_head.png
     - images/banner.png
 
-    - images/R.png
-    - images/I.png
-    - images/A.png
-    - images/S.png
-    - images/E.png
-    - images/C.png
+    - images/beverage.png
+    - images/fish.png
+    - images/fruit.png
+    - images/meat.png
+    - images/milk.png
+    - images/nut.png
+    - images/vegetable.png
+    - images/other.png
 
     - images/star.flr
     - images/riasec.flr

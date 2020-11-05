@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'QuestionProvider.dart';
 import 'widgets/ScaleRoute.dart';
 import 'widgets/SlideRoute.dart';
-import 'screens/FoodsScreen.dart';
+import 'screens/food_screen/FoodsScreen.dart';
 import 'screens/SplashScreen.dart';
 
 void main() {

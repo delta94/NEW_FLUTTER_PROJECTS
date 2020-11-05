@@ -3,7 +3,8 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
+import 'package:seab1ird.disctest/helpers/ReponsiveHelper.dart';
+import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
 import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
 import 'package:seab1ird.disctest/helpers/Helpers.dart';
 import 'package:seab1ird.disctest/widgets/ShadowText.dart';
@@ -26,7 +27,7 @@ class _AdviceTipsScreenState extends State<AdviceTipsScreen> {
     final FlareEndlessController _starLoopController =
         FlareEndlessController('Untitled', 1);
 
-    return new WillPopScope(
+    return WillPopScope(
       onWillPop: () {
         Helpers.backToHomeScreen(context);
         return Future<bool>.value(false);
@@ -45,11 +46,10 @@ class _AdviceTipsScreenState extends State<AdviceTipsScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 40,
-                    height:
-                        Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 40,
+                    width: getLargeLogoSize(),
+                    height: getLargeLogoSize(),
                     child: FlareActor(
-                      "images/riasec.flr",
+                      'images/riasec.flr',
                       alignment: Alignment.center,
                       controller: _logoLoopController,
                     ),
@@ -65,7 +65,7 @@ class _AdviceTipsScreenState extends State<AdviceTipsScreen> {
                       decoration: TextDecoration.underline,
                       decorationColor: Colors.red,
                       decorationStyle: TextDecorationStyle.solid,
-                      fontSize: Helpers.isIpad() ? Helpers.ipadFontSize() : 20,
+                      fontSize: getMediumTextSize(),
                       shadows: [
                         Shadow(
                           color: Colors.red,
@@ -79,22 +79,21 @@ class _AdviceTipsScreenState extends State<AdviceTipsScreen> {
                     width: 50,
                   ),
                 ]),
-            iconTheme: new IconThemeData(color: Colors.yellowAccent),
+            iconTheme: IconThemeData(color: Colors.yellowAccent),
             backgroundColor: Colors.black87,
             actions: <Widget>[
               GestureDetector(
                 child: Container(
-                    width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 40,
-                    height:
-                        Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 40,
+                    width: getLargeLogoSize(),
+                    height: getLargeLogoSize(),
                     child: FlareActor(
-                      "images/star.flr",
+                      'images/star.flr',
                       alignment: Alignment.center,
                       controller: _starLoopController,
                     )),
                 onTap: () {
                   AppReview.storeListing.then((onValue) {});
-                  // LaunchReview.launch(iOSAppId: "1508870026");
+                  // LaunchReview.launch(iOSAppId: '1508870026');
                 },
               )
             ],
@@ -114,15 +113,15 @@ class _AdviceTipsScreenState extends State<AdviceTipsScreen> {
                       children: <Widget>[
                         Container(
                           margin: EdgeInsets.only(top: 10, bottom: 10),
-                          width: Helpers.getDeviceSize(context).width / 3,
-                          decoration: new BoxDecoration(
+                          width: ReponsiveHelper.deviceSize.width / 3,
+                          decoration: BoxDecoration(
                               border: Border.all(width: 5),
                               borderRadius:
-                                  new BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(20.0)),
                               shape: BoxShape.rectangle,
                               color: Colors.white12),
-                          child: new ClipRRect(
-                            borderRadius: new BorderRadius.circular(10.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
                             child: Image.asset('images/logo_head.png'),
                           ),
                         ),

@@ -5,12 +5,13 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:seab1ird.disctest/QuestionProvider.dart';
-import 'package:seab1ird.disctest/utils/Utils.dart';
+import 'package:seab1ird.disctest/helpers/ReponsiveHelper.dart';
+import 'package:seab1ird.disctest/helpers/Utils.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
-  _SplashScreenState createState() => new _SplashScreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -28,15 +29,15 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   navigateToHomeScreen() async {
-    var _duration = new Duration(seconds: 3);
-    return new Timer(_duration, navigationPage);
+    var _duration = Duration(seconds: 3);
+    return Timer(_duration, navigationPage);
   }
 
   @override
   Widget build(BuildContext context) {
-    Utils.deviceSize = MediaQuery.of(context).size;
-    return new Scaffold(
-      body: new Container(
+    ReponsiveHelper.deviceSize = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
           image: DecorationImage(

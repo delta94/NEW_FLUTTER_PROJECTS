@@ -1,6 +1,6 @@
 class Food {
   final String name;
-  final double purine;
+  final double acidContent;
 
-  Food(this.name, this.purine);
+  Food(this.name, this.acidContent);
 }

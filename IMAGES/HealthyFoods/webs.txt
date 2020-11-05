@@ -1,12 +1,9 @@
 Foods:
 http://www.purine-direkt.de/index.php?r=food-purin%2Findex2&catid=5&sort=name
-https://www.acumedico.com/purine.htm
-https://www.sciencedirect.com/science/article/pii/S2090123217300541
-https://www.dietaryfiberfood.com/purine-and-uric-acid/purines-food-and-gout/page-2.php
-https://www.jstage.jst.go.jp/article/bpb/37/5/37_b13-00967/_html
+https://www.dietaryfiberfood.com/purine-and-uric-acid/purines-uric-acid-in-beef-pork-chicken/purine-pork.php
 https://www.goutcure.com/purine-food-chart.html
 https://dr-barbara-hendel.com/en/nutrition/tables/purine-content-table/
-file:///C:/Users/Thanh%20Phong/AppData/Local/Temp/163-Article%20Text-170-1-10-20140829.pdf
+https://acumedico.com/purine_ph.htm
 
 Advices: 
 https://www.medicalnewstoday.com/articles/322590#other-tips
@@ -26,3 +23,7 @@ diabetics:
 https://www.eatthis.com/best-foods-diabetes/
 https://www.healthline.com/nutrition/16-best-foods-for-diabetics#6.-Beans
 https://www.webmd.com/diabetes/diabetic-food-list-best-worst-foods
+
+
+Foods nutrions:
+https://books.google.com.vn/books?id=wjKGDAAAQBAJ&pg=PT134&lpg=PT134&dq=Apricot+acid+uric&source=bl&ots=9SCeLqlfDb&sig=ACfU3U3-MVNAcbhwDcjTgB9prGQH6Qduew&hl=vi&sa=X&ved=2ahUKEwjW66bSut7sAhUPxosBHbF-Azg4FBDoATAEegQICBAC#v=onepage&q=Apricot%20acid%20uric&f=false

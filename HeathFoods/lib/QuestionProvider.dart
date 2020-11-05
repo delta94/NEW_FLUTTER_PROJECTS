@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.disctest/utils/Utils.dart';
+import 'package:seab1ird.disctest/helpers/Utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QuestionProvider extends ChangeNotifier {

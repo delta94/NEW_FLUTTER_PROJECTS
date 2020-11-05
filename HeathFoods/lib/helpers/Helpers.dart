@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 const NUM_QUESTIONS_PER_PAGE = 6;
 
 class Helpers {
-  static Size deviceSize;
   static AssetsAudioPlayer animatedAudio = AssetsAudioPlayer();
   static AssetsAudioPlayer winAudio = AssetsAudioPlayer();
 
@@ -106,24 +105,8 @@ class Helpers {
         ));
   }
 
-  static Size getDeviceSize(BuildContext context) {
-    return MediaQuery.of(context).size;
-  }
-
-  static bool isIpad() {
-    return deviceSize.width / deviceSize.height > 0.65;
-  }
-
-  static double ipadIconSize() {
-    return deviceSize.width / 15;
-  }
-
-  static double ipadFontSize() {
-    return deviceSize.width / 24;
-  }
-
   static backToHomeScreen(BuildContext context) {
-    Helpers.tapButtonSound();
+    tapButtonSound();
     Navigator.popUntil(context, ModalRoute.withName('/home'));
   }
 }

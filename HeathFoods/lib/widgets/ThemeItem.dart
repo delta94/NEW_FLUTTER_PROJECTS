@@ -2,8 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:seab1ird.disctest/QuestionProvider.dart';
 import 'package:seab1ird.disctest/helpers/Helpers.dart';
+import 'package:seab1ird.disctest/helpers/ReponsiveHelper.dart';
 import 'package:seab1ird.disctest/models/ColorModel.dart';
-import 'package:seab1ird.disctest/utils/Utils.dart';
+import 'package:seab1ird.disctest/helpers/Utils.dart';
 
 class ThemeItem extends StatelessWidget {
   const ThemeItem({
@@ -28,8 +29,8 @@ class ThemeItem extends StatelessWidget {
         questionProvider.setThemeColorName(colors[index].colorName);
       },
       child: Container(
-        width: Helpers.deviceSize.width / 8,
-        height: Helpers.deviceSize.width / 8,
+        width: ReponsiveHelper.deviceSize.width / 8,
+        height: ReponsiveHelper.deviceSize.width / 8,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: getColor(colors[index]),

@@ -3,7 +3,8 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
+import 'package:seab1ird.disctest/helpers/ReponsiveHelper.dart';
+import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
 import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
 import 'package:seab1ird.disctest/helpers/Helpers.dart';
 import 'package:seab1ird.disctest/widgets/ShadowText.dart';
@@ -37,7 +38,7 @@ class _IntroScreenState extends State<IntroScreen> {
             leading: IconButton(
               icon: Image.asset(
                 'images/home_icon.png',
-                height: 30,
+                height: getMediumLogoize(),
               ),
               onPressed: () => Helpers.backToHomeScreen(context),
             ),
@@ -45,10 +46,10 @@ class _IntroScreenState extends State<IntroScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: Helpers.isIpad() ? Helpers.ipadIconSize() : 40,
-                    height: Helpers.isIpad() ? Helpers.ipadIconSize() : 40,
+                    width: getXXlargeTextSize(),
+                    height: getXXlargeTextSize(),
                     child: FlareActor(
-                      "images/riasec.flr",
+                      'images/riasec.flr',
                       alignment: Alignment.center,
                       controller: _logoLoopController,
                     ),
@@ -64,7 +65,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       decoration: TextDecoration.underline,
                       decorationColor: Colors.red,
                       decorationStyle: TextDecorationStyle.solid,
-                      fontSize: Helpers.isIpad() ? Helpers.ipadFontSize() : 20,
+                      fontSize: getMediumTextSize(),
                       shadows: [
                         Shadow(
                           color: Colors.red,
@@ -83,16 +84,16 @@ class _IntroScreenState extends State<IntroScreen> {
             actions: <Widget>[
               GestureDetector(
                 child: Container(
-                    width: 40,
-                    height: 40,
+                    width: getXLargeLogoSize(),
+                    height: getXLargeLogoSize(),
                     child: FlareActor(
-                      "images/star.flr",
+                      'images/star.flr',
                       alignment: Alignment.center,
                       controller: _starLoopController,
                     )),
                 onTap: () {
                   AppReview.storeListing.then((onValue) {});
-                  // LaunchReview.launch(iOSAppId: "1508870026");
+                  // LaunchReview.launch(iOSAppId: '1508870026');
                 },
               )
             ],

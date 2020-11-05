@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:seab1ird.disctest/helpers/Helpers.dart';
+import 'package:seab1ird.disctest/helpers/ReponsiveHelper.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 
 import 'ThemeItem.dart';
@@ -20,12 +21,11 @@ class FabCircularMenuCommon extends StatelessWidget {
       ringColor: Colors.white,
       animationDuration: Duration(milliseconds: 500),
       fabColor: Colors.amber,
-      ringDiameter: Helpers.deviceSize.width,
-      ringWidth: Helpers.deviceSize.width / 5,
+      ringDiameter: ReponsiveHelper.deviceSize.width,
+      ringWidth: ReponsiveHelper.deviceSize.width / 5,
       fabMargin: EdgeInsets.only(top: 35, right: 10),
-      fabSize: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.9 : 35,
-      fabOpenIcon: Image.asset('images/theme.png',
-          width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.9 : 35),
+      fabSize: getXlargeTextSize(),
+      fabOpenIcon: Image.asset('images/theme.png', width: getXlargeTextSize()),
       children: <Widget>[
         ThemeItem(index: 0),
         ThemeItem(index: 1),
@@ -231,7 +231,7 @@ class FabCircularMenuState extends State<FabCircularMenu>
   }
 
   Widget _applyTransformations(Widget child, int index) {
-    double angleFix = 0.0;
+    var angleFix = 0.0;
     if (widget.alignment.x == 0) {
       angleFix = 45.0 * _directionY.abs();
     } else if (widget.alignment.y == 0) {

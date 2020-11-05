@@ -2,14 +2,14 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/widgets.dart';
 import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
 import 'package:seab1ird.disctest/models/ColorModel.dart';
+import 'package:seab1ird.disctest/models/Food.dart';
 
 class Utils {
   static Widget handTouch;
-  static Size deviceSize;
 
-  static getImage(String name,
+  static Opacity getImage(String name,
       {double width, bool isFlr: false, bool isShow: true}) {
-    String extend = 'png';
+    var extend = 'png';
     if (isFlr) {
       extend = 'flr';
       return getFlareWidget(name, 2);
@@ -22,36 +22,23 @@ class Utils {
   static Color getOppositeColor(Color color) {
     if ((color.red * 0.299 + color.green * 0.587 + color.blue * 0.114) > 186) {
       return Color.fromRGBO(0, 0, 0, 1);
-    } else
+    } else {
       return Color.fromRGBO(255, 255, 255, 1);
+    }
   }
 
   static getFlareWidget(String imageName, double time) {
-    final FlareEndlessController _screenController =
-        FlareEndlessController('Untitled', time);
+    final _screenController = FlareEndlessController('Untitled', time);
     return Center(
       child: Container(
         child: FlareActor(
-          "images/$imageName.flr",
+          'images/$imageName.flr',
           alignment: Alignment.center,
           controller: _screenController,
           fit: BoxFit.fill,
         ),
       ),
     );
-  }
-
-  static List<String> getLightTypes() {
-    return [
-      'light',
-      'cake',
-      'kitty_normal',
-      'kitty_smile',
-      'kitty_tongue',
-      'rabbit_smile',
-      'rabbit_normal',
-      'pig'
-    ];
   }
 
   static List<ColorModel> getGameColors() {
@@ -65,20 +52,12 @@ class Utils {
     ];
   }
 
-  static getBackground(String themeColorName) {
+  static AssetImage getBackground(String themeColorName) {
     return AssetImage('images/bg_$themeColorName.png');
   }
 
-  static bool isIpad() {
-    return deviceSize.width > 700 &&
-        deviceSize.width / deviceSize.height > 0.65;
-  }
-
-  static double ipadIconSize() {
-    return deviceSize.width / 16;
-  }
-
-  static double ipadFontSize() {
-    return deviceSize.width / 25;
+  static List<Food> getSortedAcidUricFoods(List<Food> foods) {
+    foods.sort((a, b) => a.acidContent.compareTo(b.acidContent));
+    return foods;
   }
 }
