@@ -1,21 +1,23 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.showyourself/data/Data.dart';
-import 'package:seab1ird.showyourself/data/wear_item/GirlDressData.dart';
-import 'package:seab1ird.showyourself/data/wear_item/GirlHairData.dart';
-import 'package:seab1ird.showyourself/data/wear_item/GirlJacketData.dart';
-import 'package:seab1ird.showyourself/data/wear_item/GirlShirtData.dart';
-import 'package:seab1ird.showyourself/data/wear_item/GirlShortData.dart';
-import 'package:seab1ird.showyourself/data/wear_item/GirlTreasureData.dart';
-import 'package:seab1ird.showyourself/enums/ItemType.dart';
-import 'package:seab1ird.showyourself/enums/SubItemType.dart';
-import 'package:seab1ird.showyourself/models/DeviceSize.dart';
+import 'package:seabi1rd.weekendfashion/data/Data.dart';
+import 'package:seabi1rd.weekendfashion/data/wear_item/GirlDressData.dart';
+import 'package:seabi1rd.weekendfashion/data/wear_item/GirlHairData.dart';
+import 'package:seabi1rd.weekendfashion/data/wear_item/GirlJacketData.dart';
+import 'package:seabi1rd.weekendfashion/data/wear_item/GirlShirtData.dart';
+import 'package:seabi1rd.weekendfashion/data/wear_item/GirlShortData.dart';
+import 'package:seabi1rd.weekendfashion/data/wear_item/GirlTreasureData.dart';
+import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
+import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
+import 'package:seabi1rd.weekendfashion/models/DeviceSize.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Helper.dart';
 
 class GameProvider extends ChangeNotifier {
   DeviceSize deviceSize;
   int currentGirlIndex;
+  bool isFirstUse = true;
   int changingItemTypeIndex = 0;
   final backgroundAudio = AssetsAudioPlayer();
   final showingItemAudio = AssetsAudioPlayer();
@@ -26,7 +28,9 @@ class GameProvider extends ChangeNotifier {
       new List<Map<ItemType, Map<SubItemType, String>>>();
   List<List<ItemType>> girlItemTypes = new List<List<ItemType>>();
 
-  init() {
+  init() async {
+    var prefs = await SharedPreferences.getInstance();
+    isFirstUse = prefs.getBool('isFirstUse') ?? true;
     backgroundAudio.loop = true;
     backgroundAudio.open(Audio('sounds/background_music.ogg'));
 
@@ -39,8 +43,10 @@ class GameProvider extends ChangeNotifier {
     itemTypeGirlMap[ItemType.TREASURE] = new GirlTreasureData();
     itemTypeGirlMap[ItemType.DRESS] = new GirlDressData();
 
-    selectedItemGirlList.add(new Map<ItemType, Map<SubItemType, String>>());
-    selectedItemGirlList.add(new Map<ItemType, Map<SubItemType, String>>());
+    if (selectedItemGirlList.isEmpty) {
+      selectedItemGirlList.add(new Map<ItemType, Map<SubItemType, String>>());
+      selectedItemGirlList.add(new Map<ItemType, Map<SubItemType, String>>());
+    }
 
     girlItemTypes.add([
       ItemType.HAIR,
@@ -57,6 +63,11 @@ class GameProvider extends ChangeNotifier {
       ItemType.JACKET,
       ItemType.TREASURE
     ]);
+  }
+
+  void setFirstUseToFalse() async {
+    var _prefs = await SharedPreferences.getInstance();
+    await _prefs.setBool('isFirstUse', false);
   }
 
   setGirlItemType(int girlIndex, ItemType itemType, String image,

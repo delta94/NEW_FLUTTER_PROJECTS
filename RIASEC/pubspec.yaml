@@ -29,7 +29,7 @@ dependencies:
   firebase_admob: ^0.9.0+1
   flare_flutter: 1.7.3
   flare_dart: 2.2.5
-  app_review: ^1.0.0
+  in_app_review: ^1.0.2
   percent_indicator: ^2.1.1+1
   provider: ^4.0.4
   pie_chart: ^3.1.1
@@ -47,11 +47,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/bg_blue.png
-    - images/bg_green.png
-    - images/bg_pink.png
-    - images/bg_purple.png
-    - images/bg_red.png
-    - images/bg_yellow.png
+    - images/background.jpg
 
     - images/theme.png
     - images/info.png

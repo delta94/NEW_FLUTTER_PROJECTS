@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'dart:ui' as ui;
 
 class ShadowText extends StatelessWidget {
-  ShadowText(this.data, { this.style }) : assert(data != null);
+  ShadowText(this.data, {this.style}) : assert(data != null);
 
   final String data;
   final TextStyle style;
@@ -13,11 +13,11 @@ class ShadowText extends StatelessWidget {
       child: new Stack(
         children: [
           new Positioned(
-            top: 2.0,
-            left: 2.0,
+            top: 0.2,
+            left: 0.2,
             child: new Text(
               data,
-              style: style.copyWith(color: Colors.black.withOpacity(0.5)),
+              style: style.copyWith(color: Colors.grey.withOpacity(0.5)),
             ),
           ),
           new BackdropFilter(

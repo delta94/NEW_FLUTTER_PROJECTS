@@ -1,4 +1,4 @@
-import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:seabird.disctest/models/Types.dart';
 
 class Answer {
   final String text;

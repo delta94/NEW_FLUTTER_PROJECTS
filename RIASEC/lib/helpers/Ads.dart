@@ -1,5 +1,4 @@
 import 'package:firebase_admob/firebase_admob.dart';
-import 'package:flutter/foundation.dart';
 
 const String APP_ID = "ca-app-pub-8790092287859946~7642266938";
 
@@ -16,7 +15,8 @@ class Ads {
   }
 
   static bool isReleaseMode() {
-    return kReleaseMode;
+    // return kReleaseMode;
+    return false;
   }
 
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
@@ -24,56 +24,56 @@ class Ads {
   );
 
   static BannerAd _createBannerAd() {
-    return BannerAd(
-      adUnitId: BANNER_ID,
-      size: AdSize.banner,
-      targetingInfo: targetingInfo,
-    );
+    // return BannerAd(
+    //   adUnitId: BANNER_ID,
+    //   size: AdSize.banner,
+    //   targetingInfo: targetingInfo,
+    // );
   }
 
   static InterstitialAd _createInterstitial() {
-    return InterstitialAd(
-      adUnitId: INTERSTITIAL_ID,
-      targetingInfo: targetingInfo,
-    );
+    // return InterstitialAd(
+    //   adUnitId: INTERSTITIAL_ID,
+    //   targetingInfo: targetingInfo,
+    // );
   }
 
   static void showBannerAd() {
-    if (_bannerAd == null) _bannerAd = _createBannerAd();
-    _bannerAd
-      ..load()
-      ..show(
-        anchorOffset: 110.0,
-        anchorType: AnchorType.top,
-      );
+    // if (_bannerAd == null) _bannerAd = _createBannerAd();
+    // _bannerAd
+    //   ..load()
+    //   ..show(
+    //     anchorOffset: 110.0,
+    //     anchorType: AnchorType.top,
+    //   );
   }
 
   static void hideBannerAd() async {
-    if (_bannerAd != null) {
-      await _bannerAd.dispose();
-      _bannerAd = null;
-    }
+    // if (_bannerAd != null) {
+    //   await _bannerAd.dispose();
+    //   _bannerAd = null;
+    // }
   }
 
   static InterstitialAd createInterstitial() {
-    return InterstitialAd(
-      adUnitId: INTERSTITIAL_ID,
-      targetingInfo: targetingInfo,
-    );
+    // return InterstitialAd(
+    //   adUnitId: INTERSTITIAL_ID,
+    //   targetingInfo: targetingInfo,
+    // );
   }
 
   // SHOW/HIDE INTERSTITIAL
   static void showInterstitialAd() {
-    _interstitialAd = createInterstitial();
-    _interstitialAd
-      ..load()
-      ..show();
+    // _interstitialAd = createInterstitial();
+    // _interstitialAd
+    //   ..load()
+    //   ..show();
   }
 
   static void hideInterstitialAd() async {
-    await _interstitialAd.dispose();
-    if (_interstitialAd != null) {
-      _interstitialAd = null;
-    }
+    // await _interstitialAd.dispose();
+    // if (_interstitialAd != null) {
+    //   _interstitialAd = null;
+    // }
   }
 }

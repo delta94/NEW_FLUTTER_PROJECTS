@@ -1,6 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/QuestionProvider.dart';
 
 class BackgroundWidget extends StatelessWidget {
   const BackgroundWidget({
@@ -9,12 +8,15 @@ class BackgroundWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionProvider questionProvider = Provider.of<QuestionProvider>(context);
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('images/bg_${questionProvider.themeColorName}.png'),
-          fit: BoxFit.cover,
+    return Opacity(
+      opacity: 0.15,
+      child: Container(
+        // color: Colors.grey[200],
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: AssetImage('images/background.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

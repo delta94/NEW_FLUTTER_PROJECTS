@@ -13,9 +13,17 @@ class QuestionProvider extends ChangeNotifier {
   double maxPercent = 0;
   PercentType maxPercentType;
   String themeColorName;
+  bool isFirstUse = true;
 
-  init() {
+  init() async {
+    var prefs = await SharedPreferences.getInstance();
+    isFirstUse = prefs.getBool('isFirstUse') ?? true;
     getThemeFromShareReference();
+  }
+
+  void setIsFirstUse() async {
+    var _prefs = await SharedPreferences.getInstance();
+    await _prefs.setBool('isFirstUse', false);
   }
 
   updateUserChoice(int id, bool checked) {

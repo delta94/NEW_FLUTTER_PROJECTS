@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/QuestionProvider.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
+import 'package:seabird.disctest/AppProvider.dart';
+import 'package:seabird.disctest/helpers/AdHelpers.dart';
+import 'package:seabird.disctest/helpers/Helpers.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,10 +17,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
+    appProvider.init();
+
+    AdHelpers.showBanner(appProvider);
+    AdHelpers.showInterAd();
     navigateToHomeScreen();
-    QuestionProvider questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
-    questionProvider.init();
+
     super.initState();
   }
 
@@ -28,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   navigateToHomeScreen() async {
-    var _duration = new Duration(seconds: 3);
+    var _duration = new Duration(seconds: 10);
     return new Timer(_duration, navigationPage);
   }
 

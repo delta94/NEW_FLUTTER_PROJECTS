@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.showyourself/helpers/Ads.dart';
-import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
-import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
-import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
-import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
+import 'package:seabi1rd.weekendfashion/helpers/Ads.dart';
+import 'package:seabi1rd.weekendfashion/helpers/AnimationHelper.dart';
+import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabi1rd.weekendfashion/widgets/AnimatedButton.dart';
+import 'package:seabi1rd.weekendfashion/widgets/ChangingScreenAnimation.dart';
 
 import '../routers.dart';
 
@@ -30,7 +30,7 @@ class InitScreenState extends State<InitScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    Ads.showBannerAd();
+    // Ads.showBannerAd();
     Ads.loadInterstitialAd();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);

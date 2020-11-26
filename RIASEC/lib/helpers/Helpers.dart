@@ -86,8 +86,8 @@ class Helpers {
 
   static BoxDecoration boxDecoration([Color color]) {
     return BoxDecoration(
-      color: color != null ? color : Colors.black54,
-      border: Border.all(width: 3.0),
+      color: color != null ? color : Colors.black45,
+      border: Border.all(width: 1),
       borderRadius: BorderRadius.all(Radius.circular(20.0) //
           ),
     );

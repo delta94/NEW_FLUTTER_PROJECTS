@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.showyourself/routers.dart';
+import 'package:seabi1rd.weekendfashion/helpers/Ads.dart';
+import 'package:seabi1rd.weekendfashion/routers.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -12,8 +13,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    super.initState();
+    Ads.loadInterstitialAd();
+    Ads.showInterstitialAd();
     startTime();
+    super.initState();
   }
 
   void navigationPage() {
@@ -21,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   startTime() async {
-    var _duration = new Duration(seconds: 2);
+    var _duration = new Duration(seconds: 3);
     return new Timer(_duration, navigationPage);
   }
 

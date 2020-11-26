@@ -1,10 +1,10 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/foundation.dart';
 
-const String APP_ID = "ca-app-pub-8790092287859946~7642266938";
+const String APP_ID = 'ca-app-pub-8790092287859946~8656132912';
 
-const String BANNER_ID = "ca-app-pub-8790092287859946/9071108107";
-const String INTERSTITIAL_ID = "";
+const String BANNER_ID = 'ca-app-pub-8790092287859946/5515459092';
+const String INTERSTITIAL_ID = 'ca-app-pub-8790092287859946/2090724561';
 const String testDevice = 'YOUR_DEVICE_ID';
 
 class Ads {
@@ -31,13 +31,6 @@ class Ads {
     );
   }
 
-  static InterstitialAd _createInterstitial() {
-    return InterstitialAd(
-      adUnitId: INTERSTITIAL_ID,
-      targetingInfo: targetingInfo,
-    );
-  }
-
   static void showBannerAd() {
     if (_bannerAd == null) _bannerAd = _createBannerAd();
     _bannerAd
@@ -55,19 +48,16 @@ class Ads {
     }
   }
 
-  static InterstitialAd createInterstitial() {
-    return InterstitialAd(
+  static void createInterstitial() {
+    _interstitialAd = InterstitialAd(
       adUnitId: INTERSTITIAL_ID,
       targetingInfo: targetingInfo,
-    );
+    )..load();
   }
 
   // SHOW/HIDE INTERSTITIAL
   static void showInterstitialAd() {
-    _interstitialAd = createInterstitial();
-    _interstitialAd
-      ..load()
-      ..show();
+    _interstitialAd..show();
   }
 
   static void hideInterstitialAd() async {

@@ -1,6 +1,6 @@
-import 'package:seab1ird.disctest/models/Answer.dart';
-import 'package:seab1ird.disctest/models/QuestionInfo.dart';
-import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:seabird.disctest/models/Answer.dart';
+import 'package:seabird.disctest/models/QuestionInfo.dart';
+import 'package:seabird.disctest/models/Types.dart';
 
 final questions = [
   //0

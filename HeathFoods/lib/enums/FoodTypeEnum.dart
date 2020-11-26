@@ -1,10 +1,10 @@
 enum FoodTypeEnum {
-  FRUIT,
+  FRUITS,
   VEGETABLE,
-  NUT,
-  FISH,
-  MEAT,
-  MILK,
-  BEVERAGE,
-  OTHER,
+  NUT_LEGUME,
+  SEAFOODS,
+  MEATS,
+  MILK_PRODUCTS,
+  BEVERAGES,
+  OTHERS,
 }

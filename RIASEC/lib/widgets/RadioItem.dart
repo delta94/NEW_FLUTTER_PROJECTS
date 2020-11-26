@@ -17,15 +17,17 @@ class RadioItem extends StatelessWidget {
           new Container(
             height: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.7 : 25.0,
             width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.7 : 25.0,
+            padding: EdgeInsets.all(Helpers.isIpad() ? 5 : 2),
             decoration: new BoxDecoration(
               border: new Border.all(
-                  width: 1.0, color: isSelected ? Colors.yellow : Colors.grey),
+                  width: isSelected ? 2 : 1.0,
+                  color: isSelected ? Colors.grey : Colors.black),
               borderRadius: const BorderRadius.all(const Radius.circular(40.0)),
             ),
             child: Container(
               height: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.7 : 25.0,
               width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.7 : 25.0,
-              margin: EdgeInsets.all(3),
+              margin: EdgeInsets.all(0),
               decoration: BoxDecoration(
                 color: isSelected
                     ? isSelected
@@ -35,7 +37,7 @@ class RadioItem extends StatelessWidget {
                 boxShadow: isSelected
                     ? [
                         BoxShadow(
-                          color: Colors.yellow.withOpacity(0.5),
+                          color: Colors.grey,
                           spreadRadius: 5,
                           blurRadius: 5,
                           offset: Offset(0, 2),

@@ -1,18 +1,17 @@
 import 'dart:async';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:assets_audio_player/playable.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.showyourself/helpers/Ads.dart';
-import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
-import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
-import 'package:seab1ird.showyourself/routers.dart';
-import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
-import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
+import 'package:seabi1rd.weekendfashion/helpers/AnimationHelper.dart';
+import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabi1rd.weekendfashion/routers.dart';
+import 'package:seabi1rd.weekendfashion/widgets/AnimatedButton.dart';
+import 'package:seabi1rd.weekendfashion/widgets/ChangingScreenAnimation.dart';
 
 class GirlOptionsScreen extends StatefulWidget {
   GirlOptionsScreen({Key key}) : super(key: key);
@@ -36,9 +35,10 @@ class GirlOptionsScreenState extends State<GirlOptionsScreen>
 
   @override
   void initState() {
-    Ads.showInterstitialAd();
+    // Ads.showInterstitialAd();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
+
     girlHeight = gameProvider.deviceSize.height * 0.84;
     activeGirlHeight = girlHeight;
 

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:seab1ird.showyourself/data/Data.dart';
+import 'package:seabi1rd.weekendfashion/data/Data.dart';
 
 class GirlShirtData extends Data {
   GirlShirtData() {
@@ -62,11 +62,11 @@ class GirlShirtData extends Data {
     //2
     itemSubMapList[0][null]['CreatedObject7_26'] = [
       Positioned(
-        right: 130,
-        bottom: 167,
+        right: 131,
+        bottom: 166,
         child: Image.asset(
           "images/CreatedObject7_91.png",
-          width: 129,
+          width: 130,
         ),
       ),
       Positioned(
@@ -122,8 +122,8 @@ class GirlShirtData extends Data {
     //5
     itemSubMapList[0][null]['CreatedObject7_29'] = [
       Positioned(
-        right: 150,
-        bottom: 180,
+        right: 149,
+        bottom: 182,
         child: Image.asset(
           "images/CreatedObject7_94.png",
           width: 90,
@@ -142,7 +142,7 @@ class GirlShirtData extends Data {
     //6
     itemSubMapList[0][null]['CreatedObject7_30'] = [
       Positioned(
-        right: 125,
+        right: 128,
         bottom: 155,
         child: Image.asset(
           "images/CreatedObject7_95.png",

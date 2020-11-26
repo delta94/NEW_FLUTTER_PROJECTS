@@ -2,33 +2,33 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:assets_audio_player/playable.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.showyourself/enums/ItemType.dart';
-import 'package:seab1ird.showyourself/helpers/Ads.dart';
-import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
-import 'package:seab1ird.showyourself/helpers/EndlessController.dart';
-import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
-import 'package:seab1ird.showyourself/widgets/AnimatedButton.dart';
-import 'package:seab1ird.showyourself/widgets/ChangingItemWidget.dart';
-import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
-import 'package:seab1ird.showyourself/widgets/FashionGirl0.dart';
-import 'package:seab1ird.showyourself/widgets/FashionGirl1.dart';
+import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
+import 'package:seabi1rd.weekendfashion/helpers/AnimationHelper.dart';
+import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
+import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabi1rd.weekendfashion/screens/makeup_screen/GirlScreen.dart';
+import 'package:seabi1rd.weekendfashion/widgets/AnimatedButton.dart';
+import 'package:seabi1rd.weekendfashion/widgets/ChangingItemWidget.dart';
+import 'package:seabi1rd.weekendfashion/widgets/ChangingScreenAnimation.dart';
+import 'package:seabi1rd.weekendfashion/widgets/FashionGirl0.dart';
+import 'package:seabi1rd.weekendfashion/widgets/FashionGirl1.dart';
+import 'package:seabi1rd.weekendfashion/widgets/RateButton.dart';
 
 import '../routers.dart';
 
-class PresentScreen extends StatefulWidget {
+class PresentScreen extends UnityScreen {
   PresentScreen({Key key}) : super(key: key);
   PresentScreenState createState() => PresentScreenState();
 }
 
-class PresentScreenState extends State<PresentScreen>
-    with TickerProviderStateMixin {
+class PresentScreenState extends UnityScreenState<PresentScreen> {
   final EndlessController _playButtonController =
       EndlessController('Untitled', 2.25);
   final EndlessController _replayButtonController =
@@ -56,6 +56,12 @@ class PresentScreenState extends State<PresentScreen>
   void initState() {
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
+
+    if (gameProvider.currentGirlIndex == 1 && gameProvider.isFirstUse) {
+      gameProvider.isFirstUse = false;
+      gameProvider.setFirstUseToFalse();
+      InAppReview.instance.requestReview();
+    }
 
     initScreenController = AnimationHelper.getAnimationController(this, 2000);
     initScreenAnimation =
@@ -139,6 +145,7 @@ class PresentScreenState extends State<PresentScreen>
                 child: FlatButton(
                   color: Colors.transparent,
                   onPressed: () {
+                    showAd();
                     AnimationHelper.changeScreenAnimation(
                         changingScreenController,
                         Routers.GIRL_OPTIONS,
@@ -206,7 +213,7 @@ class PresentScreenState extends State<PresentScreen>
                       right: 220,
                       width: 300,
                       bottom: -15,
-                      height: gameProvider.deviceSize.height,
+                      height: gameProvider.deviceSize.height + 20,
                       child: FashionGirl1(gameProvider: gameProvider),
                     )
                   ],
@@ -220,18 +227,90 @@ class PresentScreenState extends State<PresentScreen>
           Visibility(
             visible: isPresent,
             child: Positioned(
-              right: gameProvider.deviceSize.width * 0.04,
+              right: gameProvider.deviceSize.width * 0.14,
+              top: gameProvider.deviceSize.height * 0.07,
+              height: gameProvider.deviceSize.height * 0.2,
+              width: gameProvider.deviceSize.height * 0.2,
+              child: Material(
+                color: Colors.transparent,
+                child: RateButton(),
+              ),
+            ),
+          ),
+          Visibility(
+            visible: isPresent,
+            child: Positioned(
+              right: gameProvider.deviceSize.width * 0.02,
               top: gameProvider.deviceSize.height * 0.07,
               height: gameProvider.deviceSize.height * 0.2,
               width: gameProvider.deviceSize.height * 0.2,
               child: Material(
                 color: Colors.transparent,
                 child: AnimatedButton(
-                    image: 'images/ExitButton.png',
-                    width: gameProvider.deviceSize.height * 0.2,
-                    callback: () => {
-                          exit(0),
-                        }),
+                  image: 'images/ExitButton.png',
+                  width: gameProvider.deviceSize.height * 0.2,
+                  callback: () => showDialog(
+                    context: context,
+                    builder: (context) => new AlertDialog(
+                      backgroundColor: Colors.pink[50],
+                      title: new Text('Quit Game ?',
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 18,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.red,
+                            decorationStyle: TextDecorationStyle.solid,
+                          )),
+                      content: Container(
+                          child: new Text('Are you sure ?',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold))),
+                      actions: <Widget>[
+                        new FlatButton(
+                          onPressed: () => Navigator.of(context).pop(false),
+                          child: new Text(
+                            'No',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.blue,
+                              decorationStyle: TextDecorationStyle.solid,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.greenAccent,
+                                  blurRadius: 10.0,
+                                  offset: Offset(5.0, 5.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        new FlatButton(
+                          onPressed: () => exit(0),
+                          child: new Text(
+                            'Yes',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.red,
+                              decorationStyle: TextDecorationStyle.solid,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.greenAccent,
+                                  blurRadius: 10.0,
+                                  offset: Offset(5.0, 5.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ),

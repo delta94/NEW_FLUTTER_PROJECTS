@@ -1,13 +1,12 @@
-import 'package:app_review/app_review.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:seab1ird.disctest/helpers/Ads.dart';
 import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
 import 'package:seab1ird.disctest/helpers/Helpers.dart';
 import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
 import 'package:seab1ird.disctest/utils/Utils.dart';
-import 'package:seab1ird.disctest/widgets/FabCircularMenu.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -25,9 +24,10 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
+            padding: EdgeInsets.zero,
             icon: Image.asset(
               'images/exit.png',
-              height: Helpers.isIpad() ? Helpers.ipadIconSize() : 40,
+              height: Helpers.isIpad() ? Helpers.ipadIconSize() * 2 : 40,
             ),
             onPressed: () => Helpers.onWillPop(context),
           ),
@@ -76,7 +76,6 @@ class HomeScreen extends StatelessWidget {
           actions: <Widget>[Container(width: 30)],
         ),
         body: BodyWidget(),
-        floatingActionButton: FabCircularMenuCommon(),
       ),
     );
   }
@@ -120,7 +119,7 @@ class _BodyWidgetState extends State<BodyWidget> {
             children: <Widget>[
               Container(
                 decoration: new BoxDecoration(
-                    border: Border.all(width: 5),
+                    border: Border.all(width: 1),
                     borderRadius: new BorderRadius.all(Radius.circular(20.0)),
                     shape: BoxShape.rectangle,
                     color: Colors.white12),
@@ -130,11 +129,12 @@ class _BodyWidgetState extends State<BodyWidget> {
                       height: Helpers.getDeviceSize(context).height / 6),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: Helpers.isIpad() ? 30 : 20),
               Expanded(
                 child: Container(
                   child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 15, horizontal: Helpers.isIpad() ? 40 : 0),
                       child: SingleChildScrollView(
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -155,7 +155,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                                         "Introduction",
                                         style: TextStyle(
                                           fontSize: Helpers.isIpad()
-                                              ? Helpers.ipadIconSize()
+                                              ? Helpers.ipadFontSize() * 1.2
                                               : 25,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
@@ -188,7 +188,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                                         "RIASEC Types",
                                         style: TextStyle(
                                           fontSize: Helpers.isIpad()
-                                              ? Helpers.ipadIconSize()
+                                              ? Helpers.ipadFontSize() * 1.2
                                               : 25,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
@@ -218,23 +218,18 @@ class _BodyWidgetState extends State<BodyWidget> {
                                       ),
                                       SizedBox(width: 10),
                                       Container(
-                                        child: Shimmer.fromColors(
-                                          baseColor: Colors.orange,
-                                          highlightColor: Colors.yellow,
-                                          child: Text(
-                                            'Begin Test',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontSize: Helpers.isIpad()
-                                                  ? Helpers.ipadIconSize()
-                                                  : 30,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.lightGreenAccent,
-                                              decorationColor:
-                                                  Colors.limeAccent,
-                                              decorationStyle:
-                                                  TextDecorationStyle.solid,
-                                            ),
+                                        child: Text(
+                                          'Begin Test',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: Helpers.isIpad()
+                                                ? Helpers.ipadFontSize() * 1.2
+                                                : 30,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            decorationColor: Colors.white,
+                                            decorationStyle:
+                                                TextDecorationStyle.solid,
                                           ),
                                         ),
                                       ),
@@ -272,9 +267,11 @@ class _BodyWidgetState extends State<BodyWidget> {
                                                 controller: _starLoopController,
                                               )),
                                           onTap: () {
-                                            AppReview.storeListing
-                                                .then((onValue) {});
-                                            // LaunchReview.launch(iOSAppId: "1508870026");
+                                            // AppReview.storeListing
+                                            //     .then((onValue) {});
+                                            InAppReview.instance
+                                                .openStoreListing(
+                                                    appStoreId: "1535987884");
                                           },
                                         ),
                                         SizedBox(width: 10),
@@ -282,15 +279,17 @@ class _BodyWidgetState extends State<BodyWidget> {
                                           "Rate 5 stars",
                                           style: TextStyle(
                                               fontSize: Helpers.isIpad()
-                                                  ? Helpers.ipadIconSize()
+                                                  ? Helpers.ipadFontSize() * 1.2
                                                   : 25,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.limeAccent),
+                                              color: Colors.white),
                                         ),
                                       ],
                                     ),
                                     onTap: () {
-                                      AppReview.storeListing.then((onValue) {});
+                                      // AppReview.storeListing.then((onValue) {});
+                                      InAppReview.instance.openStoreListing(
+                                          appStoreId: "1535987884");
                                     },
                                   )),
                               SizedBox(height: Utils.isIpad() ? 20 : 0),
@@ -317,10 +316,10 @@ class _BodyWidgetState extends State<BodyWidget> {
                                           "Exit",
                                           style: TextStyle(
                                               fontSize: Helpers.isIpad()
-                                                  ? Helpers.ipadIconSize()
+                                                  ? Helpers.ipadFontSize() * 1.2
                                                   : 25,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.red),
+                                              color: Colors.white),
                                         ),
                                       ],
                                     ),

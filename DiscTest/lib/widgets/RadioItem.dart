@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.disctest/models/RadioModel.dart';
+import 'package:seabird.disctest/models/RadioModel.dart';
 
 import '../helpers/Helpers.dart';
 
@@ -12,7 +12,7 @@ class RadioItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      margin: new EdgeInsets.all(7),
+      margin: new EdgeInsets.symmetric(vertical: Helpers.isIpad() ? 7: 2),
       child: new Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
@@ -22,7 +22,7 @@ class RadioItem extends StatelessWidget {
             child: new Center(
               child: new Text(_item.buttonText,
                   style: new TextStyle(
-                      color: _item.isSelected ? Colors.white : Colors.grey,
+                      color: _item.isSelected ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0)),
             ),
@@ -38,7 +38,7 @@ class RadioItem extends StatelessWidget {
                       ? _isLikeMost
                           ? Colors.lightBlue
                           : Colors.red
-                      : Colors.grey),
+                      : Colors.black),
               borderRadius: const BorderRadius.all(const Radius.circular(40.0)),
               boxShadow: _item.isSelected
                   ? [
@@ -55,19 +55,19 @@ class RadioItem extends StatelessWidget {
           ),
           Expanded(
             child: new Container(
-              margin: new EdgeInsets.only(left: 10.0),
+              margin: new EdgeInsets.only(left: 5),
               child: new Text(
                 _item.text,
                 style: TextStyle(
                     color: _item.isSelected
                         ? (_isLikeMost
-                            ? Colors.lightGreen
+                            ? Color.fromRGBO(0, 128, 0, 1)
                             : Colors.deepOrange.withOpacity(0.9))
-                        : Colors.white.withOpacity(0.9),
+                        : Colors.black,
                     fontWeight: FontWeight.w500,
-                    backgroundColor: Colors.black,
+                    // backgroundColor: Colors.black,
                     fontSize:
-                        Helpers.isIpad() ? Helpers.ipadIconSize() / 2 : 18),
+                        Helpers.isIpad() ? Helpers.ipadIconSize() / 2 : 17),
               ),
             ),
           )

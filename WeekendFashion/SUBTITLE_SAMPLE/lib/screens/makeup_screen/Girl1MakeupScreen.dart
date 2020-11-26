@@ -5,34 +5,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.showyourself/data/cabin/GirlCabinDressItems.dart';
-import 'package:seab1ird.showyourself/data/cabin/GirlCabinHairItems.dart';
-import 'package:seab1ird.showyourself/data/cabin/GirlCabinJacketItems.dart';
-import 'package:seab1ird.showyourself/data/cabin/GirlCabinShirtItems.dart';
-import 'package:seab1ird.showyourself/data/cabin/GirlCabinShortItems.dart';
-import 'package:seab1ird.showyourself/data/cabin/GirlCabinTreasureItems.dart';
-import 'package:seab1ird.showyourself/enums/ItemType.dart';
-import 'package:seab1ird.showyourself/enums/SubItemType.dart';
-import 'package:seab1ird.showyourself/helpers/Ads.dart';
-import 'package:seab1ird.showyourself/helpers/AnimationHelper.dart';
-import 'package:seab1ird.showyourself/helpers/EndlessController.dart';
+import 'package:seabi1rd.weekendfashion/data/cabin/GirlCabinDressItems.dart';
+import 'package:seabi1rd.weekendfashion/data/cabin/GirlCabinHairItems.dart';
+import 'package:seabi1rd.weekendfashion/data/cabin/GirlCabinJacketItems.dart';
+import 'package:seabi1rd.weekendfashion/data/cabin/GirlCabinShirtItems.dart';
+import 'package:seabi1rd.weekendfashion/data/cabin/GirlCabinShortItems.dart';
+import 'package:seabi1rd.weekendfashion/data/cabin/GirlCabinTreasureItems.dart';
+import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
+import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
+import 'package:seabi1rd.weekendfashion/helpers/AnimationHelper.dart';
+import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
 
-import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
-import 'package:seab1ird.showyourself/routers.dart';
-import 'package:seab1ird.showyourself/widgets/Background.dart';
-import 'package:seab1ird.showyourself/widgets/ChangingItemWidget.dart';
-import 'package:seab1ird.showyourself/widgets/ChangingScreenAnimation.dart';
-import 'package:seab1ird.showyourself/widgets/FashionGirl1.dart';
-import 'package:seab1ird.showyourself/widgets/FinishButton.dart';
-import 'package:seab1ird.showyourself/widgets/NextPreviousButton.dart';
+import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabi1rd.weekendfashion/routers.dart';
+import 'package:seabi1rd.weekendfashion/widgets/Background.dart';
+import 'package:seabi1rd.weekendfashion/widgets/ChangingItemWidget.dart';
+import 'package:seabi1rd.weekendfashion/widgets/ChangingScreenAnimation.dart';
+import 'package:seabi1rd.weekendfashion/widgets/FashionGirl1.dart';
+import 'package:seabi1rd.weekendfashion/widgets/FinishButton.dart';
+import 'package:seabi1rd.weekendfashion/widgets/NextPreviousButton.dart';
 
-class Girl1MakeupScreen extends StatefulWidget {
+import 'GirlScreen.dart';
+
+class Girl1MakeupScreen extends UnityScreen {
   Girl1MakeupScreen({Key key}) : super(key: key);
+  @override
   Girl1MakeupScreenState createState() => Girl1MakeupScreenState();
 }
 
-class Girl1MakeupScreenState extends State<Girl1MakeupScreen>
-    with TickerProviderStateMixin {
+class Girl1MakeupScreenState extends UnityScreenState<Girl1MakeupScreen> {
   Animation<double> initScreenAnimation;
   Animation<double> changingScreenAnimation;
   Animation<double> hairAnimation;
@@ -70,7 +71,7 @@ class Girl1MakeupScreenState extends State<Girl1MakeupScreen>
 
   @override
   void initState() {
-    Ads.loadInterstitialAd();
+    // Ads.loadInterstitialAd();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
 
@@ -288,6 +289,7 @@ class Girl1MakeupScreenState extends State<Girl1MakeupScreen>
             isValid: isValid(gameProvider),
             callback: () {
               gameProvider.currentGirlIndex = 1;
+              showAd();
               Navigator.popAndPushNamed(context, Routers.PRESENT);
             },
           ),

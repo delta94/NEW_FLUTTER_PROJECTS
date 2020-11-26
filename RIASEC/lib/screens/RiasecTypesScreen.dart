@@ -1,8 +1,8 @@
-import 'package:app_review/app_review.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:seab1ird.disctest/data/RiasecTypes.dart';
 import 'package:seab1ird.disctest/helpers/Ads.dart';
 import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
@@ -46,9 +46,11 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
         child: Scaffold(
           appBar: AppBar(
             leading: IconButton(
+              padding: EdgeInsets.zero,
+              iconSize: Helpers.isIpad() ? Helpers.ipadIconSize() * 1.1 : 35,
               icon: Image.asset(
                 'images/home_icon.png',
-                height: 30,
+                width: Helpers.isIpad() ? Helpers.ipadIconSize() * 1.1 : 35,
               ),
               onPressed: () => Helpers.backToHomeScreen(context),
             ),
@@ -94,16 +96,17 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
             actions: <Widget>[
               GestureDetector(
                 child: Container(
-                    width: 40,
-                    height: 40,
+                    width: Helpers.isIpad() ? Helpers.ipadIconSize() : 40,
+                    height: Helpers.isIpad() ? Helpers.ipadIconSize() : 40,
                     child: FlareActor(
                       "images/star.flr",
                       alignment: Alignment.center,
                       controller: _starLoopController,
                     )),
                 onTap: () {
-                  AppReview.storeListing.then((onValue) {});
-                  // LaunchReview.launch(iOSAppId: "1508870026");
+                  // AppReview.storeListing.then((onValue) {});
+                  InAppReview.instance
+                      .openStoreListing(appStoreId: "1535987884");
                 },
               )
             ],
@@ -118,9 +121,7 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     Expanded(
                       flex: 1,
                       child: ListView.builder(
@@ -132,14 +133,14 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                               minWidth: Helpers.deviceSize.width / 7,
                               child: RaisedButton(
                                 color: isCurrentResultInfo(resultInfos[index])
-                                    ? Colors.white.withOpacity(0.9)
+                                    ? Colors.black
                                     : Colors.grey,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   side: isCurrentResultInfo(resultInfos[index])
                                       ? BorderSide(
                                           color: resultInfos[index].color,
-                                          width: 2,
+                                          width: 5,
                                         )
                                       : BorderSide.none,
                                 ),
@@ -160,7 +161,7 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                                             style: TextStyle(
                                               color: resultInfos[index].color,
                                               fontSize: Helpers.isIpad()
-                                                  ? Helpers.ipadFontSize()
+                                                  ? Helpers.ipadFontSize() * 1.2
                                                   : 25,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -171,7 +172,7 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: Helpers.isIpad()
-                                                  ? Helpers.ipadFontSize()
+                                                  ? Helpers.ipadFontSize() * 1.2
                                                   : 20,
                                               fontWeight: FontWeight.bold,
                                             ))
@@ -181,9 +182,7 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                             );
                           }),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     Container(
                       margin: EdgeInsets.only(top: 10, bottom: 10),
                       width: Helpers.isIpad()
@@ -195,34 +194,35 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                               (2 / 3) *
                               (4 / 7),
                       decoration: new BoxDecoration(
-                          border: Border.all(width: 5),
+                          border: Border.all(width: 1),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(20.0)),
                           shape: BoxShape.rectangle,
-                          color: Colors.white12),
+                          color: Colors.black12),
                       child: new ClipRRect(
                           borderRadius: new BorderRadius.circular(10.0),
                           child: Image.asset(currentResultInfo.image)),
                     ),
-                    SizedBox(
-                      height: 10,
+                    SizedBox(height: 10),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: ShadowText(
+                        EnumToString.parse(currentResultInfo.type) +
+                            ': ${currentResultInfo.name} :',
+                        style: TextStyle(
+                            color: currentResultInfo.color,
+                            decoration: TextDecoration.underline,
+                            fontSize: Helpers.isIpad()
+                                ? Helpers.ipadFontSize() * 1.2
+                                : 20,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    ShadowText(
-                      EnumToString.parse(currentResultInfo.type) +
-                          ': ${currentResultInfo.name} :',
-                      style: TextStyle(
-                          color: currentResultInfo.color,
-                          backgroundColor: Colors.black54,
-                          decoration: TextDecoration.underline,
-                          decorationColor: Colors.white70,
-                          fontSize: Helpers.isIpad()
-                              ? Helpers.ipadFontSize() * 0.7
-                              : 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     Expanded(
                       flex: 8,
                       child: Scrollbar(
@@ -235,11 +235,11 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                                 child: Text(
                                   currentResultInfo.texts[index],
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w500,
-                                    backgroundColor: Colors.black54,
+                                    //backgroundColor: Colors.black54,
                                     fontSize: Helpers.isIpad()
-                                        ? Helpers.ipadFontSize()
+                                        ? Helpers.ipadFontSize() * 0.7
                                         : 15,
                                   ),
                                 ),

@@ -8,6 +8,7 @@ class UserChoice {
 
   @override
   String toString() {
-    return 'UserChoice: questionId: $questionId, userAnswer: ' + userAnswer.toString();
+    return 'UserChoice: questionId: $questionId, userAnswer: ' +
+        userAnswer.toString();
   }
 }

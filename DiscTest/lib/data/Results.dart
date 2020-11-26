@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seab1ird.disctest/models/ResultInfo.dart';
-import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:seabird.disctest/models/ResultInfo.dart';
+import 'package:seabird.disctest/models/Types.dart';
 
 class Results {
   static ResultInfo resultInfoD = new ResultInfo(

@@ -1,13 +1,11 @@
-import 'package:app_review/app_review.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/ReponsiveHelper.dart';
-import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/widgets/ShadowText.dart';
+import 'package:seabird.goutfood/data/DietData.dart';
+import 'package:seabird.goutfood/helpers/Ads.dart';
+import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
+import 'package:seabird.goutfood/helpers/Helpers.dart';
+import 'package:seabird.goutfood/models/DataInfo.dart';
+import 'package:seabird.goutfood/widgets/RateButton.dart';
 
 class DietScreen extends StatefulWidget {
   @override
@@ -16,207 +14,175 @@ class DietScreen extends StatefulWidget {
 
 class _DietScreenState extends State<DietScreen> {
   double marginTop = 0;
-
   @override
   Widget build(BuildContext context) {
     if (Ads.isReleaseMode()) {
-      // Ads.showInterstitialAd();
+      Ads.showInterstitialAd();
       marginTop = 60;
     }
 
-    final _logoLoopController = FlareEndlessController('Untitled', 10);
-    final _starLoopController = FlareEndlessController('Untitled', 1);
-
-    return WillPopScope(
-      onWillPop: () {
-        Helpers.backToHomeScreen(context);
-        return Future<bool>.value(false);
-      },
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: Image.asset(
-                'images/home_icon.png',
-                height: 30,
-              ),
-              onPressed: () => Helpers.backToHomeScreen(context),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Image.asset(
+              'images/home_icon.png',
+              height: getMediumLogoSize(),
             ),
-            title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: getLargeLogoSize(),
-                    height: getLargeLogoSize(),
-                    child: FlareActor(
-                      'images/riasec.flr',
-                      alignment: Alignment.center,
-                      controller: _logoLoopController,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ShadowText(
-                    'Introduction',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.lightGreenAccent,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.red,
-                      decorationStyle: TextDecorationStyle.solid,
-                      fontSize: getMediumTextSize(),
-                      shadows: [
-                        Shadow(
-                          color: Colors.red,
-                          blurRadius: 10.0,
-                          offset: Offset(2.0, 2.0),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 50,
-                  ),
-                ]),
-            iconTheme: IconThemeData(color: Colors.yellowAccent),
-            backgroundColor: Colors.black87,
-            actions: <Widget>[
-              GestureDetector(
-                child: Container(
-                    width: getLargeLogoSize(),
-                    height: getLargeLogoSize(),
-                    child: FlareActor(
-                      'images/star.flr',
-                      alignment: Alignment.center,
-                      controller: _starLoopController,
-                    )),
-                onTap: () {
-                  AppReview.storeListing.then((onValue) {});
-                  // LaunchReview.launch(iOSAppId: '1508870026');
-                },
-              )
-            ],
+            onPressed: () => Helpers.backToHomeScreen(context),
           ),
-          body: Stack(
-            children: <Widget>[
-              BackgroundWidget(),
-              Container(
-                color: Colors.transparent,
-                margin: EdgeInsets.only(top: marginTop),
-                padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 10, bottom: 10),
-                          width: getDeviceSize(context).width / 3,
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 5),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                              shape: BoxShape.rectangle,
-                              color: Colors.white12),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset('images/logo_head.png'),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ShadowText(
-                        'What is RIASEC ?',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.limeAccent,
-                          fontWeight: FontWeight.bold,
-                          backgroundColor: Colors.black54,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'The Holland Codes or the Holland Occupational Themes (RIASEC) refers to a theory of careers and vocational choice (based upon personality types) that was initially developed by American psychologist John L. Holland.',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  backgroundColor: Colors.black54,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'The Holland Occupational Themes is a theory of personality that focuses on career and vocational choice. It groups people on the basis of their suitability for six different categories of occupations. The six types yield the RIASEC acronym, by which the theory is also commonly known. The theory was developed by John L. Holland over the course of his career, starting in the 1950s. The typology has come to dominate the field of career counseling and has been incorporated into most of the popular assessments used in the field.',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  backgroundColor: Colors.black54,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'The term Holland Code, Holland Codes and abbreviation RIASEC refer to John Holland\'s six personality types: Realistic (R), Investigative (I), Artistic (A), Social (S), Enterprising (E) and Conventional (C).  According to Holland’s Theory of Career Choice, choosing work or an education program environment that matches, or is similar to your personality, will most likely lead to success and satisfaction.',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  backgroundColor: Colors.black54,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'For a description of each type and how you can use personality-career and personality-major match to increase career satisfaction and academic success, visit our article on Holland\'s Theory of Career Choice. Our advice on career change, how to choose a career path and how to choose a major are based on this popular, respected theory.',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  backgroundColor: Colors.black54,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'For an accurate assessment of all six Holland Codes, take Career Key\'s career test. Instead of giving results as three-letter codes and alphabetical lists of careers, our unique matching system enables you to identify careers and college majors that match your set of interests, traits, skills and abilities. Career Key organizes and scientifically classifies careers, college majors, career clusters, and career pathways by these personality types.',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  backgroundColor: Colors.black54,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+          title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  width: 10,
                 ),
+                Text(
+                  'Diet Menu',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: getMediumTextSize(),
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+              ]),
+          iconTheme: IconThemeData(color: Colors.yellowAccent),
+          backgroundColor: Colors.yellowAccent[100],
+          actions: <Widget>[RateButton()],
+        ),
+        body: Stack(
+          children: <Widget>[
+            Container(
+              color: Colors.transparent,
+              margin: EdgeInsets.only(top: marginTop),
+              child: Column(
+                children: [
+                  SizedBox(height: 10),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [...getDataInfosWidgets(DietData.dietData)],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  List<Widget> getDataInfosWidgets(Map<String, DataInfo> dataInfoMap) {
+    var widgets = <Widget>[];
+    dataInfoMap.forEach((title, dataInfo) {
+      widgets.add(Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.yellowAccent[100],
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: getSmallTextSize(),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                ...getInfosWidgets(dataInfo.infos),
+              ],
+            ),
+          ),
+          SizedBox(height: 15),
+          Divider(color: Colors.black, height: 1, thickness: 1)
+        ],
+      ));
+    });
+
+    return widgets;
+  }
+
+  List<Widget> getInfosWidgets(List<Info> infos) {
+    var widgets = <Widget>[];
+    for (var i = 0; i < infos.length; i++) {
+      widgets.add(
+        Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                  child: Row(
+                    children: [
+                      Text(
+                        infos[i].infoText,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: infos[i].smallInfos.isEmpty
+                              ? FontWeight.normal
+                              : FontWeight.bold,
+                          fontSize: getSmallTextSize(),
+                        ),
+                      ),
+                      ...getSmallInfos(infos[i].smallInfos)
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            if (i < infos.length - 1)
+              Divider(color: Colors.grey[300], height: 1, thickness: 1)
+          ],
+        ),
+      );
+    }
+
+    return widgets;
+  }
+
+  List<Widget> getSmallInfos(List<String> smallInfos) {
+    var widgets = <Widget>[];
+    smallInfos.forEach((smallInfo) {
+      widgets.add(
+        Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  constraints: BoxConstraints(
+                      maxWidth: ReponsiveHelper.deviceSize.width -
+                          (isIpad ? 180 : 140)),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                  child: Column(
+                    children: [
+                      Text(
+                        '$smallInfo',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: getSmallTextSize(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    });
+
+    return widgets;
   }
 }

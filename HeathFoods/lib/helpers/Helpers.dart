@@ -2,27 +2,29 @@ import 'dart:io';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 
+import 'Ads.dart';
+
 const NUM_QUESTIONS_PER_PAGE = 6;
 
 class Helpers {
   static AssetsAudioPlayer animatedAudio = AssetsAudioPlayer();
   static AssetsAudioPlayer winAudio = AssetsAudioPlayer();
 
-  static winGameSound() {
+  static void winGameSound() {
     winAudio.open(Audio('sounds/win.mp3'));
   }
 
-  static tapButtonSound() {
+  static void tapButtonSound() {
     animatedAudio.open(Audio('sounds/btnclick.mp3'));
   }
 
   static Future<bool> onWillPop(BuildContext context) {
-    // Ads.showInterstitialAd();
+    Ads.showInterstitialAd();
     return showDialog(
       context: context,
-      builder: (context) => new AlertDialog(
+      builder: (context) => AlertDialog(
         backgroundColor: Colors.white,
-        title: new Text('Quit App ?',
+        title: Text('Quit App ?',
             style: TextStyle(
               color: Colors.red,
               fontSize: 18,
@@ -31,13 +33,13 @@ class Helpers {
               decorationStyle: TextDecorationStyle.solid,
             )),
         content: Container(
-            child: new Text('Are you sure ?',
+            child: Text('Are you sure ?',
                 style: TextStyle(
                     color: Colors.blue, fontWeight: FontWeight.bold))),
         actions: <Widget>[
-          new FlatButton(
+          FlatButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: new Text(
+            child: Text(
               'No',
               style: TextStyle(
                 color: Colors.blue,
@@ -55,9 +57,9 @@ class Helpers {
               ),
             ),
           ),
-          new FlatButton(
+          FlatButton(
             onPressed: () => exit(0),
-            child: new Text(
+            child: Text(
               'Yes',
               style: TextStyle(
                 color: Colors.red,
@@ -82,27 +84,38 @@ class Helpers {
 
   static BoxDecoration boxDecoration([Color color]) {
     return BoxDecoration(
-      color: color != null ? color : Colors.black54,
-      border: Border.all(width: 3.0),
+      color: color ?? Colors.yellow[100],
+      border: Border.all(width: 1.0),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.yellow[50],
+          blurRadius: 2,
+          spreadRadius: 2,
+          offset: Offset(0, 2),
+        )
+      ],
       borderRadius: BorderRadius.all(Radius.circular(20.0) //
           ),
     );
   }
 
-  static Container getMenuBox(Row row, BuildContext context, String path,
+  static Widget getMenuBox(Row row, BuildContext context, String path,
       [String argument]) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        Helpers.tapButtonSound();
+        Navigator.pushNamed(context, path, arguments: argument);
+      },
+      child: Container(
         padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
         margin: EdgeInsets.only(bottom: 5),
         alignment: Alignment.center,
         decoration: boxDecoration(),
         child: GestureDetector(
           child: row,
-          onTap: () {
-            Helpers.tapButtonSound();
-            Navigator.pushNamed(context, path, arguments: argument);
-          },
-        ));
+        ),
+      ),
+    );
   }
 
   static backToHomeScreen(BuildContext context) {

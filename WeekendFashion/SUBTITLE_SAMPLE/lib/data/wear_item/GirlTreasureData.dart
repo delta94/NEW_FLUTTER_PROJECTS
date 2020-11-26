@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
-import 'package:seab1ird.showyourself/data/Data.dart';
-import 'package:seab1ird.showyourself/enums/SubItemType.dart';
+import 'package:seabi1rd.weekendfashion/data/Data.dart';
+import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
 
 class GirlTreasureData extends Data {
   GirlTreasureData() {
     Data();
     itemSubMapList[0][null] = new Map<String, List<Positioned>>();
     itemSubMapList[0][SubItemType.BAG] = new Map<String, List<Positioned>>();
-    itemSubMapList[0][SubItemType.NECKLET] = new Map<String, List<Positioned>>();
+    itemSubMapList[0][SubItemType.NECKLET] =
+        new Map<String, List<Positioned>>();
     itemSubMapList[0][SubItemType.EARING] = new Map<String, List<Positioned>>();
     itemSubMapList[0][SubItemType.PHONE] = new Map<String, List<Positioned>>();
     itemSubMapList[0][SubItemType.GLASS] = new Map<String, List<Positioned>>();
@@ -216,8 +217,10 @@ class GirlTreasureData extends Data {
     //-------------------------------------2----------------------------
     itemSubMapList[1][null] = new Map<String, List<Positioned>>();
     itemSubMapList[1][SubItemType.BAG] = new Map<String, List<Positioned>>();
-    itemSubMapList[1][SubItemType.NECKLET] = new Map<String, List<Positioned>>();
-    itemSubMapList[1][SubItemType.NECKLACE] = new Map<String, List<Positioned>>();
+    itemSubMapList[1][SubItemType.NECKLET] =
+        new Map<String, List<Positioned>>();
+    itemSubMapList[1][SubItemType.NECKLACE] =
+        new Map<String, List<Positioned>>();
 
     itemSubMapList[1][null][null] = [
       Positioned(

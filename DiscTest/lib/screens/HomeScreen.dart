@@ -1,16 +1,15 @@
-import 'package:app_review/app_review.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/QuestionProvider.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/widgets/FabCircularMenu.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/helpers/EndLoopController.dart';
-import 'package:seab1ird.disctest/widgets/ThemeItem.dart';
-import 'package:seab1ird.disctest/models/UserChoice.dart';
+import 'package:seabird.disctest/AppProvider.dart';
+import 'package:seabird.disctest/helpers/UiUtils.dart';
+import 'package:seabird.disctest/widgets/AdBannerTemplate.dart';
+import 'package:seabird.disctest/widgets/BackgroundWidget.dart';
+import 'package:seabird.disctest/helpers/Helpers.dart';
+import 'package:seabird.disctest/helpers/EndLoopController.dart';
+import 'package:seabird.disctest/models/UserChoice.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,13 +18,12 @@ class HomeScreen extends StatelessWidget {
     Helpers.deviceSize = MediaQuery.of(context).size;
     final EndLoopController _logoHeadLoopController =
         EndLoopController('Untitled', 4);
-    QuestionProvider questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
-    questionProvider.userChoices = new List<UserChoice>();
+    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
+    appProvider.userChoices = new List<UserChoice>();
 
     return new WillPopScope(
       onWillPop: () {
-        Helpers.onWillPop(context);
+        UiUtils.onWillPop(context);
         return Future<bool>.value(false);
       },
       child: Scaffold(
@@ -35,13 +33,13 @@ class HomeScreen extends StatelessWidget {
               'images/exit.png',
               height: Helpers.isIpad() ? Helpers.ipadIconSize() : 40,
             ),
-            onPressed: () => Helpers.onWillPop(context),
+            onPressed: () => UiUtils.onWillPop(context),
           ),
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: <
               Widget>[
             Container(
-                width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 40,
-                height: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 40,
+                width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 30,
+                height: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.8 : 30,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: FlareActor(
@@ -79,45 +77,18 @@ class HomeScreen extends StatelessWidget {
           ]),
           iconTheme: new IconThemeData(color: Colors.yellowAccent),
           backgroundColor: Colors.black87,
-          actions: <Widget>[
-            Container(
-              width: 30,
-            )
-          ],
+          actions: <Widget>[Container(width: 30)],
         ),
         body: BodyWidget(),
-        floatingActionButton: FabCircularMenu(
-          alignment: Alignment.topRight,
-          ringColor: Colors.white,
-          animationDuration: Duration(milliseconds: 500),
-          fabColor: Colors.amber,
-          ringDiameter: Helpers.deviceSize.width,
-          ringWidth: Helpers.deviceSize.width / 5,
-          fabMargin: EdgeInsets.only(top: 35, right: 10),
-          fabSize: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.9 : 35,
-          fabOpenIcon: Image.asset('images/theme.png',
-              width: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.9 : 35),
-          children: <Widget>[
-            ThemeItem(index: 0),
-            ThemeItem(index: 1),
-            ThemeItem(index: 2),
-            ThemeItem(index: 3),
-            ThemeItem(index: 4),
-            ThemeItem(index: 5),
-          ],
-        ),
       ),
     );
   }
 }
 
-class BodyWidget extends StatefulWidget {
-  @override
-  _BodyWidgetState createState() => _BodyWidgetState();
-}
-
-class _BodyWidgetState extends State<BodyWidget> {
+// ignore: must_be_immutable
+class BodyWidget extends StatelessWidget {
   double marginTop = 0;
+  AppProvider appProvider;
 
   final EndLoopController _logoLoopController =
       EndLoopController('Untitled', 10);
@@ -129,28 +100,18 @@ class _BodyWidgetState extends State<BodyWidget> {
       EndLoopController('Untitled', 1);
 
   @override
-  void initState() {
-    if (Ads.isReleaseMode()) {
-      // is Release Mode ??
-      Ads.showBannerAd();
-      marginTop = 60;
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    appProvider = Provider.of<AppProvider>(context, listen: false);
     return Stack(children: <Widget>[
       BackgroundWidget(),
-      Container(
-        margin: EdgeInsets.only(top: marginTop),
-        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+      AdBannerTemplate(
+        needShowSecondBanner: !appProvider.admobLoaded,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
               decoration: new BoxDecoration(
-                  border: Border.all(width: 5),
+                  border: Border.all(width: 1),
                   borderRadius: new BorderRadius.all(Radius.circular(20.0)),
                   shape: BoxShape.rectangle,
                   color: Colors.white12),
@@ -167,7 +128,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Helpers.getMenuBox(
+                        UiUtils.getMenuBox(
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -193,8 +154,8 @@ class _BodyWidgetState extends State<BodyWidget> {
                             ),
                             context,
                             '/intro'),
-                        SizedBox(height: 20),
-                        Helpers.getMenuBox(
+                        SizedBox(height: Helpers.isIpad() ? 20 : 5),
+                        UiUtils.getMenuBox(
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -226,8 +187,8 @@ class _BodyWidgetState extends State<BodyWidget> {
                             ),
                             context,
                             '/discTypes'),
-                        SizedBox(height: 20),
-                        Helpers.getMenuBox(
+                        SizedBox(height: Helpers.isIpad() ? 20 : 5),
+                        UiUtils.getMenuBox(
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -246,22 +207,18 @@ class _BodyWidgetState extends State<BodyWidget> {
                                 ),
                                 SizedBox(width: 10),
                                 Container(
-                                  child: Shimmer.fromColors(
-                                    baseColor: Colors.orange,
-                                    highlightColor: Colors.yellow,
-                                    child: Text(
-                                      'Begin Test',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: Helpers.isIpad()
-                                            ? Helpers.ipadIconSize()
-                                            : 30,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.lightGreenAccent,
-                                        decorationColor: Colors.limeAccent,
-                                        decorationStyle:
-                                            TextDecorationStyle.solid,
-                                      ),
+                                  child: Text(
+                                    'Begin Test',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: Helpers.isIpad()
+                                          ? Helpers.ipadIconSize()
+                                          : 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      decorationColor: Colors.limeAccent,
+                                      decorationStyle:
+                                          TextDecorationStyle.solid,
                                     ),
                                   ),
                                 )
@@ -270,13 +227,13 @@ class _BodyWidgetState extends State<BodyWidget> {
                             context,
                             '/startTest',
                             '0'),
-                        SizedBox(height: 20),
+                        SizedBox(height: Helpers.isIpad() ? 20 : 5),
                         Container(
                             padding:
                                 EdgeInsets.only(left: 10, top: 10, bottom: 10),
                             margin: EdgeInsets.only(bottom: 5),
                             alignment: Alignment.center,
-                            decoration: Helpers.boxDecoration(),
+                            decoration: UiUtils.boxDecoration(),
                             child: GestureDetector(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -295,7 +252,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                                           controller: _starLoopController,
                                         )),
                                     onTap: () {
-                                      AppReview.storeListing.then((onValue) {});
+                                      InAppReview.instance.openStoreListing();
                                       // LaunchReview.launch(iOSAppId: "1508870026");
                                     },
                                   ),
@@ -307,21 +264,21 @@ class _BodyWidgetState extends State<BodyWidget> {
                                             ? Helpers.ipadIconSize()
                                             : 25,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.limeAccent),
+                                        color: Colors.white),
                                   ),
                                 ],
                               ),
                               onTap: () {
-                                AppReview.storeListing.then((onValue) {});
+                                InAppReview.instance.openStoreListing();
                               },
                             )),
-                        SizedBox(height: 20),
+                        SizedBox(height: Helpers.isIpad() ? 20 : 5),
                         Container(
                             padding:
                                 EdgeInsets.only(left: 10, top: 10, bottom: 10),
                             margin: EdgeInsets.only(bottom: 5),
                             alignment: Alignment.center,
-                            decoration: Helpers.boxDecoration(),
+                            decoration: UiUtils.boxDecoration(),
                             child: GestureDetector(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -341,12 +298,12 @@ class _BodyWidgetState extends State<BodyWidget> {
                                             ? Helpers.ipadIconSize()
                                             : 25,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.red),
+                                        color: Colors.white),
                                   ),
                                 ],
                               ),
                               onTap: () {
-                                return Helpers.onWillPop(context);
+                                return UiUtils.onWillPop(context);
                               },
                             )),
                       ]),
@@ -355,7 +312,7 @@ class _BodyWidgetState extends State<BodyWidget> {
             )
           ],
         ),
-      ),
+      )
     ]);
   }
 }

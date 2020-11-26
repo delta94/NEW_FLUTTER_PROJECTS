@@ -1,4 +1,4 @@
-name: seab1ird.disctest
+name: seabird.goutfood
 description: seab1ird
 
 # The following defines the version and build number for your application.
@@ -11,10 +11,10 @@ description: seab1ird
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.1.4
+version: 1.1.9
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 module:
   androidX: true
@@ -26,19 +26,18 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  firebase_admob: ^0.9.0+1
+  firebase_admob: ^0.10.2
   flare_flutter: 1.7.3
   flare_dart: 2.2.5
-  app_review: ^1.0.0
-  percent_indicator: ^2.1.1+1
   provider: ^4.0.4
-  pie_chart: ^3.1.1
   enum_to_string: ^1.0.9
   shared_preferences: ^0.5.8
   shimmer: ^1.1.1
   google_fonts: ^1.1.0
   assets_audio_player: ^1.4.0
-  bottom_navy_bar: ^5.5.0
+  tuple: ^1.0.3
+  in_app_review: ^1.0.2
+  flutter_keyboard_visibility: ^3.2.2
 
 dev_dependencies:
   flutter_test:
@@ -47,20 +46,17 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - images/bg_blue.png
-    - images/bg_green.png
-    - images/bg_pink.png
-    - images/bg_purple.png
-    - images/bg_red.png
-    - images/bg_yellow.png
 
-    - images/theme.png
     - images/info.png
     - images/logo.png
     - images/exit.png
     - images/home_icon.png
-    - images/logo_head.png
     - images/banner.png
+
+    - images/low.png
+    - images/moderate.png
+    - images/high.png
+    - images/all.png
 
     - images/beverage.png
     - images/fish.png
@@ -72,8 +68,6 @@ flutter:
     - images/other.png
 
     - images/star.flr
-    - images/riasec.flr
-    - images/logo_head.flr
     - images/result.flr
 
     - sounds/btnclick.mp3

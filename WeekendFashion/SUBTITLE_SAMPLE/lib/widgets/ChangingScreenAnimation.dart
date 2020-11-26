@@ -1,6 +1,6 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.showyourself/helpers/EndlessController.dart';
+import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
 
 class ChangingScreenAnimation extends StatelessWidget {
   const ChangingScreenAnimation({
@@ -13,7 +13,7 @@ class ChangingScreenAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final EndlessController _transitionAnimatedController =
-      EndlessController('Untitled', 5.0);
+        EndlessController('Untitled', 5.0);
     return Align(
       alignment: Alignment.center,
       child: Transform.translate(

@@ -4,7 +4,7 @@ import 'package:seab1ird.disctest/models/Types.dart';
 
 class RiasecTypes {
   static TypeInfo resultInfoR = new TypeInfo(
-      Types.R, 'Realistic (Doers)', Colors.yellowAccent, 'images/R.png', [
+      Types.R, 'Realistic (Doers)', Colors.yellow[600], 'images/R.png', [
     'Likes to work with animals, tools, or machines; generally avoids social activities like teaching, healing, and informing others;',
     'Has good skills in working with tools, mechanical or electrical drawings, machines, or plants and animals;',
     'Values practical things you can see, touch, and use like plants and animals, tools, equipment, or machines;',
@@ -57,7 +57,7 @@ class RiasecTypes {
   ]);
 
   static TypeInfo resultInfoE = new TypeInfo(
-      Types.E, 'Enterprising (Persuaders)', Colors.green, 'images/E.png', [
+      Types.E, 'Enterprising (Persuaders)', Colors.lightGreen, 'images/E.png', [
     'Likes to lead and persuade people, and to sell things and ideas; generally avoids activities that require careful observation and scientific, analytical thinking;',
     'Is good at leading people and selling things or ideas;',
     'Values success in politics, leadership, or business;',
@@ -70,7 +70,7 @@ class RiasecTypes {
   ]);
 
   static TypeInfo resultInfoC = new TypeInfo(
-      Types.C, 'Conventional (Organizers)', Colors.blue, 'images/C.png', [
+      Types.C, 'Conventional (Organizers)', Colors.blue[200], 'images/C.png', [
     'Likes to work with numbers, records, or machines in a set, orderly way; generally avoids ambiguous, unstructured activities',
     'Is good at working with written records and numbers in a systematic, orderly way;',
     'Values success in business;',

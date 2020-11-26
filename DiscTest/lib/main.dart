@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/screens/ResultScreen.dart';
-import 'QuestionProvider.dart';
+import 'package:seabird.disctest/screens/ResultScreen.dart';
+import 'AppProvider.dart';
 import 'helpers/ScaleRoute.dart';
 import 'helpers/SlideRoute.dart';
 import 'screens/DiscTypesScreen.dart';
@@ -14,8 +14,8 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<QuestionProvider>(
-            create: (context) => QuestionProvider()),
+        ChangeNotifierProvider<AppProvider>(
+            create: (context) => AppProvider()),
       ],
       child: MaterialApp(
         title: 'DISC TEST',

@@ -1,24 +1,28 @@
-import 'package:app_review/app_review.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/QuestionProvider.dart';
-import 'package:seab1ird.disctest/data/Results.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/helpers/EndLoopController.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/models/PercentTypes.dart';
-import 'package:seab1ird.disctest/models/ResultInfo.dart';
-import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:seabird.disctest/AppProvider.dart';
+import 'package:seabird.disctest/data/Results.dart';
+import 'package:seabird.disctest/widgets/AdBannerTemplate.dart';
+import 'package:seabird.disctest/widgets/BackgroundWidget.dart';
+import 'package:seabird.disctest/helpers/EndLoopController.dart';
+import 'package:seabird.disctest/helpers/Helpers.dart';
+import 'package:seabird.disctest/models/PercentTypes.dart';
+import 'package:seabird.disctest/models/ResultInfo.dart';
+import 'package:seabird.disctest/models/Types.dart';
 import 'package:shimmer/shimmer.dart';
 
+// ignore: must_be_immutable
 class ResultScreen extends StatelessWidget {
+  InAppReview inAppReview;
+
   final Map<String, double> dataMap = Map();
+
   final List<Color> colorList = [
     Results.resultInfoD.color,
     Results.resultInfoI.color,
@@ -27,17 +31,16 @@ class ResultScreen extends StatelessWidget {
   ];
 
   Widget build(BuildContext context) {
-    double marginTop = 0;
-    QuestionProvider questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
-
-    if (Ads.isReleaseMode()) {
-      // Ads.showInterstitialAd();
-      marginTop = 60;
+    inAppReview = InAppReview.instance;
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
+    if (appProvider.isFirstUse) {
+      appProvider.isFirstUse = false;
+      appProvider.setFirstUseToFalse();
+      Future.delayed(Duration(seconds: 10), () => inAppReview.requestReview());
     }
 
-    PercentTypes percentTypes = questionProvider.getTypePercents();
-    Types userType = questionProvider.maxPercentType.type;
+    PercentTypes percentTypes = appProvider.getTypePercents();
+    Types userType = appProvider.maxPercentType.type;
     ResultInfo userResultInfo = Results.getResultInfoByType(userType);
 
     final EndLoopController _resultLoopController =
@@ -119,7 +122,7 @@ class ResultScreen extends StatelessWidget {
                     controller: _starLoopController,
                   )),
               onTap: () {
-                AppReview.storeListing.then((onValue) {});
+                InAppReview.instance.openStoreListing();
                 // LaunchReview.launch(iOSAppId: "1508870026");
               },
             )
@@ -128,24 +131,21 @@ class ResultScreen extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             BackgroundWidget(),
-            Container(
-              margin: EdgeInsets.only(top: marginTop),
-              padding: EdgeInsets.only(left: 10, right: 10),
+            AdBannerTemplate(
+              needShowSecondBanner: !appProvider.admobLoaded,
               child: Column(
                 children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 10),
                   Row(
                     children: <Widget>[
                       Expanded(
                         child: Center(
                           child: Text(
                             'The test show that you mostly like: ' +
-                                EnumToString.parse(
-                                    questionProvider.maxPercentType.type),
+                                EnumToString.convertToString(
+                                    appProvider.maxPercentType.type),
                             style: TextStyle(
-                                color: userResultInfo.color,
+                                color: Colors.black,
                                 fontSize: Helpers.isIpad()
                                     ? Helpers.ipadFontSize() * 1.2
                                     : 20,
@@ -170,7 +170,7 @@ class ResultScreen extends StatelessWidget {
                           margin: EdgeInsets.only(top: 10, bottom: 10),
                           width: Helpers.getDeviceSize(context).width * 2 / 3,
                           decoration: new BoxDecoration(
-                              border: Border.all(width: 5),
+                              border: Border.all(width: 1),
                               borderRadius:
                                   new BorderRadius.all(Radius.circular(20.0)),
                               shape: BoxShape.rectangle,
@@ -185,19 +185,27 @@ class ResultScreen extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Shimmer.fromColors(
-                    baseColor: userResultInfo.color,
-                    highlightColor: Colors.white,
-                    child: Text(
-                      EnumToString.parse(questionProvider.maxPercentType.type) +
-                          ' (${userResultInfo.name}) :',
-                      style: TextStyle(
-                        fontSize: Helpers.isIpad()
-                            ? Helpers.ipadFontSize() * 1.2
-                            : 20,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.red,
-                        fontWeight: FontWeight.bold,
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Shimmer.fromColors(
+                      baseColor: userResultInfo.color,
+                      highlightColor: Colors.black,
+                      child: Text(
+                        EnumToString.convertToString(
+                                appProvider.maxPercentType.type) +
+                            ' (${userResultInfo.name}) :',
+                        style: TextStyle(
+                          fontSize: Helpers.isIpad()
+                              ? Helpers.ipadFontSize() * 1.2
+                              : 20,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -213,9 +221,9 @@ class ResultScreen extends StatelessWidget {
                               child: Text(
                                 userResultInfo.texts[index],
                                 style: TextStyle(
-                                  color: Colors.white.withOpacity(0.85),
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w500,
-                                  backgroundColor: Colors.black54,
+                                  // backgroundColor: Colors.black54,
                                   fontSize: Helpers.isIpad()
                                       ? Helpers.ipadFontSize()
                                       : 15,
@@ -255,7 +263,7 @@ class TypesPieChart extends StatelessWidget {
       chartRadius: MediaQuery.of(context).size.width / 2.7,
       showChartValuesInPercentage: true,
       showChartValues: true,
-      legendStyle: TextStyle(color: Colors.white),
+      legendStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       showChartValuesOutside: false,
       chartValueBackgroundColor: Colors.grey[200],
       colorList: colorList,

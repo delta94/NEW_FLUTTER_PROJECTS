@@ -1,0 +1,8 @@
+=> Scroll all web 
+=> F12: copy html 
+=> https://onlinestringtools.com/convert-html-to-string 
+=> https://www.textfixer.com/tools/remove-line-breaks.php
+=> Use notepad++: remove ", 
+=> add: + " in the beginning, 
+=> add: " in the end
+=> Parse text to js file, run

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class ScaleRoute extends PageRouteBuilder {
   final Widget widget;
+  @override
   final RouteSettings settings;
   ScaleRoute({this.widget, this.settings})
       : super(

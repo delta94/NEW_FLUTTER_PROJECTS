@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.showyourself/enums/ItemType.dart';
-import 'package:seab1ird.showyourself/enums/SubItemType.dart';
-import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
-import 'package:seab1ird.showyourself/helpers/Helper.dart';
+import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
+import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
+import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabi1rd.weekendfashion/helpers/Helper.dart';
 
 class FashionGirl0 extends StatelessWidget {
   const FashionGirl0({

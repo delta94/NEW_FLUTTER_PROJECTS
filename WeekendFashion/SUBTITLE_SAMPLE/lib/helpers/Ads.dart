@@ -1,9 +1,9 @@
 import 'package:firebase_admob/firebase_admob.dart';
 
-const String APP_ID = "ca-app-pub-6420987903580707~2632766224";
+const String APP_ID = "ca-app-pub-8790092287859946~1822449061";
 
-const String BANNER_ID = "ca-app-pub-6420987903580707/6622599239";
-const String INTERSTITIAL_ID = "ca-app-pub-6420987903580707/9936541175";
+// const String BANNER_ID = "ca-app-pub-6420987903580707/6622599239";
+const String INTERSTITIAL_ID = "ca-app-pub-8790092287859946/1583610067";
 
 // const String APP_ID = "ca-app-pub-8790092287859946~7642266938";
 
@@ -23,13 +23,13 @@ class Ads {
 
       );
 
-  static BannerAd _createBannerAd() {
-    return BannerAd(
-      adUnitId: BANNER_ID,
-      size: AdSize.banner,
-      targetingInfo: targetingInfo,
-    );
-  }
+  // static BannerAd _createBannerAd() {
+  //   return BannerAd(
+  //     adUnitId: BANNER_ID,
+  //     size: AdSize.banner,
+  //     targetingInfo: targetingInfo,
+  //   );
+  // }
 
   static InterstitialAd _createInterstitial() {
     return InterstitialAd(
@@ -39,13 +39,13 @@ class Ads {
   }
 
   static void showBannerAd() {
-    if (_bannerAd == null) _bannerAd = _createBannerAd();
-    _bannerAd
-      ..load()
-      ..show(
-        anchorOffset: 15,
-        anchorType: AnchorType.top,
-      );
+    // if (_bannerAd == null) _bannerAd = _createBannerAd();
+    // _bannerAd
+    //   ..load()
+    //   ..show(
+    //     anchorOffset: 15,
+    //     anchorType: AnchorType.top,
+    //   );
   }
 
   static void hideBannerAd() async {

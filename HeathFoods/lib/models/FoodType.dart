@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:seab1ird.disctest/enums/FoodTypeEnum.dart';
-import 'package:seab1ird.disctest/models/Food.dart';
+import 'package:seabird.goutfood/enums/FoodTypeEnum.dart';
+import 'package:seabird.goutfood/models/Food.dart';
 
 class FoodType {
   final FoodTypeEnum foodTypeEnum;

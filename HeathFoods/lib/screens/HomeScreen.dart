@@ -1,21 +1,18 @@
-import 'package:app_review/app_review.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/ReponsiveHelper.dart';
-import 'package:seab1ird.disctest/widgets/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
-import 'package:seab1ird.disctest/widgets/FabCircularMenu.dart';
+import 'package:in_app_review/in_app_review.dart';
+import 'package:seabird.goutfood/helpers/Ads.dart';
+import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
+import 'package:seabird.goutfood/helpers/Helpers.dart';
+import 'package:seabird.goutfood/helpers/FlareEndlessController.dart';
+import 'package:seabird.goutfood/widgets/RateButton.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ReponsiveHelper.deviceSize = MediaQuery.of(context).size;
-    final FlareEndlessController _logoHeadLoopController =
-        FlareEndlessController('Untitled', 4);
 
     return WillPopScope(
       onWillPop: () {
@@ -24,60 +21,39 @@ class HomeScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: Image.asset(
-              'images/exit.png',
-              height: getXLargeLogoSize(),
-            ),
-            onPressed: () => Helpers.onWillPop(context),
-          ),
           title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                    width: getLargeLogoSize(),
-                    height: getLargeLogoSize(),
+                    width: getSmallLogoSize(),
+                    height: getSmallLogoSize(),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: FlareActor(
-                        'images/logo_head.flr',
-                        alignment: Alignment.center,
-                        controller: _logoHeadLoopController,
-                      ),
+                      child: Image.asset('images/logo.png',
+                          height: getSmallLogoSize(),
+                          width: getSmallLogoSize()),
                     )),
                 SizedBox(width: 10),
                 FittedBox(
                   fit: BoxFit.fitWidth,
                   child: Shimmer.fromColors(
-                    baseColor: Colors.orange,
-                    highlightColor: Colors.yellowAccent,
+                    baseColor: Colors.black,
+                    highlightColor: Colors.white,
                     child: Text(
-                      'RIASEC TEST',
+                      'GOUT DIET & URIC TABLE',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.yellowAccent,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.greenAccent,
-                        decorationStyle: TextDecorationStyle.solid,
-                        fontSize: getMediumTextSize(),
-                        shadows: [
-                          Shadow(
-                            color: Colors.black,
-                            blurRadius: 10.0,
-                            offset: Offset(5.0, 5.0),
-                          ),
-                        ],
+                        fontSize: getXSSmallTextSize(),
                       ),
                     ),
                   ),
                 ),
               ]),
           iconTheme: IconThemeData(color: Colors.yellowAccent),
-          backgroundColor: Colors.black87,
+          backgroundColor: Colors.yellowAccent[100],
           actions: <Widget>[Container(width: 30)],
         ),
         body: BodyWidget(),
-        floatingActionButton: FabCircularMenuCommon(),
       ),
     );
   }
@@ -91,14 +67,8 @@ class BodyWidget extends StatefulWidget {
 class _BodyWidgetState extends State<BodyWidget> {
   double marginTop = 0;
 
-  final FlareEndlessController _logoLoopController =
-      FlareEndlessController('Untitled', 10);
-
   final FlareEndlessController _resultLoopController =
       FlareEndlessController('Untitled', 4);
-
-  final FlareEndlessController _starLoopController =
-      FlareEndlessController('Untitled', 1);
 
   @override
   void initState() {
@@ -112,8 +82,8 @@ class _BodyWidgetState extends State<BodyWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
-      BackgroundWidget(),
       Container(
+          color: Colors.grey[100],
           margin: EdgeInsets.only(top: marginTop),
           padding: EdgeInsets.only(left: 10, right: 10, top: 10),
           alignment: Alignment.center,
@@ -121,7 +91,7 @@ class _BodyWidgetState extends State<BodyWidget> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                    border: Border.all(width: 5),
+                    border: Border.all(width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     shape: BoxShape.rectangle,
                     color: Colors.white12),
@@ -131,7 +101,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                       height: getDeviceSize(context).height / 6),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Expanded(
                 child: Container(
                   child: Container(
@@ -145,91 +115,77 @@ class _BodyWidgetState extends State<BodyWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Image.asset('images/info.png',
-                                          height: getMediumLogoize(),
-                                          width: getMediumLogoize()),
+                                          height: getMediumLogoSize(),
+                                          width: getMediumLogoSize()),
                                       SizedBox(width: 10),
                                       Text(
-                                        'Introduction',
+                                        'About Gout',
                                         style: TextStyle(
                                           fontSize: getLargeTextSize(),
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ],
                                   ),
                                   context,
-                                  '/intro'),
+                                  '/about'),
                               SizedBox(height: getMenuSpaceSize()),
                               Helpers.getMenuBox(
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Container(
-                                        width: getXLargeLogoSize(),
-                                        height: getXLargeLogoSize(),
-                                        child: FlareActor(
-                                          'images/riasec.flr',
-                                          alignment: Alignment.center,
-                                          controller: _logoLoopController,
-                                        ),
-                                      ),
+                                      Image.asset('images/all.png',
+                                          height: getMediumLogoSize(),
+                                          width: getMediumLogoSize()),
                                       SizedBox(width: 10),
                                       Text(
-                                        'RIASEC Types',
+                                        'Diet Menu',
                                         style: TextStyle(
                                           fontSize: getLargeTextSize(),
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ],
                                   ),
                                   context,
-                                  '/discTypes'),
+                                  '/diet'),
                               SizedBox(height: getMenuSpaceSize()),
                               Helpers.getMenuBox(
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(
-                                        width: isIpad()
-                                            ? ipadIconSize() * 1.5
-                                            : 60,
-                                        height: isIpad()
-                                            ? ipadIconSize() * 1.5
-                                            : 50,
-                                        child: FlareActor(
-                                          'images/result.flr',
-                                          alignment: Alignment.center,
-                                          controller: _resultLoopController,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      width: isIpad ? ipadIconSize() * 1.5 : 60,
+                                      height:
+                                          isIpad ? ipadIconSize() * 1.5 : 50,
+                                      child: FlareActor(
+                                        'images/result.flr',
+                                        alignment: Alignment.center,
+                                        controller: _resultLoopController,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Container(
+                                      child: Text(
+                                        'Acid Uric Table',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: getLargeTextSize(),
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          decorationColor: Colors.limeAccent,
+                                          decorationStyle:
+                                              TextDecorationStyle.solid,
                                         ),
                                       ),
-                                      SizedBox(width: 10),
-                                      Container(
-                                        child: Shimmer.fromColors(
-                                          baseColor: Colors.orange,
-                                          highlightColor: Colors.yellow,
-                                          child: Text(
-                                            'Begin Test',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontSize: getXXlargeTextSize(),
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.lightGreenAccent,
-                                              decorationColor:
-                                                  Colors.limeAccent,
-                                              decorationStyle:
-                                                  TextDecorationStyle.solid,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  context,
-                                  '/startTest',
-                                  '0'),
+                                    ),
+                                  ],
+                                ),
+                                context,
+                                '/foodsScreen',
+                              ),
                               SizedBox(height: getMenuSpaceSize()),
                               Container(
                                   padding: EdgeInsets.only(
@@ -245,33 +201,19 @@ class _BodyWidgetState extends State<BodyWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                        GestureDetector(
-                                          child: Container(
-                                              width: getXXlargeTextSize(),
-                                              height: getXXlargeTextSize(),
-                                              child: FlareActor(
-                                                'images/star.flr',
-                                                alignment: Alignment.center,
-                                                controller: _starLoopController,
-                                              )),
-                                          onTap: () {
-                                            AppReview.storeListing
-                                                .then((onValue) {});
-                                            // LaunchReview.launch(iOSAppId: '1508870026');
-                                          },
-                                        ),
+                                        RateButton(),
                                         SizedBox(width: 10),
                                         Text(
                                           'Rate 5 stars',
                                           style: TextStyle(
                                               fontSize: getLargeTextSize(),
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.limeAccent),
+                                              color: Colors.black),
                                         ),
                                       ],
                                     ),
                                     onTap: () {
-                                      AppReview.storeListing.then((onValue) {});
+                                      InAppReview.instance.openStoreListing();
                                     },
                                   )),
                               SizedBox(height: getMenuSpaceSize()),

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.showyourself/helpers/GameProvider.dart';
+import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
 
 import 'AnimatedButton.dart';
 

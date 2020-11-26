@@ -36,7 +36,8 @@ class _TestScreenState extends State<TestScreen> {
       String questionNum = '${questionList[i].id + 1}. ';
       questionAnswers.add(
         Container(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+          padding: EdgeInsets.symmetric(
+              vertical: Helpers.isIpad() ? 20 : 10, horizontal: 5),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,10 +49,7 @@ class _TestScreenState extends State<TestScreen> {
                       text: TextSpan(
                         text: questionNum,
                         style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          decorationColor: Colors.black,
-                          backgroundColor: Colors.black,
-                          color: Colors.yellowAccent,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: Helpers.isIpad()
                               ? Helpers.ipadIconSize() / 2
@@ -61,10 +59,7 @@ class _TestScreenState extends State<TestScreen> {
                           TextSpan(
                             text: questionList[i].text,
                             style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              decorationColor: Colors.black,
-                              backgroundColor: Colors.black,
-                              color: Colors.greenAccent,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: Helpers.isIpad()
                                   ? Helpers.ipadIconSize() / 2
@@ -150,23 +145,40 @@ class _TestScreenState extends State<TestScreen> {
             width: 40,
           ),
         ]),
-        iconTheme: new IconThemeData(color: Colors.yellowAccent),
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          iconSize: Helpers.isIpad() ? Helpers.ipadIconSize() * 1.2 : 24,
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.yellow,
+            size: Helpers.isIpad() ? Helpers.ipadIconSize() * 0.6 : 20,
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
         backgroundColor: Colors.black87,
         actions: <Widget>[
           pageNum + 1 < Helpers.getNumberPages()
               ? IconButton(
-                  iconSize: Helpers.isIpad() ? Helpers.ipadIconSize() : 24,
+                  iconSize:
+                      Helpers.isIpad() ? Helpers.ipadIconSize() * 1.2 : 24,
                   icon: CircleAvatar(
                       radius: 30,
-                      backgroundColor: Colors.red,
-                      child: Icon(Icons.arrow_forward)),
+                      backgroundColor: Colors.lightGreen,
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.black,
+                        size: Helpers.isIpad()
+                            ? Helpers.ipadIconSize() * 0.6
+                            : 20,
+                      )),
                   onPressed: () => validateAndRoute(context),
                 )
               : InkWell(
                   onTap: () => validateAndRoute(context),
                   child: Container(
-                    width: 60,
-                    height: 60,
+                    width: Helpers.isIpad() ? Helpers.ipadIconSize() * 1.2 : 60,
+                    height:
+                        Helpers.isIpad() ? Helpers.ipadIconSize() * 1.2 : 60,
                     child: FlareActor(
                       "images/result.flr",
                       alignment: Alignment.center,
@@ -186,22 +198,28 @@ class _TestScreenState extends State<TestScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(height: Helpers.isIpad() ? 50 : 20),
                   Row(
                     children: <Widget>[
                       Expanded(
                         child: LinearPercentIndicator(
-                          lineHeight: 8.0,
+                          lineHeight: Helpers.isIpad() ? 30 : 15,
                           animation: true,
+                          center: Text(
+                            '${(percent * 100).toStringAsFixed(1)}%',
+                            style:
+                                TextStyle(fontSize: Helpers.isIpad() ? 25 : 15),
+                          ),
                           animateFromLastPercent: true,
                           animationDuration: 500,
                           percent: percent,
-                          progressColor: Colors.lightGreenAccent,
-                          backgroundColor: Colors.white24,
+                          progressColor: Color.fromRGBO(0, 200, 0, 1),
+                          backgroundColor: Colors.grey,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: Helpers.isIpad() ? 50 : 20),
                   _getListQuestionAnswers(),
                 ],
               ),

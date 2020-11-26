@@ -1,4 +1,4 @@
-import 'package:seab1ird.disctest/models/Food.dart';
+import 'package:seabird.goutfood/models/Food.dart';
 
 class FoodData {
   static List<Food> beverages = [
@@ -52,8 +52,10 @@ class FoodData {
   ];
 
   static List<Food> nuts = [
+    Food('Broad bean', 41.5),
     Food('Peas, green/sugar peas', 150),
     Food('Soybeans, cooked', 81),
+    Food('Broad bean', 41.5),
     Food('Soybeans', 220),
     Food('Beans, thick (beans), cooked', 55),
     Food('Beans, red/kidney', 38),
@@ -194,8 +196,8 @@ class FoodData {
     Food('Bismarck herring, drip', 199),
     Food('Oriental shrimp', 321.1),
     Food('Okiami (krill)', 267.3),
-    Food('Octupus', 159.7),
-    Food('Octupus, organs', 93.1),
+    Food('Octopus', 159.7),
+    Food('Octopus, organs', 93.1),
     Food('Kuruma shrimp', 253.3),
     Food('Sardine', 346),
     Food('Salmon', 180),
@@ -327,14 +329,14 @@ class FoodData {
     Food('Cherry, Morello', 17),
     Food('Cherry, sweet', 7.1),
     Food('Johannisbeeren', 15),
-    Food('cherry, canted', 5),
+    Food('Cherry, canted', 5),
     Food('Apples (dried fruit)', 80),
     Food('Plums (dried fruit)', 111),
     Food('Dates', 50),
     Food('Plums', 24),
     Food('Watermelon', 19),
     Food('Avocado', 30),
-    Food('honigmelone', 24),
+    Food('Honigmelone', 24),
     Food('Pears', 15),
     Food('Fig.', 14),
     Food('Passion fruit', 14),
@@ -344,7 +346,7 @@ class FoodData {
     Food('Grapefruit', 15),
     Food('Squeeze', 20),
     Food('Peach', 18),
-    Food('potato dumplings, cooked', 18),
+    Food('Potato dumplings, cooked', 18),
     Food('Potato pancakes, cooked', 18),
     Food('Roast potatoes, cooked', 14),
     Food('Potatoes, unpeeled, gegart', 10),
@@ -557,6 +559,11 @@ class FoodData {
   ];
 
   static List<Food> vegetables = [
+    Food('Mozuku', 18),
+    Food('Kombu', 54.5),
+    Food('Hijiki', 154.9),
+    Food('Nori', 695.6),
+    Food('Wakame', 306.5),
     Food('Asparagus', 23),
     Food('Asparagus, cooked', 28),
     Food('Brussels sprouts', 69),
@@ -741,7 +748,6 @@ class FoodData {
     Food('Soy sausages', 17),
     Food('Blumenkohl', 47),
     Food('Spice cucumbers', 8),
-    Food('Tomatoes', 11),
     Food('Blue-kraut', 42),
     Food('Maize', 45),
     Food('Sour cream', 19),

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class SlideRoute extends PageRouteBuilder {
   final Widget widget;
+  @override
   final RouteSettings settings;
   SlideRoute({this.widget, this.settings})
       : super(
@@ -19,17 +20,17 @@ class SlideRoute extends PageRouteBuilder {
             Widget widget,
           ) =>
               SlideTransition(
-      position: new Tween<Offset>(
-        begin: const Offset(1.0, 0.0),
-        end: Offset.zero,
-      ).animate(animation),
-      child: new SlideTransition(
-        position: new Tween<Offset>(
-          begin: Offset.zero,
-          end: const Offset(-1.0, 0.0),
-        ).animate(animation2),
-        child: widget,
-      ),
+            position: Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset.zero,
+                end: const Offset(-1.0, 0.0),
+              ).animate(animation2),
+              child: widget,
+            ),
           ),
         );
 }

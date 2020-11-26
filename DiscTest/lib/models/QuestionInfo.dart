@@ -1,4 +1,4 @@
-import 'package:seab1ird.disctest/models/Answer.dart';
+import 'package:seabird.disctest/models/Answer.dart';
 
 class QuestionInfo {
   final String prefixQuestion;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/widgets/RadioItem.dart';
-import 'package:seab1ird.disctest/models/RadioModel.dart';
+import 'package:seabird.disctest/helpers/Helpers.dart';
+import 'package:seabird.disctest/widgets/RadioItem.dart';
+import 'package:seabird.disctest/models/RadioModel.dart';
 
 class OptionItem extends StatefulWidget {
   final bool isHightLight;
@@ -36,7 +36,7 @@ class _OptionItemState extends State<OptionItem> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: widget.isHightLight ? Colors.white24 : Colors.transparent,
+      color: widget.isHightLight ? Colors.grey : Colors.transparent,
       child: InkWell(
         //highlightColor: Colors.red,
         splashColor: Colors.blueAccent,

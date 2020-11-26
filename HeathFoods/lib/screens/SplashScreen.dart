@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/QuestionProvider.dart';
-import 'package:seab1ird.disctest/helpers/ReponsiveHelper.dart';
-import 'package:seab1ird.disctest/helpers/Utils.dart';
+import 'package:seabird.goutfood/AppProvider.dart';
+import 'package:seabird.goutfood/helpers/Ads.dart';
+import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,9 +17,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    QuestionProvider questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
-    questionProvider.init();
+    Ads.createInterstitial();
+    Ads.showInterstitialAd();
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
+    appProvider.init();
     navigateToHomeScreen();
     super.initState();
   }
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.of(context).pushReplacementNamed('/home');
   }
 
-  navigateToHomeScreen() async {
+  Future<Timer> navigateToHomeScreen() async {
     var _duration = Duration(seconds: 3);
     return Timer(_duration, navigationPage);
   }
@@ -39,21 +40,28 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/bg_blue.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        color: Colors.yellow[100],
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Utils.getImage('logo', width: MediaQuery.of(context).size.width / 4),
+          Container(
+            decoration: BoxDecoration(
+                border: Border.all(width: 1),
+                borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                shape: BoxShape.rectangle,
+                color: Colors.white12),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: Image.asset('images/logo.png',
+                  width: MediaQuery.of(context).size.width / 4,
+                  height: MediaQuery.of(context).size.width / 4),
+            ),
+          ),
           SizedBox(height: 20),
           Center(
             child: Shimmer.fromColors(
               baseColor: Colors.orange,
               highlightColor: Colors.yellow,
               child: Text(
-                'RIASEC TEST',
+                'GOUT DIET - URIC TABLE',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.tomorrow(
                   fontWeight: FontWeight.bold,
