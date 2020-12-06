@@ -1,7 +1,7 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
-import 'package:seab1ird.disctest/models/ColorModel.dart';
+import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
+import 'package:seabird.riasectest/models/ColorModel.dart';
 
 class Utils {
   static Widget handTouch;

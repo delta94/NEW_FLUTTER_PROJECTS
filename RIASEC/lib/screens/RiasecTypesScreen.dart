@@ -3,13 +3,15 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:seab1ird.disctest/data/RiasecTypes.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/widgets/ShadowText.dart';
-import 'package:seab1ird.disctest/models/TypeInfo.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.riasectest/AppProvider.dart';
+import 'package:seabird.riasectest/data/RiasecTypes.dart';
+import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
+import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
+import 'package:seabird.riasectest/helpers/Helpers.dart';
+import 'package:seabird.riasectest/widgets/AdBannerTemplate.dart';
+import 'package:seabird.riasectest/widgets/ShadowText.dart';
+import 'package:seabird.riasectest/models/TypeInfo.dart';
 
 class RiasecTypesScreen extends StatefulWidget {
   @override
@@ -24,12 +26,7 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
   }
 
   Widget build(BuildContext context) {
-    double marginTop = 0;
-    if (Ads.isReleaseMode()) {
-      // Ads.showInterstitialAd();
-      marginTop = 60;
-    }
-
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
     final FlareEndlessController _logoLoopController =
         FlareEndlessController('Untitled', 10);
     final FlareEndlessController _starLoopController =
@@ -114,10 +111,8 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
           body: Stack(
             children: <Widget>[
               BackgroundWidget(),
-              Container(
-                color: Colors.transparent,
-                margin: EdgeInsets.only(top: marginTop),
-                padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+              AdBannerTemplate(
+                needShowSecondBanner: !appProvider.admobLoaded,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -184,7 +179,7 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      margin: EdgeInsets.only(top: 10, bottom: 10),
+                      margin: EdgeInsets.only(bottom: 10),
                       width: Helpers.isIpad()
                           ? Helpers.getDeviceSize(context).width / 2
                           : Helpers.getDeviceSize(context).width * 2 / 3,

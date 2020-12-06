@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-import 'package:seab1ird.disctest/data/Questions.dart';
-import 'package:seab1ird.disctest/models/Question.dart';
-import 'package:seab1ird.disctest/utils/Utils.dart';
+import 'package:seabird.riasectest/data/Questions.dart';
+import 'package:seabird.riasectest/models/Question.dart';
+import 'package:seabird.riasectest/utils/Utils.dart';
 
 const NUM_QUESTIONS_PER_PAGE = 6;
 

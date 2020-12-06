@@ -1,11 +1,17 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.biometry/AppProvider.dart';
+import 'package:seabird.biometry/helpers/AdBannerTemplate.dart';
+import 'package:seabird.biometry/helpers/Ads.dart';
 import 'package:seabird.biometry/helpers/CommonFunctions.dart';
 
 class W extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //Ads.loadInterstitialAd();
+    Ads.showInterstitialAd();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: Colors.black12, //or set color with: Color(0xFF0000FF)
@@ -15,67 +21,82 @@ class W extends StatelessWidget {
         PageController(initialPage: 0, keepPage: false);
     num deviceWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-        appBar: AppBar(
-            title: Row(children: <Widget>[
-              Image.asset('images/eagle.png', width: deviceWidth / 10),
-              FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(
-                  'Chủng Đại Bàng',
-                  style: TextStyle(
-                    color: Colors.redAccent,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                    decorationColor: Colors.yellowAccent,
-                    decorationStyle: TextDecorationStyle.solid,
-                    shadows: [
-                      Shadow(
-                        color: Colors.yellow[50],
-                        blurRadius: 1.0,
-                        offset: Offset(1.0, 0.0),
-                      ),
-                    ],
+    return WillPopScope(
+      onWillPop: () {
+        Ads.loadInterstitialAd();
+        Navigator.pop(context);
+        return Future<bool>.value(false);
+      },
+      child: Scaffold(
+          appBar: AppBar(
+              title: Row(children: <Widget>[
+                Image.asset('images/eagle.png', width: deviceWidth / 10),
+                FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    'Chủng Đại Bàng',
+                    style: TextStyle(
+                      color: Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.yellowAccent,
+                      decorationStyle: TextDecorationStyle.solid,
+                      shadows: [
+                        Shadow(
+                          color: Colors.yellow[50],
+                          blurRadius: 1.0,
+                          offset: Offset(1.0, 0.0),
+                        ),
+                      ],
+                    ),
                   ),
+                )
+              ]),
+              iconTheme: new IconThemeData(color: Colors.yellowAccent),
+              backgroundColor: Colors.black54,
+              actions: <Widget>[
+                // action button
+                IconButton(
+                  icon: Image.asset('images/home_icon.png'),
+                  onPressed: () {
+                    // Navigator.popUntil(context, ModalRoute.withName('/home'));
+                    Ads.loadInterstitialAd();
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/home', ModalRoute.withName('/w'));
+                    // Navigator.pop(context);
+                    // Navigator.pop(context, "/");
+                  },
+                )
+              ]),
+          body: new Stack(children: <Widget>[
+            new Container(
+              decoration: new BoxDecoration(color: Colors.black87),
+            ),
+            AdBannerTemplate(
+              needShowSecondBanner:
+                  !Provider.of<AppProvider>(context, listen: false).admobLoaded,
+              child: new Container(
+                  child: Center(
+                      child: Column(children: <Widget>[
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                        alignment: Alignment.center,
+                        decoration: CommonFunctions.boxDecoration(
+                            Color.fromRGBO(247, 255, 230, 1)),
+                        child: Image.asset('images/eagle.png', width: 100),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Text(
+                          ' Tỉ lệ: 30% trên thế giới. Vân xoáy có tâm (hoa tay).',
+                          style: TextStyle(color: Colors.white, fontSize: 15)),
+                    ),
+                  ],
                 ),
-              )
-            ]),
-            iconTheme: new IconThemeData(color: Colors.yellowAccent),
-            backgroundColor: Colors.black54,
-            actions: <Widget>[
-              // action button
-              IconButton(
-                icon: Image.asset('images/home_icon.png'),
-                onPressed: () {
-                  // Navigator.popUntil(context, ModalRoute.withName('/'));
-
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil('/', ModalRoute.withName('/w'));
-                  // Navigator.pop(context);
-                  // Navigator.pop(context, "/");
-                },
-              )
-            ]),
-        body: new Stack(children: <Widget>[
-          new Container(
-            decoration: new BoxDecoration(color: Colors.black87),
-          ),
-          new Container(
-              padding: EdgeInsets.only(left: 10, right: 10, top: 40),
-              margin: EdgeInsets.only(bottom: 0),
-              child: Center(
-                  child: Column(children: <Widget>[
-                Divider(),
-                Container(
-                  padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                  margin: EdgeInsets.only(bottom: 5, left: 100, right: 100),
-                  alignment: Alignment.center,
-                  decoration: CommonFunctions.boxDecoration(
-                      Color.fromRGBO(247, 255, 230, 1)),
-                  child: Image.asset('images/eagle.png', width: 130),
-                ),
-                Text(' Tỉ lệ: 30%. Vân xoáy có tâm (hoa tay).',
-                    style: TextStyle(color: Colors.white, fontSize: 15)),
                 Divider(),
                 Text(
                   ' ĐẶC TÍNH: ',
@@ -108,7 +129,6 @@ class W extends StatelessWidget {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Divider(),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -243,7 +263,6 @@ class W extends StatelessWidget {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Divider(),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -284,7 +303,6 @@ class W extends StatelessWidget {
                                 )
                               ],
                             ),
-                            Divider(),
                             Expanded(
                               child: ListView(
                                   padding: EdgeInsets.only(left: 10, right: 10),
@@ -433,7 +451,6 @@ class W extends StatelessWidget {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Divider(),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -462,7 +479,6 @@ class W extends StatelessWidget {
                                 )
                               ],
                             ),
-                            Divider(),
                             Expanded(
                                 child: ListView(
                                     padding:
@@ -558,7 +574,9 @@ class W extends StatelessWidget {
                                 ]))
                           ]))
                     ]))))
-              ])))
-        ]));
+              ]))),
+            )
+          ])),
+    );
   }
 }

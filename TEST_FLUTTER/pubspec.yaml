@@ -30,6 +30,10 @@ dependencies:
   flame: ^0.28.0
   adsunity: ^1.0.3
   ml_algo: ^15.3.0
+  firebase_ml_vision: ^0.9.9
+  image_picker: ^0.6.7+14
+  startapp: ^0.5.1
+  ironsource: ^0.1.1
 
 dev_dependencies:
   flutter_test:

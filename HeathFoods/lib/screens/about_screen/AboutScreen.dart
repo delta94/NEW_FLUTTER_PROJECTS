@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.goutfood/AppProvider.dart';
 import 'package:seabird.goutfood/data/AboutData.dart';
-import 'package:seabird.goutfood/helpers/Ads.dart';
 import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:seabird.goutfood/helpers/Helpers.dart';
+import 'package:seabird.goutfood/widgets/AdBannerTemplate.dart';
 import 'package:seabird.goutfood/widgets/RateButton.dart';
 
 class AboutScreen extends StatefulWidget {
@@ -12,14 +14,9 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
-  double marginTop = 0;
   @override
   Widget build(BuildContext context) {
-    if (Ads.isReleaseMode()) {
-      Ads.showInterstitialAd();
-      marginTop = 60;
-    }
-
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
     return WillPopScope(
       onWillPop: () {
         Helpers.backToHomeScreen(context);
@@ -52,22 +49,20 @@ class _AboutScreenState extends State<AboutScreen> {
             backgroundColor: Colors.yellowAccent[100],
             actions: <Widget>[RateButton()],
           ),
-          body: Stack(
-            children: <Widget>[
-              Container(
-                  color: Colors.transparent,
-                  margin: EdgeInsets.only(top: marginTop),
-                  padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 10),
-                        ...getQuestions(),
-                      ],
-                    ),
-                  ))
-            ],
+          body: AdBannerTemplate(
+            needShowSecondBanner: !appProvider.admobLoaded,
+            child: Container(
+                color: Colors.transparent,
+                padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      ...getQuestions(),
+                    ],
+                  ),
+                )),
           ),
         ),
       ),
@@ -91,7 +86,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   },
                   child: Container(
                     constraints: BoxConstraints(
-                        maxWidth: ReponsiveHelper.deviceSize.width - 20),
+                        maxWidth: ReponsiveHelper.deviceSize.width - 50),
                     decoration: BoxDecoration(
                       color: Colors.yellow[50],
                       border: Border.all(
@@ -99,6 +94,25 @@ class _AboutScreenState extends State<AboutScreen> {
                         width: 1,
                       ),
                       borderRadius: BorderRadius.circular(5),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment(1,
+                            0.0), // 10% of the width, so there are ten blinds.
+                        colors: [
+                          Colors.yellow[200],
+                          Colors.yellow[50],
+                        ], // red to yellow
+                        tileMode: TileMode
+                            .clamp, // repeats the gradient over the canvas
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 2,
+                          spreadRadius: 2,
+                          offset: Offset(5, 5),
+                        )
+                      ],
                     ),
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                     child: Text(

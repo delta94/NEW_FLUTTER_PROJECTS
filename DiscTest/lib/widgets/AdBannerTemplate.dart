@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:seabird.disctest/helpers/AdHelpers.dart';
 
-class AdBannerTemplate extends StatelessWidget {
+class AdBannerTemplate extends StatefulWidget {
   const AdBannerTemplate({
     Key key,
     @required this.needShowSecondBanner,
@@ -12,15 +12,22 @@ class AdBannerTemplate extends StatelessWidget {
   final Widget child;
 
   @override
+  _AdBannerTemplateState createState() => _AdBannerTemplateState();
+}
+
+class _AdBannerTemplateState extends State<AdBannerTemplate> {
+  @override
   Widget build(BuildContext context) {
     return Column(children: [
-      AdHelpers.showBannerAd(needShowSecondBanner),
+      AdHelpers.getBannerAd(widget.needShowSecondBanner),
       Expanded(
         child: Container(
           margin: EdgeInsets.only(
-              top: needShowSecondBanner || !AdHelpers.isReleaseMode() ? 0 : 60),
+              top: widget.needShowSecondBanner || !AdHelpers.isReleaseMode()
+                  ? 0
+                  : 60),
           padding: EdgeInsets.only(left: 10, right: 10),
-          child: child,
+          child: widget.child,
         ),
       )
     ]);

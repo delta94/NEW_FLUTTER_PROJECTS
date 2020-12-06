@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
-    package="com.seab1ird.letitgo">
+    package="com.seab1ird.showyourself">
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -15,7 +15,12 @@ xmlns:tools="http://schemas.android.com/tools"
         android:label="Let It Go - Video Subtitle"
         android:icon="@mipmap/ic_launcher"
         tools:replace="android:label">
+        <meta-data android:name="flutterEmbedding" android:value="2" />
+        <meta-data android:name="io.flutter.embedding.android.SplashScreenDrawable" android:resource="@drawable/launch_background" />
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-1120987903580111~4752941111"/>
+        <meta-data android:name="com.startapp.sdk.APPLICATION_ID" android:value="210988929" />
+        <meta-data android:name="vn.momo.plugin.startapp.SPLASH_AD_ENABLED" android:value="false" />
+        
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

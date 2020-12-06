@@ -2,12 +2,14 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/models/Question.dart';
-import 'package:seab1ird.disctest/widgets/OptionItem.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.riasectest/AppProvider.dart';
+import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
+import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
+import 'package:seabird.riasectest/helpers/Helpers.dart';
+import 'package:seabird.riasectest/models/Question.dart';
+import 'package:seabird.riasectest/widgets/AdBannerTemplate.dart';
+import 'package:seabird.riasectest/widgets/OptionItem.dart';
 
 class TestScreen extends StatefulWidget {
   @override
@@ -96,21 +98,13 @@ class _TestScreenState extends State<TestScreen> {
     );
   }
 
-  @override
-  void initState() {
-    if (Ads.isReleaseMode()) {
-      marginTop = 60;
-    }
-
-    super.initState();
-  }
-
   setPageNume(String _pageNum) {
     pageNum = int.parse(_pageNum);
     percent = (pageNum + 1) / Helpers.getNumberPages();
   }
 
   Widget build(BuildContext context) {
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
     final String args = ModalRoute.of(context).settings.arguments;
     final FlareEndlessController _logoLoopController =
         FlareEndlessController('Untitled', 10);
@@ -191,14 +185,12 @@ class _TestScreenState extends State<TestScreen> {
       body: Stack(
         children: <Widget>[
           BackgroundWidget(),
-          Container(
-            margin: EdgeInsets.only(top: marginTop),
-            padding: EdgeInsets.only(left: 5, right: 5, top: 10),
+          AdBannerTemplate(
+            needShowSecondBanner: !appProvider.admobLoaded,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(height: Helpers.isIpad() ? 50 : 20),
                   Row(
                     children: <Widget>[
                       Expanded(

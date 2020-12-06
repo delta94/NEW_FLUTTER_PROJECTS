@@ -13,7 +13,7 @@ import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
 import 'package:seabi1rd.weekendfashion/helpers/AnimationHelper.dart';
 import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
 import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
-import 'package:seabi1rd.weekendfashion/screens/makeup_screen/GirlScreen.dart';
+import 'package:seabi1rd.weekendfashion/widgets/AdHelpers.dart';
 import 'package:seabi1rd.weekendfashion/widgets/AnimatedButton.dart';
 import 'package:seabi1rd.weekendfashion/widgets/ChangingItemWidget.dart';
 import 'package:seabi1rd.weekendfashion/widgets/ChangingScreenAnimation.dart';
@@ -23,12 +23,13 @@ import 'package:seabi1rd.weekendfashion/widgets/RateButton.dart';
 
 import '../routers.dart';
 
-class PresentScreen extends UnityScreen {
+class PresentScreen extends StatefulWidget {
   PresentScreen({Key key}) : super(key: key);
   PresentScreenState createState() => PresentScreenState();
 }
 
-class PresentScreenState extends UnityScreenState<PresentScreen> {
+class PresentScreenState extends State<PresentScreen>
+    with TickerProviderStateMixin {
   final EndlessController _playButtonController =
       EndlessController('Untitled', 2.25);
   final EndlessController _replayButtonController =
@@ -145,7 +146,7 @@ class PresentScreenState extends UnityScreenState<PresentScreen> {
                 child: FlatButton(
                   color: Colors.transparent,
                   onPressed: () {
-                    showAd();
+                    AdHelpers.showInterAd();
                     AnimationHelper.changeScreenAnimation(
                         changingScreenController,
                         Routers.GIRL_OPTIONS,

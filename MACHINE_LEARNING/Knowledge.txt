@@ -1,0 +1,6 @@
+Video: Traditional learning + OpenCV
+Tin dung, chung khoan: Traditional learning
+
+Less param: Traditional algorightm.
+Deep learning: no strong enough: hardware, data
+No AI.

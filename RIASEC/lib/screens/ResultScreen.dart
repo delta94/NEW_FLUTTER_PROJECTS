@@ -6,15 +6,15 @@ import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/QuestionProvider.dart';
-import 'package:seab1ird.disctest/data/Results.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/models/PercentTypes.dart';
-import 'package:seab1ird.disctest/models/TypeInfo.dart';
-import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:seabird.riasectest/AppProvider.dart';
+import 'package:seabird.riasectest/data/Results.dart';
+import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
+import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
+import 'package:seabird.riasectest/helpers/Helpers.dart';
+import 'package:seabird.riasectest/models/PercentTypes.dart';
+import 'package:seabird.riasectest/models/TypeInfo.dart';
+import 'package:seabird.riasectest/models/Types.dart';
+import 'package:seabird.riasectest/widgets/AdBannerTemplate.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -26,8 +26,8 @@ class _ResultScreenState extends State<ResultScreen> {
   final Map<String, double> dataMap = Map();
 
   void initState() {
-    QuestionProvider questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
+    AppProvider questionProvider =
+        Provider.of<AppProvider>(context, listen: false);
 
     if (questionProvider.isFirstUse) {
       questionProvider.isFirstUse = false;
@@ -48,14 +48,8 @@ class _ResultScreenState extends State<ResultScreen> {
   ];
 
   Widget build(BuildContext context) {
-    double marginTop = 0;
-    QuestionProvider questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
-
-    if (Ads.isReleaseMode()) {
-      // Ads.showInterstitialAd();
-      marginTop = 60;
-    }
+    AppProvider questionProvider =
+        Provider.of<AppProvider>(context, listen: false);
 
     PercentTypes percentTypes = questionProvider.getTypePercents();
     Types userType = questionProvider.maxPercentType.type;
@@ -158,14 +152,10 @@ class _ResultScreenState extends State<ResultScreen> {
           body: Stack(
             children: <Widget>[
               BackgroundWidget(),
-              Container(
-                margin: EdgeInsets.only(top: marginTop),
-                padding: EdgeInsets.only(left: 10, right: 10),
+              AdBannerTemplate(
+                needShowSecondBanner: !questionProvider.admobLoaded,
                 child: Column(
                   children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
                     Row(
                       children: <Widget>[
                         Expanded(

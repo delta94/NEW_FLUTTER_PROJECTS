@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.goutfood/AppProvider.dart';
 import 'package:seabird.goutfood/data/DietData.dart';
-import 'package:seabird.goutfood/helpers/Ads.dart';
 import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:seabird.goutfood/helpers/Helpers.dart';
 import 'package:seabird.goutfood/models/DataInfo.dart';
+import 'package:seabird.goutfood/widgets/AdBannerTemplate.dart';
 import 'package:seabird.goutfood/widgets/RateButton.dart';
 
 class DietScreen extends StatefulWidget {
@@ -13,14 +15,9 @@ class DietScreen extends StatefulWidget {
 }
 
 class _DietScreenState extends State<DietScreen> {
-  double marginTop = 0;
   @override
   Widget build(BuildContext context) {
-    if (Ads.isReleaseMode()) {
-      Ads.showInterstitialAd();
-      marginTop = 60;
-    }
-
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -52,25 +49,23 @@ class _DietScreenState extends State<DietScreen> {
           backgroundColor: Colors.yellowAccent[100],
           actions: <Widget>[RateButton()],
         ),
-        body: Stack(
-          children: <Widget>[
-            Container(
-              color: Colors.transparent,
-              margin: EdgeInsets.only(top: marginTop),
-              child: Column(
-                children: [
-                  SizedBox(height: 10),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [...getDataInfosWidgets(DietData.dietData)],
-                      ),
+        body: AdBannerTemplate(
+          needShowSecondBanner: !appProvider.admobLoaded,
+          child: Container(
+            color: Colors.transparent,
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [...getDataInfosWidgets(DietData.dietData)],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -83,7 +78,7 @@ class _DietScreenState extends State<DietScreen> {
         children: [
           Container(
             margin: EdgeInsets.only(top: 10),
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               children: [
                 Container(
@@ -162,7 +157,7 @@ class _DietScreenState extends State<DietScreen> {
                 Container(
                   constraints: BoxConstraints(
                       maxWidth: ReponsiveHelper.deviceSize.width -
-                          (isIpad ? 180 : 140)),
+                          (isIpad ? 180 : 160)),
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                   child: Column(
                     children: [

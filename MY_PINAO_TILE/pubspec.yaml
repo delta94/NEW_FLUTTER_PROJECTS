@@ -28,25 +28,26 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  image_color_picker: ^1.0.1
-  wallpaper: ^1.0.0
-  youtube_player_flutter: ^6.1.1
+  assets_audio_player: ^1.4.0
+  provider: ^4.0.4
+  startapp: ^0.5.1
+  firebase_admob: ^0.10.2
+  shared_preferences: ^0.5.8
+  shimmer: ^1.1.1
+  google_fonts: ^1.1.0
   flutter_gifimage: ^1.0.1
-  audioplayers: ^0.15.1
-  animated_background: ^1.0.5
-
-
 
 flutter:
   uses-material-design: true
   assets:
-    - images/dancing_girl.gif
-    - images/background.jpg
-    - images/218f17a8bb4c331e249ece1b02b27efa.gif
-    - images/tenor2.gif
-    - images/flower.png
+    - assets/images/background.jpg
+    - assets/images/flower.png
+    - assets/images/logo.png
+    - assets/images/tile.png
+    - assets/images/disabled_tile.png
 
-    - assets/a.wav
-    - assets/c.wav
-    - assets/e.wav
-    - assets/f.wav
+    - assets/sounds/a.wav
+    - assets/sounds/c.wav
+    - assets/sounds/e.wav
+    - assets/sounds/f.wav
+    - assets/sounds/Cartoon.mp3

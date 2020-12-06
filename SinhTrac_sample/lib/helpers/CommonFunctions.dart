@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
+import 'Ads.dart';
+
 class CommonFunctions {
   static Future<bool> onWillPop(BuildContext context) {
+    Ads.showInterstitialAd();
     return showDialog(
       context: context,
       builder: (context) => new AlertDialog(
@@ -68,7 +71,7 @@ class CommonFunctions {
   static BoxDecoration boxDecoration([Color color]) {
     return BoxDecoration(
       color: color != null ? color : Color.fromRGBO(80, 80, 80, 1),
-      border: Border.all(width: 3.0),
+      border: Border.all(width: 1.0),
       borderRadius: BorderRadius.all(Radius.circular(20.0) //
           ),
     );

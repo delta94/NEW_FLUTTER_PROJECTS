@@ -1,10 +1,21 @@
 # This is a generated file; do not edit or check into version control.
-app_review=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\app_review-1.1.0+1\\
 firebase_admob=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_admob-0.9.3+1\\
 firebase_core=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-0.4.4+3\\
 firebase_core_web=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-0.1.1+2\\
-package_info=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\package_info-0.4.0+16\\
-url_launcher=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher-5.4.2\\
+in_app_review=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\in_app_review-1.0.3\\
+path_provider=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider-1.6.24\\
+path_provider_linux=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-0.0.1+2\\
+path_provider_macos=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_macos-0.0.4+6\\
+path_provider_windows=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-0.0.4+3\\
+shared_preferences=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-0.5.12+4\\
+shared_preferences_linux=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_linux-0.0.2+4\\
+shared_preferences_macos=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_macos-0.0.1+11\\
+shared_preferences_web=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_web-0.1.2+7\\
+shared_preferences_windows=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_windows-0.0.1+3\\
+startapp=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\startapp-0.5.1\\
+url_launcher=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher-5.7.10\\
+url_launcher_linux=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_linux-0.0.1+4\\
 url_launcher_macos=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_macos-0.0.1+4\\
-url_launcher_web=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_web-0.1.1+1\\
+url_launcher_web=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_web-0.1.5+1\\
+url_launcher_windows=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_windows-0.0.1+3\\
 ytview=C:\\WORK\\Softwares\\flutter_sdk\\.pub-cache\\hosted\\pub.dartlang.org\\ytview-1.0.0+1\\

@@ -2,10 +2,12 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:seabird.goutfood/helpers/Ads.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.goutfood/AppProvider.dart';
 import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:seabird.goutfood/helpers/Helpers.dart';
 import 'package:seabird.goutfood/helpers/FlareEndlessController.dart';
+import 'package:seabird.goutfood/widgets/AdBannerTemplate.dart';
 import 'package:seabird.goutfood/widgets/RateButton.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -59,32 +61,17 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class BodyWidget extends StatefulWidget {
-  @override
-  _BodyWidgetState createState() => _BodyWidgetState();
-}
-
-class _BodyWidgetState extends State<BodyWidget> {
-  double marginTop = 0;
-
+class BodyWidget extends StatelessWidget {
   final FlareEndlessController _resultLoopController =
       FlareEndlessController('Untitled', 4);
 
   @override
-  void initState() {
-    if (Ads.isReleaseMode()) {
-      Ads.showBannerAd();
-      marginTop = 60;
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Stack(children: <Widget>[
-      Container(
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
+    return AdBannerTemplate(
+      needShowSecondBanner: !appProvider.admobLoaded,
+      child: Container(
           color: Colors.grey[100],
-          margin: EdgeInsets.only(top: marginTop),
           padding: EdgeInsets.only(left: 10, right: 10, top: 10),
           alignment: Alignment.center,
           child: Column(
@@ -159,7 +146,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                                     Container(
                                       width: isIpad ? ipadIconSize() * 1.5 : 60,
                                       height:
-                                          isIpad ? ipadIconSize() * 1.5 : 50,
+                                          isIpad ? ipadIconSize() * 1.5 : 30,
                                       child: FlareActor(
                                         'images/result.flr',
                                         alignment: Alignment.center,
@@ -189,10 +176,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                               SizedBox(height: getMenuSpaceSize()),
                               Container(
                                   padding: EdgeInsets.only(
-                                    left: 10,
-                                    top: 10,
-                                    bottom: 10,
-                                  ),
+                                      left: 10, top: 5, bottom: 5),
                                   margin: EdgeInsets.only(bottom: 5),
                                   alignment: Alignment.center,
                                   decoration: Helpers.boxDecoration(),
@@ -250,7 +234,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                 ),
               )
             ],
-          ))
-    ]);
+          )),
+    );
   }
 }

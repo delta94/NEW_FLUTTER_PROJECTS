@@ -105,7 +105,13 @@ class FoodListWidget extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                color: Colors.grey.withOpacity(0.5),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(5),
+                    topRight: Radius.circular(5),
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -115,6 +121,7 @@ class FoodListWidget extends StatelessWidget {
                       child: Text(
                         'Food Names',
                         style: TextStyle(
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: getXSSmallTextSize(),
                         ),
@@ -123,6 +130,7 @@ class FoodListWidget extends StatelessWidget {
                     Text(
                       'mg uric acid/100g',
                       style: TextStyle(
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: getXSSmallTextSize(),
                       ),

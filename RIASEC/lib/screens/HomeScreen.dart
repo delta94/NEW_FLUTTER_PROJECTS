@@ -2,11 +2,13 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
-import 'package:seab1ird.disctest/utils/Utils.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.riasectest/AppProvider.dart';
+import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
+import 'package:seabird.riasectest/helpers/Helpers.dart';
+import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
+import 'package:seabird.riasectest/utils/Utils.dart';
+import 'package:seabird.riasectest/widgets/AdBannerTemplate.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -99,51 +101,199 @@ class _BodyWidgetState extends State<BodyWidget> {
       FlareEndlessController('Untitled', 1);
 
   @override
-  void initState() {
-    if (Ads.isReleaseMode()) {
-      Ads.showBannerAd();
-      marginTop = 60;
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
     return new Stack(children: <Widget>[
       BackgroundWidget(),
-      Container(
-          margin: EdgeInsets.only(top: marginTop),
-          padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-          alignment: Alignment.center,
-          child: Column(
-            children: <Widget>[
-              Container(
-                decoration: new BoxDecoration(
-                    border: Border.all(width: 1),
-                    borderRadius: new BorderRadius.all(Radius.circular(20.0)),
-                    shape: BoxShape.rectangle,
-                    color: Colors.white12),
-                child: new ClipRRect(
-                  borderRadius: new BorderRadius.circular(10.0),
-                  child: Image.asset('images/banner.png',
-                      height: Helpers.getDeviceSize(context).height / 6),
-                ),
+      AdBannerTemplate(
+        needShowSecondBanner: !appProvider.admobLoaded,
+        child: Column(
+          children: <Widget>[
+            Container(
+              decoration: new BoxDecoration(
+                  border: Border.all(width: 1),
+                  borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+                  shape: BoxShape.rectangle,
+                  color: Colors.white12),
+              child: new ClipRRect(
+                borderRadius: new BorderRadius.circular(10.0),
+                child: Image.asset('images/banner.png',
+                    height: Helpers.getDeviceSize(context).height / 6),
               ),
-              SizedBox(height: Helpers.isIpad() ? 30 : 20),
-              Expanded(
+            ),
+            SizedBox(height: Helpers.isIpad() ? 30 : 20),
+            Expanded(
+              child: Container(
                 child: Container(
-                  child: Container(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 15, horizontal: Helpers.isIpad() ? 40 : 0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Helpers.getMenuBox(
-                                  Row(
+                    padding: EdgeInsets.symmetric(
+                        vertical: 15, horizontal: Helpers.isIpad() ? 40 : 0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Helpers.getMenuBox(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Image.asset('images/info.png',
+                                        height: Helpers.isIpad()
+                                            ? Helpers.ipadIconSize()
+                                            : 30,
+                                        width: Helpers.isIpad()
+                                            ? Helpers.ipadIconSize()
+                                            : 30),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "Introduction",
+                                      style: TextStyle(
+                                        fontSize: Helpers.isIpad()
+                                            ? Helpers.ipadFontSize() * 1.2
+                                            : 25,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                context,
+                                '/intro'),
+                            SizedBox(height: Utils.isIpad() ? 20 : 0),
+                            Helpers.getMenuBox(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      width: Helpers.isIpad()
+                                          ? Helpers.ipadIconSize()
+                                          : 40,
+                                      height: Helpers.isIpad()
+                                          ? Helpers.ipadIconSize()
+                                          : 40,
+                                      child: FlareActor(
+                                        "images/riasec.flr",
+                                        alignment: Alignment.center,
+                                        controller: _logoLoopController,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "RIASEC Types",
+                                      style: TextStyle(
+                                        fontSize: Helpers.isIpad()
+                                            ? Helpers.ipadFontSize() * 1.2
+                                            : 25,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                context,
+                                '/discTypes'),
+                            SizedBox(height: Utils.isIpad() ? 20 : 0),
+                            Helpers.getMenuBox(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      width: Helpers.isIpad()
+                                          ? Helpers.ipadIconSize() * 1.5
+                                          : 60,
+                                      height: Helpers.isIpad()
+                                          ? Helpers.ipadIconSize() * 1.5
+                                          : 50,
+                                      child: FlareActor(
+                                        "images/result.flr",
+                                        alignment: Alignment.center,
+                                        controller: _resultLoopController,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Container(
+                                      child: Text(
+                                        'Begin Test',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: Helpers.isIpad()
+                                              ? Helpers.ipadFontSize() * 1.2
+                                              : 30,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          decorationColor: Colors.white,
+                                          decorationStyle:
+                                              TextDecorationStyle.solid,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                context,
+                                '/startTest',
+                                '0'),
+                            SizedBox(height: Utils.isIpad() ? 20 : 0),
+                            Container(
+                                padding: EdgeInsets.only(
+                                  left: 10,
+                                  top: 10,
+                                  bottom: 10,
+                                ),
+                                margin: EdgeInsets.only(bottom: 5),
+                                alignment: Alignment.center,
+                                decoration: Helpers.boxDecoration(),
+                                child: GestureDetector(
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Image.asset('images/info.png',
+                                      GestureDetector(
+                                        child: Container(
+                                            width: Helpers.isIpad()
+                                                ? Helpers.ipadIconSize()
+                                                : 40,
+                                            height: Helpers.isIpad()
+                                                ? Helpers.ipadIconSize()
+                                                : 40,
+                                            child: FlareActor(
+                                              "images/star.flr",
+                                              alignment: Alignment.center,
+                                              controller: _starLoopController,
+                                            )),
+                                        onTap: () {
+                                          // AppReview.storeListing
+                                          //     .then((onValue) {});
+                                          InAppReview.instance.openStoreListing(
+                                              appStoreId: "1535987884");
+                                        },
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        "Rate 5 stars",
+                                        style: TextStyle(
+                                            fontSize: Helpers.isIpad()
+                                                ? Helpers.ipadFontSize() * 1.2
+                                                : 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                  onTap: () {
+                                    // AppReview.storeListing.then((onValue) {});
+                                    InAppReview.instance.openStoreListing(
+                                        appStoreId: "1535987884");
+                                  },
+                                )),
+                            SizedBox(height: Utils.isIpad() ? 20 : 0),
+                            Container(
+                                padding: EdgeInsets.only(
+                                    left: 10, top: 10, bottom: 10),
+                                margin: EdgeInsets.only(bottom: 5),
+                                alignment: Alignment.center,
+                                decoration: Helpers.boxDecoration(),
+                                child: GestureDetector(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset('images/exit.png',
                                           height: Helpers.isIpad()
                                               ? Helpers.ipadIconSize()
                                               : 30,
@@ -152,187 +302,27 @@ class _BodyWidgetState extends State<BodyWidget> {
                                               : 30),
                                       SizedBox(width: 10),
                                       Text(
-                                        "Introduction",
+                                        "Exit",
                                         style: TextStyle(
-                                          fontSize: Helpers.isIpad()
-                                              ? Helpers.ipadFontSize() * 1.2
-                                              : 25,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  context,
-                                  '/intro'),
-                              SizedBox(height: Utils.isIpad() ? 20 : 0),
-                              Helpers.getMenuBox(
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(
-                                        width: Helpers.isIpad()
-                                            ? Helpers.ipadIconSize()
-                                            : 40,
-                                        height: Helpers.isIpad()
-                                            ? Helpers.ipadIconSize()
-                                            : 40,
-                                        child: FlareActor(
-                                          "images/riasec.flr",
-                                          alignment: Alignment.center,
-                                          controller: _logoLoopController,
-                                        ),
-                                      ),
-                                      SizedBox(width: 10),
-                                      Text(
-                                        "RIASEC Types",
-                                        style: TextStyle(
-                                          fontSize: Helpers.isIpad()
-                                              ? Helpers.ipadFontSize() * 1.2
-                                              : 25,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  context,
-                                  '/discTypes'),
-                              SizedBox(height: Utils.isIpad() ? 20 : 0),
-                              Helpers.getMenuBox(
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(
-                                        width: Helpers.isIpad()
-                                            ? Helpers.ipadIconSize() * 1.5
-                                            : 60,
-                                        height: Helpers.isIpad()
-                                            ? Helpers.ipadIconSize() * 1.5
-                                            : 50,
-                                        child: FlareActor(
-                                          "images/result.flr",
-                                          alignment: Alignment.center,
-                                          controller: _resultLoopController,
-                                        ),
-                                      ),
-                                      SizedBox(width: 10),
-                                      Container(
-                                        child: Text(
-                                          'Begin Test',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
                                             fontSize: Helpers.isIpad()
                                                 ? Helpers.ipadFontSize() * 1.2
-                                                : 30,
+                                                : 25,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                            decorationColor: Colors.white,
-                                            decorationStyle:
-                                                TextDecorationStyle.solid,
-                                          ),
-                                        ),
+                                            color: Colors.white),
                                       ),
                                     ],
                                   ),
-                                  context,
-                                  '/startTest',
-                                  '0'),
-                              SizedBox(height: Utils.isIpad() ? 20 : 0),
-                              Container(
-                                  padding: EdgeInsets.only(
-                                    left: 10,
-                                    top: 10,
-                                    bottom: 10,
-                                  ),
-                                  margin: EdgeInsets.only(bottom: 5),
-                                  alignment: Alignment.center,
-                                  decoration: Helpers.boxDecoration(),
-                                  child: GestureDetector(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        GestureDetector(
-                                          child: Container(
-                                              width: Helpers.isIpad()
-                                                  ? Helpers.ipadIconSize()
-                                                  : 40,
-                                              height: Helpers.isIpad()
-                                                  ? Helpers.ipadIconSize()
-                                                  : 40,
-                                              child: FlareActor(
-                                                "images/star.flr",
-                                                alignment: Alignment.center,
-                                                controller: _starLoopController,
-                                              )),
-                                          onTap: () {
-                                            // AppReview.storeListing
-                                            //     .then((onValue) {});
-                                            InAppReview.instance
-                                                .openStoreListing(
-                                                    appStoreId: "1535987884");
-                                          },
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          "Rate 5 stars",
-                                          style: TextStyle(
-                                              fontSize: Helpers.isIpad()
-                                                  ? Helpers.ipadFontSize() * 1.2
-                                                  : 25,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                    onTap: () {
-                                      // AppReview.storeListing.then((onValue) {});
-                                      InAppReview.instance.openStoreListing(
-                                          appStoreId: "1535987884");
-                                    },
-                                  )),
-                              SizedBox(height: Utils.isIpad() ? 20 : 0),
-                              Container(
-                                  padding: EdgeInsets.only(
-                                      left: 10, top: 10, bottom: 10),
-                                  margin: EdgeInsets.only(bottom: 5),
-                                  alignment: Alignment.center,
-                                  decoration: Helpers.boxDecoration(),
-                                  child: GestureDetector(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Image.asset('images/exit.png',
-                                            height: Helpers.isIpad()
-                                                ? Helpers.ipadIconSize()
-                                                : 30,
-                                            width: Helpers.isIpad()
-                                                ? Helpers.ipadIconSize()
-                                                : 30),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          "Exit",
-                                          style: TextStyle(
-                                              fontSize: Helpers.isIpad()
-                                                  ? Helpers.ipadFontSize() * 1.2
-                                                  : 25,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                    onTap: () {
-                                      return Helpers.onWillPop(context);
-                                    },
-                                  )),
-                            ]),
-                      )),
-                ),
-              )
-            ],
-          ))
+                                  onTap: () {
+                                    return Helpers.onWillPop(context);
+                                  },
+                                )),
+                          ]),
+                    )),
+              ),
+            )
+          ],
+        ),
+      )
     ]);
   }
 }

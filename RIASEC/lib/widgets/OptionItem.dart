@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/widgets/RadioItem.dart';
+import 'package:seabird.riasectest/helpers/Helpers.dart';
+import 'package:seabird.riasectest/widgets/RadioItem.dart';
 
 class OptionItem extends StatefulWidget {
   final bool isHightLight;

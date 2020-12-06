@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/screens/ResultScreen.dart';
-import 'QuestionProvider.dart';
+import 'package:seabird.riasectest/screens/ResultScreen.dart';
+import 'AppProvider.dart';
 import 'widgets/ScaleRoute.dart';
 import 'widgets/SlideRoute.dart';
 import 'screens/RiasecTypesScreen.dart';
@@ -14,8 +14,8 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<QuestionProvider>(
-            create: (context) => QuestionProvider()),
+        ChangeNotifierProvider<AppProvider>(
+            create: (context) => AppProvider()),
       ],
       child: MaterialApp(
         title: 'RIASEC TEST',
@@ -30,7 +30,8 @@ void main() {
               return ScaleRoute(widget: IntroScreen(), settings: settings);
               break;
             case '/discTypes':
-              return ScaleRoute(widget: RiasecTypesScreen(), settings: settings);
+              return ScaleRoute(
+                  widget: RiasecTypesScreen(), settings: settings);
               break;
             case '/startTest':
               return ScaleRoute(widget: TestScreen(), settings: settings);

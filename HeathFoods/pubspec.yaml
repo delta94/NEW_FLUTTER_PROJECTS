@@ -38,6 +38,9 @@ dependencies:
   tuple: ^1.0.3
   in_app_review: ^1.0.2
   flutter_keyboard_visibility: ^3.2.2
+  adsunity: ^1.0.3
+  adcolony: ^2.0.6
+  startapp: ^0.5.1
 
 dev_dependencies:
   flutter_test:

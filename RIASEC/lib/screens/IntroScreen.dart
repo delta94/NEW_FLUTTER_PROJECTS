@@ -2,11 +2,13 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:seab1ird.disctest/helpers/Ads.dart';
-import 'package:seab1ird.disctest/helpers/BackgroundWidget.dart';
-import 'package:seab1ird.disctest/helpers/FlareEndlessController.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/widgets/ShadowText.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.riasectest/AppProvider.dart';
+import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
+import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
+import 'package:seabird.riasectest/helpers/Helpers.dart';
+import 'package:seabird.riasectest/widgets/AdBannerTemplate.dart';
+import 'package:seabird.riasectest/widgets/ShadowText.dart';
 
 class IntroScreen extends StatefulWidget {
   @override
@@ -15,11 +17,7 @@ class IntroScreen extends StatefulWidget {
 
 class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
-    double marginTop = 0;
-    if (Ads.isReleaseMode()) {
-      // Ads.showInterstitialAd();
-      marginTop = 60;
-    }
+    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
 
     final FlareEndlessController _logoLoopController =
         FlareEndlessController('Untitled', 10);
@@ -102,10 +100,8 @@ class _IntroScreenState extends State<IntroScreen> {
           body: Stack(
             children: <Widget>[
               BackgroundWidget(),
-              Container(
-                color: Colors.transparent,
-                margin: EdgeInsets.only(top: marginTop),
-                padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+              AdBannerTemplate(
+                needShowSecondBanner: !appProvider.admobLoaded,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -113,7 +109,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.only(top: 10, bottom: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: Helpers.getDeviceSize(context).width /
                               (Helpers.isIpad() ? 4 : 3),
                           decoration: new BoxDecoration(

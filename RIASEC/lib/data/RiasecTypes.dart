@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seab1ird.disctest/models/TypeInfo.dart';
-import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:seabird.riasectest/models/TypeInfo.dart';
+import 'package:seabird.riasectest/models/Types.dart';
 
 class RiasecTypes {
   static TypeInfo resultInfoR = new TypeInfo(

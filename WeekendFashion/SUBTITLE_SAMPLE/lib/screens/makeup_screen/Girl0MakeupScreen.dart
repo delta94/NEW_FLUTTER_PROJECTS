@@ -12,12 +12,12 @@ import 'package:seabi1rd.weekendfashion/data/cabin/GirlCabinShortItems.dart';
 import 'package:seabi1rd.weekendfashion/data/cabin/GirlCabinTreasureItems.dart';
 import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
 import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
-import 'package:seabi1rd.weekendfashion/helpers/Ads.dart';
 import 'package:seabi1rd.weekendfashion/helpers/AnimationHelper.dart';
 import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
 
 import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
 import 'package:seabi1rd.weekendfashion/routers.dart';
+import 'package:seabi1rd.weekendfashion/widgets/AdHelpers.dart';
 import 'package:seabi1rd.weekendfashion/widgets/Background.dart';
 import 'package:seabi1rd.weekendfashion/widgets/ChangingItemWidget.dart';
 import 'package:seabi1rd.weekendfashion/widgets/ChangingScreenAnimation.dart';
@@ -25,15 +25,14 @@ import 'package:seabi1rd.weekendfashion/widgets/FashionGirl0.dart';
 import 'package:seabi1rd.weekendfashion/widgets/FinishButton.dart';
 import 'package:seabi1rd.weekendfashion/widgets/NextPreviousButton.dart';
 
-import 'GirlScreen.dart';
-
-class Girl0MakeupScreen extends UnityScreen {
+class Girl0MakeupScreen extends StatefulWidget {
   Girl0MakeupScreen({Key key}) : super(key: key);
   @override
   Girl0MakeupScreenState createState() => Girl0MakeupScreenState();
 }
 
-class Girl0MakeupScreenState extends UnityScreenState<Girl0MakeupScreen> {
+class Girl0MakeupScreenState extends State<Girl0MakeupScreen>
+    with TickerProviderStateMixin {
   Animation<double> initScreenAnimation;
   Animation<double> changingScreenAnimation;
   Animation<double> hairAnimation;
@@ -69,7 +68,6 @@ class Girl0MakeupScreenState extends UnityScreenState<Girl0MakeupScreen> {
 
   @override
   void initState() {
-    Ads.loadInterstitialAd();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
 
@@ -262,7 +260,7 @@ class Girl0MakeupScreenState extends UnityScreenState<Girl0MakeupScreen> {
             isValid: isValid(gameProvider),
             callback: () {
               gameProvider.currentGirlIndex = 1;
-              showAd();
+              AdHelpers.showInterAd();
               Navigator.popAndPushNamed(context, Routers.GIRL_OPTIONS);
             },
           ),

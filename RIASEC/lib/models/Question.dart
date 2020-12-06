@@ -1,4 +1,4 @@
-import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:seabird.riasectest/models/Types.dart';
 
 class Question {
   int id;

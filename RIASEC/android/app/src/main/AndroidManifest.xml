@@ -17,7 +17,8 @@ xmlns:tools="http://schemas.android.com/tools"
         tools:replace="android:label">
         <meta-data android:name="flutterEmbedding" android:value="2" />
         <meta-data android:name="io.flutter.embedding.android.SplashScreenDrawable" android:resource="@drawable/launch_background" />
-        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-1120987903580111~4752941111"/>
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-8790092287859946~7642266938"/>
+        <meta-data android:name="com.startapp.sdk.APPLICATION_ID" android:value="211436316" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

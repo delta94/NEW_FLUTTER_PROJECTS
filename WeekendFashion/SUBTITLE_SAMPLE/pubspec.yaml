@@ -33,8 +33,7 @@ dependencies:
   in_app_review: ^1.0.2
   provider: ^4.0.4
   assets_audio_player: ^1.4.0
-  adsunity: ^1.0.3
-
+  startapp: ^0.5.1
 
 
 

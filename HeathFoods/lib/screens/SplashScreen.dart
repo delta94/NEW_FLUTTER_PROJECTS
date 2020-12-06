@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.goutfood/AppProvider.dart';
-import 'package:seabird.goutfood/helpers/Ads.dart';
+import 'package:seabird.goutfood/helpers/AdHelpers.dart';
 import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -17,10 +17,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Ads.createInterstitial();
-    Ads.showInterstitialAd();
     var appProvider = Provider.of<AppProvider>(context, listen: false);
     appProvider.init();
+    AdHelpers.initialize();
+    Future.delayed(Duration(seconds: 5), () {
+      AdHelpers.showBanner(appProvider);
+      AdHelpers.showInterAd();
+    });
+
     navigateToHomeScreen();
     super.initState();
   }
@@ -30,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<Timer> navigateToHomeScreen() async {
-    var _duration = Duration(seconds: 3);
+    var _duration = Duration(seconds: 10);
     return Timer(_duration, navigationPage);
   }
 

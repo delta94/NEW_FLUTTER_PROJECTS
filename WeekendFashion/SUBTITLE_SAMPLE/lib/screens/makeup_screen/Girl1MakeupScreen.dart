@@ -18,6 +18,7 @@ import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
 
 import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
 import 'package:seabi1rd.weekendfashion/routers.dart';
+import 'package:seabi1rd.weekendfashion/widgets/AdHelpers.dart';
 import 'package:seabi1rd.weekendfashion/widgets/Background.dart';
 import 'package:seabi1rd.weekendfashion/widgets/ChangingItemWidget.dart';
 import 'package:seabi1rd.weekendfashion/widgets/ChangingScreenAnimation.dart';
@@ -25,15 +26,14 @@ import 'package:seabi1rd.weekendfashion/widgets/FashionGirl1.dart';
 import 'package:seabi1rd.weekendfashion/widgets/FinishButton.dart';
 import 'package:seabi1rd.weekendfashion/widgets/NextPreviousButton.dart';
 
-import 'GirlScreen.dart';
-
-class Girl1MakeupScreen extends UnityScreen {
+class Girl1MakeupScreen extends StatefulWidget {
   Girl1MakeupScreen({Key key}) : super(key: key);
   @override
   Girl1MakeupScreenState createState() => Girl1MakeupScreenState();
 }
 
-class Girl1MakeupScreenState extends UnityScreenState<Girl1MakeupScreen> {
+class Girl1MakeupScreenState extends State<Girl1MakeupScreen>
+    with TickerProviderStateMixin {
   Animation<double> initScreenAnimation;
   Animation<double> changingScreenAnimation;
   Animation<double> hairAnimation;
@@ -71,7 +71,6 @@ class Girl1MakeupScreenState extends UnityScreenState<Girl1MakeupScreen> {
 
   @override
   void initState() {
-    // Ads.loadInterstitialAd();
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: false);
 
@@ -289,7 +288,7 @@ class Girl1MakeupScreenState extends UnityScreenState<Girl1MakeupScreen> {
             isValid: isValid(gameProvider),
             callback: () {
               gameProvider.currentGirlIndex = 1;
-              showAd();
+              AdHelpers.showInterAd();
               Navigator.popAndPushNamed(context, Routers.PRESENT);
             },
           ),

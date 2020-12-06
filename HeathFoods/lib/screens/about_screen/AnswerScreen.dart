@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:seabird.goutfood/AppProvider.dart';
 import 'package:seabird.goutfood/data/AboutData.dart';
-import 'package:seabird.goutfood/helpers/Ads.dart';
 import 'package:seabird.goutfood/helpers/Helpers.dart';
 import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:seabird.goutfood/models/DataInfo.dart';
+import 'package:seabird.goutfood/widgets/AdBannerTemplate.dart';
 import 'package:seabird.goutfood/widgets/RateButton.dart';
 
 class AnswerScreen extends StatefulWidget {
@@ -13,15 +15,11 @@ class AnswerScreen extends StatefulWidget {
 }
 
 class _AnswerScreenState extends State<AnswerScreen> {
-  double marginTop = 0;
   @override
   Widget build(BuildContext context) {
     final int questionId = ModalRoute.of(context).settings.arguments;
     var question = AboutData.aboutData.keys.toList()[questionId];
-    if (Ads.isReleaseMode()) {
-      // Ads.showInterstitialAd();
-      marginTop = 60;
-    }
+    var appProvider = Provider.of<AppProvider>(context, listen: false);
 
     return SafeArea(
       child: Scaffold(
@@ -56,53 +54,69 @@ class _AnswerScreenState extends State<AnswerScreen> {
           backgroundColor: Colors.yellowAccent[100],
           actions: <Widget>[RateButton()],
         ),
-        body: Stack(
-          children: <Widget>[
-            Container(
-              color: Colors.transparent,
-              margin: EdgeInsets.only(top: marginTop),
-              padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-              child: Column(
-                children: [
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.yellow[100],
-                            border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.circular(5),
+        body: AdBannerTemplate(
+          needShowSecondBanner: !appProvider.admobLoaded,
+          child: Container(
+            color: Colors.transparent,
+            padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.yellow[100],
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(5),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment(1,
+                                0.0), // 10% of the width, so there are ten blinds.
+                            colors: [
+                              Colors.yellow[200],
+                              Colors.yellow[50],
+                            ], // red to yellow
+                            tileMode: TileMode
+                                .clamp, // repeats the gradient over the canvas
                           ),
-                          padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                          child: Text(
-                            '${questionId + 1} $question',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: getSmallTextSize(),
-                            ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 2,
+                              spreadRadius: 2,
+                              offset: Offset(5, 5),
+                            )
+                          ],
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                        child: Text(
+                          '${questionId + 1} $question',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: getSmallTextSize(),
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ...getInfosWidgets(
-                              AboutData.aboutData[question].infos)
-                        ],
-                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ...getInfosWidgets(AboutData.aboutData[question].infos)
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -118,7 +132,7 @@ class _AnswerScreenState extends State<AnswerScreen> {
               children: [
                 Container(
                   constraints: BoxConstraints(
-                      maxWidth: ReponsiveHelper.deviceSize.width - 20),
+                      maxWidth: ReponsiveHelper.deviceSize.width - 40),
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                   child: Column(
                     children: [
@@ -129,7 +143,7 @@ class _AnswerScreenState extends State<AnswerScreen> {
                           fontWeight: info.smallInfos.isEmpty
                               ? FontWeight.normal
                               : FontWeight.bold,
-                          fontSize: getSmallTextSize(),
+                          fontSize: getXSSmallTextSize(),
                         ),
                       ),
                       ...getSmallInfos(info.smallInfos)

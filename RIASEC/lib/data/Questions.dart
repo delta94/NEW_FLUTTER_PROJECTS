@@ -1,5 +1,5 @@
-import 'package:seab1ird.disctest/models/Question.dart';
-import 'package:seab1ird.disctest/models/Types.dart';
+import 'package:seabird.riasectest/models/Question.dart';
+import 'package:seabird.riasectest/models/Types.dart';
 
 final questions = [
   // 1-6

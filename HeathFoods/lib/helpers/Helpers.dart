@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 
-import 'Ads.dart';
+import 'AdHelpers.dart';
 
 const NUM_QUESTIONS_PER_PAGE = 6;
 
@@ -19,7 +19,7 @@ class Helpers {
   }
 
   static Future<bool> onWillPop(BuildContext context) {
-    Ads.showInterstitialAd();
+    AdHelpers.showInterAd();
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -86,12 +86,21 @@ class Helpers {
     return BoxDecoration(
       color: color ?? Colors.yellow[100],
       border: Border.all(width: 1.0),
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment(1, 0.0), // 10% of the width, so there are ten blinds.
+        colors: [
+          color ?? Colors.yellow[200],
+          color ?? Colors.yellow[50],
+        ], // red to yellow
+        tileMode: TileMode.clamp, // repeats the gradient over the canvas
+      ),
       boxShadow: [
         BoxShadow(
-          color: Colors.yellow[50],
+          color: Colors.grey,
           blurRadius: 2,
           spreadRadius: 2,
-          offset: Offset(0, 2),
+          offset: Offset(5, 5),
         )
       ],
       borderRadius: BorderRadius.all(Radius.circular(20.0) //
@@ -118,7 +127,7 @@ class Helpers {
     );
   }
 
-  static backToHomeScreen(BuildContext context) {
+  static void backToHomeScreen(BuildContext context) {
     tapButtonSound();
     Navigator.popUntil(context, ModalRoute.withName('/home'));
   }

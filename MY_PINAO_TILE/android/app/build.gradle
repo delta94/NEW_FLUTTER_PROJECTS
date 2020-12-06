@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.seab1bird.letitgo"
+        applicationId "com.seab1bird.showyourself"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 4

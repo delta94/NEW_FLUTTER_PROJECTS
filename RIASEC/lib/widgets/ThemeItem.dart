@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seab1ird.disctest/QuestionProvider.dart';
-import 'package:seab1ird.disctest/helpers/Helpers.dart';
-import 'package:seab1ird.disctest/models/ColorModel.dart';
-import 'package:seab1ird.disctest/utils/Utils.dart';
+import 'package:seabird.riasectest/AppProvider.dart';
+import 'package:seabird.riasectest/helpers/Helpers.dart';
+import 'package:seabird.riasectest/models/ColorModel.dart';
+import 'package:seabird.riasectest/utils/Utils.dart';
 
 class ThemeItem extends StatelessWidget {
   const ThemeItem({
@@ -20,8 +20,8 @@ class ThemeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<ColorModel> colors = Utils.getGameColors();
-    QuestionProvider questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
+    AppProvider questionProvider =
+        Provider.of<AppProvider>(context, listen: false);
     return GestureDetector(
       onTap: () {
         Helpers.winGameSound();
