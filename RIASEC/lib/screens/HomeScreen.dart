@@ -102,11 +102,9 @@ class _BodyWidgetState extends State<BodyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
     return new Stack(children: <Widget>[
       BackgroundWidget(),
       AdBannerTemplate(
-        needShowSecondBanner: !appProvider.admobLoaded,
         child: Column(
           children: <Widget>[
             Container(

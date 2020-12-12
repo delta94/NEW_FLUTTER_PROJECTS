@@ -2,7 +2,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controls.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabird.weekendfashion/helpers/GameProvider.dart';
 
 class ChangingItemWidget extends StatelessWidget {
   const ChangingItemWidget({

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
-import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
-import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
-import 'package:seabi1rd.weekendfashion/widgets/AnimatedButton.dart';
+import 'package:seabird.weekendfashion/enums/ItemType.dart';
+import 'package:seabird.weekendfashion/enums/SubItemType.dart';
+import 'package:seabird.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabird.weekendfashion/widgets/AnimatedButton.dart';
 
 class GirlCabinItem extends StatefulWidget {
   final int girlIndex;

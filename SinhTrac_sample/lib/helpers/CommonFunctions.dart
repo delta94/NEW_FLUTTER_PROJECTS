@@ -1,11 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-import 'Ads.dart';
-
 class CommonFunctions {
   static Future<bool> onWillPop(BuildContext context) {
-    Ads.showInterstitialAd();
     return showDialog(
       context: context,
       builder: (context) => new AlertDialog(

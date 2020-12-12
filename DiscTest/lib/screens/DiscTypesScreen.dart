@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.disctest/data/Results.dart';
+import 'package:seabird.disctest/helpers/AdHelpers.dart';
 import 'package:seabird.disctest/widgets/AdBannerTemplate.dart';
 import 'package:seabird.disctest/widgets/BackgroundWidget.dart';
 import 'package:seabird.disctest/helpers/EndLoopController.dart';
@@ -12,12 +13,20 @@ import 'package:seabird.disctest/helpers/Helpers.dart';
 import 'package:seabird.disctest/widgets/ShadowText.dart';
 import 'package:seabird.disctest/models/ResultInfo.dart';
 
-import '../AppProvider.dart';
+class DiscTypesScreen extends StatefulWidget {
+  @override
+  _DiscTypesScreenState createState() => _DiscTypesScreenState();
+}
 
-class DiscTypesScreen extends StatelessWidget {
+class _DiscTypesScreenState extends State<DiscTypesScreen> {
+  @override
+  void initState() {
+    AdHelpers.showInterAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var appProvider = Provider.of<AppProvider>(context, listen: false);
-
     final EndLoopController _logoLoopController =
         EndLoopController('Untitled', 10);
     final EndLoopController _starLoopController =
@@ -93,7 +102,6 @@ class DiscTypesScreen extends StatelessWidget {
           children: <Widget>[
             BackgroundWidget(),
             AdBannerTemplate(
-              needShowSecondBanner: !appProvider.admobLoaded,
               child: Body(),
             ),
           ],
@@ -150,8 +158,7 @@ class _BodyState extends State<Body> {
                         children: <Widget>[
                           isCurrentResultInfo(resultInfos[index])
                               ? ShadowText(
-                                  EnumToString.convertToString(
-                                      resultInfos[index].type),
+                                  EnumToString.parse(resultInfos[index].type),
                                   style: TextStyle(
                                     color: Colors.redAccent,
                                     fontSize: Helpers.isIpad()
@@ -161,8 +168,7 @@ class _BodyState extends State<Body> {
                                   ),
                                 )
                               : Text(
-                                  EnumToString.convertToString(
-                                      resultInfos[index].type),
+                                  EnumToString.parse(resultInfos[index].type),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: Helpers.isIpad()
@@ -197,7 +203,7 @@ class _BodyState extends State<Body> {
         ),
         SizedBox(height: 10),
         ShadowText(
-          EnumToString.convertToString(currentResultInfo.type) +
+          EnumToString.parse(currentResultInfo.type) +
               ' (${currentResultInfo.name}) :',
           style: TextStyle(
               color: currentResultInfo.color,

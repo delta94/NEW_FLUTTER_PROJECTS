@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seabi1rd.weekendfashion/helpers/AnimationHelper.dart';
-import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
-import 'package:seabi1rd.weekendfashion/routers.dart';
-import 'package:seabi1rd.weekendfashion/widgets/AnimatedButton.dart';
-import 'package:seabi1rd.weekendfashion/widgets/ChangingScreenAnimation.dart';
+import 'package:seabird.weekendfashion/helpers/AnimationHelper.dart';
+import 'package:seabird.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabird.weekendfashion/routers.dart';
+import 'package:seabird.weekendfashion/widgets/AnimatedButton.dart';
+import 'package:seabird.weekendfashion/widgets/ChangingScreenAnimation.dart';
 
 class GirlOptionsScreen extends StatefulWidget {
   GirlOptionsScreen({Key key}) : super(key: key);

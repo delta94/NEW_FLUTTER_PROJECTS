@@ -19,9 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     var appProvider = Provider.of<AppProvider>(context, listen: false);
     appProvider.init();
-    AdHelpers.initialize();
     Future.delayed(Duration(seconds: 5), () {
-      AdHelpers.showBanner(appProvider);
       AdHelpers.showInterAd();
     });
 

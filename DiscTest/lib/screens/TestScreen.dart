@@ -124,7 +124,6 @@ class TestScreen extends StatelessWidget {
         children: <Widget>[
           BackgroundWidget(),
           AdBannerTemplate(
-            needShowSecondBanner: !appProvider.admobLoaded,
             child: Column(
               children: <Widget>[
                 SizedBox(height: Helpers.isIpad() ? 20 : 5),

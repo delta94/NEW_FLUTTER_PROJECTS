@@ -2,18 +2,20 @@ import 'dart:math';
 
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:seab1ird.letitgo/helpers/Helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'helpers/AdHelpers.dart';
 import 'models/Note.dart';
 
-const int totalNodes = 1000;
+const int totalNodes = 10000;
 
 class SongProvider extends ChangeNotifier {
   bool isFirstUse = true;
   bool admobLoaded = true;
 
   Future<void> init() async {
+    Helpers.rnd = new Random();
     var prefs = await SharedPreferences.getInstance();
     isFirstUse = prefs.getBool('isFirstUse') ?? true;
   }

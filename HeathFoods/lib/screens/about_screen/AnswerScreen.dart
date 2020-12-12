@@ -55,7 +55,6 @@ class _AnswerScreenState extends State<AnswerScreen> {
           actions: <Widget>[RateButton()],
         ),
         body: AdBannerTemplate(
-          needShowSecondBanner: !appProvider.admobLoaded,
           child: Container(
             color: Colors.transparent,
             padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),

@@ -1,15 +1,15 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seabi1rd.weekendfashion/data/Data.dart';
-import 'package:seabi1rd.weekendfashion/data/wear_item/GirlDressData.dart';
-import 'package:seabi1rd.weekendfashion/data/wear_item/GirlHairData.dart';
-import 'package:seabi1rd.weekendfashion/data/wear_item/GirlJacketData.dart';
-import 'package:seabi1rd.weekendfashion/data/wear_item/GirlShirtData.dart';
-import 'package:seabi1rd.weekendfashion/data/wear_item/GirlShortData.dart';
-import 'package:seabi1rd.weekendfashion/data/wear_item/GirlTreasureData.dart';
-import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
-import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
-import 'package:seabi1rd.weekendfashion/models/DeviceSize.dart';
+import 'package:seabird.weekendfashion/data/Data.dart';
+import 'package:seabird.weekendfashion/data/wear_item/GirlDressData.dart';
+import 'package:seabird.weekendfashion/data/wear_item/GirlHairData.dart';
+import 'package:seabird.weekendfashion/data/wear_item/GirlJacketData.dart';
+import 'package:seabird.weekendfashion/data/wear_item/GirlShirtData.dart';
+import 'package:seabird.weekendfashion/data/wear_item/GirlShortData.dart';
+import 'package:seabird.weekendfashion/data/wear_item/GirlTreasureData.dart';
+import 'package:seabird.weekendfashion/enums/ItemType.dart';
+import 'package:seabird.weekendfashion/enums/SubItemType.dart';
+import 'package:seabird.weekendfashion/models/DeviceSize.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Helper.dart';

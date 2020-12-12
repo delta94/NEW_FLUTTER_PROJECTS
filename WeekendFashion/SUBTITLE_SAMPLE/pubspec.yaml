@@ -1,5 +1,5 @@
-name: seabi1rd.weekendfashion
-description: seabi1rd
+name: seabird.weekendfashion
+description: seabird
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -11,7 +11,7 @@ description: seabi1rd
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.1.32
+version: 1.1.36
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -26,7 +26,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  firebase_admob: ^0.10.2
   flare_flutter: 1.7.3
   shared_preferences: ^0.5.8
   flare_dart: 2.2.5
@@ -34,6 +33,7 @@ dependencies:
   provider: ^4.0.4
   assets_audio_player: ^1.4.0
   startapp: ^0.5.1
+
 
 
 

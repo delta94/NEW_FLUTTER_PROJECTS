@@ -4,12 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.biometry/AppProvider.dart';
 import 'package:seabird.biometry/helpers/AdBannerTemplate.dart';
-import 'package:seabird.biometry/helpers/Ads.dart';
+import 'package:seabird.biometry/helpers/AdHelpers.dart';
 
 class Hist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Ads.showInterstitialAd();
+    AdHelpers.showInterAd();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: Colors.black12, //or set color with: Color(0xFF0000FF)
     ));
@@ -40,8 +41,6 @@ class Hist extends StatelessWidget {
             decoration: new BoxDecoration(color: Colors.black87),
           ),
           AdBannerTemplate(
-            needShowSecondBanner:
-                !Provider.of<AppProvider>(context, listen: false).admobLoaded,
             child: new Container(
                 padding: EdgeInsets.only(left: 10, right: 10, top: 0),
                 child: Center(

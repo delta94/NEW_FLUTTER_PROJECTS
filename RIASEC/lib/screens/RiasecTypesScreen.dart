@@ -3,9 +3,8 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:provider/provider.dart';
-import 'package:seabird.riasectest/AppProvider.dart';
 import 'package:seabird.riasectest/data/RiasecTypes.dart';
+import 'package:seabird.riasectest/helpers/AdHelpers.dart';
 import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
 import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
 import 'package:seabird.riasectest/helpers/Helpers.dart';
@@ -25,8 +24,14 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
     return currentResultInfo.type == resultInfo.type;
   }
 
+  @override
+  void initState() {
+    AdHelpers.showInterAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var appProvider = Provider.of<AppProvider>(context, listen: false);
     final FlareEndlessController _logoLoopController =
         FlareEndlessController('Untitled', 10);
     final FlareEndlessController _starLoopController =
@@ -112,7 +117,6 @@ class _RiasecTypesScreenState extends State<RiasecTypesScreen> {
             children: <Widget>[
               BackgroundWidget(),
               AdBannerTemplate(
-                needShowSecondBanner: !appProvider.admobLoaded,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[

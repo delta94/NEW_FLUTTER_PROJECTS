@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:seabird.goutfood/AppProvider.dart';
 import 'package:seabird.goutfood/data/AboutData.dart';
+import 'package:seabird.goutfood/helpers/AdHelpers.dart';
 import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:seabird.goutfood/helpers/Helpers.dart';
 import 'package:seabird.goutfood/widgets/AdBannerTemplate.dart';
@@ -15,8 +14,13 @@ class AboutScreen extends StatefulWidget {
 
 class _AboutScreenState extends State<AboutScreen> {
   @override
+  void initState() {
+    AdHelpers.showInterAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var appProvider = Provider.of<AppProvider>(context, listen: false);
     return WillPopScope(
       onWillPop: () {
         Helpers.backToHomeScreen(context);
@@ -50,7 +54,6 @@ class _AboutScreenState extends State<AboutScreen> {
             actions: <Widget>[RateButton()],
           ),
           body: AdBannerTemplate(
-            needShowSecondBanner: !appProvider.admobLoaded,
             child: Container(
                 color: Colors.transparent,
                 padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),

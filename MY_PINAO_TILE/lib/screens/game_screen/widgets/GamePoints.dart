@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:seab1ird.letitgo/widgets/ShadowText.dart';
 
 class GamePoints extends StatelessWidget {
   const GamePoints({
@@ -15,9 +16,9 @@ class GamePoints extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Padding(
         padding: const EdgeInsets.only(top: 32.0),
-        child: Text(
+        child: ShadowText(
           "$points",
-          style: TextStyle(color: Colors.red, fontSize: 60),
+          style: TextStyle(color: Colors.yellow, fontSize: 60),
         ),
       ),
     );

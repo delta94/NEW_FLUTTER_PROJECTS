@@ -1,10 +1,8 @@
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/widgets.dart';
 import 'package:seabird.goutfood/enums/FoodTypeEnum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/FoodTypeData.dart';
-import 'helpers/AdHelpers.dart';
 
 class AppProvider extends ChangeNotifier {
   List<FoodTypeEnum> selectedFoodTypeEnums = <FoodTypeEnum>[];
@@ -12,7 +10,6 @@ class AppProvider extends ChangeNotifier {
   String searchText = '';
   FoodTypeEnum currFoodTypeEnum;
   bool isFirstUse = true;
-  bool admobLoaded = true;
 
   Future<void> init() async {
     var prefs = await SharedPreferences.getInstance();
@@ -22,11 +19,6 @@ class AppProvider extends ChangeNotifier {
   void setIsFirstUse() async {
     var _prefs = await SharedPreferences.getInstance();
     await _prefs.setBool('isFirstUse', false);
-  }
-
-  void updateAdState(MobileAdEvent mobileAdEvent) {
-    admobLoaded = AdHelpers.isAdmobBannerLoaded(mobileAdEvent);
-    notifyListeners();
   }
 
   void updateSearchText(String newSearchText) {

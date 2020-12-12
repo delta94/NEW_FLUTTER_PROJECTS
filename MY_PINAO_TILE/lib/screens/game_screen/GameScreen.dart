@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:seab1ird.letitgo/SongProvider.dart';
+import 'package:seab1ird.letitgo/helpers/Helper.dart';
 import 'package:seab1ird.letitgo/models/Note.dart';
 
 import 'widgets/CustomAnimatedBg.dart';
@@ -28,9 +29,18 @@ class _GameScreenState extends State<GameScreen>
   AssetsAudioPlayer animatedAudio = AssetsAudioPlayer();
   SongProvider songProvider;
 
+  int tileIndex;
+  int backgroundIndex;
+  int animatedIndex;
+  int animatedItemIndex;
+
   @override
   void initState() {
     songProvider = Provider.of<SongProvider>(context, listen: false);
+    tileIndex = Helpers.rnd.nextInt(5);
+    backgroundIndex = Helpers.rnd.nextInt(10);
+    animatedIndex = Helpers.rnd.nextInt(4);
+    animatedItemIndex = Helpers.rnd.nextInt(4);
     setNotes();
     animationController = AnimationController(
         vsync: this, duration: Duration(milliseconds: GAME_SPEED));
@@ -60,21 +70,11 @@ class _GameScreenState extends State<GameScreen>
   }
 
   onStart(bool onStart) {
-    setState(() {
-      isPlaying = onStart;
-    });
+    setState(() => isPlaying = onStart);
   }
 
   @override
   Widget build(BuildContext context) {
-    // GifController controller = GifController(vsync: this);
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   // controller.repeat(min: 0, max: 72, period: Duration(milliseconds: 6000));
-    //   isPlaying
-    //       ? controller.repeat(
-    //           min: 0, max: 72, period: Duration(milliseconds: 6000))
-    //       : controller.stop();
-    // });
     return Scaffold(
       body: Center(
         child: Column(
@@ -84,11 +84,14 @@ class _GameScreenState extends State<GameScreen>
                 child: Stack(
                   fit: StackFit.passthrough,
                   children: <Widget>[
-                    // Image.asset(
-                    //   'images/background.jpg',
-                    //   fit: BoxFit.cover,
-                    // ),
-                    CustomAnimatedBg(),
+                    Image.asset(
+                      'assets/images/background$backgroundIndex.png',
+                      fit: BoxFit.cover,
+                    ),
+                    CustomAnimatedBg(
+                      animatedIndex: animatedIndex,
+                      animatedItemIndex: animatedItemIndex,
+                    ),
                     Row(
                       children: <Widget>[
                         verticalLineWidget(0),
@@ -170,6 +173,7 @@ class _GameScreenState extends State<GameScreen>
     return Expanded(
       child: VerticalLine(
         lineNumber: lineNumber,
+        tileIndex: tileIndex,
         currentNotes: notes.sublist(currentNoteIndex, currentNoteIndex + 4),
         onTileTap: _onTap,
         animation: animationController,

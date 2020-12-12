@@ -74,36 +74,6 @@
       "languageVersion": "2.2"
     },
     {
-      "name": "firebase",
-      "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/firebase-7.2.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.7"
-    },
-    {
-      "name": "firebase_admob",
-      "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/firebase_admob-0.9.3+1",
-      "packageUri": "lib/",
-      "languageVersion": "2.0"
-    },
-    {
-      "name": "firebase_core",
-      "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.4+3",
-      "packageUri": "lib/",
-      "languageVersion": "2.0"
-    },
-    {
-      "name": "firebase_core_platform_interface",
-      "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-1.0.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.0"
-    },
-    {
-      "name": "firebase_core_web",
-      "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2",
-      "packageUri": "lib/",
-      "languageVersion": "2.0"
-    },
-    {
       "name": "flare_dart",
       "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/flare_dart-2.2.5",
       "packageUri": "lib/",
@@ -174,12 +144,6 @@
       "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/intl-0.16.1",
       "packageUri": "lib/",
       "languageVersion": "2.5"
-    },
-    {
-      "name": "js",
-      "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/js-0.6.1+1",
-      "packageUri": "lib/",
-      "languageVersion": "1.19"
     },
     {
       "name": "matcher",
@@ -264,12 +228,6 @@
       "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/provider-4.3.2+2",
       "packageUri": "lib/",
       "languageVersion": "2.7"
-    },
-    {
-      "name": "quiver",
-      "rootUri": "file:///C:/WORK/Softwares/flutter_sdk/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.5",
-      "packageUri": "lib/",
-      "languageVersion": "2.0"
     },
     {
       "name": "shared_preferences",
@@ -434,7 +392,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-11-29T17:03:48.822236Z",
+  "generated": "2020-12-09T15:23:47.560748Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

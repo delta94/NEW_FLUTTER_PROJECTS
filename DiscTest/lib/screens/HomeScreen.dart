@@ -105,7 +105,6 @@ class BodyWidget extends StatelessWidget {
     return Stack(children: <Widget>[
       BackgroundWidget(),
       AdBannerTemplate(
-        needShowSecondBanner: !appProvider.admobLoaded,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

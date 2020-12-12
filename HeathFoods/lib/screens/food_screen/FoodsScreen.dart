@@ -25,10 +25,8 @@ class FoodsScreen extends StatefulWidget {
 class _FoodsScreenState extends State<FoodsScreen> {
   @override
   Widget build(BuildContext context) {
-    var appProvider = Provider.of<AppProvider>(context, listen: false);
     return SafeArea(
       child: AdBannerTemplate(
-        needShowSecondBanner: !appProvider.admobLoaded,
         child: Body(),
       ),
     );

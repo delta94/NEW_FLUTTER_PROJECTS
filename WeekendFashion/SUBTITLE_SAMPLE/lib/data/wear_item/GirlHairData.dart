@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:seabi1rd.weekendfashion/data/Data.dart';
+import 'package:seabird.weekendfashion/data/Data.dart';
 
 class GirlHairData extends Data {
   GirlHairData() {

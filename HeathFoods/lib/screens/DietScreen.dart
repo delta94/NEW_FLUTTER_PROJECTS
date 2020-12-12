@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.goutfood/AppProvider.dart';
 import 'package:seabird.goutfood/data/DietData.dart';
+import 'package:seabird.goutfood/helpers/AdHelpers.dart';
 import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:seabird.goutfood/helpers/Helpers.dart';
 import 'package:seabird.goutfood/models/DataInfo.dart';
@@ -16,8 +17,13 @@ class DietScreen extends StatefulWidget {
 
 class _DietScreenState extends State<DietScreen> {
   @override
+  void initState() {
+    AdHelpers.showInterAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var appProvider = Provider.of<AppProvider>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -50,7 +56,6 @@ class _DietScreenState extends State<DietScreen> {
           actions: <Widget>[RateButton()],
         ),
         body: AdBannerTemplate(
-          needShowSecondBanner: !appProvider.admobLoaded,
           child: Container(
             color: Colors.transparent,
             child: Column(

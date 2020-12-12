@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
+import 'package:seabird.weekendfashion/enums/SubItemType.dart';
 
 class Data {
   List<Map<SubItemType, Map<String, List<Positioned>>>> itemSubMapList;

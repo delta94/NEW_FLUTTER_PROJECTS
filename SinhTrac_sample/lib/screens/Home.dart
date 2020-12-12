@@ -7,7 +7,6 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.biometry/AppProvider.dart';
 import 'package:seabird.biometry/helpers/AdBannerTemplate.dart';
-import 'package:seabird.biometry/helpers/Ads.dart';
 import 'package:seabird.biometry/helpers/CommonFunctions.dart';
 import 'package:seabird.biometry/helpers/EndLoopController.dart';
 
@@ -22,8 +21,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   void initState() {
     var appProvider = Provider.of<AppProvider>(context, listen: false);
     appProvider.init();
-    Ads.showBannerAd();
-    Ads.loadInterstitialAd();
     super.initState();
   }
 
@@ -108,8 +105,6 @@ class BodyWidget extends StatelessWidget {
         ),
       ),
       AdBannerTemplate(
-        needShowSecondBanner:
-            !Provider.of<AppProvider>(context, listen: false).admobLoaded,
         child: new Container(
             padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
             child: Column(

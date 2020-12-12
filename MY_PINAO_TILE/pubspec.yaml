@@ -40,11 +40,40 @@ dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/background.jpg
-    - assets/images/flower.png
+    - assets/images/background0.png
+    - assets/images/background1.png
+    - assets/images/background2.png
+    - assets/images/background3.png
+    - assets/images/background4.png
+    - assets/images/background5.png
+    - assets/images/background6.png
+    - assets/images/background7.png
+    - assets/images/background8.png
+    - assets/images/background9.png
+    - assets/images/splash_background.png
+
+    - assets/images/petal0.png
+    - assets/images/petal1.png
+    - assets/images/petal2.png
+    - assets/images/petal3.png
+    - assets/images/heart0.png
+    - assets/images/heart1.png
+    - assets/images/heart2.png
+    - assets/images/heart3.png
+    - assets/images/flower0.png
+    - assets/images/flower1.png
+    - assets/images/flower2.png
+    - assets/images/soap_bubble.png
+
     - assets/images/logo.png
-    - assets/images/tile.png
     - assets/images/disabled_tile.png
+    - assets/images/splash_logo.png
+
+    - assets/images/tile0.png
+    - assets/images/tile1.png
+    - assets/images/tile2.png
+    - assets/images/tile3.png
+    - assets/images/tile4.png
 
     - assets/sounds/a.wav
     - assets/sounds/c.wav

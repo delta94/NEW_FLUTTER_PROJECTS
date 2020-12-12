@@ -5,9 +5,11 @@ import 'package:seab1ird.letitgo/models/Note.dart';
 class Tile extends StatelessWidget {
   final NoteState state;
   final double height;
+  final int tileIndex;
   final VoidCallback onTap;
 
-  const Tile({Key key, this.height, this.state, this.onTap}) : super(key: key);
+  const Tile({Key key, this.height, this.state, this.onTap, this.tileIndex})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +38,11 @@ class Tile extends StatelessWidget {
   String get image {
     switch (state) {
       case NoteState.ready:
-        return 'tile';
+        return 'tile$tileIndex';
       case NoteState.missed:
         return 'disabled_tile';
       default:
-        return 'tile';
+        return 'tile1';
     }
   }
 }

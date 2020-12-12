@@ -3,12 +3,14 @@ import '../../../models/Note.dart';
 import 'Tile.dart';
 
 class VerticalLine extends AnimatedWidget {
+  final int tileIndex;
   final int lineNumber;
   final List<Note> currentNotes;
   final Function(Note) onTileTap;
 
   const VerticalLine(
       {Key key,
+      this.tileIndex,
       this.currentNotes,
       this.lineNumber,
       this.onTileTap,
@@ -30,12 +32,12 @@ class VerticalLine extends AnimatedWidget {
     List<Widget> tiles = thisLineNotes.map((note) {
       //specify note distance from top
       int index = currentNotes.indexOf(note);
-      print('index: ${index}');
       double offset = (3 - index + animation.value) * tileHeight;
 
       return Transform.translate(
         offset: Offset(0, offset),
         child: Tile(
+          tileIndex: tileIndex,
           height: tileHeight,
           state: note.state,
           onTap: () => onTileTap(note),
@@ -43,7 +45,6 @@ class VerticalLine extends AnimatedWidget {
       );
     }).toList();
 
-    print('TILE LENG: ${tiles.length}');
     return SizedBox.expand(child: Stack(children: tiles));
   }
 }

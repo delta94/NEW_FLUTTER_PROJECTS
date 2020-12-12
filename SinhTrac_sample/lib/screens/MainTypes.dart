@@ -74,8 +74,6 @@ class MainTypesState extends State<MainTypes>
             ),
           ),
           AdBannerTemplate(
-            needShowSecondBanner:
-                !Provider.of<AppProvider>(context, listen: false).admobLoaded,
             child: new Container(
               alignment: Alignment.center,
               child: Column(

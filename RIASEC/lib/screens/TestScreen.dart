@@ -2,8 +2,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:provider/provider.dart';
-import 'package:seabird.riasectest/AppProvider.dart';
 import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
 import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
 import 'package:seabird.riasectest/helpers/Helpers.dart';
@@ -104,7 +102,6 @@ class _TestScreenState extends State<TestScreen> {
   }
 
   Widget build(BuildContext context) {
-    var appProvider = Provider.of<AppProvider>(context, listen: false);
     final String args = ModalRoute.of(context).settings.arguments;
     final FlareEndlessController _logoLoopController =
         FlareEndlessController('Untitled', 10);
@@ -186,7 +183,6 @@ class _TestScreenState extends State<TestScreen> {
         children: <Widget>[
           BackgroundWidget(),
           AdBannerTemplate(
-            needShowSecondBanner: !appProvider.admobLoaded,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

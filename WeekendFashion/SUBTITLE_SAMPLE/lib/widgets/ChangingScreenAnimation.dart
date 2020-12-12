@@ -1,6 +1,6 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
+import 'package:seabird.weekendfashion/helpers/EndlessController.dart';
 
 class ChangingScreenAnimation extends StatelessWidget {
   const ChangingScreenAnimation({

@@ -2,8 +2,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:provider/provider.dart';
-import 'package:seabird.disctest/AppProvider.dart';
+import 'package:seabird.disctest/helpers/AdHelpers.dart';
 import 'package:seabird.disctest/widgets/AdBannerTemplate.dart';
 import 'package:seabird.disctest/widgets/BackgroundWidget.dart';
 import 'package:seabird.disctest/helpers/EndLoopController.dart';
@@ -12,8 +11,7 @@ import 'package:seabird.disctest/widgets/ShadowText.dart';
 
 class IntroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    var appProvider = Provider.of<AppProvider>(context, listen: false);
-
+    AdHelpers.showInterAd();
     final EndLoopController _logoLoopController =
         EndLoopController('Untitled', 10);
     final EndLoopController _starLoopController =
@@ -89,7 +87,6 @@ class IntroScreen extends StatelessWidget {
           children: <Widget>[
             BackgroundWidget(),
             AdBannerTemplate(
-              needShowSecondBanner: !appProvider.admobLoaded,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

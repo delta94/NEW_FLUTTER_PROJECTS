@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:seab1ird.letitgo/widgets/animated_background/AnimatedBackground.dart';
 import 'package:seab1ird.letitgo/widgets/animated_background/ImageHelper.dart';
 import 'dart:ui' as ui;
+import 'Behavior.dart';
 import 'ParticleOptions.dart';
 import 'Particles.dart';
 
@@ -9,14 +10,15 @@ import 'Particles.dart';
 abstract class ParticleBehaviour extends Behaviour {
   /// The list of particles used by the particle behaviour to hold the spawned particles.
   @protected
-  List<Particle> particles;
+  List<Particle> particles = [];
 
   @override
-  bool get isInitialized => particles != null;
+  bool get isInitialized => particles != null && particles.isNotEmpty;
 
-  Rect _particleImageSrc;
-  ui.Image _particleImage;
-  Function _pendingConversion;
+  List<Rect> _particleImageSrcs = [];
+
+  List<ui.Image> _particleImages = [];
+  List<Function> _pendingConversions = [];
 
   Paint _paint;
   Paint get particlePaint => _paint;
@@ -47,10 +49,12 @@ abstract class ParticleBehaviour extends Behaviour {
     ParticleOptions oldOptions = _options;
     _options = value;
 
-    if (_options.image == null)
-      _particleImage = null;
-    else if (_particleImage == null || oldOptions.image != _options.image)
-      _convertImage(_options.image);
+    if (_options.images == null)
+      _particleImages = null;
+    else if (_particleImages == null || oldOptions.images != _options.images)
+      for (var i = 0; i < options.images.length; i++) {
+        _convertImage(options.images, i);
+      }
 
     onOptionsUpdate(oldOptions);
   }
@@ -64,7 +68,11 @@ abstract class ParticleBehaviour extends Behaviour {
   }) : assert(options != null) {
     _options = options;
     this.particlePaint = paint;
-    if (options.image != null) _convertImage(options.image);
+    if (options.images != null) {
+      for (var i = 0; i < options.images.length; i++) {
+        _convertImage(options.images, i);
+      }
+    }
   }
 
   @override
@@ -78,9 +86,10 @@ abstract class ParticleBehaviour extends Behaviour {
       particles = oldBehaviour.particles;
 
       // keep old image if waiting for a new one
-      if (options.image != null && _particleImage == null) {
-        _particleImage = oldBehaviour._particleImage;
-        _particleImageSrc = oldBehaviour._particleImageSrc;
+      if (options.images != null &&
+          (_particleImages == null || _particleImages.isEmpty)) {
+        _particleImages = oldBehaviour._particleImages;
+        _particleImageSrcs = oldBehaviour._particleImageSrcs;
       }
 
       onOptionsUpdate(oldBehaviour.options);
@@ -107,18 +116,22 @@ abstract class ParticleBehaviour extends Behaviour {
   void paint(PaintingContext context, Offset offset) {
     final Canvas canvas = context.canvas;
     for (Particle particle in particles) {
+      int imageIndex = particle.index % options.images.length;
       if (particle.alpha == 0.0) continue;
       _paint.color = options.baseColor.withOpacity(particle.alpha);
 
-      if (_particleImage != null) {
+      if (_particleImages != null) {
         Rect dst = Rect.fromLTRB(
           particle.cx - particle.radius,
           particle.cy - particle.radius,
           particle.cx + particle.radius,
           particle.cy + particle.radius,
         );
-        canvas.drawImageRect(_particleImage, _particleImageSrc, dst, _paint);
-        // canvas.rotate(10 * math.pi / 180);
+
+        // canvas.rotate(particle.radians * 0.1 * math.pi / 180);
+        // canvas.drawImage(_particleImage, dst.topLeft, _paint);
+        canvas.drawImageRect(_particleImages[imageIndex],
+            _particleImageSrcs[imageIndex], dst, _paint);
       } else
         canvas.drawCircle(
           Offset(particle.cx, particle.cy),
@@ -175,19 +188,22 @@ abstract class ParticleBehaviour extends Behaviour {
     }
   }
 
-  void _convertImage(Image image) async {
-    if (_pendingConversion != null) _pendingConversion();
-    _pendingConversion = convertImage(image, (ui.Image outImage) {
-      _pendingConversion = null;
+  void _convertImage(List<Image> images, int index) async {
+    if (_pendingConversions != null && _pendingConversions.length >= index + 1)
+      _pendingConversions[index]();
+    _pendingConversions ??= [];
+    _pendingConversions.add(convertImage(images[index], (ui.Image outImage) {
+      _pendingConversions = null;
       if (outImage != null) {
-        _particleImageSrc = Rect.fromLTRB(
+        _particleImageSrcs.add(Rect.fromLTRB(
           0.0,
           0.0,
           outImage.width.toDouble(),
           outImage.height.toDouble(),
-        );
-        _particleImage = outImage;
+        ));
+
+        _particleImages.add(outImage);
       }
-    });
+    }));
   }
 }

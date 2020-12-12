@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.biometry/AppProvider.dart';
 import 'package:seabird.biometry/helpers/AdBannerTemplate.dart';
-import 'package:seabird.biometry/helpers/Ads.dart';
 
 class Ws extends StatelessWidget {
   @override
@@ -55,7 +54,6 @@ class Ws extends StatelessWidget {
                 ),
                 onPressed: () {
                   // Navigator.popUntil(context, ModalRoute.withName('/home'));
-                  Ads.loadInterstitialAd();
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', ModalRoute.withName('/ws'));
                   // Navigator.pop(context);
@@ -68,8 +66,6 @@ class Ws extends StatelessWidget {
             decoration: new BoxDecoration(color: Colors.black87),
           ),
           AdBannerTemplate(
-            needShowSecondBanner:
-                !Provider.of<AppProvider>(context, listen: false).admobLoaded,
             child: new Container(
                 padding: EdgeInsets.only(top: 0),
                 child: Center(

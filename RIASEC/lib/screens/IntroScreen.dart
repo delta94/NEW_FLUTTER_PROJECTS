@@ -2,8 +2,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:provider/provider.dart';
-import 'package:seabird.riasectest/AppProvider.dart';
+import 'package:seabird.riasectest/helpers/AdHelpers.dart';
 import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
 import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
 import 'package:seabird.riasectest/helpers/Helpers.dart';
@@ -16,9 +15,14 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  Widget build(BuildContext context) {
-    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
+  @override
+  void initState() {
+    AdHelpers.showInterAd();
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     final FlareEndlessController _logoLoopController =
         FlareEndlessController('Untitled', 10);
     final FlareEndlessController _starLoopController =
@@ -101,7 +105,6 @@ class _IntroScreenState extends State<IntroScreen> {
             children: <Widget>[
               BackgroundWidget(),
               AdBannerTemplate(
-                needShowSecondBanner: !appProvider.admobLoaded,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[

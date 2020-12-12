@@ -19,9 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     var appProvider = Provider.of<AppProvider>(context, listen: false);
     appProvider.init();
-    AdHelpers.initialize();
     Future.delayed(Duration(seconds: 5), () {
-      AdHelpers.showBanner(appProvider);
       AdHelpers.showInterAd();
     });
 
@@ -35,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   navigateToHomeScreen() async {
-    var _duration = new Duration(seconds: 10);
+    var _duration = new Duration(seconds: 3);
     return new Timer(_duration, navigationPage);
   }
 

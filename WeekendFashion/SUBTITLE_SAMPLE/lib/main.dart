@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:seabi1rd.weekendfashion/screens/GirlOptionsScreen.dart';
-import 'package:seabi1rd.weekendfashion/screens/InitScreen.dart';
-import 'package:seabi1rd.weekendfashion/screens/PresentScreen.dart';
-import 'package:seabi1rd.weekendfashion/screens/SplashScreen.dart';
+import 'package:seabird.weekendfashion/screens/GirlOptionsScreen.dart';
+import 'package:seabird.weekendfashion/screens/InitScreen.dart';
+import 'package:seabird.weekendfashion/screens/PresentScreen.dart';
+import 'package:seabird.weekendfashion/screens/SplashScreen.dart';
 
 import 'helpers/GameProvider.dart';
 import 'helpers/Helper.dart';

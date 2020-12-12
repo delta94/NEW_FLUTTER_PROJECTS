@@ -1,4 +1,3 @@
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/widgets.dart';
 import 'package:seabird.riasectest/models/PercentType.dart';
 import 'package:seabird.riasectest/models/Types.dart';
@@ -6,7 +5,6 @@ import 'package:seabird.riasectest/utils/Utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/Questions.dart';
-import 'helpers/AdHelpers.dart';
 import 'models/PercentTypes.dart';
 import 'models/Question.dart';
 
@@ -16,7 +14,6 @@ class AppProvider extends ChangeNotifier {
   PercentType maxPercentType;
   String themeColorName;
   bool isFirstUse = true;
-  bool admobLoaded = true;
 
   init() async {
     var prefs = await SharedPreferences.getInstance();
@@ -93,11 +90,6 @@ class AppProvider extends ChangeNotifier {
     var _prefs = await SharedPreferences.getInstance();
     _prefs.setString('themeColorName', '$colorName');
     themeColorName = colorName;
-    notifyListeners();
-  }
-
-  updateAdState(MobileAdEvent mobileAdEvent) {
-    admobLoaded = AdHelpers.isAdmobBannerLoaded(mobileAdEvent);
     notifyListeners();
   }
 }

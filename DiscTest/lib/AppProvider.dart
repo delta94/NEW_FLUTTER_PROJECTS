@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/widgets.dart';
 import 'package:seabird.disctest/models/PercentType.dart';
 import 'package:seabird.disctest/models/Types.dart';
@@ -9,7 +8,6 @@ import 'package:seabird.disctest/models/UserChoice.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/Questions.dart';
-import 'helpers/AdHelpers.dart';
 import 'models/PercentTypes.dart';
 import 'models/RadioModel.dart';
 
@@ -18,7 +16,6 @@ class AppProvider extends ChangeNotifier {
   PercentTypes percentTypes;
   double maxPercent = 0;
   PercentType maxPercentType;
-  bool admobLoaded = true;
   bool isFirstUse = true;
 
   // Current state
@@ -30,11 +27,6 @@ class AppProvider extends ChangeNotifier {
   init() async {
     var prefs = await SharedPreferences.getInstance();
     isFirstUse = prefs.getBool('isFirstUse') ?? true;
-  }
-
-  updateAdState(MobileAdEvent mobileAdEvent) {
-    admobLoaded = AdHelpers.isAdmobBannerLoaded(mobileAdEvent);
-    notifyListeners();
   }
 
   setHighlightQuestions(bool needFirstHighLight, bool needSecondHighLight) {

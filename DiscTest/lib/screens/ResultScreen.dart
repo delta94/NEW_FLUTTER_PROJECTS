@@ -8,6 +8,7 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.disctest/AppProvider.dart';
 import 'package:seabird.disctest/data/Results.dart';
+import 'package:seabird.disctest/helpers/AdHelpers.dart';
 import 'package:seabird.disctest/widgets/AdBannerTemplate.dart';
 import 'package:seabird.disctest/widgets/BackgroundWidget.dart';
 import 'package:seabird.disctest/helpers/EndLoopController.dart';
@@ -18,7 +19,12 @@ import 'package:seabird.disctest/models/Types.dart';
 import 'package:shimmer/shimmer.dart';
 
 // ignore: must_be_immutable
-class ResultScreen extends StatelessWidget {
+class ResultScreen extends StatefulWidget {
+  @override
+  _ResultScreenState createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
   InAppReview inAppReview;
 
   final Map<String, double> dataMap = Map();
@@ -30,6 +36,13 @@ class ResultScreen extends StatelessWidget {
     Results.resultInfoC.color,
   ];
 
+  @override
+  void initState() {
+    AdHelpers.showInterAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     inAppReview = InAppReview.instance;
     var appProvider = Provider.of<AppProvider>(context, listen: false);
@@ -132,7 +145,6 @@ class ResultScreen extends StatelessWidget {
           children: <Widget>[
             BackgroundWidget(),
             AdBannerTemplate(
-              needShowSecondBanner: !appProvider.admobLoaded,
               child: Column(
                 children: <Widget>[
                   SizedBox(height: 10),
@@ -142,7 +154,7 @@ class ResultScreen extends StatelessWidget {
                         child: Center(
                           child: Text(
                             'The test show that you mostly like: ' +
-                                EnumToString.convertToString(
+                                EnumToString.parse(
                                     appProvider.maxPercentType.type),
                             style: TextStyle(
                                 color: Colors.black,
@@ -195,8 +207,7 @@ class ResultScreen extends StatelessWidget {
                       baseColor: userResultInfo.color,
                       highlightColor: Colors.black,
                       child: Text(
-                        EnumToString.convertToString(
-                                appProvider.maxPercentType.type) +
+                        EnumToString.parse(appProvider.maxPercentType.type) +
                             ' (${userResultInfo.name}) :',
                         style: TextStyle(
                           fontSize: Helpers.isIpad()

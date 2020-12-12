@@ -5,7 +5,6 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.biometry/AppProvider.dart';
 import 'package:seabird.biometry/helpers/AdBannerTemplate.dart';
-import 'package:seabird.biometry/helpers/Ads.dart';
 
 class Lu extends StatefulWidget {
   @override
@@ -70,7 +69,6 @@ class _LuState extends State<Lu> {
                 icon: Image.asset('images/home_icon.png'),
                 onPressed: () {
                   // Navigator.popUntil(context, ModalRoute.withName('/home'));
-                  Ads.loadInterstitialAd();
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/home', ModalRoute.withName('/lu'));
                   // Navigator.pop(context);
@@ -83,8 +81,6 @@ class _LuState extends State<Lu> {
             decoration: new BoxDecoration(color: Colors.black87),
           ),
           AdBannerTemplate(
-            needShowSecondBanner:
-                !Provider.of<AppProvider>(context, listen: false).admobLoaded,
             child: new Container(
                 padding: EdgeInsets.only(left: 10, right: 10, top: 0),
                 child: Center(

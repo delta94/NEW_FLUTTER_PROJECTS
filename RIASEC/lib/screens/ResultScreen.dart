@@ -8,6 +8,7 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:seabird.riasectest/AppProvider.dart';
 import 'package:seabird.riasectest/data/Results.dart';
+import 'package:seabird.riasectest/helpers/AdHelpers.dart';
 import 'package:seabird.riasectest/helpers/BackgroundWidget.dart';
 import 'package:seabird.riasectest/helpers/FlareEndlessController.dart';
 import 'package:seabird.riasectest/helpers/Helpers.dart';
@@ -26,6 +27,7 @@ class _ResultScreenState extends State<ResultScreen> {
   final Map<String, double> dataMap = Map();
 
   void initState() {
+    AdHelpers.showInterAd();
     AppProvider questionProvider =
         Provider.of<AppProvider>(context, listen: false);
 
@@ -153,7 +155,6 @@ class _ResultScreenState extends State<ResultScreen> {
             children: <Widget>[
               BackgroundWidget(),
               AdBannerTemplate(
-                needShowSecondBanner: !questionProvider.admobLoaded,
                 child: Column(
                   children: <Widget>[
                     Row(

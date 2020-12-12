@@ -1,10 +1,9 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-
 /// Holds the information of a particle used in a [ParticleBehaviour].
 class Particle {
+  int index = 0;
+
   /// The X coordinate of the center of this particle.
   double cx = 0.0;
 
@@ -30,9 +29,6 @@ class Particle {
 
   /// The target alpha of this particle.
   double targetAlpha = 0.0;
-
-  /// Rotation degree
-  double rotation = 90 * math.pi / 180;
 
   /// Dynamic data that can be used by [ParticleBehaviour] classes to store
   /// other information related to the particles.

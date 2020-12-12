@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:seab1ird.letitgo/widgets/animated_background/AnimatedBackground.dart';
 import 'package:seab1ird.letitgo/widgets/animated_background/Lines.dart';
 import 'dart:ui' as ui;
 import 'dart:math' as math;
+
+import 'Behavior.dart';
 
 class RacingLinesBehaviour extends Behaviour {
   static final math.Random random = math.Random();

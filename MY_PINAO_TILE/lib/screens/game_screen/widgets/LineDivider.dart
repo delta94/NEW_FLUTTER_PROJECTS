@@ -7,7 +7,13 @@ class LineDivider extends StatelessWidget {
     return Container(
       height: ResponsiveHelper.deviceSize.height,
       width: 1,
-      color: Colors.white,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [Colors.red, Colors.green],
+        ),
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:seab1ird.letitgo/widgets/animated_background/AnimatedBackground.dart';
 import 'dart:math' as math;
 
+import 'Behavior.dart';
 import 'ParticleBehaviour.dart';
 import 'ParticleOptions.dart';
 import 'Particles.dart';
@@ -27,6 +28,8 @@ class RandomParticleBehaviour extends ParticleBehaviour {
 
   @override
   void initParticle(Particle p) {
+    var rnd = new math.Random();
+    p.index = rnd.nextInt(4);
     initPosition(p);
     initRadius(p);
 

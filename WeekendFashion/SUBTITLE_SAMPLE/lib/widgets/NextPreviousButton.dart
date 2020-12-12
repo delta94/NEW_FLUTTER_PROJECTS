@@ -5,8 +5,8 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
-import 'package:seabi1rd.weekendfashion/helpers/GameProvider.dart';
+import 'package:seabird.weekendfashion/helpers/EndlessController.dart';
+import 'package:seabird.weekendfashion/helpers/GameProvider.dart';
 
 class NextPreviousButton extends StatelessWidget {
   const NextPreviousButton(

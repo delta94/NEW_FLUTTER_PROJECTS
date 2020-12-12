@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:seabi1rd.weekendfashion/data/Data.dart';
-import 'package:seabi1rd.weekendfashion/enums/SubItemType.dart';
+import 'package:seabird.weekendfashion/data/Data.dart';
+import 'package:seabird.weekendfashion/enums/SubItemType.dart';
 
 class GirlTreasureData extends Data {
   GirlTreasureData() {

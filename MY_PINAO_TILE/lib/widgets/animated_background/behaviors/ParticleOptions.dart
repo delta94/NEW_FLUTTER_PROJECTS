@@ -1,24 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-/// Dummy [Image] that represents a parameter not set. Used by
-/// [ParticleOptions.copyWith] to check if the parameter was set or not.
-class _NotSetImage extends Image {
-  const _NotSetImage() : super(image: const _NotSetImageProvider());
-}
-
-/// Dummy [ImageProvider] used by [_NotSetImage].
-class _NotSetImageProvider extends ImageProvider<_NotSetImageProvider> {
-  const _NotSetImageProvider();
-  noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
-
 /// Holds the particle configuration information for a [ParticleBehaviour].
 class ParticleOptions {
   /// The image used by the particle. It is mutually exclusive with [baseColor].
-  final Image image;
+  final List<Image> images;
 
-  /// The color used by the particle. It is mutually exclusive with [image].
+  /// The color used by the particle. It is mutually exclusive with [images].
   final Color baseColor;
 
   /// The minimum radius of a spawned particle. Changing this value should cause
@@ -66,12 +54,12 @@ class ParticleOptions {
   ///
   /// Default values are assigned for arguments that are omitted.
   const ParticleOptions({
-    this.image,
-    this.baseColor = Colors.black,
+    this.images,
+    this.baseColor = Colors.yellow,
     this.spawnMinRadius = 1.0,
     this.spawnMaxRadius = 10.0,
-    this.spawnMinSpeed = 150.0,
-    this.spawnMaxSpeed = 300.0,
+    this.spawnMinSpeed = 250.0,
+    this.spawnMaxSpeed = 500.0,
     this.spawnOpacity = 0.0,
     this.minOpacity = 0.1,
     this.maxOpacity = 0.4,
@@ -105,7 +93,7 @@ class ParticleOptions {
   /// Creates a copy of this [ParticleOptions] but with the given fields
   /// replaced with new values.
   ParticleOptions copyWith({
-    Image image = const _NotSetImage(),
+    List<Image> images,
     Color baseColor,
     double spawnMinRadius,
     double spawnMaxRadius,
@@ -118,7 +106,7 @@ class ParticleOptions {
     int particleCount,
   }) {
     return ParticleOptions(
-      image: image is _NotSetImage ? this.image : image,
+      images: images ?? this.images,
       baseColor: baseColor ?? this.baseColor,
       spawnMinRadius: spawnMinRadius ?? this.spawnMinRadius,
       spawnMaxRadius: spawnMaxRadius ?? this.spawnMaxRadius,

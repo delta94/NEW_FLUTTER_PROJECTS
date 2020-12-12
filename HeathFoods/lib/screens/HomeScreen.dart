@@ -2,8 +2,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:provider/provider.dart';
-import 'package:seabird.goutfood/AppProvider.dart';
 import 'package:seabird.goutfood/helpers/ReponsiveHelper.dart';
 import 'package:seabird.goutfood/helpers/Helpers.dart';
 import 'package:seabird.goutfood/helpers/FlareEndlessController.dart';
@@ -67,9 +65,7 @@ class BodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appProvider = Provider.of<AppProvider>(context, listen: false);
     return AdBannerTemplate(
-      needShowSecondBanner: !appProvider.admobLoaded,
       child: Container(
           color: Colors.grey[100],
           padding: EdgeInsets.only(left: 10, right: 10, top: 10),

@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 
 import 'AnimatedBackground.dart';
+import 'behaviors/Behavior.dart';
 
 /// Holds the information of a star used in a [SpaceBehaviour].
 class Star {
@@ -89,8 +90,6 @@ class SpaceBehaviour extends Behaviour {
   void paint(PaintingContext context, Offset offset) {
     var canvas = context.canvas;
     var paint = Paint()..style = PaintingStyle.fill;
-
-    canvas.drawPaint(Paint()..color = _backgroundColor);
 
     canvas.translate(center.dx, center.dy);
     int i = 0;

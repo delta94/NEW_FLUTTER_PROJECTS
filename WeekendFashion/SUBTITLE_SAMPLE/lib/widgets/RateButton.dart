@@ -1,7 +1,7 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/widgets.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:seabi1rd.weekendfashion/helpers/EndlessController.dart';
+import 'package:seabird.weekendfashion/helpers/EndlessController.dart';
 
 class RateButton extends StatelessWidget {
   RateButton({

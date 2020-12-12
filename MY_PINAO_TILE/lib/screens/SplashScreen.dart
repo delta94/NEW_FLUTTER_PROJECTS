@@ -21,8 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
     appProvider.init();
     AdHelpers.initialize();
     Future.delayed(Duration(seconds: 5), () {
-      AdHelpers.showBanner(appProvider);
-      AdHelpers.showInterAd();
+      // AdHelpers.showBanner(appProvider);
+      // AdHelpers.showInterAd();
     });
 
     navigateToHomeScreen();
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<Timer> navigateToHomeScreen() async {
-    var _duration = Duration(seconds: 10);
+    var _duration = Duration(seconds: 3);
     return Timer(_duration, navigationPage);
   }
 
@@ -42,39 +42,67 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     ResponsiveHelper.deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        color: Colors.yellow[100],
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      body: Stack(
+        children: [
           Container(
-            decoration: BoxDecoration(
-                border: Border.all(width: 1),
-                borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                shape: BoxShape.rectangle,
-                color: Colors.white12),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset('assets/images/logo.png',
-                  width: MediaQuery.of(context).size.width / 4,
-                  height: MediaQuery.of(context).size.width / 4),
-            ),
-          ),
-          SizedBox(height: 20),
-          Center(
-            child: Shimmer.fromColors(
-              baseColor: Colors.orange,
-              highlightColor: Colors.yellow,
-              child: Text(
-                'EDM PIANO TILES',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.tomorrow(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                image: new AssetImage('assets/images/splash_background.png'),
+                fit: BoxFit.fill,
               ),
             ),
           ),
-        ]),
+          Container(
+            alignment: Alignment.center,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Container(
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.yellow),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    shape: BoxShape.rectangle,
+                    color: Colors.white12),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Image.asset('assets/images/splash_logo.png',
+                      width: MediaQuery.of(context).size.width / 4,
+                      height: MediaQuery.of(context).size.width / 4),
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Use headphone for best experience',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.tomorrow(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.yellow),
+                      ),
+                      SizedBox(height: 50),
+                      Shimmer.fromColors(
+                        baseColor: Color.fromRGBO(49, 200, 1, 1),
+                        highlightColor: Colors.yellow,
+                        child: Text(
+                          'Loading...',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.tomorrow(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ]),
+          ),
+        ],
       ),
     );
   }

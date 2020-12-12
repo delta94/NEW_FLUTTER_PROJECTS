@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:seabi1rd.weekendfashion/enums/ItemType.dart';
-import 'package:seabi1rd.weekendfashion/models/DeviceSize.dart';
+import 'package:seabird.weekendfashion/enums/ItemType.dart';
+import 'package:seabird.weekendfashion/models/DeviceSize.dart';
 
 import 'GameProvider.dart';
 
