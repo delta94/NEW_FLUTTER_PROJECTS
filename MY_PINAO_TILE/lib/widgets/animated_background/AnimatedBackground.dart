@@ -58,6 +58,7 @@ class _AnimatedBackgroundElement extends RenderObjectElement {
   Element _child;
 
   @override
+  // ignore: must_call_super
   void forgetChild(Element child) {
     assert(child == _child);
     _child = null;

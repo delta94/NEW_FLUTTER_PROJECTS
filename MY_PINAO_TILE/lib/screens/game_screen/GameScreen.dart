@@ -4,7 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:seab1ird.letitgo/SongProvider.dart';
 import 'package:seab1ird.letitgo/helpers/Helper.dart';
+import 'package:seab1ird.letitgo/helpers/ResponsiveHelper.dart';
 import 'package:seab1ird.letitgo/models/Note.dart';
+import 'package:seab1ird.letitgo/widgets/Modal.dart';
 
 import 'widgets/CustomAnimatedBg.dart';
 import 'widgets/GamePoints.dart';
@@ -40,7 +42,7 @@ class _GameScreenState extends State<GameScreen>
     tileIndex = Helpers.rnd.nextInt(5);
     backgroundIndex = Helpers.rnd.nextInt(10);
     animatedIndex = Helpers.rnd.nextInt(4);
-    animatedItemIndex = Helpers.rnd.nextInt(4);
+    animatedItemIndex = Helpers.rnd.nextInt(5);
     setNotes();
     animationController = AnimationController(
         vsync: this, duration: Duration(milliseconds: GAME_SPEED));
@@ -86,6 +88,7 @@ class _GameScreenState extends State<GameScreen>
                   children: <Widget>[
                     Image.asset(
                       'assets/images/background$backgroundIndex.png',
+                      width: ResponsiveHelper.deviceSize.width,
                       fit: BoxFit.cover,
                     ),
                     CustomAnimatedBg(
@@ -131,26 +134,55 @@ class _GameScreenState extends State<GameScreen>
 
   void _showFinishDialog() {
     animatedAudio.stop();
-    showDialog(
+    showGameDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("Score: $points"),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                onStart(true);
-              },
-              child: Text("RESTART"),
+      barrierDismissible: true,
+      widget: Material(
+        color: Colors.transparent,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Text("Score: $points"),
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      _restart();
+                      onStart(true);
+                    },
+                    child: Text("RESTART"),
+                  ),
+                ],
+              ),
             ),
           ],
-        );
-      },
-    ).then((_) => _restart());
+        ),
+      ),
+    );
+    // showDialog(
+    //   context: context,
+    //   builder: (context) {
+    //     return AlertDialog(
+    //       title: Text("Score: $points"),
+    //       actions: <Widget>[
+    //         FlatButton(
+    //           onPressed: () {
+    //             Navigator.of(context).pop();
+    //             onStart(true);
+    //           },
+    //           child: Text("RESTART"),
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // ).then((_) => _restart());
   }
 
   void _onTap(Note note) {
+    print('----------TAP------------');
     bool areAllPreviousTapped = notes
         .sublist(0, note.orderNumber)
         .every((n) => n.state == NoteState.tapped);

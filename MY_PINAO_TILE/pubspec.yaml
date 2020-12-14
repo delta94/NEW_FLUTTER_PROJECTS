@@ -63,9 +63,14 @@ flutter:
     - assets/images/flower0.png
     - assets/images/flower1.png
     - assets/images/flower2.png
+    - assets/images/leaf0.png
+    - assets/images/leaf1.png
+    - assets/images/leaf2.png
+    - assets/images/leaf3.png
+    - assets/images/leaf4.png
+    - assets/images/leaf5.png
     - assets/images/soap_bubble.png
 
-    - assets/images/logo.png
     - assets/images/disabled_tile.png
     - assets/images/splash_logo.png
 
@@ -75,8 +80,4 @@ flutter:
     - assets/images/tile3.png
     - assets/images/tile4.png
 
-    - assets/sounds/a.wav
-    - assets/sounds/c.wav
-    - assets/sounds/e.wav
-    - assets/sounds/f.wav
     - assets/sounds/Cartoon.mp3

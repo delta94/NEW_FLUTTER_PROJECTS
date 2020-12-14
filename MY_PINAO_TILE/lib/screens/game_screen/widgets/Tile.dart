@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seab1ird.letitgo/helpers/Helper.dart';
+import 'package:seab1ird.letitgo/helpers/ResponsiveHelper.dart';
 import 'package:seab1ird.letitgo/models/Note.dart';
 
 class Tile extends StatelessWidget {
@@ -16,10 +16,17 @@ class Tile extends StatelessWidget {
     return GestureDetector(
       onTapDown: (_) => onTap(),
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+        height: ResponsiveHelper.deviceSize.height / 4,
+        alignment: Alignment.topCenter,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+        child: Opacity(
+          opacity:
+              state == NoteState.ready || state == NoteState.missed ? 1 : 0.4,
+          child: Image.asset(
+            'assets/images/$image.png',
+            height: ResponsiveHelper.deviceSize.height / (isIpad ? 3 : 4),
+          ),
         ),
-        child: Opacity(opacity: opacity, child: Helpers.getImage(image)),
       ),
     );
   }
@@ -42,7 +49,7 @@ class Tile extends StatelessWidget {
       case NoteState.missed:
         return 'disabled_tile';
       default:
-        return 'tile1';
+        return 'tile$tileIndex';
     }
   }
 }

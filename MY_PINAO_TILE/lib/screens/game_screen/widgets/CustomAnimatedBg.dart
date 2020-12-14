@@ -29,6 +29,14 @@ List<List<Image>> animatedImages = [
     Helpers.getImage('flower1'),
     Helpers.getImage('flower2'),
   ],
+  [
+    Helpers.getImage('leaf0'),
+    Helpers.getImage('leaf1'),
+    Helpers.getImage('leaf2'),
+    Helpers.getImage('leaf3'),
+    Helpers.getImage('leaf4'),
+    Helpers.getImage('leaf5'),
+  ],
   [Helpers.getImage('soap_bubble')]
 ];
 
@@ -89,7 +97,7 @@ class _CustomAnimatedBgState extends State<CustomAnimatedBg>
   Behaviour _buildBehaviour() {
     particleOptions = particleOptions.copyWith(
         images: animatedImages[widget.animatedItemIndex]);
-    switch (3) {
+    switch (widget.animatedIndex) {
       case 0:
         return RandomParticleBehaviour(
           options: particleOptions,

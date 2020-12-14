@@ -116,28 +116,36 @@ abstract class ParticleBehaviour extends Behaviour {
   void paint(PaintingContext context, Offset offset) {
     final Canvas canvas = context.canvas;
     for (Particle particle in particles) {
-      int imageIndex = particle.index % options.images.length;
-      if (particle.alpha == 0.0) continue;
-      _paint.color = options.baseColor.withOpacity(particle.alpha);
+      int imageIndex;
+      try {
+        imageIndex = particle.index % options.images.length;
+        if (particle.alpha == 0.0) continue;
+        _paint.color = options.baseColor.withOpacity(particle.alpha);
 
-      if (_particleImages != null) {
-        Rect dst = Rect.fromLTRB(
-          particle.cx - particle.radius,
-          particle.cy - particle.radius,
-          particle.cx + particle.radius,
-          particle.cy + particle.radius,
-        );
+        if (_particleImages != null) {
+          Rect dst = Rect.fromLTRB(
+            particle.cx - particle.radius,
+            particle.cy - particle.radius,
+            particle.cx + particle.radius,
+            particle.cy + particle.radius,
+          );
 
-        // canvas.rotate(particle.radians * 0.1 * math.pi / 180);
-        // canvas.drawImage(_particleImage, dst.topLeft, _paint);
-        canvas.drawImageRect(_particleImages[imageIndex],
-            _particleImageSrcs[imageIndex], dst, _paint);
-      } else
-        canvas.drawCircle(
-          Offset(particle.cx, particle.cy),
-          particle.radius,
-          _paint,
-        );
+          // canvas.rotate(particle.radians * 0.1 * math.pi / 180);
+          // canvas.drawImage(_particleImage, dst.topLeft, _paint);
+          if (_particleImages.isNotEmpty && _particleImageSrcs.isNotEmpty)
+            canvas.drawImageRect(_particleImages[imageIndex],
+                _particleImageSrcs[imageIndex], dst, _paint);
+        } else
+          canvas.drawCircle(
+            Offset(particle.cx, particle.cy),
+            particle.radius,
+            _paint,
+          );
+      } catch (e) {
+        print(e);
+        print(
+            '----------------------------------particle.index: ${particle.index}, options.images.length: ${options.images.length}, imageIndex: $imageIndex, _particleImages: ${_particleImages.length}, _particleImageSrcs: ${_particleImageSrcs.length}');
+      }
     }
   }
 
