@@ -143,17 +143,148 @@ class _GameScreenState extends State<GameScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Colors.white,
+              width: ResponsiveHelper.deviceSize.width * 0.9,
+              height: ResponsiveHelper.deviceSize.height * 0.55,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/modal_bg.png"),
+                  fit: BoxFit.fill,
+                ),
+              ),
               child: Column(
                 children: [
-                  Text("Score: $points"),
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      _restart();
-                      onStart(true);
-                    },
-                    child: Text("RESTART"),
+                  Container(
+                    width: ResponsiveHelper.deviceSize.width * 0.9,
+                    height: ResponsiveHelper.deviceSize.height * 0.55,
+                    padding: EdgeInsets.fromLTRB(
+                      ResponsiveHelper.deviceSize.width * 0.02,
+                      ResponsiveHelper.deviceSize.width * 0.03,
+                      ResponsiveHelper.deviceSize.width * 0.02,
+                      ResponsiveHelper.deviceSize.width * 0.2,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      ResponsiveHelper.deviceSize.width * 0.03),
+                              child: Helpers.getImage('on_star',
+                                  width:
+                                      ResponsiveHelper.deviceSize.width * 0.1,
+                                  height:
+                                      ResponsiveHelper.deviceSize.width * 0.1),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      ResponsiveHelper.deviceSize.width * 0.03),
+                              child: Helpers.getImage('on_star',
+                                  width:
+                                      ResponsiveHelper.deviceSize.width * 0.1,
+                                  height:
+                                      ResponsiveHelper.deviceSize.width * 0.1),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      ResponsiveHelper.deviceSize.width * 0.03),
+                              child: Helpers.getImage('on_star',
+                                  width:
+                                      ResponsiveHelper.deviceSize.width * 0.1,
+                                  height:
+                                      ResponsiveHelper.deviceSize.width * 0.1),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      ResponsiveHelper.deviceSize.width * 0.03),
+                              child: Helpers.getImage('on_star',
+                                  width:
+                                      ResponsiveHelper.deviceSize.width * 0.1,
+                                  height:
+                                      ResponsiveHelper.deviceSize.width * 0.1),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      ResponsiveHelper.deviceSize.width * 0.03),
+                              child: Helpers.getImage('on_star',
+                                  width:
+                                      ResponsiveHelper.deviceSize.width * 0.1,
+                                  height:
+                                      ResponsiveHelper.deviceSize.width * 0.1),
+                            )
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                              top: ResponsiveHelper.deviceSize.height * 0.05),
+                          child: Column(
+                            children: [
+                              Container(
+                                child: Text("Score: $points"),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                    top: ResponsiveHelper.deviceSize.height *
+                                        0.01),
+                                child: Text("Score: $points"),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                _restart();
+                                onStart(true);
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                    left: ResponsiveHelper.deviceSize.width *
+                                        0.1),
+                                width: ResponsiveHelper.deviceSize.width * 0.2,
+                                height: ResponsiveHelper.deviceSize.width * 0.2,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage("assets/images/menu.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                _restart();
+                                onStart(true);
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                    right: ResponsiveHelper.deviceSize.width *
+                                        0.1),
+                                width: ResponsiveHelper.deviceSize.width * 0.2,
+                                height: ResponsiveHelper.deviceSize.width * 0.2,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage("assets/images/replay.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -162,23 +293,6 @@ class _GameScreenState extends State<GameScreen>
         ),
       ),
     );
-    // showDialog(
-    //   context: context,
-    //   builder: (context) {
-    //     return AlertDialog(
-    //       title: Text("Score: $points"),
-    //       actions: <Widget>[
-    //         FlatButton(
-    //           onPressed: () {
-    //             Navigator.of(context).pop();
-    //             onStart(true);
-    //           },
-    //           child: Text("RESTART"),
-    //         ),
-    //       ],
-    //     );
-    //   },
-    // ).then((_) => _restart());
   }
 
   void _onTap(Note note) {

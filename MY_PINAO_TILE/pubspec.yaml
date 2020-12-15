@@ -51,6 +51,11 @@ flutter:
     - assets/images/background8.png
     - assets/images/background9.png
     - assets/images/splash_background.png
+    - assets/images/modal_bg.png
+    - assets/images/replay.png
+    - assets/images/menu.png
+    - assets/images/off_star.png
+    - assets/images/on_star.png
 
     - assets/images/petal0.png
     - assets/images/petal1.png
